@@ -1,0 +1,36 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  creationTimestamp: "2021-07-03T15:22:50Z"
+  labels:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+  managedFields:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/part-of: {}
+      f:roleRef:
+        f:apiGroup: {}
+        f:kind: {}
+        f:name: {}
+      f:subjects: {}
+    manager: python-requests
+    operation: Update
+    time: "2021-07-03T15:22:50Z"
+  name: ingress-role-binding
+  namespace: ingress-space
+  resourceVersion: "9043"
+  selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/ingress-space/rolebindings/ingress-role-binding
+  uid: cab611ab-1713-4ce6-97fd-860546b3ae02
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ingress-role
+subjects:
+- kind: ServiceAccount
+  name: ingress-serviceaccount

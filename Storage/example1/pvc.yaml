@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: claim-log-1
+spec:
+  accessModes:
+      - ReadWriteMany
+  resources:
+      requests:
+         storage: 50Mi

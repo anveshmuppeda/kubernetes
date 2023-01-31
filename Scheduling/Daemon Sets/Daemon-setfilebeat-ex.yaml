@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: filebeat
+spec:
+  selector:
+    matchLabels:
+      app: filebeat
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: filebeat
+        tier: node
+    spec:
+      containers:
+      - name: filebeat
+        image: elastic/filebeat:7.6.1
+        args:
+        - "-e"
+        - "-E"
+        - "http.enabled=true"
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - |
+              #!/usr/bin/env bash -e
+              curl --fail 127.0.0.1:5066
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - |
+              #!/usr/bin/env bash -e
+              filebeat test output
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5

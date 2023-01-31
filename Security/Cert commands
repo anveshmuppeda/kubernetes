@@ -1,0 +1,31 @@
+Certificate authority CA
+Generate Keys
+>openssl genrsa -out ca.key 2048
+ca.key
+
+Certificate Siging Request
+>openssl req -new -key ca.key -subj "/CN=KUBERNETES-CA" -out ca.csr
+cs.csr
+
+Sign Certificates:
+>openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
+ca.crt
+
+
+Generate keys
+>openssl genrsa -out admin.key 2048
+admin.key
+
+Certificate siging request
+>openssl req -new -key admin.key -subj "/CN=kube-admin/O=system:masters" -out admin.csr
+admin.csr
+
+Sign Certificate
+>openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -out admin.crt
+admin.crt
+
+
+
+
+To read cert file:
+>openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text

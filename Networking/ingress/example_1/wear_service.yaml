@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2021-07-03T14:51:32Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:ports:
+          .: {}
+          k:{"port":8080,"protocol":"TCP"}:
+            .: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+        f:selector:
+          .: {}
+          f:app: {}
+        f:sessionAffinity: {}
+        f:type: {}
+    manager: kubectl-create
+    operation: Update
+    time: "2021-07-03T14:51:32Z"
+  name: wear-service
+  namespace: app-space
+  resourceVersion: "4712"
+  selfLink: /api/v1/namespaces/app-space/services/wear-service
+  uid: ce32f770-6324-44b4-9398-f9848d03cbd9
+spec:
+  clusterIP: 10.109.91.30
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: webapp-wear
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

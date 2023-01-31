@@ -1,0 +1,15 @@
+#/etc/kubernetes/manifests/kube-scheduler.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kube-scheduler
+  namespace: kube-system
+spec:
+  containers:
+  - command:
+    - kube-scheduler
+    - --address=127.0.0.1
+    - --kubeconfig=/etc/kubernetes/scheduler.conf
+    - --leader-elect=true
+    name: k8s.gcr.io/kube-scheduler-amd64:v1.11.3
+    image: kube-scheduler

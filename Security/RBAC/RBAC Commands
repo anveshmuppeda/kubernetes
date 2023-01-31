@@ -1,0 +1,22 @@
+create Role:
+>kubectl create -f developer-role.yaml
+
+Bind the user to that group
+deveuser-binding.yaml
+
+to list roles:
+$kubectl get roles
+
+to list role bindings
+$kubectl get rolebindings
+
+to describe role
+$kubectl describe role role-name
+
+to describe RoleBinding
+$kubectl describe rolebinding rolebnding-name
+
+Check access
+$kubectl auth can-i create deployments
+yes- you can
+no- you can't

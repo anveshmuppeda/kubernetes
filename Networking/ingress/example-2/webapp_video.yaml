@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: webapp-video
+  name: webapp-video-mine
+  namespace: app-space
+spec:
+  containers:
+  - image: kodekloud/ecommerce:video
+    imagePullPolicy: Always
+    name: simple-webapp-mine
+    ports:
+    - containerPort: 8080
+      protocol: TCP

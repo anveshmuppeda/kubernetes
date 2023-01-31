@@ -1,0 +1,25 @@
+Key-value pair:
+
+Fruit: Apple
+Vegetables: Carrot
+Liquid: Water
+
+Array/List
+Fruits:
+- Orange
+- Apple
+- Banana
+
+Dictionary/Map
+Banana:
+  Calories: 105
+  Fat: 0.4g
+
+  key Value/Dictionary/Lists:
+Fruits:
+  - Banana:
+      Calories: 105
+      Fat: 0.4g
+  - Grape:
+      Calories: 62
+      Fat: 0.3g

@@ -1,0 +1,31 @@
+ConfigMaps
+A ConfigMap is an API object used to store non-confidential data in key-value pairs. Pods can consume ConfigMaps as environment variables, command-line arguments, or as configuration files in a volume.
+
+
+==config.yaml
+
+apiVersion: v1
+kind: configMap
+metadata:
+  name: app-config
+data:
+  APP_COLOR: blue
+  APP_MODE: prod
+
+==pod.yaml:
+
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: simple
+    labels:
+      name: simple
+  spec:
+    containers:
+    - name: simple
+      image: simple-webapp-color
+      ports":
+        - containerPort: 8080
+      envFrom:
+        - configMapRef:
+             name: app-config

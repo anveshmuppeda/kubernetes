@@ -1,0 +1,21 @@
+#kubectl expose deployment -n ingress-space ingress-controller --type=NodePort --port=80 --name=ingress --dry-run -o yaml >ingress.yaml
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: ingress-space
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetport: 80
+      protocol: TCP
+      nodePort: 30080
+      name: http
+    - port: 443
+      targetPort: 443
+      protocol: TCP
+      name: https
+   selector:
+    name: nginx-ingress

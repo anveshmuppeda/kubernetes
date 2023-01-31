@@ -1,0 +1,19 @@
+#kubectl run --restart=Never --image=busybox static-busybox --dry-run=client -o yaml --command -- sleep 1000 > /etc/kubernetes/manifests/static-busybox.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: static-busybox
+  name: static-busybox
+spec:
+  containers:
+  - command:
+    - sleep
+    - "1000"
+    image: busybox
+    name: static-busybox
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}

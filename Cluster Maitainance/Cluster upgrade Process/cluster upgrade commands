@@ -1,0 +1,96 @@
+for plan
+>kubeadm upgrade plan
+
+===kubeadm upgrade===
+first upgrade kubeadm tool
+apt-get upgrade -y kubeadm=1.12.0-00
+
+then upgrade the cluster
+kubeadm apply v1.12.0
+
+then upgrade the kubelet
+apt-get upgrade -y kubelet=1.12.0-00
+
+restart the kubelet service
+systemctl restart kubelet
+
+
+==worker node upgrade===
+drain the node
+kubetl drain node-1
+first upgrade kubeadm tool
+apt-get upgrade -y kubeadm=1.12.0-00
+
+then upgrade the kubelet
+apt-get upgrade -y kubelet=1.12.0-00
+
+Update the node configuration using kubelet version
+kubeadm upgrade node config --kubelet-version v1.12.0
+
+restart the kubelet service
+systemctl restart kubelet
+
+
+
+Steps upgrading master node from version v1.18.0 to v1.19.0:
+1. Drain the master node of workloads and mark it UnSchedulable
+kubectl drain master/controlplane --ignore-daemonsets
+
+2. run below commands to update apt and check which version is stable to Update
+apt update
+apt-cache madison kubeadm
+
+3. Update the kubeadm control plan
+
+apt-mark unhold kubeadm && \
+apt-get update && apt-get install -y kubeadm=1.19.0-00 && \
+apt-mark hold kubeadm
+
+==here you can verify the kubeadm version using "kubeadm version"=======
+
+4. Then upgrade the cluster which we get from "kubeadm upgrade plan" command
+kubeadm upgrade apply v1.19.0
+
+==here you can verify by using "kubeadm upgrade plan" in this command it won't show any upgrade plan
+5. upgrade the kubelet using below commands
+apt-mark unhold kubelet kubectl && \
+apt-get update && apt-get install -y kubelet=1.19.0-00 kubectl=1.19.0-00 && \
+apt-mark hold kubelet kubectl
+
+6. reload daemon & kubelet
+sudo systemctl daemon-reload
+
+sudo systemctl restart kubelet
+
+7. Mark the master/controlplane node as "Schedulable" again
+kubectl uncordon master
+
+===============================================================================
+
+Steps upgrading master node from version v1.18.0 to v1.19.0:
+1. Drain the master node of workloads and mark it UnSchedulable
+kubectl drain master/controlplane --ignore-daemonsets
+
+2. Update the kubeadm control plan
+
+apt-mark unhold kubeadm && \
+apt-get update && apt-get install -y kubeadm=1.19.0-00 && \
+apt-mark hold kubeadm
+
+==here you can verify the kubeadm version using "kubeadm version"=======
+
+4. Then upgrade the kubeadm
+sudo kubeadm upgrade node
+
+==here you can verify by using "kubeadm upgrade plan" in this command it won't show any upgrade plan
+5. upgrade the kubelet using below commands
+apt-mark unhold kubelet kubectl && \
+apt-get update && apt-get install -y kubelet=1.19.0-00 kubectl=1.19.0-00 && \
+apt-mark hold kubelet kubectl
+
+6. reload daemon & kubelet
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
+
+7. Mark the master/controlplane node as "Schedulable" again
+kubectl uncordon node01

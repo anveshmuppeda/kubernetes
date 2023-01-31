@@ -1,0 +1,32 @@
+
+To list number of config maps
+>kubectl get configmaps
+>kubectl get cm
+
+#to creare a configmap
+>kubectl create configmap <config-map> --from-literal=<key>=<value>
+ex:
+>kubectl create configmap app-config --from-literal=APP_COLOR=blue \
+--from-literal=APP_MOD=prod
+
+Creating secrets:
+>kubectl create secret generic <secret-name> --from-literal=<key>=<value>
+
+>kubectl create secret generic app-secrete --from-literal=DB_Host=mysql
+--from-literal=DB_User=root --from-literal=DB_Password=paswrd
+>kubectl create secret generic db-secret --from-literal=DB_Host=sql01 --from-literal=DB_User=root --from-literal=DB_Password=password123
+
+secrets:
+kubectl get secrets
+kubectl describe secrets
+Encrypt:
+echo -n 'mysql' | base64
+Decrypt:
+echo -n 'sgvGDjhbD' | base64 --decode
+
+
+
+Multi containers pods
+
+To view the logs inside container
+>kubectl -n elastic-stack exec -it app cat /log/app.log

@@ -1,0 +1,13 @@
+apiVersion: certificate.k8s.io/v1beta1
+kind: CertificateSigingRequest
+metadata:
+  name: jane
+spec:
+  groups:
+  - system:authentiicated
+  usages:
+  - digital signature
+  - key encipherment
+  - server auth
+  request:
+   <cat jane.csr | base64>

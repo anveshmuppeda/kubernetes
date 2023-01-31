@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: video-service-mine
+  namespace: app-space
+spec:
+  clusterIP: 10.106.164.34
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: webapp-video-mine
+  sessionAffinity: None
+  type: ClusterIP

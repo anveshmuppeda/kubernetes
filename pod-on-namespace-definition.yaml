@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis
+  namespace: namespace-name
+  labels:
+    env: prod
+spec:
+  containers:
+    - image: redis
+      name: redis

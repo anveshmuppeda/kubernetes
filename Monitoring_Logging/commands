@@ -1,0 +1,16 @@
+To install metric server
+clone the code
+>git clone https://github.com/kodekloudhub/kubernetes-metrics-server.git
+
+To create metric server by using above cloned repo
+>kubectl create -f kubernetes-metrics-server
+
+>to list the resources details
+kubectl top node
+kubectl top pod
+
+>to view the pod logs
+kubectl logs -f pod-name
+
+if we run multple containers within the pod then we can view the logs using
+>kubectl logs -f pod-name -c container-name

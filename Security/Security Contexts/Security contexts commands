@@ -1,0 +1,6 @@
+
+kubectl exec ubuntu-sleeper -- whoami
+
+Try to run the below command in the pod 'ubuntu-sleeper' to set the date. Are you allowed to set date on the POD?
+date -s '19 APR 2012 11:14:00'
+kubectl exec -it ubuntu-sleeper -- date -s '19 APR 2012 11:14:00'

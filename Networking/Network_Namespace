@@ -1,0 +1,45 @@
+Network namespace:
+
+to create new nw ns
+$ip netns add red
+
+To list nw ns
+$ip netns
+
+To list loopback in the nw ns
+$ip netns exec red ip link
+or
+$ip -n red link
+
+
+How to link both n/w ns:
+
+ip link add veth-red type veth peer name veth-blue
+ip link set veth-red nets red
+ip link set veth-red nets blue
+
+Assign IP address to N/W ns
+ip -n red addr add 192.168.15.1 dev veth-red
+ip -n blue addr add 192.168.15.1 dev veth-blue
+
+Bring up N/W ns
+ip -n red link set veth-red up
+ip -n blue link set veth-blue up
+
+
+Now try to ping blue from red
+ip nets exec red arp
+ip nets exec blue arp
+
+
+
+
+cluster Networking Commands
+ip link
+ip addr
+ip addr add 192.168.1.10/24 dev eth0
+ip route
+ip route add 192.168.1.0/24 via 192.168.2.1
+cat /proc/sys/net/ipv4/ip_forward
+arp
+netstat -plnt

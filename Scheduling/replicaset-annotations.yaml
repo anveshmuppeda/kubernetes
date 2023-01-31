@@ -1,0 +1,24 @@
+#kubectl get pods --selector app=app1
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicaset-1
+  labels:
+     app: app1
+     funtions: front-end
+  annotations:
+      buildbversion: 1.34
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      env: qa
+  template:
+    metadata:
+      labels:
+        env: qa
+    spec:
+      containers:
+      - name: nginx
+        image: nginx

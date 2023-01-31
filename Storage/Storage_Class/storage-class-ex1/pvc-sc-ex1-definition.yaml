@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: myclaim
+spec:
+    accessModes:
+        - ReadWriteOnce
+    storageClassName: google-storage
+    resources:
+       requests:
+         storage: 500Mi

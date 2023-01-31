@@ -1,0 +1,2 @@
+To list StorageClasses
+>kubectl get sc

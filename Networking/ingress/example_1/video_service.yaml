@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2021-07-03T14:51:32Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    manager: kubectl-create
+    operation: Update
+    time: "2021-07-03T14:51:32Z"
+  name: video-service
+  namespace: app-space
+  resourceVersion: "4730"
+  selfLink: /api/v1/namespaces/app-space/services/video-service
+  uid: 67c5c425-b03a-4709-a1b6-759163f22453
+spec:
+  clusterIP: 10.106.164.34
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: webapp-video
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

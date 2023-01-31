@@ -1,0 +1,12 @@
+CNI weave
+
+when we have multiple netwrok's to communicate each other, during that point CNI weave comes in.
+Ex: we have large number of network space, where we need to send one pocket/request from one network/cluster to other during that time we CNI weave will help us.
+CNI weave is configured as a pod on each node as a daemon set.
+
+CNI Weave deployment:
+
+$kubectl aply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+
+to check weave pods
+kubectl get pods -n kube-system

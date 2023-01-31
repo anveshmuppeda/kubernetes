@@ -1,0 +1,22 @@
+
+To create PVs
+kubectl create -f pv-definition.yaml
+
+To get PVs
+kubectl get persistentvolume
+
+To create PVCs
+kubectl create -f pvc-definition.yaml
+
+To get PVCs
+kubectl get persistentVolumeClaim
+
+To delete PVCs
+kubectl delete persistentVolumeClaim <persistentVolumeClaim-name>
+
+
+
+
+storage class:
+The Storage Class called local-storage makes use of VolumeBindingMode set to WaitForFirstConsumer.
+This will delay the binding and provisioning of a PersistentVolume until a Pod using the PersistentVolumeClaim is created.

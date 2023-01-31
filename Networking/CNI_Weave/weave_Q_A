@@ -1,0 +1,14 @@
+
+Q: What is the path configured with all binaries of CNI supported plugins?
+Ans: The CNI binaries are located under /opt/cni/bin by default.
+
+
+Q: What is the CNI plugin configured to be used on this kubernetes cluster?
+Ans: Run the command: ls /etc/cni/net.d/ and identify the name of the plugin.
+
+
+Q: What is the POD IP address range configured by weave?
+Ans: Run the command 'ip addr show weave'
+
+Q: What is the range of IP addresses configured for PODs on this cluster?
+Ans: The network is configured with weave. Check the weave pods logs using command kubectl logs <weave-pod-name> weave -n kube-system and look for ipalloc-range

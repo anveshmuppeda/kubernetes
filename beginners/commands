@@ -1,0 +1,14 @@
+To modify existing pod using definition yaml file
+>kubectl apply -f pod.YAML
+
+To modify existing ReplicaSet using definition yaml file
+>kubectl replace -f replica.yaml
+
+To modify existing ReplicaSet using replicaset name
+kubectl edit replicasets.apps replicaset-name 
+
+To modify existing deplyment using deplyment.yaml file
+kubectl apply -f deplyment.YAML
+
+To modify existing deplyment using deplyment name
+kubectl edit deplyment.apps deplyment-name

@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: busybox-pod
+  template:
+    metadata:
+      labels:
+        name: busybox-pod
+    spec:
+      containers:
+      - name: busybox-container
+        image: busybox

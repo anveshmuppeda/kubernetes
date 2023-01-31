@@ -1,0 +1,9 @@
+
+To drain the node01 (Empty the node of all applications and mark it unschedulable.)
+>kubectl drain node01 --ignore-daemonsets
+
+Configure the node to be schedulable again
+>kubectl uncordon node01
+
+Mark node03 as unschedulable but do not remove any apps currently running on it .
+>kubectl cordon node03

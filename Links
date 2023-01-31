@@ -1,0 +1,3 @@
+Definition YAML files for affinity
+
+https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/

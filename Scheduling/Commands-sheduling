@@ -1,0 +1,71 @@
+#get pods based on the selectors
+kubectl get pods -l env=dev --no-headers | wc -l
+
+kubectl get pods -l env=prod,bu=finance,tier=frontend
+
+
+================
+Taint:
+===================
+Create a taint on node01 with key of 'spray', value of 'mortein' and effect of 'NoSchedule'
+$kubectl taint nodes node01 spray=mortein:NoSchedule
+
+kubectl taint nodes node-name key=value:taint-effect
+taint-effects:NoSchedule or PreferNoSchedule or NoExecute
+ex:
+kubectl taint nodes node1 app=blue"NoShedule
+
+
+#For taint
+$ kubectl taint nodes controlplane node-role.kubernetes.io/master:NoSchedule
+#For untaint(removing Taint)
+$ kubectl taint nodes controlplane node-role.kubernetes.io/master:NoSchedule-
+
+#Remove the taint on master/controlplane, which currently has the taint effect of NoSchedule
+kubectl taint nodes master/controlplane node-role.kubernetes.io/master:NoSchedule-
+
+#the below commands will deplay the all the available options for pod to create a definition YAML file
+kubectl explain pod --recursive | less
+kubectl explain pod --recursive | grep -A5 tolerations
+
+
+==================
+Node selectors
+==================
+Labeling Node
+>kubectl label nodes <node-name> <label-key>=<label-value>
+EX:
+kubectl label nodes node-1 size=Large
+
+=======================
+Node Affinty Types:
+=======================
+requiredDuringSchedulingIgnoreDuringExecution
+preferredDuringSchedulingIgnoreDuringExecution
+requiredDuringSchedulingrequiredDuringExecution
+
+#applying label to existing pod
+kubectl label nodes node-name color=blue
+
+kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/
+
+===============
+DaemonSet
+=================
+to describe a daemonset
+>kubectl describe daemonset kube-proxy --namespace=kube-system
+
+
+to get DaemonSet
+>kubectl get ds -A
+
+================
+static pods
+==============
+>kubectl get pods -A -o wide
+
+Create a static pod named static-busybox that uses the busybox image and the command sleep 1000
+>kubectl run --restart=Never --image=busybox static-busybox --dry-run=client -o yaml --command -- sleep 1000 > /etc/kubernetes/manifests/static-busybox.yaml
+
+To find the files which are config type
+>ps -ef | grep kubelet | grep "\--config"

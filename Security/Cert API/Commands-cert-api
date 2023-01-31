@@ -1,0 +1,33 @@
+Certificate siging request:
+
+1. Create a key
+>openssl genrsa -out jane.key 2048
+
+
+2. Send the key to admin to signin by the CA.
+openssl req -new -key jane.key -subj "/CN=jane" -out jane.csr
+
+3. Certificate siging request using yaml file
+
+
+
+to list certifiicate siging requests
+>kubectl get csr
+
+to approve CSR cert request
+>kubectl certificate approve jane
+
+To deny the CSR  cert request
+>kubectl certificate deny agent-smith
+
+To delete the CSR
+>kubectl delete csr agent-smith
+
+View the certificate
+>kubectl get csr jane -o yaml
+
+to check the cert and groups which are requested for approve
+>kubectl get csr agent-smith -o yaml
+
+
+echo "key from above" | base64 --decode

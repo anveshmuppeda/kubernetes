@@ -1,0 +1,33 @@
+===========Backup and Restore methods=============================
+=
+
+To backup all running resources on cluster
+>kubectl get all --all-namespaces -o yaml > all-deploy-service.yaml
+
+Backup ETCD:
+>ETCDCTL_API=3 etcdctl snapshot save /path/snapshot.db
+
+To view the status of the backup:
+>ETCDCTL_API=3 etcdctl snapshot status /path/snapshot.db
+
+To restore the etcd from the above backup
+1. Stop the kubeapiserver
+service kube-apiserver stop
+2. Take backup
+>ETCDCTL_API=3 etcdctl snapshot restore /path/snapshot.db
+3. reloads the daemon
+>systemctl deamon-reload
+4. restart etcd
+>service etcd restart
+5. start kube api server
+>service kube-apiserver start
+
+We need to pass the cert and endpoints values for taking Backup
+>ETCDCTL_API=3 etcdctl snapshot save /path/snapshot.db \
+--endpoints=https://127.0.0.1:2379 \
+--cacert=/etc/etcd/ca.cert \
+--cert=/etc/etcd/etcd-server.crt \
+--key=/etc/etcd/etcd-server.key
+
+
+ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /opt/snapshot-pre-boot.db

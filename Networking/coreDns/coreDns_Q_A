@@ -1,0 +1,2 @@
+Q: Where is the configuration file located for configuring the CoreDNS service?
+A: Inspect the Args of the coredns deployment and check the file used, example: kubectl -n kube-system describe deployments.apps coredns | grep -A2 Args | grep Corefile

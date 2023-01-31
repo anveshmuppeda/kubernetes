@@ -1,0 +1,59 @@
+Basic definition YAML file:
+-PODS-
+apiVersion:
+kind:
+metadata:
+spec:
+
+-ReplicaSet-
+apiVersion:
+kind:
+metadata:
+spec:
+  template:
+  replicas:
+  selector:
+
+-Deployments-
+apiVersion:
+kind:
+metadata:
+spec:
+  template:
+  replicas:
+  selector:
+
+
+
+
+
+A ReplicaSet's purpose is to maintain a stable set of replica Pods running at any given time.
+As such, it is often used to guarantee the availability of a specified number of identical Pods.
+
+
+
+
+
+Deployments are entirely managed by the Kubernetes backend, and the whole update process is performed on the server side without client interaction.
+
+A deployment ensures the desired number of pods are running and available at all times.
+The update process is also wholly recorded, and versioned with options to pause, continue, and roll back to previous versions.
+
+
+Managing your applications with a Kubernetes deployment includes the way in which an application should be updated.
+A major benefit of a deployment is the ability to start and stop a set of pods predictably.
+
+
+To create a deployment:
+>kubectl create -f deployment-definition.yaml
+
+To apply
+>kubectl apply -f deployment-definition.yaml
+
+Update by using image option:
+>kubectl set image deployement-name nginx=nginx:1.9.1
+
+
+
+To list all pods, replicasets and deployement under the deployments:
+>kubectl get all

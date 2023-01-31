@@ -1,0 +1,22 @@
+#pod labels and selector labels must be same.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: mywebsite
+    tier: frontend
+spec:
+  replicas: 4
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        env: prod
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+  selector:
+    matchLabels:
+         env: prod

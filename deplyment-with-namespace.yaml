@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: redis-deploy
+  name: redis-deploy
+  namespace: dev-ns
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis-deploy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: redis-deploy
+    spec:
+      containers:
+      - image: redis
+        name: redis
+        resources: {}
+status: {}
