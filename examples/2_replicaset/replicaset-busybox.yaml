@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: anvesh-replicaset
+  labels:
+    app: replica-label
+spec:
+  # modify replicas according to your case
+  replicas: 2
+  selector:
+    matchLabels:
+      app: replica-label
+  template:
+    metadata:
+      labels:
+        app: replica-label
+    spec:
+      containers:
+      - name: my-replicaset
+        image: nginx/nginx
+        ports:
+        - name: web
+          containerPort:  80
+          protocol: TCP
