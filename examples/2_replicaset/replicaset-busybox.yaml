@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: my-replicaset
-        image: nginx/nginx
+        image: nginx
         ports:
         - name: web
           containerPort:  80

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nodeselector-pod
+  labels:
+    app: mynodeselector
+spec:
+  containers:
+  - name: nodeselector-container
+    image: nginx
+  nodeSelector:
+    size: t2micro
+    #this will schedule on only node t2micro

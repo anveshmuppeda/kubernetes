@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  selector-deploy
+  #These are the deployment labeles
+  labels:
+    app:  selector-label
+spec:
+  selector:
+  #this is the connection between the deployment labels and container label, so it should match both label with selectors
+    matchLabels:
+      app: selector-label
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      #these are the container labels
+      labels:
+        app:  selector-label
+    spec:
+      containers:
+      - name:  selector-nginx-pod
+        image:  nginx
