@@ -3,8 +3,8 @@ Follow https://minikube.sigs.k8s.io/docs/start/.
 
 ## Drivers. 
 Follow https://minikube.sigs.k8s.io/docs/drivers/.  
-Here I used podman as a driver.  
-```brew install podman```  
+Here I used qemu as a driver.  
+```brew install qemu```  
 
 ### Start your cluster using below command. 
 ```minikube start```.  
