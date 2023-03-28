@@ -1,4 +1,28 @@
-# Creating sample user
+# Kubernetes Dashboard
+### Install
+
+To deploy Dashboard, execute following command:
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+```
+### Access
+
+To access Dashboard from your local workstation you must create a secure channel to your Kubernetes cluster. Run the following command:
+
+```shell
+kubectl proxy
+```
+Now access Dashboard at:
+
+[`http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/`](
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/).
+
+**NOTE:** If the above link doesn't work, refer in github repo https://github.com/kubernetes/dashboard
+
+
+## Create An Authentication Token (RBAC)
+## Creating sample user
 
 Here we are creating a new user using the Service Account mechanism of Kubernetes, grant this user admin permissions and login to Dashboard using a bearer token tied to this user.
 
