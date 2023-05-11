@@ -74,3 +74,8 @@ echo -n "" | base64 --decode
 kuebctl auth can-i create deployments
 kubectl auth can-i create pods
 ```
+
+### To curl to a pod 
+```
+kubectl exec -it selenium-hub-b4bb44946-xthvr -n selenium — curl http://192.168.194.81:4444/wd/hub/status
+```
