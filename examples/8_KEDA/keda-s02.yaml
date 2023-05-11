@@ -1,0 +1,28 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: keda-so-1
+  namespace: keda
+  labels:
+    run: keda-deploy
+spec:
+  advanced:
+    horizontalPodAutoscalerConfig:
+      behavior:
+        scaleDown:
+          stabilizationWindowSeconds: 1
+  pollingInterval: 1
+  scaleTargetRef:
+    name: keda-deploy
+  minReplicaCount: 1
+  maxReplicaCount: 5
+  cooldownPeriod: 1
+  triggers:
+  - type: memory
+    metadata:
+      type: Utilization
+      value: "{{.UtilizationValue}}"
+  - type: kubernetes-workload
+    metadata:
+      podSelector: 'pod={{.WorkloadDeploymentName}}'
+      value: '1'

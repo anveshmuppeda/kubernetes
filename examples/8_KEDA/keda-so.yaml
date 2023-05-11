@@ -1,0 +1,26 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: keda-so-1
+  namespace: keda
+  labels:
+    run: keda-deploy
+spec:
+  advanced:
+    horizontalPodAutoscalerConfig:
+      behavior:
+        scaleDown:
+          policies:
+          - type: Pods
+            value: 1
+            periodSeconds: 10
+          stabilizationWindowSeconds: 0
+  maxReplicaCount: 3
+  minReplicaCount: 1
+  scaleTargetRef:
+    name: keda-deploy
+  triggers:
+  - type: memory
+    metadata:
+      type: Utilization
+      value: "1"

@@ -1,0 +1,16 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: memory-scaledobject
+  namespace: anvesh
+spec:
+  minReplicaCount: 2
+  maxReplicaCount: 4
+  scaleTargetRef:
+    name: anvesh-deployment
+  triggers:
+  - type: memory
+    metricType: Utilization # Allowed types are 'Utilization' or 'AverageValue'
+    metadata:
+      type: Utilization
+      value: "1Mi"

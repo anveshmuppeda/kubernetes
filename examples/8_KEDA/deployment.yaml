@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  anvesh-deployment
+  namespace: anvesh
+  labels:
+    app:  deployment-label
+spec:
+  selector:
+    matchLabels:
+      app: deployment-label
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: deployment-label
+    spec:
+        # initContainers:
+        # Init containers are exactly like regular containers, except:
+          # - Init containers always run to completion.
+          # - Each init container must complete successfully before the next one starts.
+      containers:
+      - name:  nginx-deploy
+        image:  nginx:latest
+        resources:
+          requests:
+            cpu: 10m
+            memory: 10Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort:  80
+          name:  nginx-deploy

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keda-deploy2
+  namespace: {{.TestNamespace}}
+  labels:
+    deploy: keda-deploy2
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      pod: keda-deploy2
+  template:
+    metadata:
+      labels:
+        pod: keda-deploy2
+    spec:
+      containers:
+        - name: nginx
+          image: 'nginxinc/nginx-unprivileged'
