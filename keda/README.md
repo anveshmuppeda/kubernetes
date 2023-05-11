@@ -26,5 +26,5 @@ Deploying KEDA with Helm is very simple:
     helm install keda kedacore/keda --namespace keda
     ```
 Ref: 
-https://github.com/kedacore/keda/blob/main/tests/scalers/memory/memory_test.go
+https://github.com/kedacore/keda/blob/main/tests/scalers/memory/memory_test.go  
 https://keda.sh/docs/2.10/scalers/memory/
