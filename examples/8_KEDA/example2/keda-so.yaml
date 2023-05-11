@@ -1,0 +1,17 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: keda-so-1
+  namespace: anveshtest
+  labels:
+    run: keda-deploy
+spec:
+  maxReplicaCount: 3
+  minReplicaCount: 1
+  scaleTargetRef:
+    name: keda-deploy
+  triggers:
+  - type: memory
+    metadata:
+      type: Utilization
+      value: "1"

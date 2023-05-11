@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    deploy: keda-deploy
+  name: keda-deploy
+  namespace: anveshtest
+spec:
+  selector:
+    matchLabels:
+      run: keda-deploy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: keda-deploy
+    spec:
+      containers:
+      - name: keda-deploy
+        image: memcached
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: 100Mi
+          requests:
+            memory: 50Mi
+        imagePullPolicy: IfNotPresent
