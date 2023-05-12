@@ -52,16 +52,13 @@ metadata:
   region: ap-south-east-1
 nodeGroups:
   - name: senodegrp-1
-  instanceType: t2.medium
-  desiredCapacity: 2
+    instanceType: t2.medium
+    desiredCapacity: 2
 ```
 ```eksctl create cluster -f cluster.yaml```
 
 
-It takes around 5-10min to complete the whole task of creating a cluster (master) and EC2 instances (worker) nodes and attach nodes to the master.
-
-
-(Kubernetes Cluster attached with node group containing 2 nodes.)
+> **_NOTE:_**  It takes around 5-10min to complete the whole task of creating a cluster (master) and EC2 instances (worker) nodes and attach nodes to the master.
 
 Now the kubernetes cluster is ready, let us deploy the Zalenium grid with the below series of commands.
 
