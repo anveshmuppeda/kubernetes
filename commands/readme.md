@@ -16,6 +16,10 @@ echo -n "" | base64 --decode
 kuebctl auth can-i create deployments
 kubectl auth can-i create pods
 ```
+### to check IP range for pods within the namespaces
+```
+kubectl cluster-info dump | grep -m 1 cluster-cidr
+```
 ---
 ## Switching Between Contexts
 ### to list all preconfigured contexts and see which one is active:
