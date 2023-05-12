@@ -131,3 +131,20 @@ kubectl drain node01 --ignore-daemonsets
 ```
 kubectl uncordon node01
 ```
+
+---
+## Logs
+### to get the pod logs
+```
+kubectl -n <n-s> logs -f <pod> --tail=10
+kubectl -n namespace-name logs pod-name
+kubectl logs -n namespace container-name --since 10m
+kubectl logs -n namespace container-name --tail=1000
+kubectl logs --selector=run=hello-world --tail 1
+```
+### to get the pod logs for particular directory
+```
+kubectl -n elastic-stack exec -it app cat /log/app.log
+kubectl logs myapp-pod -c init-myservice # Inspect the first init container
+kubectl logs myapp-pod -c init-mydb      # Inspect the second init container
+```
