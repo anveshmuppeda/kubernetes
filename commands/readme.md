@@ -89,6 +89,18 @@ kubectl explain pods --recursive | less
 ```
 kubectl get pod -n <namespace> | grep Evicted | awk '{print $1}' | xargs kubectl delete pod -n <name-space>
 ```
+### to login into pod
+```
+winpty kubectl exec -it -n <namespace> <pod-name> sh 
+```  
+### to view logs from containers
+```
+kubectl exec <pod-name> -- cat /log/app.log
+```
+### to get the pod deatils with wide options
+```
+kubectl get pods -o wide
+```
 ---
 ## Nodes 
 ### to list nodes with the resource usage
