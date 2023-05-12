@@ -14,11 +14,7 @@ kubectl get pod -n <name-space> | grep Evicted | awk '{print $1}' | xargs kubect
 kubectl top node
 ```
 
-### to list all nodes in a cluster
-```
-kubectl get pods -A
-```
-
+## Labels & Selectors 
 ### Labeling a node
 ```
 kubectl label node <nodename> <labelname>
@@ -34,15 +30,29 @@ kubectl label node <nodename> <labelname>-
 kubectl get nodes --show-labels
 ```
 
-### to print env variables of a pod
-```
-kubectl exec <pod-name> -- printenv
-```
+## Container 
 
 ### to login inside docker container
 ```
 docker exec -it <container name> /bin/bash
 ```
+
+## Pod
+### To curl to a pod 
+```
+kubectl exec -it selenium-hub-b4bb44946-xthvr -n selenium — curl http://192.168.194.81:4444/wd/hub/status
+```
+### to list all pods in a cluster
+```
+kubectl get pods -A
+```
+ 
+### to print env variables of a pod
+```
+kubectl exec <pod-name> -- printenv
+```
+
+## Cluster 
 
 ### listing all the resources in cluster
 ```
@@ -75,7 +85,4 @@ kuebctl auth can-i create deployments
 kubectl auth can-i create pods
 ```
 
-### To curl to a pod 
-```
-kubectl exec -it selenium-hub-b4bb44946-xthvr -n selenium — curl http://192.168.194.81:4444/wd/hub/status
-```
+Switching Between Contexts
