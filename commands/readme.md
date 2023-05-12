@@ -73,6 +73,14 @@ winpty kubectl exec -it -n <n-s> <pod> sh
 ```
 kubectl get pod -n <name-space> | grep Evicted | awk '{print $1}' | xargs kubectl delete pod -n <name-space>
 ```
+### to get the pod definition
+```
+kubectl get pod pod-name -o yaml > pod.yaml
+```
+### to get pod definition possible options
+```
+kubectl explain pods --recursive | less
+```
 ---
 ## Nodes 
 ### to list nodes with the resource usage
