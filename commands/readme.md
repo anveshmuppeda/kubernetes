@@ -17,19 +17,28 @@ kuebctl auth can-i create deployments
 kubectl auth can-i create pods
 ```
 Switching Between Contexts
-
+### to list all preconfigured contexts and see which one is active:
+```
+kubectl config get-contexts
+```
+### prints the current config name
+```
+kubectl config current-context
+```
+### to switch between the predefined contexts(Switch to a context/cluster):
+```
+kubectl config use-context NikTest
+```
 
 ## Labels & Selectors 
 ### Labeling a node
 ```
 kubectl label node <nodename> <labelname>
 ```
-
 ### remove Label from a node
 ```
 kubectl label node <nodename> <labelname>-
 ```
-
 ### to list nodes with the labels
 ```
 kubectl get nodes --show-labels
