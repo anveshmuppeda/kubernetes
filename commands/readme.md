@@ -30,7 +30,7 @@ kubectl config current-context
 ```
 kubectl config use-context NikTest
 ```
-
+---
 ## Labels & Selectors 
 ### Labeling a node
 ```
@@ -44,14 +44,14 @@ kubectl label node <nodename> <labelname>-
 ```
 kubectl get nodes --show-labels
 ```
-
+---
 ## Container 
 
 ### to login inside docker container
 ```
 docker exec -it <container name> /bin/bash
 ```
-
+---
 ## Pod
 ### To curl to a pod 
 ```
@@ -73,7 +73,7 @@ winpty kubectl exec -it -n <n-s> <pod> sh
 ```
 kubectl get pod -n <name-space> | grep Evicted | awk '{print $1}' | xargs kubectl delete pod -n <name-space>
 ```
-
+---
 ## Nodes 
 ### to list nodes with the resource usage
 ```
