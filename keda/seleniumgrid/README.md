@@ -44,10 +44,18 @@ Once the above pre-requisites are met, next task to deploy any application on ku
                              OR
 
 Create a cluster.yaml file with the below instructions and execute the given command.
-
-
-
-eksctl create cluster -f cluster.yaml
+```
+apiVersion: eksctl.io/vlaplha5
+kind: ClusterConfig
+metadata:
+  name: sel-cluster
+  region: ap-south-east-1
+nodeGroups:
+  - name: senodegrp-1
+  instanceType: t2.medium
+  desiredCapacity: 2
+```
+```eksctl create cluster -f cluster.yaml```
 
 
 It takes around 5-10min to complete the whole task of creating a cluster (master) and EC2 instances (worker) nodes and attach nodes to the master.
