@@ -13,30 +13,29 @@ This article would outline the process of deploying **Selenium grid(Zalenium) on
 ### Pre-requisites:
 - An active Amazon AWS account.
 - IAM user is created in AWS account
-- AWS CLI is connected to AWS account providing the user credentials using local powershell or any terminal
+- AWS CLI is connected to AWS account providing the user credentials using local powershell or any terminal  
                                                             OR
 - Use AWS cloudshell which is automatically connected to logged in account.
 - Install AWS CLI (for local terminal), kubectl, helm in the given order.
 
-Lets Get Started!
-Once the above pre-requisites are met, next task to deploy any application on kubernetes is to create a kubernetes cluster. There are different ways to create a cluster on AWS, I'll brief couple of ways to achieve the same.
+### Lets Get Started!
+Once the above pre-requisites are met, next task to deploy any application on kubernetes is **to create a kubernetes cluster**. There are different ways to create a cluster on AWS, I'll brief couple of ways to achieve the same.
 
-First, Create cluster from AWS GUI.
+### First, Create cluster from AWS GUI.
 
 1. Create master node or cluster 
-Open Amazon EKS console
-Choose Create Cluster
-Provide details like cluster name, k8s version, role
-Select VPC, security groups, endpoint access
-Further steps as shown on GUI which will make 'master' ready.
+- Open Amazon EKS console
+- Choose Create Cluster
+- Provide details like cluster name, k8s version, role
+- Select VPC, security groups, endpoint access
+- Further steps as shown on GUI which will make 'master' ready.
 2. Create worker nodes and connect to the above created cluster.
-Create Node Group (Amazon EC2) instances.
-Choose the cluster, to which the above node group should get attached.
-Select security group, resources etc.,
-Define min and max number no. of nodes.
-Sounds complex?. No issues, there is another simple and efficient way to make the whole process look simple.
+- Create Node Group (Amazon EC2) instances.
+- Choose the cluster, to which the above node group should get attached.
+- Select security group, resources etc.,
+- Define min and max number no. of nodes.
 
-Second, Create cluster using eksctl (The official CLI for Amazon EKS)
+### Second, Create cluster using eksctl (The official CLI for Amazon EKS)
 
 The above complex task can be achieved with a single command.
 
