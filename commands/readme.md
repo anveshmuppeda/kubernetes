@@ -85,6 +85,10 @@ kubectl get pod pod-name -o yaml > pod.yaml
 ```
 kubectl explain pods --recursive | less
 ```
+### to delete the pods which are Evicted State
+```
+kubectl get pod -n <namespace> | grep Evicted | awk '{print $1}' | xargs kubectl delete pod -n <name-space>
+```
 ---
 ## Nodes 
 ### to list nodes with the resource usage
