@@ -6,10 +6,10 @@ Below solution would try to address most of them. Major chunks of the solution i
 This article would outline the process of deploying **Selenium grid(Zalenium) on AWS (Amazon EKS) using Kubernetes and Helm**.
 
 ### What do we achieve with this setup..?
-Scalability: EKS can scale the nodes and pods as per the given configuration.
-Visibility: Zalenium provides a feature to view the live executions on the containers.
-Availability: Amazon EKS cluster makes selenium grid available all the time.
-Maintenance: Low maintenance as the containers are destroyed after each execution.
+- Scalability: EKS can scale the nodes and pods as per the given configuration.
+- Visibility: Zalenium provides a feature to view the live executions on the containers.
+- Availability: Amazon EKS cluster makes selenium grid available all the time.
+- Maintenance: Low maintenance as the containers are destroyed after each execution.
 Pre-requisites:
 An active Amazon AWS account.
 IAM user is created in AWS account
