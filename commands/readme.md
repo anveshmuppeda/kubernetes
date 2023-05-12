@@ -119,3 +119,15 @@ kubectl taint nodes node1 key1=value1:NoSchedule
 kubectl taint nodes node1 key1=value1:NoExecute
 kubectl taint nodes node1 key2=value2:NoSchedule
 ```
+### mark node03 as unschedulable but do not remove any apps currently running on it .
+```
+kubectl cordon node03
+```
+### to drain the node01 (Empty the node of all applications and mark it unschedulable.)
+```
+kubectl drain node01 --ignore-daemonsets
+```
+### Configure the node to be schedulable again
+```
+kubectl uncordon node01
+```
