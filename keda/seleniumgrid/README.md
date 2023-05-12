@@ -102,7 +102,7 @@ Grid Console: http://<ExternalIP>/grid/console
 Grid Url, authenticated with basic auth: http://seluser:Selpwd@<ExternalIP>/wd/hub
 
 ---
-**NOTE**
-Cluster & nodes created from eksctl can be deleted similarly with a single command
-eksctl delete cluster --name sel-cluster
+> **_NOTE:_**
+Cluster & nodes created from eksctl can be deleted similarly with a single command 
+```eksctl delete cluster --name sel-cluster```
 ---
