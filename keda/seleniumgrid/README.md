@@ -1,9 +1,9 @@
 # How to Deploy Selenium grid on AWS / Amazon EKS 
-Selenium Grid is good for parallel execution but maintenance is a nightmare in an era where you see a frequent upgrades to browsers and corresponding drivers. No sooner the usage of automation framework / selenium grid increases, scalability and maintenance becomes a challenge. To address such issues, we do have solutions based on dockers, docker swarm etc. Having said that, there are some caveats in scaling, managing container health etc.
+  Selenium Grid is good for parallel execution but maintenance is a nightmare in an era where you see a frequent upgrades to browsers and corresponding drivers. No sooner the usage of automation framework / selenium grid increases, scalability and maintenance becomes a challenge. To address such issues, we do have solutions based on dockers, docker swarm etc. Having said that, there are some caveats in scaling, managing container health etc.
 
 Below solution would try to address most of them. Major chunks of the solution include Selenium, Zalenium, Docker, Kubernetes and Amazon EKS.
 
-This article would outline the process of deploying Selenium grid(Zalenium) on AWS (Amazon EKS) using Kubernetes and Helm.
+This article would outline the process of deploying **Selenium grid(Zalenium) on AWS (Amazon EKS) using Kubernetes and Helm**.
 
 What do we achieve with this setup..?
 Scalability: EKS can scale the nodes and pods as per the given configuration.
