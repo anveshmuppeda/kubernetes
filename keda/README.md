@@ -1,5 +1,5 @@
 
-## Deploying with Helm {#helm}
+## Deploying KEDA with Helm {#helm}
 
 ### Install
 
