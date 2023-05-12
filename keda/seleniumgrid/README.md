@@ -24,11 +24,11 @@ Once the above pre-requisites are met, next task to deploy any application on ku
 ### First, Create cluster from AWS GUI.
 
 1. Create master node or cluster 
-- Open Amazon EKS console
-- Choose Create Cluster
-- Provide details like cluster name, k8s version, role
-- Select VPC, security groups, endpoint access
-- Further steps as shown on GUI which will make 'master' ready.
+  - Open Amazon EKS console
+  - Choose Create Cluster
+  - Provide details like cluster name, k8s version, role
+  - Select VPC, security groups, endpoint access
+  - Further steps as shown on GUI which will make 'master' ready.
 2. Create worker nodes and connect to the above created cluster.
 - Create Node Group (Amazon EC2) instances.
 - Choose the cluster, to which the above node group should get attached.
@@ -36,13 +36,10 @@ Once the above pre-requisites are met, next task to deploy any application on ku
 - Define min and max number no. of nodes.
 
 ### Second, Create cluster using eksctl (The official CLI for Amazon EKS)
+1. Install eksctl using brew, chocolatey, scoop or curl.
+2. Run the below command to create cluster.
 
-The above complex task can be achieved with a single command.
-
-Install eksctl using brew, chocolatey, scoop or curl.
-Run the below command to create cluster.
-
-eksctl create cluster --name sel --region ap-south-1 --nodegroup-name selnodegrp-1 --node-type t2.micro --nodes 2
+```eksctl create cluster --name sel --region ap-south-1 --nodegroup-name selnodegrp-1 --node-type t2.micro --nodes 2```
 
                              OR
 
