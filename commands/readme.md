@@ -11,13 +11,13 @@ k api-resources
 echo -n "anvesh" | base64
 echo -n "" | base64 --decode
 ```
-### To Check Access  
+### to Check Access  
 ```
 kuebctl auth can-i create deployments
 kubectl auth can-i create pods
 ```
 ---
-### Switching Between Contexts
+## Switching Between Contexts
 ### to list all preconfigured contexts and see which one is active:
 ```
 kubectl config get-contexts
@@ -32,7 +32,7 @@ kubectl config use-context NikTest
 ```
 ---
 ## Labels & Selectors 
-### Labeling a node
+### labeling a node
 ```
 kubectl label node <nodename> <labelname>
 ```
@@ -53,7 +53,7 @@ docker exec -it <container name> /bin/bash
 ```
 ---
 ## Pod
-### To curl to a pod 
+### to curl to a pod 
 ```
 kubectl exec -it selenium-hub-b4bb44946-xthvr -n selenium — curl http://192.168.194.81:4444/wd/hub/status
 ```
