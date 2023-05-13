@@ -1,12 +1,14 @@
 # Welcome to Kubectl cheatsheet  
 
-1. [ Description. ](#desc)
-2. [ Usage tips. ](#usage)
+1. [ Description. ](#Cluster)
+2. [ Usage tips. ](#Switching Between Contexts)
+3. [ Usage tips. ](#Labels & Selectors )
+4. [ Usage tips. ](#Container)
+5. [ Usage tips. ](#Pod)
+6. [ Usage tips. ](#Nodes)
+7. [ Usage tips. ](#Logs)
 
-<a name="desc"></a>
-
-sometext
-
+<a name="Cluster"></a>
 ## Cluster 
 ### listing all the resources in cluster
 ```
@@ -27,6 +29,7 @@ kubectl auth can-i create pods
 kubectl cluster-info dump | grep -m 1 cluster-cidr
 ```
 ---
+<a name="Switching Between Contexts"></a>
 ## Switching Between Contexts
 ### to list all preconfigured contexts and see which one is active:
 ```
@@ -41,6 +44,7 @@ kubectl config current-context
 kubectl config use-context NikTest
 ```
 ---
+<a name="Labels & Selectors"></a>
 ## Labels & Selectors 
 ### labeling a node
 ```
@@ -55,13 +59,14 @@ kubectl label node <nodename> <labelname>-
 kubectl get nodes --show-labels
 ```
 ---
+<a name="Containers"></a>
 ## Container 
-
 ### to login inside docker container
 ```
 docker exec -it <container name> /bin/bash
 ```
 ---
+<a name="Pod"></a>
 ## Pod
 ### to curl to a pod 
 ```
@@ -108,6 +113,7 @@ kubectl exec <pod-name> -- cat /log/app.log
 kubectl get pods -o wide
 ```
 ---
+<a name="Nodes"></a>
 ## Nodes 
 ### to list nodes with the resource usage
 ```
@@ -139,7 +145,8 @@ kubectl uncordon node01
 ```
 
 ---
-<a name="usage"></a>
+
+<a name="logs"></a>
 ## Logs
 ### to get the pod logs
 ```
