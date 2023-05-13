@@ -1,12 +1,12 @@
 # Welcome to Kubectl cheatsheet  
 
-1. [ Description. ](#Cluster)
-2. [ Usage tips. ](#Switching Between Contexts)
-3. [ Usage tips. ](#Labels & Selectors )
-4. [ Usage tips. ](#Container)
-5. [ Usage tips. ](#Pod)
-6. [ Usage tips. ](#Nodes)
-7. [ Usage tips. ](#Logs)
+1. [ Cluster. ](#Cluster)
+2. [ Switching Between Contexts. ](#Switching Between Contexts)
+3. [ Labels & Selectors. ](#Labels & Selectors )
+4. [ Container. ](#Container)
+5. [ Pod. ](#Pod)
+6. [ Nodes. ](#Nodes)
+7. [ Logs. ](#Logs)
 
 <a name="Cluster"></a>
 ## Cluster 
