@@ -1,7 +1,13 @@
 # Welcome to Kubectl cheatsheet  
 
-## Cluster 
+1. [ Description. ](#desc)
+2. [ Usage tips. ](#usage)
 
+<a name="desc"></a>
+
+sometext
+
+## Cluster 
 ### listing all the resources in cluster
 ```
 k api-resources
@@ -133,6 +139,8 @@ kubectl uncordon node01
 ```
 
 ---
+<a name="usage"></a>
+## 2. Usage tips
 ## Logs
 ### to get the pod logs
 ```
