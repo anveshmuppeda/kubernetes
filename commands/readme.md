@@ -2,7 +2,7 @@
 
 1. [ Cluster. ](#Cluster)
 2. [ Switching Between Contexts. ](#SwitchingBetweenContexts)
-3. [ Labels & Selectors. ](#Labels & Selectors )
+3. [ Labels & Selectors. ](#Labels&Selectors )
 4. [ Container. ](#Container)
 5. [ Pod. ](#Pod)
 6. [ Nodes. ](#Nodes)
@@ -45,7 +45,7 @@ kubectl config current-context
 kubectl config use-context NikTest
 ```
 ---
-<a name="Labels & Selectors"></a>
+<a name="Labels&Selectors"></a>
 ## Labels & Selectors 
 ### labeling a node
 ```
