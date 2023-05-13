@@ -1,7 +1,7 @@
 # Welcome to Kubectl cheatsheet  
 
 1. [ Cluster. ](#Cluster)
-2. [ Switching Between Contexts. ](#Switching Between Contexts)
+2. [ Switching Between Contexts. ](#SwitchingBetweenContexts)
 3. [ Labels & Selectors. ](#Labels & Selectors )
 4. [ Container. ](#Container)
 5. [ Pod. ](#Pod)
@@ -29,7 +29,8 @@ kubectl auth can-i create pods
 kubectl cluster-info dump | grep -m 1 cluster-cidr
 ```
 ---
-<a name="Switching Between Contexts"></a>
+
+<a name="SwitchingBetweenContexts"></a>
 ## Switching Between Contexts
 ### to list all preconfigured contexts and see which one is active:
 ```
