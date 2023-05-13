@@ -140,7 +140,6 @@ kubectl uncordon node01
 
 ---
 <a name="usage"></a>
-## 2. Usage tips
 ## Logs
 ### to get the pod logs
 ```
