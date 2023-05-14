@@ -44,6 +44,16 @@ kubectl config current-context
 ```
 kubectl config use-context NikTest
 ```
+### setting Default Namespace
+Namespace defaults are set in your cluster’s context configuration. We change the default you will need to use the kubectl set-config command and specify the name of the namespace want to be used as default.
+```
+kubectl config set-context --current --namespace=<NAMESPACE>
+```
+For example, to set the namespace anvesh as your default, you would run the following command:
+```
+kubectl config set-context --current --namespace=anvesh
+```
+
 ---
 <a name="Labels&Selectors"></a>
 ## Labels & Selectors 
