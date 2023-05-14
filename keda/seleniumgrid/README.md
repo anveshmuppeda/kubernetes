@@ -82,3 +82,28 @@ To get a deployment run below command
 ```
 kubectl get deploy -n selenium
 ```
+Now to see the created pod run below command  
+```
+kubectl get pods -n selenium
+```  
+To test whether our service and deployment are deployed correctly let’s try to log the pod. Run the below command
+```
+kubectl logs <hub-podname> -n selenium
+```  
+As you can see our hub is listening on http://192.168.194.81:4444  
+To get ip of service run the below command: 
+```
+k describe svc <svc-name>-n selenium in our case it would be
+k describe svc selenium-hub-svc -n selenium
+```
+To test whether our hub is ready to register for new node, run the below command by attaching the session to selenium hub pod.
+```
+kubectl exec -it selenium-hub-b4bb44946-xthvr -n selenium — curl http://192.168.194.81:4444/wd/hub/status
+```
+
+If we get the above output then our HUB is deployed successfully.
+
+## Browser Nodes
+### Let’s create the chrome node first.
+
+
