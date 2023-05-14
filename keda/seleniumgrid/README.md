@@ -40,9 +40,7 @@ Once the above pre-requisites are met, next task to deploy any application on ku
 2. Run the below command to create cluster.
 
 ```eksctl create cluster --name sel --region ap-south-1 --nodegroup-name selnodegrp-1 --node-type t2.micro --nodes 2```
-
-                             OR
-
+ OR
 Create a cluster.yaml file with the below instructions and execute the given command.
 ```
 apiVersion: eksctl.io/vlaplha5
@@ -60,7 +58,8 @@ nodeGroups:
 
 > **_NOTE:_**  It takes around 5-10min to complete the whole task of creating a cluster (master) and EC2 instances (worker) nodes and attach nodes to the master.
 
-Now the kubernetes cluster is ready, let us deploy the Zalenium grid with the below series of commands.
+  
+### Now the kubernetes cluster is ready, let us deploy the Selenium grid with the below series of commands.
 
 Create a namespace 'zalenium'
 ```
