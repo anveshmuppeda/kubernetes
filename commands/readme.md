@@ -73,8 +73,7 @@ docker exec -it <container name> /bin/bash
 ```
 kubectl exec -it selenium-hub-b4bb44946-xthvr -n selenium — curl http://192.168.194.81:4444/wd/hub/status
 ```
-### to ssh  
-to a pod  
+### to ssh to a pod  
 ```
 winpty kubectl exec -it selenium-hub-676678687f-54dvg -n selenium //bin//sh
 ```
