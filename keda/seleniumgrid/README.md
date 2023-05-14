@@ -39,8 +39,8 @@ Once the above pre-requisites are met, next task to deploy any application on ku
 1. Install eksctl using brew, chocolatey, scoop or curl.
 2. Run the below command to create cluster.
 
-```eksctl create cluster --name sel --region ap-south-1 --nodegroup-name selnodegrp-1 --node-type t2.micro --nodes 2```
- OR
+```eksctl create cluster --name sel --region ap-south-1 --nodegroup-name selnodegrp-1 --node-type t2.micro --nodes 2```  
+ OR  
 Create a cluster.yaml file with the below instructions and execute the given command.
 ```
 apiVersion: eksctl.io/vlaplha5
@@ -61,47 +61,24 @@ nodeGroups:
   
 ### Now the kubernetes cluster is ready, let us deploy the Selenium grid with the below series of commands.
 
-Create a namespace 'zalenium'
+> **_NOTE:_**  I will be deploying all the resources in selenium namespace.  
+Create a namespace 'selenium'
 ```
-kubectl create namespace zalenium
-```
-
-Add the zalenium repository from git onto cluster.
-```
-helm repo add zalenium-github https://raw.githubusercontent.com/zalando/zalenium/master/charts/zalenium
-```
-> **_NOTE:_** "zalenium-github" - repo name (can be changed as needed)
-
-Search and confirm if the repo is created.
-```
-helm search repo zalenium
-```
-Install zalenium onto kubernetes cluster with the given configuration.
-```
-helm install my-grid --namespace zalenium zalenium-github/zalenium --set hub.serviceType="LoadBalancer" --set hub.basicAuth.enabled="true" --set hub.basicAuth.username="seluser" --set hub.basicAuth.password="Selpwd" kubectl get service my-grid-zalenium --namespace="zalenium"
-```
-> **_NOTE:_** "my-grid" - Helm's release name (can be changed as needed)
-
-Verify if the service is created and up
-```
-kubectl get service my-grid-zalenium --namespace="zalenium"
+kubectl create namespace selenium
 ```
 
-That's it! Zalenium Grid is up & accessible over the given external ip.
+## Selenium Hub 
 
-Validate the below URLs are accessible & then start the execution.
-(Provide the credentials when prompted for)
-
-Zalenium Dashboard for test recordings: http://<ExternalIP>/dashboard
-
-Live Preview of Test Executions: http://<ExternalIP>/grid/admin/live
-
-Grid Console: http://<ExternalIP>/grid/console
-
-Grid Url, authenticated with basic auth: http://seluser:Selpwd@<ExternalIP>/wd/hub
-
----
-> **_NOTE:_**
-Cluster & nodes created from eksctl can be deleted similarly with a single command 
-```eksctl delete cluster --name sel-cluster```
----
+First of all we will we creating the deployment file for selenium hub and creating a service for the same.  
+To apply the changes run the below command.  
+```
+kubectl apply -f hub.yml -n selenium
+```  
+As a results of this one deployment and service will get created in selenium namespace. To check service run below command:  
+```
+kubectl get svc -n selenium
+```  
+To get a deployment run below command   
+```
+kubectl get deploy -n selenium
+```
