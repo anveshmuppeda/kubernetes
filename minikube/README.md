@@ -21,3 +21,8 @@ minikube addons enable metrics-server
 ```
 Ref: https://stackoverflow.com/questions/52694238/kubectl-top-node-error-metrics-not-available-yet-using-metrics-server-as-he
 
+## Connecting to the EKS cluster: 
+```
+aws sts get-caller-identity
+aws eks --region us-east-2 update-kubeconfig --name anvesh-eks-cluster
+```
