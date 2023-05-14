@@ -61,7 +61,8 @@ nodeGroups:
   
 ### Now the kubernetes cluster is ready, let us deploy the Selenium grid with the below series of commands.
 
-> **_NOTE:_**  I will be deploying all the resources in selenium namespace.  
+> **_NOTE:_**  I will be deploying all the resources in selenium namespace.   
+
 Create a namespace 'selenium'
 ```
 kubectl create namespace selenium
