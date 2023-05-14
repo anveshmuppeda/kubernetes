@@ -75,7 +75,7 @@ kubectl exec -it selenium-hub-b4bb44946-xthvr -n selenium — curl http://192.16
 ```
 ### to ssh to a pod  
 ```
-winpty kubectl exec -it selenium-hub-676678687f-54dvg -n selenium //bin//sh
+winpty kubectl exec -it <pod-name> -n <namespace> //bin//sh
 ```
 ### to list all pods in a cluster
 ```
