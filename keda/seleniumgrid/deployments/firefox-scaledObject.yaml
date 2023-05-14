@@ -1,0 +1,17 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: selenium-grid-firefox-scaledobject
+  namespace: selenium
+  labels:
+    deploymentName: selenium-node-firefox
+spec:
+  minReplicaCount: 1
+  maxReplicaCount: 10
+  scaleTargetRef:
+    name: selenium-node-firefox
+  triggers:
+    - type: selenium-grid
+      metadata:
+        url: 'http://a5146ad8e928246d39b84974a7d077d1-64969741.us-east-2.elb.amazonaws.com:4444/graphql'  #this is selenium grid URL, external IP of Loadbalancer
+        browserName: 'firefox'
