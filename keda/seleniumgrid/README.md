@@ -107,4 +107,38 @@ If we get the above output then our HUB is deployed successfully.
 ## Browser Nodes
 ### Let’s create the chrome node first.
 
+To deploy the Chrome node, run the below command
+```
+kubectl apply -f chrome-deploy.yml -n selenium
+```
+To see the deployed resource run the below command
+```
+kubectl get deployment selenium-node-chrome -n selenium
+```
+### Let’s create the firefox node.
 
+To deploy the Firefox node, run the below command
+```
+kubectl apply -f firefox-deploy.yml -n selenium
+```
+To see the deployed resource run the below command
+```
+kubectl get deployment selenium-node-firefox -n selenium
+```
+### Let’s install the Selenium Grid Scaler in our cluster:  
+```
+kubectl apply -f https://github.com/kedacore/keda/releases/download/v2.8.0/keda-2.8.0.yaml
+```
+Now let’s create our browser scale deployment files for Chrome and Firefox: 
+To deploy the Chrome ScaledObject Deployment file run the below command:
+```
+kubectl apply -f chrome-scaledObject.yml -n selenium
+```   
+To deploy the Forefox ScaledObject Deployment file run the below command:
+```
+kubectl apply -f firefox-scaledObject.yml -n selenium
+```   
+To see whether scaled objects are deployed or not. Run the command
+``
+kubect get so -n selenium
+```
