@@ -130,5 +130,6 @@ kubect get so -n selenium
 ### Selenium Grid(Before increasing queue size)
 ![image](https://github.com/anveshmuppeda/kubernetes/assets/115966808/ed51bf31-24a8-44ca-8f99-17704a1c4c51)
 ### Selenium Grid(After increasing queue size)
-
+![image](https://github.com/anveshmuppeda/kubernetes/assets/115966808/8e05da6e-6ef6-4930-b41f-4bdc58487cad)
 ### Pods(After increasing the queue size)
+![image](https://github.com/anveshmuppeda/kubernetes/assets/115966808/58f7a2ef-557d-4598-9667-aca448f29a7d)
