@@ -17,7 +17,7 @@ This article would outline the process of deploying **Selenium grid(Zalenium) on
                                                             OR
 - Use AWS cloudshell which is automatically connected to logged in account.
 - Install AWS CLI (for local terminal), kubectl, helm in the given order.
-
+---
 ### Lets Get Started!
 Once the above pre-requisites are met, next task to deploy any application on kubernetes is **to create a kubernetes cluster**. There are different ways to create a cluster on AWS, I'll brief couple of ways to achieve the same.
 
@@ -104,7 +104,7 @@ kubectl exec -it selenium-hub-b4bb44946-xthvr -n selenium — curl http://192.16
 ```
 
 If we get the above output then our HUB is deployed successfully.
-
+---
 ## Browser Nodes
 ### Let’s create the chrome node first.
 
