@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-hub-svc
+  namespace: selenium
+spec:
+  selector:
+    app: {{ .Release.Name }}-hub
+  type: {{ .Values.service.type }}
+  sessionAffinity: None
+  ports:
+    - port: {{ .Values.ports.port1 }}
+      targetPort: {{ .Values.ports.targetport1 }}
+      name: {{ .Values.ports.name1 }}
+    - port: {{ .Values.ports.port2 }}
+      targetPort: {{ .Values.ports.targetport2 }}
+      name: {{ .Values.ports.name2 }}
+    - port: {{ .Values.ports.port3 }}
+      targetPort: {{ .Values.ports.targetport3 }}
+      name: {{ .Values.ports.name3 }}

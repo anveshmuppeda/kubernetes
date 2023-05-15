@@ -1,0 +1,71 @@
+# Default values for selenium-grid.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  repository: selenium/node-chrome
+  tag: "4.0"
+  repositoryhub: selenium/hub
+  taghub: "4.0"
+  repositoryfirefox: selenium/node-firefox
+  tagfirefox: "4.0"
+  pullPolicy: IfNotPresent
+resources:
+  memory: "1000Mi"
+  cpu: ".5"
+  requests:
+    memory: "100Mi"
+    cpu: ".4"
+  limits:
+    memory: "200Mi"
+    cpu: ".8"
+env:
+  name1: "SE_EVENT_BUS_HOST"
+  value1: "selenium-hub-svc"
+  name2: "SE_EVENT_BUS_SUBSCRIBE_PORT"
+  value2: "4443"
+  name3: "SE_EVENT_BUS_PUBLISH_PORT"
+  value3: "4442"
+triggers:
+  type: selenium-grid
+  metadata:
+    browserName1: chrome
+    browserName2: firefox
+    url: http://a5146ad8e928246d39b84974a7d077d1-64969741.us-east-2.elb.amazonaws.com:4444/graphql
+
+minReplicaCount: 1
+maxReplicaCount: 10
+
+service:
+  type: LoadBalancer
+
+ports:
+  name1: port0
+  targetport1: 4444
+  port1: 4444
+  name2: port1
+  targetport2: 4443
+  port2: 4443
+  name3: port2
+  targetport3: 4442
+  port3: 4442
+
+deployment:
+  terminationGracePeriodSeconds: 3600
+
+container:
+  ports:
+    containerPort: 5555
+
+livenessProbe:
+  httpGet:
+    path: /wd/hub/status
+    port: 4444
+  initialDelaySeconds: 30
+  timeoutSeconds: 5
+
+readinessProbe:
+  httpGet:
+    path: /wd/hub/status
+    port: 4444
+  initialDelaySeconds: 30
+  timeoutSeconds: 5

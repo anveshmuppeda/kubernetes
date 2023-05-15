@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-node-firefox
+  namespace: selenium
+  labels:
+    app: {{ .Release.Name }}-node-firefox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-node-firefox
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-node-firefox
+    spec:
+      terminationGracePeriodSeconds: {{ .Values.deployment.terminationGracePeriodSeconds }}
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+      containers:
+      - name: {{ .Release.Name }}-node-firefox
+        image: "{{ .Values.image.repositoryfirefox }}:{{ .Values.image.tagfirefox }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+          - containerPort: {{ .Values.container.ports.containerPort }}
+        volumeMounts:
+          - mountPath: /dev/shm
+            name: dshm
+        env:
+          - name: {{ .Values.env.name1 }}
+            value: {{ .Values.env.value1 }}
+          - name: {{ .Values.env.name2 }}
+            value: {{ .Values.env.value2 }}
+          - name: {{ .Values.env.name3 }}
+            value: {{ .Values.env.value3 }}
+        resources:
+          limits:
+            memory: "{{ .Values.resources.memory }}"
+            cpu: "{{ .Values.resources.cpu }}"
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/sh", "-c", "curl --request POST 'localhost:5555/se/grid/node/drain' --header 'X-REGISTRATION-SECRET;'; tail --pid=$(pgrep -f '[n]ode --bind-host false --config /opt/selenium/config.toml') -f /dev/null; sleep 30s"]
