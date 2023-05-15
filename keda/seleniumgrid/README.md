@@ -149,7 +149,7 @@ kubectl apply -f https://raw.githubusercontent.com/anveshmuppeda/kubernetes/d5bd
 To deploy the Forefox ScaledObject Deployment file run the below command:
 ```
 kubectl apply -f firefox-scaledObject.yml -n selenium
-kubectl apply -f  -n selenium
+kubectl apply -f https://raw.githubusercontent.com/anveshmuppeda/kubernetes/d5bd70c183010e222eda6590da76f6948a12a36f/keda/seleniumgrid/deployments/firefox-scaledObject.yaml -n selenium
 ```   
 To see whether scaled objects are deployed or not. Run the command
 ```
