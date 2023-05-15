@@ -108,8 +108,10 @@ Here Some points about the scaledobject definition:
 3. **name** (within spec) is also the name of your browser deployment
 4. **url** is the url of your selenium grid.
 5. **browserName** is the name of the browser you are using.  
-6. **minReplicaCount** and maxReplicaCount are the min and maximum pod count you want to have
+6. **minReplicaCount** and **maxReplicaCount** are the min and maximum pod count you want to have.
+7. **triggers** This specification describes the selenium-grid trigger that scales browser nodes based on number of requests in session queue and the max sessions per grid.
 
+More details about KEDA selenium grid scaler can be found [here](https://keda.sh/docs/2.8/scalers/selenium-grid-scaler/).
 
 To see whether scaled objects are deployed or not. Run the command
 ```
