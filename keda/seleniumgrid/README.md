@@ -58,7 +58,8 @@ nodeGroups:
 
 > **_NOTE:_**  It takes around 5-10min to complete the whole task of creating a cluster (master) and EC2 instances (worker) nodes and attach nodes to the master.
 
-  
+---
+
 ### Now the kubernetes cluster is ready, let us deploy the Selenium grid with the below series of commands.
 
 > **_NOTE:_**  I will be deploying all the resources in selenium namespace.   
@@ -139,6 +140,6 @@ To deploy the Forefox ScaledObject Deployment file run the below command:
 kubectl apply -f firefox-scaledObject.yml -n selenium
 ```   
 To see whether scaled objects are deployed or not. Run the command
-``
+```
 kubect get so -n selenium
 ```
