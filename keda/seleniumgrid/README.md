@@ -59,7 +59,7 @@ nodeGroups:
 
 
 > **_NOTE:_**  It takes around 5-10min to complete the whole task of creating a cluster (master) and EC2 instances (worker) nodes and attach nodes to the master.
-And all the deployments are present under deploy directory in this same location.
+And all the deployments are present under [deploy](https://github.com/anveshmuppeda/kubernetes/tree/main/keda/seleniumgrid/deployments) directory in this same location.
 
 ---
 ### Now the kubernetes cluster is ready, let us deploy the Selenium grid with the below series of commands.
