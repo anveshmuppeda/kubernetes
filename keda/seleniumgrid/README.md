@@ -40,8 +40,10 @@ Once the above pre-requisites are met, next task to deploy any application on ku
 2. Run the below command to create cluster.
 
 ```eksctl create cluster --name sel --region ap-south-1 --nodegroup-name selnodegrp-1 --node-type t2.micro --nodes 2```  
- OR  
-Create a cluster.yaml file with the below instructions and execute the given command.
+  
+OR  
+  
+Create a `cluster.yaml` file with the below instructions and execute the given command.
 ```
 apiVersion: eksctl.io/vlaplha5
 kind: ClusterConfig
@@ -111,7 +113,7 @@ If we get the above output then our HUB is deployed successfully.
 
 To deploy the Chrome node, run the below command
 ```
-kubectl apply -f chrome-deploy.yml -n selenium
+kubectl apply -f [chrome-deploy.yml](https://raw.githubusercontent.com/anveshmuppeda/kubernetes/d5bd70c183010e222eda6590da76f6948a12a36f/keda/seleniumgrid/deployments/chrome-deploy.yaml) -n selenium
 ```
 To see the deployed resource run the below command
 ```
