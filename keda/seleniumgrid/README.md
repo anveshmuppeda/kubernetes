@@ -49,18 +49,19 @@ To test whether our service and deployment are deployed correctly let’s try to
 ```
 kubectl logs <hub-podname> -n selenium
 ```  
-As you can see our hub is listening on http://192.168.194.81:4444  
+![image](https://github.com/anveshmuppeda/kubernetes/assets/115966808/e08b57df-1e07-479d-967c-746dccee7af0)
+
+As you can see our hub is listening on http://192.168.38.237:4444  
 To get ip of service run the below command: 
 ```
 k describe svc <svc-name>-n selenium in our case it would be
 k describe svc selenium-hub-svc -n selenium
 ```
-To test whether our hub is ready to register for new node, run the below command by attaching the session to selenium hub pod.
+To test whether our hub is ready to register for new node, run the below commands by login to the pod and curl within the pod.
 ```
-kubectl exec -it selenium-hub-b4bb44946-xthvr -n selenium — curl http://192.168.194.81:4444/wd/hub/status
+winpty kubectl exec -it <selenium-hub-pod> -n selenium //bin//sh 
+curl http://192.168.38.237:4444 /wd/hub/status
 ```
-
-If we get the above output then our HUB is deployed successfully.  
 
 ---
 ## Browser Nodes
