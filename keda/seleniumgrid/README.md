@@ -11,15 +11,8 @@ This article would outline the process of deploying **Selenium grid(Zalenium) on
 - Availability: Amazon EKS cluster makes selenium grid available all the time.
 - Maintenance: Low maintenance as the containers are destroyed after each execution.
 ### Pre-requisites:
-- An active Amazon AWS account.
-- IAM user is created in AWS account
-- AWS CLI is connected to AWS account providing the user credentials using local powershell or any terminal  
-                                                            OR
-- Use AWS cloudshell which is automatically connected to logged in account.
-- Install AWS CLI (for local terminal), kubectl, helm in the given order.
+- An active Amazon AWS account along with the AWS EKS cluster.
 ---
-### Now the kubernetes cluster is ready, let us deploy the Selenium grid with the below series of commands.
-
 > **_NOTE:_**  I will be deploying all the resources in selenium namespace. 
 > And all the deployments are present under [deploy](https://github.com/anveshmuppeda/kubernetes/tree/main/keda/seleniumgrid/deployments) directory in this same location.   
 
