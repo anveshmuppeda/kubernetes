@@ -113,7 +113,7 @@ If we get the above output then our HUB is deployed successfully.
 
 To deploy the Chrome node, run the below command
 ```
-kubectl apply -f [chrome-deploy.yml](https://raw.githubusercontent.com/anveshmuppeda/kubernetes/d5bd70c183010e222eda6590da76f6948a12a36f/keda/seleniumgrid/deployments/chrome-deploy.yaml) -n selenium
+kubectl apply -f https://raw.githubusercontent.com/anveshmuppeda/kubernetes/d5bd70c183010e222eda6590da76f6948a12a36f/keda/seleniumgrid/deployments/chrome-deploy.yaml -n selenium
 ```
 To see the deployed resource run the below command
 ```
