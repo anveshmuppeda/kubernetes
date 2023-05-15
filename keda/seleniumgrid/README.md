@@ -117,3 +117,18 @@ To see whether scaled objects are deployed or not. Run the command
 ```
 kubect get so -n selenium
 ```
+
+## Results  
+### Deployments 
+![image](https://github.com/anveshmuppeda/kubernetes/assets/115966808/104fb93d-e571-4451-b41d-0e51a18025fd)
+### Services 
+![image](https://github.com/anveshmuppeda/kubernetes/assets/115966808/ba9416e1-3edf-4ca4-a7bf-855d1add2a2f)
+### All pods
+![image](https://github.com/anveshmuppeda/kubernetes/assets/115966808/001c0452-c3a5-4426-8872-7a5fd3fe16d5)
+### Scaled Objects
+![image](https://github.com/anveshmuppeda/kubernetes/assets/115966808/2c74f3f1-457d-41e5-a858-da8736ecf109)
+### Selenium Grid(Before increasing queue size)
+![image](https://github.com/anveshmuppeda/kubernetes/assets/115966808/ed51bf31-24a8-44ca-8f99-17704a1c4c51)
+### Selenium Grid(After increasing queue size)
+
+### Pods(After increasing the queue size)
