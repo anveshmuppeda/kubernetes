@@ -76,7 +76,12 @@ kubectl create namespace selenium
 First of all we will we creating the deployment file for selenium hub and creating a service for the same.  
 To apply the changes run the below command.  
 ```
-kubectl apply -f hub.yml -n selenium
+kubectl apply -f selenium-hub-deploy.yaml -n selenium
+kubectl apply -f https://raw.githubusercontent.com/anveshmuppeda/kubernetes/d5bd70c183010e222eda6590da76f6948a12a36f/keda/seleniumgrid/deployments/selenium-hub-deploy.yaml -n selenium
+```
+```
+kubectl apply -f selenium-hub-service.yaml -n selenium
+kubectl apply -f https://raw.githubusercontent.com/anveshmuppeda/kubernetes/d5bd70c183010e222eda6590da76f6948a12a36f/keda/seleniumgrid/deployments/selenium-hub-service.yaml -n selenium
 ```  
 As a results of this one deployment and service will get created in selenium namespace. To check service run below command:  
 ```
