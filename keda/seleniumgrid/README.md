@@ -118,6 +118,7 @@ If we get the above output then our HUB is deployed successfully.
 
 To deploy the Chrome node, run the below command
 ```
+kubectl apply -f selenium-node-chrome -n selenium
 kubectl apply -f https://raw.githubusercontent.com/anveshmuppeda/kubernetes/d5bd70c183010e222eda6590da76f6948a12a36f/keda/seleniumgrid/deployments/chrome-deploy.yaml -n selenium
 ```
 To see the deployed resource run the below command
@@ -128,7 +129,8 @@ kubectl get deployment selenium-node-chrome -n selenium
 
 To deploy the Firefox node, run the below command
 ```
-kubectl apply -f firefox-deploy.yml -n selenium
+kubectl apply -f firefox-deploy.yml -n selenium  
+kubectl apply -f https://raw.githubusercontent.com/anveshmuppeda/kubernetes/d5bd70c183010e222eda6590da76f6948a12a36f/keda/seleniumgrid/deployments/firefox-deploy.yaml -n selenium
 ```
 To see the deployed resource run the below command
 ```
@@ -142,10 +144,12 @@ Now let’s create our browser scale deployment files for Chrome and Firefox:
 To deploy the Chrome ScaledObject Deployment file run the below command:
 ```
 kubectl apply -f chrome-scaledObject.yml -n selenium
+kubectl apply -f https://raw.githubusercontent.com/anveshmuppeda/kubernetes/d5bd70c183010e222eda6590da76f6948a12a36f/keda/seleniumgrid/deployments/chorme-scaledObject.yaml -n selenium
 ```   
 To deploy the Forefox ScaledObject Deployment file run the below command:
 ```
 kubectl apply -f firefox-scaledObject.yml -n selenium
+kubectl apply -f  -n selenium
 ```   
 To see whether scaled objects are deployed or not. Run the command
 ```
