@@ -103,7 +103,8 @@ To test whether our hub is ready to register for new node, run the below command
 kubectl exec -it selenium-hub-b4bb44946-xthvr -n selenium — curl http://192.168.194.81:4444/wd/hub/status
 ```
 
-If we get the above output then our HUB is deployed successfully.
+If we get the above output then our HUB is deployed successfully.  
+
 ---
 ## Browser Nodes
 ### Let’s create the chrome node first.
