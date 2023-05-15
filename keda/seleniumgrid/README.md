@@ -120,7 +120,7 @@ kubect get so -n selenium
 
 ## Results  
 ### Deployments 
-![image](https://github.com/anveshmuppeda/kubernetes/assets/115966808/104fb93d-e571-4451-b41d-0e51a18025fd)
+![image](https://github.com/anveshmuppeda/kubernetes/assets/115966808/fb5d46e9-6617-4fc5-a1ef-050fe106308e)
 ### Services 
 ![image](https://github.com/anveshmuppeda/kubernetes/assets/115966808/ba9416e1-3edf-4ca4-a7bf-855d1add2a2f)
 ### All pods
