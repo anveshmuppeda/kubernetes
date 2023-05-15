@@ -102,6 +102,15 @@ To deploy the Forefox ScaledObject Deployment file run the below command:
 kubectl apply -f firefox-scaledObject.yml -n selenium
 kubectl apply -f https://raw.githubusercontent.com/anveshmuppeda/kubernetes/d5bd70c183010e222eda6590da76f6948a12a36f/keda/seleniumgrid/deployments/firefox-scaledObject.yaml -n selenium
 ```   
+Here Some points about the scaledobject definition:
+1. **namespace** should be the namespace that your selenium browser pods exist in.
+2. **deploymentName** are the name of your browser deployment.
+3. **name** (within spec) is also the name of your browser deployment
+4. **url** is the url of your selenium grid.
+5. **browserName** is the name of the browser you are using.  
+6. **minReplicaCount** and maxReplicaCount are the min and maximum pod count you want to have
+
+
 To see whether scaled objects are deployed or not. Run the command
 ```
 kubect get so -n selenium
