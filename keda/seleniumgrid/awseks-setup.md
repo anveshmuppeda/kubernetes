@@ -1,5 +1,5 @@
 ### Lets Get Started!
-Once the above pre-requisites are met, next task to deploy any application on kubernetes is **to create a kubernetes cluster**. There are different ways to create a cluster on AWS, I'll brief couple of ways to achieve the same.
+To deploy any application on kubernetes is **to create a kubernetes cluster**. There are different ways to create a cluster on AWS, I'll brief couple of ways to achieve the same.
 
 ### First, Create cluster from AWS GUI.
 
