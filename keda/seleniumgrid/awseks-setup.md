@@ -48,12 +48,12 @@ eksctl utils associate-iam-oidc-provider \
     --approve
 ```
 
-## Step-03: Create EC2 Keypair
+## Create EC2 Keypair
 - Create a new EC2 Keypair with name as `kube-demo`
 - This keypair we will use it when creating the EKS NodeGroup.
 - This will help us to login to the EKS Worker Nodes using Terminal.
 
-## Step-04: Create Node Group with additional Add-Ons in Public Subnets
+## Create Node Group with additional Add-Ons in Public Subnets
 - These add-ons will create the respective IAM policies for us automatically within our Node Group role.
  ```
 # Create Public Node Group   
@@ -75,7 +75,7 @@ eksctl create nodegroup --cluster=eksdemo1 \
                         --alb-ingress-access 
 ```
 
-## Step-05: Verify Cluster & Nodes
+## Verify Cluster & Nodes
 
 ### Verify NodeGroup subnets to confirm EC2 Instances are in Public Subnet
 - Verify the node group subnet to ensure it created in public subnets
