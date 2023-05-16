@@ -81,7 +81,7 @@ spec:
 - And with that our application can now safely scale down our selenium browser deployments!
 
 #### Drain
-Distributor passes the drain command to the appropriate node identified by the node-id. To drain the Node directly, use the cuRL command enlisted below. Both endpoints are valid and produce the same result. Drain finishes the ongoing sessions before stopping the Node. 
+Distributor passes the drain command to the appropriate node identified by the node-id. To drain the Node directly, use the cuRL command enlisted below. Drain finishes the ongoing sessions before stopping the Node. 
 ```
 cURL --request POST 'http://<node-URL>/se/grid/node/drain' --header 'X-REGISTRATION-SECRET;'
 ```
