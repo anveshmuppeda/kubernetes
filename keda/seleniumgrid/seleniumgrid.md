@@ -38,6 +38,7 @@ metadata:
   labels:
     deploymentName: selenium-chrome-node
 spec:
+  minReplicaCount: 0
   maxReplicaCount: 8
   scaleTargetRef:
     name: selenium-chrome-node
@@ -47,6 +48,8 @@ spec:
         url: 'http://selenium-hub:4444/graphql'
         browserName: 'chrome'
 ```
+**minReplicaCount** and **maxReplicaCount** are the min and maximum pod count you want to have.
+
 The above example will create Chrome browser nodes equal to the requests pending in session queue for Chrome browser.
 Which means now we can properly **scale up** based on the actual load on the Selenium Grid, but still **scaling down** doesn't work properly because the nodes are **terminating before it can finish**.  
 
