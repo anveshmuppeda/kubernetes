@@ -50,10 +50,11 @@ spec:
 The above example will create Chrome browser nodes equal to the requests pending in session queue for Chrome browser.
 Which means now we can properly **scale up** based on the actual load on the Selenium Grid, but still **scaling down** doesn't work properly because the nodes are **terminating before it can finish**.  
 
-## 
-Using PreStop and Drain
-To combat this we are going to use a combination of K8s PreStop and Selenium Grid’s Drain functionality.
+## Fixing the scaling down issue using the PreStop and Drain  
+By using the PresStop and Drain we can fix the scaling down issue.
+Here we are going to use a combination of K8s **PreStop** and Selenium Grid’s **Drain** functionality.  
 
-PreStop allows us to set a command or chain of commands that is run to completion before the container is told to stop.
-Drain tells the selenium browser pod to finish its current test and then shut down.
+1. PreStop allows us to set a command or chain of commands that is run to completion before the container is told to stop.  
+2. Drain tells the selenium browser pod to finish its current test and then shut down.  
+
 Together these look like so in our browser pod yaml:
