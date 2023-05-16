@@ -16,7 +16,7 @@ This specification describes the selenium-grid trigger that scales browser nodes
 triggers:
   - type: selenium-grid
     metadata:
-      url: 'http://selenium-hub:4444/graphql' # Required. Can be ommitted if specified via TriggerAuthentication/ClusterTriggerAuthentication.
+      url: 'http://selenium-grid-url-or-ip:4444/graphql' # Required. Can be ommitted if specified via TriggerAuthentication/ClusterTriggerAuthentication.
       browserName: 'chrome'  # Required
       browserVersion: '91.0' # Optional. Only required when supporting multiple versions of browser in your Selenium Grid.
       unsafeSsl : 'true' # Optional
