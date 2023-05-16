@@ -87,6 +87,11 @@ kubectl exec -it selenium-hub-b4bb44946-xthvr -n selenium — curl http://192.16
 ```
 winpty kubectl exec -it <pod-name> -n <namespace> //bin//sh
 ```
+### to watch a pod 
+```sh
+kubectl get <pods/deployments> -n <namespace> -w
+kubectl get <pods/deployments> -n <namespace> -watch
+```
 ### to list all pods in a cluster
 ```
 kubectl get pods -A
