@@ -1,4 +1,4 @@
-## Kubernetes HPA
+## Kubernetes HPA(Horizontal Pod Autoscaling)
 ### Kubernetes autoscaling basics
 Before we go in-depth on HPA, we need to review Kubernetes autoscaling in general. Autoscaling is a method of automatically scaling K8s workloads up or down based on historical resource usage. Autoscaling in Kubernetes has three dimensions:
 
