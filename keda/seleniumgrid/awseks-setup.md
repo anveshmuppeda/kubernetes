@@ -16,21 +16,7 @@ To deploy any application on kubernetes is **to create a kubernetes cluster**. T
 - Define min and max number no. of nodes.
 
 ### Second, Create cluster using eksctl (The official CLI for Amazon EKS)
-# Create EKS Cluster & Node Groups
-
-## Step-00: Introduction
-- Understand about EKS Core Objects
-  - Control Plane
-  - Worker Nodes & Node Groups
-  - Fargate Profiles
-  - VPC
-- Create EKS Cluster
-- Associate EKS Cluster to IAM OIDC Provider
-- Create EKS Node Groups
-- Verify Cluster, Node Groups, EC2 Instances, IAM Policies and Node Groups
-
-
-## Step-01: Create EKS Cluster using eksctl
+### Create EKS Cluster & Node Groups using eksctl 
 - It will take 15 to 20 minutes to create the Cluster Control Plane 
 ```
 # Create Cluster
@@ -44,7 +30,7 @@ eksctl get cluster
 ```
 
 
-## Step-02: Create & Associate IAM OIDC Provider for our EKS Cluster
+## Create & Associate IAM OIDC Provider for our EKS Cluster
 - To enable and use AWS IAM roles for Kubernetes service accounts on our EKS cluster, we must create &  associate OIDC identity provider.
 - To do so using `eksctl` we can use the  below command. 
 - Use latest eksctl version (as on today the latest version is `0.21.0`)
@@ -61,8 +47,6 @@ eksctl utils associate-iam-oidc-provider \
     --cluster eksdemo1 \
     --approve
 ```
-
-
 
 ## Step-03: Create EC2 Keypair
 - Create a new EC2 Keypair with name as `kube-demo`
@@ -125,24 +109,3 @@ kubectl config view --minify
 ### Verify Security Group Associated to Worker Nodes
 - Go to Services -> EC2 -> Worker Nodes
 - Click on **Security Group** associated to EC2 Instance which contains `remote` in the name.
-
-### Verify CloudFormation Stacks
-- Verify Control Plane Stack & Events
-- Verify NodeGroup Stack & Events
-
-### Login to Worker Node using Keypai kube-demo
-- Login to worker node
-```
-# For MAC or Linux or Windows10
-ssh -i kube-demo.pem ec2-user@<Public-IP-of-Worker-Node>
-
-# For Windows 7
-Use putty
-```
-
-## Step-06: Update Worker Nodes Security Group to allow all traffic
-- We need to allow `All Traffic` on worker node security group
-
-## Additional References
-- https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
-- https://docs.aws.amazon.com/eks/latest/userguide/create-service-account-iam-policy-and-role.html
