@@ -24,8 +24,29 @@ triggers:
       platformName: 'Linux' # Optional
 ```
 ### Parameter list:
-- url - Graphql url of your Selenium Grid. Refer to the Selenium Grid’s documentation here to for more info.
-- browserName - Name of browser that usually gets passed in the browser capability. Refer to the Selenium Grid’s and WebdriverIO’s documentation for more info.
-- sessionBrowserName - Name of the browser when it is an active session, only set if BrowserName changes between the queue and the active session. See the Edge example below for further detail. (Optional)
-- browserVersion - Version of browser that usually gets passed in the browser capability. Refer to the Selenium Grid’s and WebdriverIO’s documentation for more info. (Optional)
-- activationThreshold - Target value for activating the scaler. Learn more about activation here.(Default: 0, Optional)
+- **url** - Graphql url of your Selenium Grid. Refer to the Selenium Grid’s documentation here to for more info.
+- **browserName** - Name of browser that usually gets passed in the browser capability. Refer to the Selenium Grid’s and WebdriverIO’s documentation for more info.
+- **browserVersion** - Version of browser that usually gets passed in the browser capability. Refer to the Selenium Grid’s and WebdriverIO’s documentation for more info. (Optional)
+- **activationThreshold** - Target value for activating the scaler. Learn more about activation here.(Default: 0, Optional)
+
+### Example
+Here is a full example of scaled object definition using Selenium Grid trigger:
+```
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: selenium-grid-chrome-scaledobject
+  namespace: keda
+  labels:
+    deploymentName: selenium-chrome-node
+spec:
+  maxReplicaCount: 8
+  scaleTargetRef:
+    name: selenium-chrome-node
+  triggers:
+    - type: selenium-grid
+      metadata:
+        url: 'http://selenium-hub:4444/graphql'
+        browserName: 'chrome'
+```
+The above example will create Chrome browser nodes equal to the requests pending in session queue for Chrome browser.
