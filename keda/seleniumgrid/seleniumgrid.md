@@ -19,9 +19,7 @@ triggers:
       url: 'http://selenium-grid-url-or-ip:4444/graphql' # Required. Can be ommitted if specified via TriggerAuthentication/ClusterTriggerAuthentication.
       browserName: 'chrome'  # Required
       browserVersion: '91.0' # Optional. Only required when supporting multiple versions of browser in your Selenium Grid.
-      unsafeSsl : 'true' # Optional
       activationThreshold: 5 # Optional
-      platformName: 'Linux' # Optional
 ```
 ### Parameter list:
 - **url** - Graphql url of your Selenium Grid. Refer to the Selenium Grid’s documentation here to for more info.
