@@ -49,7 +49,6 @@ if [ "$operation" == "1" ]; then
     echo -e "\nInstalling the AWS EKS Clsuter\n"
     #calling askcluster creation functions
     akscluster
-
 elif [ "$operation" == "2" ]; then
     echo -e "\nDeploying the Selenium Grid"
     #calling selenium grid deployment function
