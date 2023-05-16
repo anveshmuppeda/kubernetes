@@ -71,8 +71,8 @@ spec:
               command: ["/bin/sh", "-c", "curl --request POST 'localhost:5555/se/grid/node/drain' --header 'X-REGISTRATION-SECRET;'; tail --pid=$(pgrep -f '[n]ode --bind-host false --config /opt/selenium/config.toml') -f /dev/null; sleep 30s"]
 ```
 
-When the pod is told to **stop**, the **PreStop** command is ran first.
-We curl the localhost of our pod to tell it to drain. The pod will no longer accept new session requests and will finish its current test. More information on this can be found in the Selenium Grid documentation.
-We then tail the internal node process that will continue to run until the node has been drained.
-After this we give the pod 30 seconds to finish anything else before giving the full termination command.
-And with that our application can now safely scale down our selenium browser deployments!
+- When the pod is told to **stop**, the **PreStop** command is ran first.  
+- We **curl** the localhost of our pod to tell it to drain. The pod will no longer accept new session requests and will finish its current test.   
+- We then tail the internal node process that will continue to run until the node has been drained.
+- After this we give the pod 30 seconds to finish anything else before giving the full termination command.
+- And with that our application can now safely scale down our selenium browser deployments!
