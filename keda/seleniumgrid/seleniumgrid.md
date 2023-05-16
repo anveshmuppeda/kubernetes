@@ -5,3 +5,6 @@ If you have any experience with Selenium Grid and Kubernetes you will probably r
 The Horizontal Pod AutoScaler (**HPA**) that is built into Kubernetes checks (by default) for resource consumption to determine if a deployment needs to be scaled up or down. This becomes an issue for Selenium Grid for a couple reasons:
  1. The browser pods use a variable amount of resources depending on the demand of the current test. This means that all your browser pods may be in use but there isn’t enough CPU usage for the HPA to decide that a scale-up is needed, **leaving tests waiting in the queue unnecessarily**.
  2. When Kubernetes decides to **scale down a deployment** it does so (for the most part) at **random**. You could have 10 tests running on 20 pods and need to scale down. More than likely at least one of the pods asked to terminate will still have a test running, resulting in connection failures
+---
+## How KEDA Helps
+KEDA is a free and open-source Kubernetes event-driven autoscaling solution that extends the feature set of K8S’ HPA. This is done via plugins written by the community that feed KEDA’s metrics server with the information it needs to scale specific deployments up and down.
