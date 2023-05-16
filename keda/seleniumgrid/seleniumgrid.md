@@ -76,3 +76,9 @@ spec:
 - We then tail the internal node process that will continue to run until the node has been drained.
 - After this we give the pod 30 seconds to finish anything else before giving the full termination command.
 - And with that our application can now safely scale down our selenium browser deployments!
+
+### Drain
+Distributor passes the drain command to the appropriate node identified by the node-id. To drain the Node directly, use the cuRL command enlisted below. Both endpoints are valid and produce the same result. Drain finishes the ongoing sessions before stopping the Node. 
+```
+cURL --request POST 'http://<node-URL>/se/grid/node/drain' --header 'X-REGISTRATION-SECRET;'
+```
