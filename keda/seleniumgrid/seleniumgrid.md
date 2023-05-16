@@ -58,3 +58,16 @@ Here we are going to use a combination of K8s **PreStop** and Selenium Grid’s 
 2. Drain tells the selenium browser pod to finish its current test and then shut down.  
 
 Together these look like so in our browser pod yaml:
+```
+spec:
+  template:
+    spec:
+      terminationGracePeriodSeconds: 3600
+      ...
+      ...
+      containers:
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/sh", "-c", "curl --request POST 'localhost:5555/se/grid/node/drain' --header 'X-REGISTRATION-SECRET;'; tail --pid=$(pgrep -f '[n]ode --bind-host false --config /opt/selenium/config.toml') -f /dev/null; sleep 30s"]
+```
