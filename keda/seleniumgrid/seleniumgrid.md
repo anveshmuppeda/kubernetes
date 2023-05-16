@@ -12,7 +12,7 @@ KEDA is a free and open-source Kubernetes event-driven autoscaling solution that
 ### Trigger Specification
 This specification describes the selenium-grid trigger that scales browser nodes based on number of requests in session queue and the max sessions per grid.
 
-```
+```yaml
 triggers:
   - type: selenium-grid
     metadata:
@@ -29,7 +29,7 @@ triggers:
 
 ### Example
 Here is a full example of scaled object definition using Selenium Grid trigger:
-```
+```yaml
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
@@ -58,7 +58,7 @@ Here we are going to use a combination of K8s **PreStop** and Selenium Grid’s 
 2. Drain tells the selenium browser pod to finish its current test and then shut down.  
 
 Together these look like so in our browser pod yaml:
-```
+```yaml
 spec:
   template:
     spec:
