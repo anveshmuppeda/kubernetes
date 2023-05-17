@@ -199,9 +199,9 @@ eksctl utils write-kubeconfig --cluster=<clustername>
 <a name="eksctl"></a>
 ## certs
 ### Decoce ca.crt using below two websites
-https://www.base64decode.org/
+https://www.base64decode.org/  
 https://www.sslchecker.com/certdecoder
 
 ### Decode token using below two websites
-https://www.base64decode.org/
+https://www.base64decode.org/  
 https://jwt.io/
