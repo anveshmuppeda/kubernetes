@@ -8,6 +8,7 @@
 6. [ Nodes. ](#Nodes)
 7. [ Logs. ](#Logs)
 8. [ EKSCTL. ](#eksctl)
+9. [ Certs. ](#certs)
 
 <a name="Cluster"></a>
 ## Cluster 
@@ -193,3 +194,14 @@ There are 2 ways you can get the kubeconfig.
 aws eks update-kubeconfig --name <clustername> --region <region>
 eksctl utils write-kubeconfig --cluster=<clustername>
 ```
+---
+
+<a name="eksctl"></a>
+## certs
+### Decoce ca.crt using below two websites
+https://www.base64decode.org/
+https://www.sslchecker.com/certdecoder
+
+### Decode token using below two websites
+https://www.base64decode.org/
+https://jwt.io/
