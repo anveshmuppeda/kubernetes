@@ -7,6 +7,7 @@
 5. [ Pod. ](#Pod)
 6. [ Nodes. ](#Nodes)
 7. [ Logs. ](#Logs)
+8. [ EKSCTL. ](#eksctl)
 
 <a name="Cluster"></a>
 ## Cluster 
@@ -181,4 +182,14 @@ kubectl logs --selector=run=hello-world --tail 1
 kubectl -n elastic-stack exec -it app cat /log/app.log
 kubectl logs myapp-pod -c init-myservice # Inspect the first init container
 kubectl logs myapp-pod -c init-mydb      # Inspect the second init container
+```
+---
+
+<a name="eksctl"></a>
+## EKSCTL
+### to switch the cluster 
+There are 2 ways you can get the kubeconfig.
+```
+aws eks update-kubeconfig --name <clustername> --region <region>
+eksctl utils write-kubeconfig --cluster=<clustername>
 ```
