@@ -1,4 +1,4 @@
-# kubernetes
+# Kubernetes
 Kuberntes Complete Notes. 
 
 ### Use below link to run the K8's objects  
