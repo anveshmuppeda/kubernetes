@@ -42,6 +42,10 @@ kubectl config get-contexts
 ```
 kubectl config current-context
 ```
+### prints the current config with more details
+```sh
+kubectl config view --minify
+```
 ### to switch between the predefined contexts(Switch to a context/cluster):
 ```
 kubectl config use-context NikTest
