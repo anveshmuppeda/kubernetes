@@ -25,6 +25,7 @@ akscluster()
 
 seleniumgrid()
 {
+    echo -e "Note: Make sure your running this command from the helm chart directory!"
     helm install --dry-run selenium selenium-grid
     helm install selenium selenium-grid
     sleep 30
