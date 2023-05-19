@@ -8,8 +8,8 @@
 6. [ Nodes ](#Nodes) 
 7. [ Logs ](#Logs) 
 8. [ eksctl ](#eksctl)  
-9. [ Certs ](#certs)
-10. [ awscli ](#awscli)
+9. [ awscli ](#awscli)
+10. [ Certs ](#certs)
 
 <a name="Cluster"></a>
 ## Cluster 
@@ -224,9 +224,12 @@ aws iam create-access-key --user-name rbac-user
 ```
 aws configure
 ```
-
+### to check current user details on awscli
+```
+aws sts get-caller-identity
+```
 ---
-<a name="eksctl"></a>
+<a name="certs"></a>
 ## certs
 ### Decoce ca.crt using below two websites
 https://www.base64decode.org/  
