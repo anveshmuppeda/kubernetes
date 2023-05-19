@@ -2,7 +2,9 @@
 Kuberntes Complete Notes. 
 
 ### Use below link to run the K8's objects  
-https://kubernetes.io/docs/tutorials/hello-minikube/
+https://kubernetes.io/docs/tutorials/hello-minikube/  
+https://labs.play-with-k8s.com/  
+https://killercoda.com/playgrounds/scenario/kubernetes  
 
 ### Example code and execution for each k8's objects can be found under below path  
 ```examples\<object-name>```
