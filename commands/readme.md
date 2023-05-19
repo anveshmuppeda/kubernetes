@@ -1,14 +1,15 @@
 # Welcome to Kubectl cheatsheet  
 
-1. [ Cluster. ](#Cluster)
-2. [ Switching Between Contexts. ](#SwitchingBetweenContexts)
-3. [ Labels & Selectors. ](#Labels&Selectors )
+1. [ Cluster ](#Cluster)
+2. [ Switching Between Contexts ](#SwitchingBetweenContexts)
+3. [ Labels & Selectors ](#Labels&Selectors )
 4. [ Container. ](#Container)
-5. [ Pod. ](#Pod)
-6. [ Nodes. ](#Nodes)
-7. [ Logs. ](#Logs)
-8. [ EKSCTL. ](#eksctl)
-9. [ Certs. ](#certs)
+5. [ Pod ](#Pod)
+6. [ Nodes ](#Nodes)
+7. [ Logs ](#Logs)
+8. [ eksctl ](#eksctl)
+9. [ Certs ](#certs)
+10.[ awscli ](#awscli)
 
 <a name="Cluster"></a>
 ## Cluster 
@@ -198,8 +199,32 @@ There are 2 ways you can get the kubeconfig.
 aws eks update-kubeconfig --name <clustername> --region <region>
 eksctl utils write-kubeconfig --cluster=<clustername>
 ```
----
+### to delete cluster
+```
+eksctl delete cluster --name eksrbac --region us-east-1
+```
+### to create EKS cluster
+```
+eksctl create cluster --name eksrbac --node-type t2.large --nodes 1 --nodes-min 1 --nodes-max 2 --region us-east-1 --zones=us-east-1a,us-east-1b,us-east-1c
+```
+### to get EKS Cluster service
+```
+eksctl get cluster --name eksrbac --region us-east-1
+```
 
+---
+<a name="awscli"></a>
+### to create IAM user and create access key
+```
+aws iam create-user --user-name rbac-user
+aws iam create-access-key --user-name rbac-user
+```
+### to configure aws account
+```
+aws configure
+```
+
+---
 <a name="eksctl"></a>
 ## certs
 ### Decoce ca.crt using below two websites
