@@ -3,13 +3,13 @@
 1. [ Cluster ](#Cluster)
 2. [ Switching Between Contexts ](#SwitchingBetweenContexts)
 3. [ Labels & Selectors ](#Labels&Selectors )
-4. [ Container. ](#Container)
+4. [ Container ](#Container)
 5. [ Pod ](#Pod)
-6. [ Nodes ](#Nodes)
-7. [ Logs ](#Logs)
+6. [ Nodes ](#Nodes) 
+7. [ Logs ](#Logs) 
 8. [ eksctl ](#eksctl)  
-9. [ Certs ](#certs)  
-10.[ awscli ](#awscli)
+9. [ Certs ](#certs)
+10. [ awscli ](#awscli)
 
 <a name="Cluster"></a>
 ## Cluster 
