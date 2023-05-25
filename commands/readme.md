@@ -211,7 +211,7 @@ eksctl get cluster --name eksrbac --region us-east-1
 ```
 eksctl get nodegroup --cluster=<clusterName>  
 ```
-### Delete Node Group  
+### to delete Node Group  
 ```
 eksctl delete nodegroup --cluster=<clusterName> --name=<nodegroupName>
 ```
