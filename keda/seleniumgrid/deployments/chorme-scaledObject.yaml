@@ -13,5 +13,5 @@ spec:
   triggers:
     - type: selenium-grid
       metadata:
-        url: 'http://a5146ad8e928246d39b84974a7d077d1-64969741.us-east-2.elb.amazonaws.com:4444/graphql'  #this is selenium grid URL, external IP of Loadbalancer
+        url: 'http://a06768e1831454a65bf258ea8df0d23d-233233995.us-east-2.elb.amazonaws.com:4444/graphql'  #this is selenium grid URL, external IP of Loadbalancer
         browserName: 'chrome'
