@@ -198,11 +198,7 @@ There are 2 ways you can get the kubeconfig.
 ```
 aws eks update-kubeconfig --name <clustername> --region <region>
 eksctl utils write-kubeconfig --cluster=<clustername>
-```
-### to delete cluster
-```
-eksctl delete cluster --name eksrbac --region us-east-1
-```
+```  
 ### to create EKS cluster
 ```
 eksctl create cluster --name eksrbac --node-type t2.large --nodes 1 --nodes-min 1 --nodes-max 2 --region us-east-1 --zones=us-east-1a,us-east-1b,us-east-1c
@@ -211,6 +207,18 @@ eksctl create cluster --name eksrbac --node-type t2.large --nodes 1 --nodes-min 
 ```
 eksctl get cluster --name eksrbac --region us-east-1
 ```
+### to get Node Group name  
+```
+eksctl get nodegroup --cluster=<clusterName>  
+```
+### Delete Node Group  
+```
+eksctl delete nodegroup --cluster=<clusterName> --name=<nodegroupName>
+```
+### to delete cluster
+```
+eksctl delete cluster --name eksrbac --region us-east-1
+``` 
 
 ---
 <a name="awscli"></a>
