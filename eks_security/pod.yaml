@@ -1,0 +1,19 @@
+ apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: awscli
+ spec:
+   replicas: 1
+   selector:
+     matchLabels:
+       app: awscli
+   template:
+     metadata:
+       labels:
+         app: awscli
+     spec:
+       containers:
+       - name: awscli
+         image: sdscello/awscli:latest
+         ports:
+         - containerPort: 80
