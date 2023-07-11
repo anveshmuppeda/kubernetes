@@ -257,12 +257,12 @@ kubectl set image deployment/frontend simple-webapp=kodekloud/webapp-color:v2
 ```
 Set command help you make changes to existing application resources.  
 Available Commands:  
-  env              Update environment variables on a pod template  
-  image            Update the image of a pod template  
-  resources        Update resource requests/limits on objects with pod templates  
-  selector         Set the selector on a resource  
-  serviceaccount   Update the service account of a resource  
-  subject          Update the user, group, or service account in a role binding  
+  1. **env**              : Update environment variables on a pod template
+  2. **image**            : Update the image of a pod template
+  3. **resources**        : Update resource requests/limits on objects with pod templates
+  4. **selector**         : Set the selector on a resource
+  5. **serviceaccount**   : Update the service account of a resource
+  6. **subject**          : Update the user, group, or service account in a role binding  
 or cluster role binding  
 
 ---
