@@ -10,6 +10,7 @@
 8. [ eksctl ](#eksctl)  
 9. [ awscli ](#awscli)
 10. [ Certs ](#certs)
+11. [ Set ](#set_command)
 
 <a name="Cluster"></a>
 ## Cluster 
@@ -246,3 +247,22 @@ https://www.sslchecker.com/certdecoder
 ### Decode token using below two websites
 https://www.base64decode.org/  
 https://jwt.io/
+
+---
+<a name="set_command"></a>
+## to set the variables 
+```
+kubectl set image deployment/<deploy-name> <container-name>=<new-image-name>:version  
+kubectl set image deployment/frontend simple-webapp=kodekloud/webapp-color:v2    
+```
+Set command help you make changes to existing application resources.  
+Available Commands:  
+  env              Update environment variables on a pod template  
+  image            Update the image of a pod template  
+  resources        Update resource requests/limits on objects with pod templates  
+  selector         Set the selector on a resource  
+  serviceaccount   Update the service account of a resource  
+  subject          Update the user, group, or service account in a role binding  
+or cluster role binding  
+
+---
