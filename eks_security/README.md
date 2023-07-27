@@ -16,21 +16,15 @@ helm upgrade --install amazon-cloudwatch \
 
 | Parameter | Description | Default | Required |
 | - | - | - | -
-| `image.repository` | Image to deploy | `amazon/cloudwatch-agent` | ✔
-| `image.tag` | Image tag to deploy | `1.247345.36b249270`
-| `image.pullPolicy` | Pull policy for the image | `IfNotPresent` | ✔
-| `clusterName` | Name of your cluster | `cluster_name` | ✔
-| `serviceAccount.create` | Whether a new service account should be created | `true` |
-| `serviceAccount.name` | Service account to be used | |
-| `hostNetwork` | Allow to use the network namespace and network resources of the node | `false` |
-| `nodeSelector` | Node labels for pod assignment	 | {} |
-| `tolerations` | Optional deployment tolerations	 | {} |
-| `annotations` | Optional pod annotations	 | {} |
-| `containerdSockPath` | Path to containerd' socket | /run/containerd/containerd.sock |
-| `priorityClassName` | Optional priorityClassName	 | |
-| `statsd.enabled` | Whether the cloudwatch agent should listen for statsd metrics	 | `false` |
-| `statsd.port` | The port listening for statsd metrics | `8125` |
-| `statsd.protocol` | The protocol used for statsd metrics | `UDP` |
-| `statsd.cloudwatch_namespace` | Optional custom Cloudwatch namespace for statsd metrics | |
-| `statsd.metrics_aggregation_interval` | Optional cutom metrics aggregation interval for statsd metrics | |
-| `statsd.metrics_collection_interval` | Optional custom metrics collection interval for statsd metrics | |
+| `agentPrefix` | Name of the agent prefix | `cloudwatch-agent` | ✔
+| `fluentdPrefix` | Name of the FluentD prefix | `fluentd`
+| `namespace` | Namespace where Amazon-CloudWatch is to be deployed | `amazon-cloudwatch` | ✔
+| `clusterName` | Name of your cluster | `swbc_c2c_beta_eks-cluster` | ✔
+| `logsRegion` | The region of the cluster | `us-east-1` |
+| `agent.resources` | Resources configuration of the agent | |
+| `agent.image.respository` | Image to deploy for agent | `amazon/cloudwatch-agent` | ✔
+| `agent.image.tag` | Image tag to deploy for agent | `1.247346.0b249609` | ✔
+| `fluentd.resources` | Resources configuration of the fluentD | |
+| `fluentd.image.respository` | Image to deploy for fluentD | `fluent/fluentd-kubernetes-daemonset` | ✔
+| `fluentd.image.tag` | Image tag to deploy for fluentD | `v1.7.3-debian-cloudwatch-1.0` | ✔
+| `fluentd.initImage.image` | Init container Image to deploy for fluentD | `busybox` | ✔
