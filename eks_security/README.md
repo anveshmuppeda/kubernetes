@@ -4,18 +4,12 @@ A helm chart for CloudWatch Agent to Collect Cluster Metrics
 
 ## Installing the Chart
 
-Add the EKS repository to Helm:
+Install or upgrading the aws-cloudwatch-metrics chart with the default configuration:
 
 ```sh
-helm repo add eks https://aws.github.io/eks-charts
-```
-
-Install or upgrading aws-cloudwatch-metrics chart with default configuration:
-
-```sh
-helm upgrade --install aws-cloudwatch-metrics \
-    --namespace amazon-cloudwatch eks/aws-cloudwatch-metrics \
-    --set clusterName=my-eks-cluster
+helm upgrade --install amazon-cloudwatch \
+    --namespace amazon-cloudwatch helm-charts/amazon-cloudwatch \
+    --set clusterName=<my-eks-cluster>
 ```
 
 ## Configuration
