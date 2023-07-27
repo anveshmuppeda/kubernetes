@@ -1,10 +1,10 @@
-# aws-cloudwatch-metrics
+# amazon-cloudwatch
 
 A helm chart for CloudWatch Agent to Collect Cluster Metrics
 
 ## Installing the Chart
 
-Install or upgrading the aws-cloudwatch-metrics chart with the default configuration:
+Install or upgrading the amazon-cloudwatch chart with the default configuration:
 
 ```sh
 helm upgrade --install amazon-cloudwatch \
