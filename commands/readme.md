@@ -281,7 +281,8 @@ macOS
 base64 -i data.txt -o data.b64
 
  Decode a Base64 file
-base64 -D -i data.b64 -o data.txt
+base64 -D -i data.b64 -o data.txt 
+
 ---
 <a name="set_command"></a>
 ## to set the variables 
