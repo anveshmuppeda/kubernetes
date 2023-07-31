@@ -11,7 +11,7 @@
 9. [ awscli ](#awscli)
 10. [ Certs ](#certs)
 11. [ Set ](#set_command)
-
+12. [ Rollout ](#rollout)
 <a name="Cluster"></a>
 ## Cluster 
 ### listing all the resources in cluster
@@ -299,4 +299,13 @@ Available Commands:
   6. **subject**          : Update the user, group, or service account in a role binding  
 or cluster role binding  
 
+---
+
+<a name="rollout"></a>
+## to rollout restart  
+Created a new kubectl rollout restart command that does a rolling restart of a deployment.  
+kubectl rollout restart now works for DaemonSets and StatefulSets.  
+```
+kubectl rollout restart deployment your_deployment_name
+```
 ---
