@@ -22,9 +22,11 @@ helm upgrade --install amazon-cloudwatch \
 | `clusterName` | Name of your cluster | `swbc_c2c_beta_eks-cluster` | ✔
 | `logsRegion` | The region of the cluster | `us-east-1` |
 | `agent.resources` | Resources configuration of the agent | |
-| `agent.image.respository` | Image to deploy for agent | `amazon/cloudwatch-agent` | ✔
+| `agent.image.respository` | Repository to deploy for agent | | ✔
+| `agent.image.name` | Image to deploy for agent | `amazon/cloudwatch-agent` | ✔
 | `agent.image.tag` | Image tag to deploy for agent | `1.247346.0b249609` | ✔
 | `fluentd.resources` | Resources configuration of the fluentD | |
-| `fluentd.image.respository` | Image to deploy for fluentD | `fluent/fluentd-kubernetes-daemonset` | ✔
+| `fluentd.image.respository` | Repository to deploy for fluentD | | ✔
+| `fluentd.image.name` | Image to deploy for fluentD | `fluent/fluentd-kubernetes-daemonset` | ✔
 | `fluentd.image.tag` | Image tag to deploy for fluentD | `v1.7.3-debian-cloudwatch-1.0` | ✔
 | `fluentd.initImage.image` | Init container Image to deploy for fluentD | `busybox` | ✔
