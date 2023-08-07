@@ -274,8 +274,8 @@ certutil -encode data.txt tmp.b64 && findstr /v /c:- tmp.b64 > data.b64
 certutil -decode data.b64 data.txt
 ```
 
-[!NOTE] 
-Note: encoding with the above command will leave a temporary file, tmp.b64, on your file system. If you do not wish to have that file present simply add this to the end of the command: && del tmp.b64  
+> [!NOTE]   
+> Note: encoding with the above command will leave a temporary file, tmp.b64, on your file system. If you do not wish to have that file present simply add this to the end of the command: && del tmp.b64  
 
 
 
