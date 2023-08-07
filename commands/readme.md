@@ -311,7 +311,8 @@ or cluster role binding
 ---
 
 <a name="rollout"></a>
-## to rollout restart  
+## rollout
+### to rollout restart  
 Created a new kubectl rollout restart command that does a rolling restart of a deployment.  
 kubectl rollout restart now works for DaemonSets and StatefulSets.  
 ```
