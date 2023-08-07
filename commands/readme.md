@@ -293,7 +293,8 @@ base64 -D -i data.b64 -o data.txt
 
 ---
 <a name="set_command"></a>
-## to set the variables 
+## Set Command
+### to set the variables 
 ```
 kubectl set image deployment/<deploy-name> <container-name>=<new-image-name>:version  
 kubectl set image deployment/frontend simple-webapp=kodekloud/webapp-color:v2    
@@ -311,7 +312,7 @@ or cluster role binding
 ---
 
 <a name="rollout"></a>
-## rollout
+## Rollout
 ### to rollout restart  
 Created a new kubectl rollout restart command that does a rolling restart of a deployment.  
 kubectl rollout restart now works for DaemonSets and StatefulSets.  
