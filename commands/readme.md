@@ -248,6 +248,7 @@ https://www.sslchecker.com/certdecoder
 ### Decode token using below two websites
 https://www.base64decode.org/  
 https://jwt.io/  
+
 > [!NOTE]   
 > Notice: I'm taking a break from blogging to focus on Atari Gamer . com, check it out!  
 Base64 Encode or Decode on the command line without installing extra tools on Linux, Windows or macOS  
