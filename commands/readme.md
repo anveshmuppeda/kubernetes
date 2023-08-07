@@ -246,42 +246,46 @@ https://www.sslchecker.com/certdecoder
 
 ### Decode token using below two websites
 https://www.base64decode.org/  
-https://jwt.io/
-Notice: I'm taking a break from blogging to focus on Atari Gamer . com, check it out!
-Base64 Encode or Decode on the command line without installing extra tools on Linux, Windows or macOS
- 26-Apr-2017
-Base64 encoding is used in quite a few places and there are many online web sites that let you encode or decode Base64. I am not very comfortable using such sites for security and privacy reasons so I went looking for alternative solutions. Whether you're using Linux, Windows or macOS you can use built-in tools to both encode or decode Base64 data. So ditch any online sites and start using software that is installed locally on your computer. Here's how.
+https://jwt.io/  
+Notice: I'm taking a break from blogging to focus on Atari Gamer . com, check it out!  
+Base64 Encode or Decode on the command line without installing extra tools on Linux, Windows or macOS  
+ 26-Apr-2017  
+Base64 encoding is used in quite a few places and there are many online web sites that let you encode or decode Base64. I am not very comfortable using such sites for security and privacy reasons so I went looking for alternative solutions. Whether you're using Linux, Windows or macOS you can use built-in tools to both encode or decode Base64 data. So ditch any online sites and start using software that is installed locally on your computer. Here's how.  
 
-You will need to do all of this via the command line. Given you're already dealing with Base64 data I am going to assume you know how to bring that up on your operating system. Scroll down to the relevant section based on your OS below, also substitute your file names as appropriate.
+You will need to do all of this via the command line. Given you're already dealing with Base64 data I am going to assume you know how to bring that up on your operating system. Scroll down to the relevant section based on your OS below, also substitute your file names as appropriate.  
 
-I am going to use .txt for the decoded data file extension and .b64 for the Base64 encoded file extension.
+I am going to use .txt for the decoded data file extension and .b64 for the Base64 encoded file extension.  
 
-Linux
- Encode a data file to Base64
+Linux   
+```
+ Encode a data file to Base64  
 base64 data.txt > data.b64
 
- Decode a Base64 file
+ Decode a Base64 file  
 base64 -d data.b64 > data.txt
+```
 
-
-Windows
- Encode a data file to Base64
+Windows 
+```
+ Encode a data file to Base64  
 certutil -encode data.txt tmp.b64 && findstr /v /c:- tmp.b64 > data.b64
 
- Decode a Base64 file
+ Decode a Base64 file  
 certutil -decode data.b64 data.txt
-
+```
 
 Note: encoding with the above command will leave a temporary file, tmp.b64, on your file system. If you do not wish to have that file present simply add this to the end of the command: && del tmp.b64
 
 
 
-macOS
+**macOS**  
+```
  Encode a data file to Base64
 base64 -i data.txt -o data.b64
 
  Decode a Base64 file
 base64 -D -i data.b64 -o data.txt 
+```
 
 ---
 <a name="set_command"></a>
