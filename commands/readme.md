@@ -237,6 +237,7 @@ aws configure
 ```
 aws sts get-caller-identity
 ```
+
 ---
 <a name="certs"></a>
 ## certs
@@ -247,7 +248,8 @@ https://www.sslchecker.com/certdecoder
 ### Decode token using below two websites
 https://www.base64decode.org/  
 https://jwt.io/  
-Notice: I'm taking a break from blogging to focus on Atari Gamer . com, check it out!  
+> [!NOTE]   
+> Notice: I'm taking a break from blogging to focus on Atari Gamer . com, check it out!  
 Base64 Encode or Decode on the command line without installing extra tools on Linux, Windows or macOS  
  26-Apr-2017  
 Base64 encoding is used in quite a few places and there are many online web sites that let you encode or decode Base64. I am not very comfortable using such sites for security and privacy reasons so I went looking for alternative solutions. Whether you're using Linux, Windows or macOS you can use built-in tools to both encode or decode Base64 data. So ditch any online sites and start using software that is installed locally on your computer. Here's how.  
