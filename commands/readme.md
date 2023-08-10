@@ -325,11 +325,24 @@ kubectl rollout restart deployment your_deployment_name
 ---
 
 <a name="taint"></a>
-## Rollout
-### to rollout restart  
-Created a new kubectl rollout restart command that does a rolling restart of a deployment.  
-kubectl rollout restart now works for DaemonSets and StatefulSets.  
+## Taint
+### to taint a node  
+You add a taint to a node using kubectl taint. For example,  
 ```
-kubectl rollout restart deployment your_deployment_name
+kubectl taint nodes node1 key1=value1:NoSchedule
+kubectl taint nodes node1 key1=value1:NoExecute
+kubectl taint nodes node1 key2=value2:NoSchedule
 ```
+places a taint on node node1. The taint has key key1, value value1, and taint effect NoSchedule. This means that no pod will be able to schedule onto node1 unless it has a matching toleration.  
+
+To remove the taint added by the command above, you can run:  
+```
+kubectl taint nodes node1 key1=value1:NoSchedule-
+kubectl taint nodes node1 key1=value1:NoExecute-
+kubectl taint nodes node1 key2=value2:NoSchedule-
+```
+* if there is at least one un-ignored taint with effect NoSchedule then Kubernetes will not schedule the pod onto that node  
+* if there is no un-ignored taint with effect NoSchedule but there is at least one un-ignored taint with effect PreferNoSchedule then Kubernetes will try to not schedule the pod onto the node  
+* if there is at least one un-ignored taint with effect NoExecute then the pod will be evicted from the node (if it is already running on the node), and will not be scheduled onto the node (if it is not yet running on the node).  
+
 ---
