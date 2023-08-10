@@ -12,6 +12,9 @@
 10. [ Certs ](#certs)
 11. [ Set ](#set_command)
 12. [ Rollout ](#rollout)
+13. [ Taint ](#taint)
+
+
 <a name="Cluster"></a>
 ## Cluster 
 ### listing all the resources in cluster
@@ -312,6 +315,16 @@ or cluster role binding
 ---
 
 <a name="rollout"></a>
+## Rollout
+### to rollout restart  
+Created a new kubectl rollout restart command that does a rolling restart of a deployment.  
+kubectl rollout restart now works for DaemonSets and StatefulSets.  
+```
+kubectl rollout restart deployment your_deployment_name
+```
+---
+
+<a name="taint"></a>
 ## Rollout
 ### to rollout restart  
 Created a new kubectl rollout restart command that does a rolling restart of a deployment.  
