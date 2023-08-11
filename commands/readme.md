@@ -345,4 +345,7 @@ kubectl taint nodes node1 key2=value2:NoSchedule-
 * if there is no un-ignored taint with effect NoSchedule but there is at least one un-ignored taint with effect PreferNoSchedule then Kubernetes will try to not schedule the pod onto the node  
 * if there is at least one un-ignored taint with effect NoExecute then the pod will be evicted from the node (if it is already running on the node), and will not be scheduled onto the node (if it is not yet running on the node).  
 
----
+---  
+
+## Reference: 
+https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands
