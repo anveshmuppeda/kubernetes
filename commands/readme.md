@@ -347,5 +347,5 @@ kubectl taint nodes node1 key2=value2:NoSchedule-
 
 ---  
 
-## Reference: 
-https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands
+## Reference:  
+https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands  
