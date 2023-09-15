@@ -13,6 +13,7 @@
 11. [ Set ](#set_command)
 12. [ Rollout ](#rollout)
 13. [ Taint ](#taint)
+14. [ Port Forward ](#portforward)
 
 
 <a name="Cluster"></a>
@@ -347,5 +348,30 @@ kubectl taint nodes node1 key2=value2:NoSchedule-
 
 ---  
 
+<a name="portforward"></a>
+## Port Forward 
+kubectl port-forward forwards connections to a local port to a port on a pod. Compared to kubectl proxy, kubectl port-forward is more generic as it can forward TCP traffic while kubectl proxy can only forward HTTP traffic.  
+
+kubectl port-forward is useful for testing/debugging purposes so you can access your service locally without exposing it.  
+
+```
+kubectl port-forward <pod-name> localhostport:containerport
+kubectl port-forward nginx-54bf6dc5f-2qtv5 81:80
+```
+OR
+```
+kubectl port-forward pod/<pod-name> localhostport:containerport
+kubectl port-forward deployment/<deployment-name> localhostport:containerport
+kubectl port-forward replicaset/<replicasetname-name> localhostport:containerport
+kubectl port-forward service/<service-name> localhostport:containerport
+```
+Once the connection to local port to a port on pod happened, then we can test local connection using curl to the end point i.e. pod.
+
+```
+curl -X GET -s http://localhost:80/
+curl -X GET -s http://localhost:80/_cluster/health  
+```
+
+---
 ## Reference:  
 https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands  
