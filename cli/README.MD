@@ -19,3 +19,11 @@ Move kubectl to the /usr/local/bin/
 ```
 sudo mv kubectl /usr/local/bin/
 ```
+---
+
+## Helm
+
+To install helm with version 3.8.2
+```
+curl -L https://git.io/get_helm.sh | bash -s -- --version v3.8.2
+```
