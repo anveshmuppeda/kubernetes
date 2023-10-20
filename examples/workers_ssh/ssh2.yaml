@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ssh-node
+  labels:
+    plugin: ssh-node
+spec:
+  nodeName: <worker-node-name>
+  containers:
+    - name: ssh-node
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command: ["chroot", "/host"]
+      tty: true
+      stdin: true
+      stdinOnce: true
+      securityContext:
+          privileged: true
+      volumeMounts:
+        - name: host
+          mountPath: /host
+  volumes:
+    - name: host
+      hostPath:
+          path: /
+  hostNetwork: true
+  hostIPC: true
+  hostPID: true
+  restartPolicy: Never

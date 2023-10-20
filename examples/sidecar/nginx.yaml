@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1-nginx-deployment
+  labels:
+    app: app1-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app1-nginx
+  template:
+    metadata:
+      labels:
+        app: app1-nginx
+    spec:
+      containers:
+        - name: main-application
+          image: nginx
+          volumeMounts:
+            - name: shared-logs
+              mountPath: /var/log/nginx
+          ports:
+            - containerPort: 80
+        - name: sidecar-container
+          image: busybox
+          command: 
+          - sh
+          - -c
+          - > 
+            while true;
+            do 
+              cat /var/log/nginx/access.log;
+              if ! [ -f /var/log/nginx/access.log ]; then
+                echo "File does not exist."
+                exit 0;
+              fi
+              sleep 30; 
+            done
+          volumeMounts:
+            - name: shared-logs
+              mountPath: /var/log/nginx
+      volumes:
+      - name: shared-logs
+        emptyDir: {}

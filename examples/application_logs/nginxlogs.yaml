@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tomcat
+spec:
+  containers:
+  - name: count
+    image: tomcat
+    volumeMounts:
+    - name: varlog
+      mountPath: /usr/local/tomcat/logs
+  - name: tomcat-log-1
+    image: busybox
+    command:
+    - /bin/sh
+    - -c
+    - >
+      while remainsec=$(($(date -d 23:59:59 +%s) - $(date +%s) + 1));
+      log_file=`date +/usr/local/tomcat/logs/catalina.%Y-%m-%d.log.txt`;
+        if [ -f "$log_file" ];
+        then
+          tail -n+1 -F $log_file & sleep $remainsec;
+        fi
+      do
+        if [ -f "$log_file" ];
+        then
+          kill $!;
+        fi
+      done
+    volumeMounts:
+    - name: varlog
+      mountPath: /usr/local/tomcat/logs
+  volumes:
+  - name: varlog
+    emptyDir: {}

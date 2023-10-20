@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: demo-s3
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      serviceAccountName: demo-sa
+      initContainers:
+      - name: demo-aws-cli
+        image: amazon/aws-cli
+        #command: ['aws', 's3', 'cp', 's3://helmtestanvesh/index.html', 'index2.html']
+        command: ['aws', 's3', 'sync', 's3://helmtestanvesh', '/work-dir/']
+        volumeMounts:
+        - name: workdir
+          mountPath: "/work-dir"
+      #command: ['aws', 's3api', 'get-object', '--bucket', 'helmtestanvesh', '--key', 'index.html', '/home/index.html']
+      containers:
+      - name: my-app
+        image: nginx
+        volumeMounts:
+        - name: workdir
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: workdir
+        emptyDir: {}

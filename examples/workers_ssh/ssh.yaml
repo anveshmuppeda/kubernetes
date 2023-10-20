@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubernetes.io/psp: hostaccess
+  name: node-debugger-infra1-s46g6
+  namespace: default
+spec:
+  containers:
+  - image: busybox
+    name: debugpod
+    volumeMounts:
+    - mountPath: /host
+      name: host-root
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  hostIPC: true
+  hostNetwork: true
+  hostPID: true
+  nodeName: <worker-node-name>
+  nodeSelector:
+    kubernetes.io/os: linux
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Never
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - operator: Exists
+  volumes:
+  - hostPath:
+      path: /
+      type: ""
+    name: host-root

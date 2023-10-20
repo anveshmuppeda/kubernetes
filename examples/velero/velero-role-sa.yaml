@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  IAM role for serviceaccount "velero/velero-server" [created and managed by
+  eksctl]
+Resources:
+  Role1:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: eks-velero-backup-third
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action:
+              - 'sts:AssumeRoleWithWebIdentity'
+            Condition:
+              StringEquals:
+                'oidc.eks.us-east-1.amazonaws.com/id/3E8EA887FA3D16484FA68885B8E032F0:aud': sts.amazonaws.com
+                'oidc.eks.us-east-1.amazonaws.com/id/3E8EA887FA3D16484FA68885B8E032F0:sub': 'system:serviceaccount:velero:velero-server'
+            Effect: Allow
+            Principal:
+              Federated: >-
+                arn:aws:iam::202377395259:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/3E8EA887FA3D16484FA68885B8E032F0
+        Version: 2012-10-17
+      ManagedPolicyArns:
+        - 'arn:aws:iam::202377395259:policy/third-policy'
+Outputs:
+  Role1:
+    Value: !GetAtt Role1.Arn

@@ -1,0 +1,40 @@
+Step 1: Create S3 BUCKET
+export BUCKET=eks-velero-bkp
+export REGION=us-east-1
+aws s3 mb s3://$BUCKET --region $REGION
+
+Step 2: Create IAM Policy 
+
+Step 3: Create IAM Service Account
+PRIMARY_CLUSTER=velerodemo
+ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
+
+
+eksctl create iamserviceaccount \
+    --cluster=$PRIMARY_CLUSTER \
+    --name=velero-server-serviceaccount \
+    --namespace=velero \
+    --role-name=velerodemo-role \
+    --role-only \
+    --attach-policy-arn=arn:aws:iam::$ACCOUNT:policy/VeleroAccessPolicy \
+    --approve
+
+
+/usr/local/bin/helm install velero vmware-tanzu/velero --version 5.0.2 \
+    --create-namespace \
+    --namespace velero \
+    -f values.yaml
+
+
+velero restore create my-first2-backup-restore  --from-backup my-second-backup
+
+
+velero restore describe my-first2-backup-restore
+velero restore logs my-first2-backup-restore
+
+
+
+helm install velero vmware-tanzu/velero --version 5.0.2 -f values1.yaml -n velero
+
+kubectl create namespace velero
+kubectl label namespaces velero name=velero --overwrite=true

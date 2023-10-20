@@ -1,0 +1,22 @@
+cat > values.yaml <<EOF
+configuration:
+  backupStorageLocation:
+  - bucket: third-velero-bucket
+    provider: aws
+  volumeSnapshotLocation:
+  - config:
+      region: us-east-1
+    provider: aws
+initContainers:
+- name: velero-plugin-for-aws
+  image: velero/velero-plugin-for-aws:v1.7.1
+  volumeMounts:
+  - mountPath: /target
+    name: plugins
+credentials:
+  useSecret: false
+serviceAccount:
+  server:
+    annotations:
+      eks.amazonaws.com/role-arn: "arn:aws:iam::202377395259:role/eks-velero-backup-third"
+EOF
