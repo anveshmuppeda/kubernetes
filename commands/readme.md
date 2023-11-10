@@ -71,11 +71,11 @@ kubectl config set-context --current --namespace=anvesh
 ## Labels & Selectors 
 ### labeling a node
 ```
-kubectl label node <nodename> <labelname>
+kubectl label node <nodename> <label_name>=<label_value>
 ```
 ### remove Label from a node
 ```
-kubectl label node <nodename> <labelname>-
+kubectl label node <nodename> <label_name>=<label_value>-
 ```
 ### to list nodes with the labels
 ```
