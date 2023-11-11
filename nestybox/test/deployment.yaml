@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syscont-deployment
+  labels:
+    app: syscont
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: syscont
+  template:
+    metadata:
+      labels:
+        app: syscont
+      annotations:
+        io.kubernetes.cri-o.userns-mode: "auto:size=65536"
+    spec:
+      runtimeClassName: sysbox-runc
+      containers:
+      - name: ubu-bio-systemd-docker
+        image: nestybox/ubuntu-bionic-systemd-docker
+        command: ["/sbin/init"]

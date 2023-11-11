@@ -1,0 +1,19 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: my-cluster
+  region: us-west-2
+  version: "1.20"
+
+managedNodeGroups:
+  - name: ubuntu-nodes
+    amiFamily: Ubuntu2004
+    instanceType: t3.xlarge
+    desiredCapacity: 3
+    minSize: 3
+    maxSize: 5
+    volumeSize: 200
+    ssh:
+      allow: true
+      publicKeyName: us-east-1

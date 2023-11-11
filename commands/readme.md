@@ -77,9 +77,14 @@ kubectl label node <nodename> <label_name>=<label_value>
 ```
 kubectl label node <nodename> <label_name>=<label_value>-
 ```
-### to list nodes with the labels
+### to read node labels  
 ```
-kubectl get nodes --show-labels
+kubectl get nodes --show-labels  
+kubectl label --list nodes node_name  
+```  
+### to overwrite the node label  
+``` 
+kubectl label --overwrite <nodename> <label_name>=<label_value>   
 ```
 ---
 <a name="Containers"></a>
@@ -224,6 +229,9 @@ eksctl delete nodegroup --cluster=<clusterName> --name=<nodegroupName>
 ```
 eksctl delete cluster --name eksrbac --region us-east-1
 ``` 
+### Reference:  
+1. https://mhausenblas.info/eksctl/usage/custom-ami-support/  
+2. https://eksctl.io/usage/eks-managed-nodes/
 
 ---
 <a name="awscli"></a>
