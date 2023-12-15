@@ -7,14 +7,14 @@ check_kubectl() {
     command -v kubectl >/dev/null 2>&1 || { echo >&2 "kubectl is required but not installed. Aborting."; exit 1; }
 }
 
-# Function to Check if jq is installed
+# Function to check if jq is installed
 check_jq(){ 
     if ! command -v jq &> /dev/null; then
         echo "jq not found. Please install jq first."
     fi
 }
 
-# Function to Check if xlsxwriter is installed
+# Function to check if xlsxwriter is installed
 check_xlsxwriter(){
     if ! python3 -c "import xlsxwriter" &> /dev/null; then
         echo "xlsxwriter not found. Please install xlsxwriter first."
