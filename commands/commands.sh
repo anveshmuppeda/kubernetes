@@ -432,7 +432,7 @@ main() {
    while true; do
        display_mian_menu
        check_kubectl
-       read -p "Enter your choice (1-7): " choice
+       read -p "Enter your choice (1-8): " choice
        case $choice in
            1) get_pods ;;
            2) describe_resource ;;
@@ -442,7 +442,7 @@ main() {
            6) nodes_commands ;;
            7) context_commands ;;
            8) echo "Exiting the script. Goodbye!"; exit 0 ;;
-           *) echo "Invalid choice. Please enter a number between 1 and 7." ;;
+           *) echo "Invalid choice. Please enter a number between 1 and 8." ;;
        esac
    done
 }
