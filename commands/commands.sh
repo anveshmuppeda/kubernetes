@@ -7,6 +7,20 @@ check_kubectl() {
     command -v kubectl >/dev/null 2>&1 || { echo >&2 "kubectl is required but not installed. Aborting."; exit 1; }
 }
 
+# Function to Check if jq is installed
+check_jq(){ 
+    if ! command -v jq &> /dev/null; then
+        echo "jq not found. Please install jq first."
+    fi
+}
+
+# Function to Check if xlsxwriter is installed
+check_xlsxwriter(){
+    if ! python3 -c "import xlsxwriter" &> /dev/null; then
+        echo "xlsxwriter not found. Please install xlsxwriter first."
+    fi
+}
+
 # Function to display the menu
 display_mian_menu() {
    echo -e "\n===== kubectl Commands ====="
@@ -17,7 +31,8 @@ display_mian_menu() {
    echo "5. Delete other resources"
    echo "6. Nodes"
    echo "7. Contexts"
-   echo "8. Exit"
+   echo "8. Create excel report"
+   echo "9. Exit"
    echo "==============================="
 }
 
@@ -256,7 +271,7 @@ describe_node() {
 # Function to get node status
 get_node_status() {
     get_node_name
-    command -v jq >/dev/null 2>&1 || { echo >&2 "JQ is required but not installed. Aborting."; }
+    check_jq
     echo "Getting status for node $node_name:"
     kubectl get node $node_name -o json | jq '.status.conditions'
 }
@@ -264,7 +279,7 @@ get_node_status() {
 # Function to get node configuration
 get_node_config() {
     get_node_name
-    command -v jq >/dev/null 2>&1 || { echo >&2 "JQ is required but not installed. Aborting."; }
+    check_jq
     echo "Getting configuration for node $node_name:"
     kubectl get node $node_name -o json | jq '.metadata'
 }
@@ -427,12 +442,56 @@ context_commands(){
         *) echo "Invalid option" ;;
     esac
 }
+
+# Set the output Excel file name
+excel_file="kubernetes_data.xlsx"
+
+# Function to fetch and process Kubernetes data
+fetch_k8s_data() {
+    check_jq
+    check_xlsxwriter
+
+    # Fetch pods data
+    pods_data=$(kubectl get pods -A -o json)
+
+    # Extract relevant information using jq
+    pod_names=$(echo "$pods_data" | jq -r '.items[].metadata.name')
+    pod_statuses=$(echo "$pods_data" | jq -r '.items[].status.phase')
+
+    # Create Excel file
+    python3 <<EOF
+import xlsxwriter
+
+# Create a new Excel workbook and add a worksheet.
+workbook = xlsxwriter.Workbook("$excel_file")
+worksheet = workbook.add_worksheet()
+
+# Add a bold format to use to highlight cells.
+bold = workbook.add_format({'bold': True})
+
+# Write some data headers with the bold format.
+worksheet.write('A1', 'Pod Name', bold)
+worksheet.write('B1', 'Status', bold)
+
+# Write data from Kubernetes.
+pod_names = """$pod_names""".splitlines()
+pod_statuses = """$pod_statuses""".splitlines()
+
+for row_num, (pod_name, pod_status) in enumerate(zip(pod_names, pod_statuses), start=1):
+    worksheet.write(row_num, 0, pod_name)
+    worksheet.write(row_num, 1, pod_status)
+
+# Close the Excel workbook.
+workbook.close()
+EOF
+}
+
 # Main function
 main() {
    while true; do
        display_mian_menu
        check_kubectl
-       read -p "Enter your choice (1-8): " choice
+       read -p "Enter your choice (1-9): " choice
        case $choice in
            1) get_pods ;;
            2) describe_resource ;;
@@ -441,8 +500,9 @@ main() {
            5) delete_resources ;;
            6) nodes_commands ;;
            7) context_commands ;;
-           8) echo "Exiting the script. Goodbye!"; exit 0 ;;
-           *) echo "Invalid choice. Please enter a number between 1 and 8." ;;
+           8) fetch_k8s_data ;;
+           9) echo "Exiting the script. Goodbye!"; exit 0 ;;
+           *) echo "Invalid choice. Please enter a number between 1 and 9." ;;
        esac
    done
 }
