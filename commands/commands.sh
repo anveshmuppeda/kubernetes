@@ -5,6 +5,10 @@ check_kubectl() {
     command -v kubectl >/dev/null 2>&1 || { echo >&2 "kubectl is required but not installed. Aborting."; exit 1; }
 }
 
+get_namespace(){
+    kubectl get namespace | awk '{print $1}'
+    read -p "Enter the namespace name from the above list: " namespace
+}
 # Function to display the menu
 display_mian_menu() {
    echo "===== kubectl Pod Commands ====="
@@ -26,11 +30,33 @@ get_pods() {
            1)   echo "Getting pods in all namespaces:"
                 kubectl get pods --all-namespaces ;;
            2)   echo "Getting pods from specific namespace:"
-                kubectl get namespace | awk '{print $1}'
-                read -p "Enter the namespace name from the above list: " namespace
+                get_namespace
                 kubectl get pods -n $namespace ;;
            *) echo "Invalid choice. Please enter a number between 1 and 2." ;;
     esac    
+}
+
+# Function to get logs for a pod
+get_pod_logs() {
+
+    get_namespace
+    kubectl get pod -n $namespace | awk '{print $1}'
+    read -p "Enter the name of the pod from the above list: " pod_name
+    #calculate the containers count
+    container_count=$(kubectl get pod "$pod_name" -o=jsonpath='{.spec.containers[*].name}' | tr -cd ' ' | wc -c)
+    # Add 1 to account for the fact that container names are space-separated
+    ((container_count++))
+
+    if [ $container_count -eq 1 ]; then
+        echo "Fetching logs for pod $pod_name in namespace $namespace:"
+        kubectl logs -n $namespace $pod_name
+    else
+        kubectl get pod "$pod_name" -o=jsonpath='{.spec.containers[*].name}'
+        echo -e "\nPod $pod_name has morethan two containers, please select the one of the container from above to view the logs:"
+        read container_name
+        echo "Fetching logs for pod $pod_name container $container_name in namespace $namespace:"
+        kubectl logs -n $namespace $pod_name -c $container_name
+    fi
 }
 
 # Function to describe a Resource
@@ -47,38 +73,32 @@ describe_resource() {
     echo "==============================="
     read -p "Enter your choice (1-5): " choice
        case $choice in
-           1)   kubectl get namespace | awk '{print $1}'
-                read -p "Enter the namespace of the pod from above list: " namespace
+           1)   get_namespace
                 kubectl get po -n $namespace  | awk '{print $1}'
-                read -p "Enter the name of the pod from above list to describe:" pod_name
+                read -p "Enter the name of the pod from above list to describe: " pod_name
                 echo "Describing pod $pod_name in namespace $namespace:"
                 kubectl describe pod -n $namespace $pod_name ;;
-           2)   kubectl get namespace | awk '{print $1}'
-                read -p "Enter the namespace of the Deployment from above list: " namespace
+           2)   get_namespace
                 kubectl get deploy -n $namespace  | awk '{print $1}'
                 read -p "Enter the name of the Deployment from above list to describe:" deploy_name
                 echo "Describing Deployment $deploy_name in namespace $namespace:"
                 kubectl describe deploy -n $namespace $deploy_name ;;
-           3)   kubectl get namespace | awk '{print $1}'
-                read -p "Enter the namespace of the Satefulset from above list: " namespace
+           3)   get_namespace
                 kubectl get sts -n $namespace  | awk '{print $1}'
                 read -p "Enter the name of the Satefulset from above list to describe:" sts_name
                 echo "Describing Satefulset $sts_name in namespace $namespace:"
                 kubectl describe sts -n $namespace $sts_name ;;
-           4)   kubectl get namespace | awk '{print $1}'
-                read -p "Enter the namespace of the Daemonset from above list: " namespace
+           4)   get_namespace
                 kubectl get ds -n $namespace  | awk '{print $1}'
                 read -p "Enter the name of the Daemonset from above list to describe:" ds_name
                 echo "Describing Daemonset $ds_name in namespace $namespace:"
                 kubectl describe ds -n $namespace $ds_name ;;
-           5)   kubectl get namespace | awk '{print $1}'
-                read -p "Enter the namespace of the Configmap from above list: " namespace
+           5)   get_namespace
                 kubectl get cm -n $namespace  | awk '{print $1}'
                 read -p "Enter the name of the Configmap from above list to describe:" cm_name
                 echo "Describing Configmap $cm_name in namespace $namespace:"
                 kubectl describe cm -n $namespace $cm_name ;;
-           6)   kubectl get namespace | awk '{print $1}'
-                read -p "Enter the namespace of the Secret from above list: " namespace
+           6)   get_namespace
                 kubectl get secret -n $namespace  | awk '{print $1}'
                 read -p "Enter the name of the Secret from above list to describe:" secret_name
                 echo "Describing Secret $secret_name in namespace $namespace:"
@@ -89,18 +109,9 @@ describe_resource() {
        esac 
 }
 
-# Function to get logs for a pod
-get_pod_logs() {
-   read -p "Enter the namespace of the pod: " namespace
-   read -p "Enter the name of the pod: " pod_name
-   echo "Fetching logs for pod $pod_name in namespace $namespace:"
-   kubectl logs -n $namespace $pod_name
-}
-
 # Function to delete a pod
 delete_pod() {
-    kubectl get namespace | awk '{print $1}'
-    read -p "Enter the namespace of the pod from above list: " namespace
+    get_namespace
     kubectl get pod -n $namespace | awk '{print $1}'
     read -p "Enter the name of the pod from above list: " pod_name
 
@@ -130,8 +141,7 @@ delete_resources() {
     echo "==============================="
     read -p "Enter your choice (1-5): " choice
        case $choice in
-           1)   kubectl get namespace | awk '{print $1}'
-                read -p "Enter the namespace of the Deployment from above list: " namespace
+           1)   get_namespace
                 kubectl get deploy -n $namespace | awk '{print $1}'
                 read -p "Enter the name of the deployment from above list: " deploy_name
 
@@ -147,8 +157,7 @@ delete_resources() {
                 else
                     echo "Invalid response. Please enter 'yes', 'no', 'y', or 'n'."
                 fi ;;
-           2)   kubectl get namespace | awk '{print $1}'
-                read -p "Enter the namespace of the Statefulset from above list: " namespace
+           2)   get_namespace
                 kubectl get sts -n $namespace | awk '{print $1}'
                 read -p "Enter the name of the Statefulset from above list: " sts_name
 
@@ -164,8 +173,7 @@ delete_resources() {
                 else
                     echo "Invalid response. Please enter 'yes', 'no', 'y', or 'n'."
                 fi ;;
-           3)   kubectl get namespace | awk '{print $1}'
-                read -p "Enter the namespace of the Daemonset from above list: " namespace
+           3)   get_namespace
                 kubectl get ds -n $namespace | awk '{print $1}'
                 read -p "Enter the name of the Daemonset from above list: " ds_name
 
@@ -181,8 +189,7 @@ delete_resources() {
                 else
                     echo "Invalid response. Please enter 'yes', 'no', 'y', or 'n'."
                 fi ;;
-           4)   kubectl get namespace | awk '{print $1}'
-                read -p "Enter the namespace of the Configmap from above list: " namespace
+           4)   get_namespace
                 kubectl get cm -n $namespace | awk '{print $1}'
                 read -p "Enter the name of the Configmap from above list: " cm_name
 
@@ -198,8 +205,7 @@ delete_resources() {
                 else
                     echo "Invalid response. Please enter 'yes', 'no', 'y', or 'n'."
                 fi ;;
-           5)   kubectl get namespace | awk '{print $1}'
-                read -p "Enter the namespace of the Secret from above list: " namespace
+           5)   get_namespace
                 kubectl get secret -n $namespace | awk '{print $1}'
                 read -p "Enter the name of the Secret from above list: " secret_name
 
@@ -301,6 +307,7 @@ view_kubelet_logs() {
 
 # Function to get node metrics
 get_node_metrics() {
+    echo "Node metrics:"
     kubectl top node
 }
 
@@ -368,7 +375,7 @@ main() {
            5) delete_resources ;;
            6) nodes_commands ;;
            7) echo "Exiting the script. Goodbye!"; exit 0 ;;
-           *) echo "Invalid choice. Please enter a number between 1 and 5." ;;
+           *) echo "Invalid choice. Please enter a number between 1 and 7." ;;
        esac
    done
 }
