@@ -343,22 +343,22 @@ nodes_commands() {
     echo "========================================"
     read -p "Enter your choice (1-13): " choice
 
-        case $choice in
-            1) get_nodes ;;
-            2) describe_node ;;
-            3) get_node_status ;;
-            4) get_node_config ;;
-            5) get_node_events ;;
-            6) drain_node ;;
-            7) cordon_node ;;
-            8) uncordon_node ;;
-            9) view_node_logs ;;
-            10) view_kubelet_logs ;;
-            11) get_node_metrics ;;
-            12) get_node_components ;;
-            13) get_node_resource_usage ;;
-            *) echo "Invalid choice. Please enter a number between 1 and 13." ;;
-        esac
+    case $choice in
+        1) get_nodes ;;
+        2) describe_node ;;
+        3) get_node_status ;;
+        4) get_node_config ;;
+        5) get_node_events ;;
+        6) drain_node ;;
+        7) cordon_node ;;
+        8) uncordon_node ;;
+        9) view_node_logs ;;
+        10) view_kubelet_logs ;;
+        11) get_node_metrics ;;
+        12) get_node_components ;;
+        13) get_node_resource_usage ;;
+        *) echo "Invalid choice. Please enter a number between 1 and 13." ;;
+    esac
 }
 
 # Main function
@@ -367,6 +367,7 @@ main() {
        display_mian_menu
        check_kubectl
        read -p "Enter your choice (1-7): " choice
+       
        case $choice in
            1) get_pods ;;
            2) describe_resource ;;
