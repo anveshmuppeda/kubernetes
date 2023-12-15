@@ -1,5 +1,5 @@
 #!/bin/bash
-# You can use this script to control the cluster on your K8's if you're relatively new to Kubernetes. You can run the different Kubectl commands with the assistance of this script.
+# If you're relatively new to Kubernetes, you can use this script to manage the K8s cluster. You can run the different Kubectl commands with the assistance of this script.
 # Feel free to make any necessary updates to the script.
 
 # Function to check if kubectl is installed
