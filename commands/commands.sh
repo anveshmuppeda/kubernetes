@@ -5,22 +5,26 @@ check_kubectl() {
     command -v kubectl >/dev/null 2>&1 || { echo >&2 "kubectl is required but not installed. Aborting."; exit 1; }
 }
 
-get_namespace(){
-    kubectl get namespace | awk '{print $1}'
-    read -p "Enter the namespace name from the above list: " namespace
-}
 # Function to display the menu
 display_mian_menu() {
-   echo "===== kubectl Pod Commands ====="
+   echo -e "\n===== kubectl Commands ====="
    echo "1. Get pods"
    echo "2. Describe resources"
    echo "3. Get logs for a pod"
    echo "4. Delete a pod"
    echo "5. Delete other resources"
    echo "6. Nodes"
-   echo "7. Exit"
+   echo "7. Contexts"
+   echo "8. Exit"
    echo "==============================="
 }
+
+# Function to select the namespace
+get_namespace(){
+    kubectl get namespace | awk '{print $1}'
+    read -p "Enter the namespace name from the above list: " namespace
+}
+
 # Function to get pods
 get_pods() {
     echo "1. Get pods from all namespaces"
@@ -233,7 +237,7 @@ get_nodes() {
     kubectl get nodes
 }
 
-#getting node names
+# Function to get node names
 get_node_name()
 {
     kubectl get nodes | awk '{print $1}'
@@ -325,6 +329,7 @@ get_node_resource_usage() {
     kubectl describe node $node_name | grep -E '(Allocatable|Capacity|Conditions|Addresses|System Info|Non-terminated Pods|Container Runtime Version)'
 }
 
+# Function to get nodes commands
 nodes_commands() {
     echo "===== kubectl Worker Node Commands ====="
     echo "1. Get nodes"
@@ -343,31 +348,89 @@ nodes_commands() {
     echo "========================================"
     read -p "Enter your choice (1-13): " choice
 
-    case $choice in
-        1) get_nodes ;;
-        2) describe_node ;;
-        3) get_node_status ;;
-        4) get_node_config ;;
-        5) get_node_events ;;
-        6) drain_node ;;
-        7) cordon_node ;;
-        8) uncordon_node ;;
-        9) view_node_logs ;;
-        10) view_kubelet_logs ;;
-        11) get_node_metrics ;;
-        12) get_node_components ;;
-        13) get_node_resource_usage ;;
-        *) echo "Invalid choice. Please enter a number between 1 and 13." ;;
-    esac
+        case $choice in
+            1) get_nodes ;;
+            2) describe_node ;;
+            3) get_node_status ;;
+            4) get_node_config ;;
+            5) get_node_events ;;
+            6) drain_node ;;
+            7) cordon_node ;;
+            8) uncordon_node ;;
+            9) view_node_logs ;;
+            10) view_kubelet_logs ;;
+            11) get_node_metrics ;;
+            12) get_node_components ;;
+            13) get_node_resource_usage ;;
+            *) echo "Invalid choice. Please enter a number between 1 and 13." ;;
+        esac
 }
 
+# Function to display current context
+get_current_context() {
+    kubectl config current-context
+}
+
+# Function to list available contexts
+list_contexts() {
+    kubectl config get-contexts
+}
+
+# Function to switch to a specific context
+switch_context() {
+    list_contexts
+    echo "Select a context to switch from above list:"
+    read context_name
+
+    # Check if the context exists in kubeconfig
+    if kubectl config get-contexts | grep -q "$context_name"; then
+        kubectl config use-context "$context_name"
+        echo "Switched to context: $context_name"
+    else
+        echo "Context '$context_name' not found in kubeconfig."
+    fi
+}
+
+# Function to delete a context
+delete_context() {
+    list_contexts
+    echo "Select a context to switch from above list:"
+    read context_name
+
+    # Check if the context exists in kubeconfig
+    if kubectl config get-contexts | grep -q "$context_name"; then
+        kubectl config delete-context "$context_name"
+        echo "Context '$context_name' deleted."
+    else
+        echo "Context '$context_name' not found in kubeconfig."
+    fi
+}
+
+context_commands(){
+    echo "Kubernetes Context Management Script"
+    echo "1. Display current context"
+    echo "2. List available contexts"
+    echo "3. Switch to a specific context"
+    echo "4. Set a new context"
+    echo "5. Delete a context"
+    echo -n "Select an option (1-5): "
+
+    read choice
+
+    case $choice in
+        1) get_current_context ;;
+        2) list_contexts ;;
+        3) switch_context ;;
+        4) delete_context ;;
+        *) echo "Invalid option" ;;
+    esac
+}
 # Main function
 main() {
    while true; do
        display_mian_menu
        check_kubectl
        read -p "Enter your choice (1-7): " choice
-       
        case $choice in
            1) get_pods ;;
            2) describe_resource ;;
@@ -375,7 +438,8 @@ main() {
            4) delete_pod ;;
            5) delete_resources ;;
            6) nodes_commands ;;
-           7) echo "Exiting the script. Goodbye!"; exit 0 ;;
+           7) context_commands ;;
+           8) echo "Exiting the script. Goodbye!"; exit 0 ;;
            *) echo "Invalid choice. Please enter a number between 1 and 7." ;;
        esac
    done
