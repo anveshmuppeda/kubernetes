@@ -6,7 +6,7 @@ def check_browser(browser):
   elif browser == "FIREFOX":
     options = webdriver.FirefoxOptions()
   driver = webdriver.Remote(
-    command_executor='http://selenium-ingress2-2028042162.us-east-2.elb.amazonaws.com:80/wd/hub',
+    command_executor='http://ad02e777ace904a4fb81187be3ebc4da-937370949.us-east-1.elb.amazonaws.com/:80/wd/hub',
     options=options
   )
   driver.get("http://www.google.com")
