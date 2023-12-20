@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+Test set: k8s.selenium.grid.eks.GoogleTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 2, Errors: 0, Skipped: 1, Time elapsed: 66.889 s <<< FAILURE! - in k8s.selenium.grid.eks.GoogleTest
+setUp(k8s.selenium.grid.eks.GoogleTest)  Time elapsed: 61.525 s  <<< FAILURE!
+org.openqa.selenium.SessionNotCreatedException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure. 
+Host info: host: 'Anveshs-MacBook-Air.local', ip: 'fe80:0:0:0:109f:3edf:bbbc:487c%en0'
+Build info: version: '4.5.0', revision: 'fe167b119a'
+System info: os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '13.3.1', java.version: '17.0.6'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [null, newSession {capabilities=[Capabilities {}], desiredCapabilities=Capabilities {}}]
+Capabilities {}
+	at k8s.selenium.grid.eks.GoogleTest.getWebDriver(GoogleTest.java:36)
+	at k8s.selenium.grid.eks.GoogleTest.setUp(GoogleTest.java:25)
+Caused by: java.io.UncheckedIOException: org.asynchttpclient.exception.RemotelyClosedException: Remotely closed
+	at k8s.selenium.grid.eks.GoogleTest.getWebDriver(GoogleTest.java:36)
+	at k8s.selenium.grid.eks.GoogleTest.setUp(GoogleTest.java:25)
+Caused by: org.asynchttpclient.exception.RemotelyClosedException: Remotely closed
+
+tearDown(k8s.selenium.grid.eks.GoogleTest)  Time elapsed: 0.004 s  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.quit()" because "this.webDriver" is null
+	at k8s.selenium.grid.eks.GoogleTest.tearDown(GoogleTest.java:49)
+

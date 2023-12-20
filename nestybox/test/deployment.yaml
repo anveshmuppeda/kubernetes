@@ -19,5 +19,5 @@ spec:
       runtimeClassName: sysbox-runc
       containers:
       - name: ubu-bio-systemd-docker
-        image: nestybox/ubuntu-bionic-systemd-docker
-        command: ["/sbin/init"]
+        image: nestybox/ubuntu-bionic-docker
+        #command: ["/sbin/init"]

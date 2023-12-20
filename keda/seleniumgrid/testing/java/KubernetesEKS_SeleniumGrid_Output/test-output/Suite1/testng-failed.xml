@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="8" parallel="tests" name="Failed suite [Suite1]" guice-stage="DEVELOPMENT">
+  <test thread-count="8" parallel="tests" name="Google Test 8(failed)">
+    <parameter name="browserName" value="firefox"/>
+    <classes>
+      <class name="k8s.selenium.grid.eks.GoogleTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="printPageTitle"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- k8s.selenium.grid.eks.GoogleTest -->
+    </classes>
+  </test> <!-- Google Test 8(failed) -->
+  <test thread-count="8" parallel="tests" name="Google Test 9(failed)">
+    <parameter name="browserName" value="firefox"/>
+    <classes>
+      <class name="k8s.selenium.grid.eks.GoogleTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="printPageTitle"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- k8s.selenium.grid.eks.GoogleTest -->
+    </classes>
+  </test> <!-- Google Test 9(failed) -->
+</suite> <!-- Failed suite [Suite1] -->
