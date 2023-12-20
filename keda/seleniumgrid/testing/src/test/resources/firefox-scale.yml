@@ -1,0 +1,17 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: selenium-grid-firefox-scaledobject
+  namespace: selenium
+  labels:
+    deploymentName: selenium-node-firefox
+spec:
+  minReplicaCount: 1
+  maxReplicaCount: 3
+  scaleTargetRef:
+    name: selenium-node-firefox
+  triggers:
+    - type: selenium-grid
+      metadata:
+        url: 'http://afbf78fd168e443d2af9932857f730b9-373658744.us-east-1.elb.amazonaws.com:4444/graphql'
+        browserName: 'firefox'

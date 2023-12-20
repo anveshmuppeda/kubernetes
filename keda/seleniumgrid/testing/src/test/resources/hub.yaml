@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  selenium-hub
+  namespace: selenium
+  labels:
+    app:  selenium-hub
+spec:
+  selector:
+    matchLabels:
+      app: selenium-hub
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  selenium-hub
+    spec:
+      containers:
+      - name:  selenium-hub
+        image:  selenium/hub:4.0
+        resources:
+          requests:
+            cpu: ".4"
+            memory: 100Mi
+          limits:
+            cpu: ".8"
+            memory: 200Mi
+        livenessProbe:
+          httpGet:
+            path: /wd/hub/status
+            port: 4444
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /wd/hub/status
+            port: 4444
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        ports:
+        - containerPort: 4444
+        - containerPort: 4443
+        - containerPort: 4442
+      restartPolicy: Always
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: selenium-hub-svc
+  namespace: selenium
+spec:
+  selector:
+    app: selenium-hub
+  type: LoadBalancer
+  sessionAffinity: None
+  ports:
+    - port: 4444
+      targetPort: 4444
+      name: port0
+    - port: 4443
+      targetPort: 4443
+      name: port1
+    - port: 4442
+      targetPort: 4442
+      name: port2

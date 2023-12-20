@@ -1,0 +1,74 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" verbose="1" parallel="tests" thread-count="8">
+    <test name="Google Test 1">
+        <parameter name="browserName" value="chrome"></parameter>
+
+        <classes>
+            <class name="k8s.selenium.grid.eks.GoogleTest"/>
+        </classes>
+    </test>
+
+    <test name="Google Test 2">
+        <parameter name="browserName" value="chrome"></parameter>
+
+        <classes>
+            <class name="k8s.selenium.grid.eks.GoogleTest"/>
+        </classes>
+    </test>
+
+    <test name="Google Test 3">
+        <parameter name="browserName" value="firefox"></parameter>
+
+        <classes>
+            <class name="k8s.selenium.grid.eks.GoogleTest"/>
+        </classes>
+    </test>
+
+    <test name="Google Test 4">
+        <parameter name="browserName" value="firefox"></parameter>
+
+        <classes>
+            <class name="k8s.selenium.grid.eks.GoogleTest"/>
+        </classes>
+    </test>
+
+    <test name="Google Test 5">
+        <parameter name="browserName" value="chrome"></parameter>
+
+        <classes>
+            <class name="k8s.selenium.grid.eks.GoogleTest"/>
+        </classes>
+    </test>
+
+    <test name="Google Test 6">
+        <parameter name="browserName" value="chrome"></parameter>
+
+        <classes>
+            <class name="k8s.selenium.grid.eks.GoogleTest"/>
+        </classes>
+    </test>
+
+    <test name="Google Test 7">
+        <parameter name="browserName" value="chrome"></parameter>
+
+        <classes>
+            <class name="k8s.selenium.grid.eks.GoogleTest"/>
+        </classes>
+    </test>
+
+    <test name="Google Test 8">
+        <parameter name="browserName" value="firefox"></parameter>
+
+        <classes>
+            <class name="k8s.selenium.grid.eks.GoogleTest"/>
+        </classes>
+    </test>
+    <test name="Google Test 9">
+        <parameter name="browserName" value="firefox"></parameter>
+
+        <classes>
+            <class name="k8s.selenium.grid.eks.GoogleTest"/>
+        </classes>
+    </test>
+</suite>
