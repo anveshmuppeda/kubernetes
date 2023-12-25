@@ -1,0 +1,49 @@
+mkdir -p /tmp/kubernetes/manifests/
+cat <<EOF >/tmp/kubernetes/manifests/svc.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  nginx
+  labels:
+    app:  nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name:  nginx
+        image:  655556663327.dkr.ecr.us-east-1.amazonaws.com/nginx-reverse-proxy:1
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort:  80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    #alb.ingress.kubernetes.io/scheme: internal 
+    #alb.ingress.kubernetes.io/scheme: internet-facing
+  labels:
+    app: nginx
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+    - port: 80
+      targetPort: 80
+EOF
