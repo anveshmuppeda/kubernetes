@@ -1,12 +1,10 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: DaemonSet
 metadata:
-  name: nginx-sts
+  name: nginx-daemonset
   labels:
     app: nginx
 spec:
-  replicas: 2
-  serviceName: nginx
   selector:
     matchLabels:
       app: nginx
