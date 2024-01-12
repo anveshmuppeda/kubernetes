@@ -1,5 +1,8 @@
-# Kubernetes
-Kuberntes Complete Notes. 
+# Kubernetes  
+Kuberntes Complete Notes.  
+
+## Icons  
+https://github.com/kubernetes/community/blob/master/icons/README.md  
 
 ### Use below link to run the K8's objects  
 https://kubernetes.io/docs/tutorials/hello-minikube/  
