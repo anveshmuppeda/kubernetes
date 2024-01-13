@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "nginx-chart.fullname" . }}
+  name: {{ .Release.Name }}-svc
   labels:
     {{- include "nginx-chart.labels" . | nindent 4 }}
 spec:

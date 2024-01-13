@@ -27,3 +27,4 @@ aws sts get-caller-identity
 aws eks --region us-east-2 update-kubeconfig --name anvesh-eks-cluster
 ```
 Refe: https://repost.aws/knowledge-center/eks-cluster-connection
+
