@@ -6,14 +6,15 @@ metadata:
     app: nginx
 spec:
   initContainers:
-    - name: init-create-dir
+    #Initializing container 
+    - name: init-container
       image: alpine
-      command: ['sh', '-c', 'echo "<h1>This is from init container</h1>" >> /usr/share/nginx/html/index.html']
+      command: ['sh', '-c', 'echo "<h1>This is from INIT container</h1>" >> /usr/share/nginx/html/index.html']
       volumeMounts:
         - name: data
           mountPath: /usr/share/nginx/html
   containers:
-    # an app
+    # application container i.e., main container
     - name: app
       image: nginx
       volumeMounts:
