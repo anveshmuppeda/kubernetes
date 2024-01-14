@@ -10,3 +10,15 @@ spec:
     image: nginx:latest
     ports:
       - containerPort: 80
+    volumeMounts:
+      - name: data
+        mountPath: /usr/share/nginx/html
+  - name: extra-container
+    image: ubuntu
+    command: ['sh', '-c', 'date >> /usr/share/nginx/html/index.html']
+    volumeMounts:
+      - name: data
+        mountPath: /usr/share/nginx/html
+  volumes:
+    - name: data
+      emptyDir: {}
