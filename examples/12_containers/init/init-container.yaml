@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-init
+  labels:
+    app: nginx
+spec:
+  initContainers:
+    - name: init-create-dir
+      image: alpine
+      command: ['sh', '-c', 'echo "<h1>This is from init container</h1>" >> /usr/share/nginx/html/index.html']
+      volumeMounts:
+        - name: data
+          mountPath: /usr/share/nginx/html
+  containers:
+    # an app
+    - name: app
+      image: nginx
+      volumeMounts:
+        - name: data
+          mountPath: /usr/share/nginx/html
+  volumes:
+    - name: data
+      emptyDir: {}
