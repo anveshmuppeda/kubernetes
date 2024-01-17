@@ -11,21 +11,10 @@ spec:
     image: nginx:latest
     ports:
       - containerPort: 80
-    volumeMounts:
-      - name: data
-        mountPath: /usr/share/nginx/html
-  #This si extra container
-  - name: extra-container
-    image: debian
-    command: ["/bin/sh", "-c"]
-    args:
-      - while true; do
-          date > /usr/share/nginx/html/index.html;
-          sleep 1;
-        done
-    volumeMounts:
-      - name: data
-        mountPath: /usr/share/nginx/html
-  volumes:
-    - name: data
-      emptyDir: {}
+  #This is extra container
+  ephemeralContainers:
+  - name: ephemeral-container
+    image: busybox
+    targetContainerName: nginx-container
+    securityContext:
+      privileged: true
