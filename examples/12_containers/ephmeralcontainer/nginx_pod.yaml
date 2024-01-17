@@ -11,10 +11,17 @@ spec:
     image: nginx:latest
     ports:
       - containerPort: 80
-  #This is extra container
-  ephemeralContainers:
-  - name: ephemeral-container
+    volumeMounts:
+      - name: logs
+        mountPath: /var/log/nginx
+  #This si extra container
+  - name: sidecar-container
     image: busybox
-    targetContainerName: nginx-container
-    securityContext:
-      privileged: true
+    command: ["/bin/sh"]
+    args: ["-c", "tail -f /var/log/access.log"]
+    volumeMounts:
+      - name: logs
+        mountPath: /var/log/nginx
+  volumes:
+    - name: logs
+      emptyDir: {}
