@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ephemeral-pod
+spec:
+  containers:
+  - image: registry.k8s.io/pause:3.1
+    name: ephemeral-container
+  restartPolicy: Never

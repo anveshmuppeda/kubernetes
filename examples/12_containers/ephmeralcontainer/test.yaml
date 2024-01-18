@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test
+  labels:
+    app: nginx
+spec:
+  containers:
+  #App container
+  - name: test
+    image: nginx
+    command: ["/bin/sh"]
+    args: ["-c", "tail -f /var/log/access.log"]
+    #kubectl debug -it test --image=busybox:1.28 --target=test
+    #kubectl debug test -it --image=busybox:1.28 --share-processes --copy-to=debug
