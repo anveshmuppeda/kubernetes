@@ -14,7 +14,7 @@ spec:
     volumeMounts:
       - name: data
         mountPath: /usr/share/nginx/html
-  #This si extra container
+  #This is extra container
   - name: extra-container
     image: debian
     command: ["/bin/sh", "-c"]
