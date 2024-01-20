@@ -12,22 +12,18 @@ spec:
     ports:
       - containerPort: 80
     volumeMounts:
-      - name: data
-        mountPath: /usr/share/nginx/html
-  #This is extra container
-  - name: extra-container
-    image: debian
-    command: ["/bin/sh", "-c"]
-    args:
-      - while true; do
-          date > /usr/share/nginx/html/index.html;
-          sleep 1;
-        done
+      - name: logs
+        mountPath: /var/log/nginx
+  #This si extra container
+  - name: sidecar-container
+    image: busybox
+    command: ["/bin/sh"]
+    args: ["-c", "tail -f /var/log/access.log"]
     volumeMounts:
-      - name: data
-        mountPath: /usr/share/nginx/html
+      - name: logs
+        mountPath: /var/log/nginx
   volumes:
-    - name: data
+    - name: logs
       emptyDir: {}
     #kubectl debug -it test --image=busybox:1.28 --target=test
     #kubectl debug test -it --image=busybox:1.28 --share-processes --copy-to=debug
