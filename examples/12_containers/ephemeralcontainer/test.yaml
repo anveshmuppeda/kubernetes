@@ -18,7 +18,7 @@ spec:
   - name: sidecar-container
     image: busybox
     command: ["/bin/sh"]
-    args: ["-c", "tail -f /var/log/access.log"]
+    args: ["-c", "sleep 1000"]
     volumeMounts:
       - name: logs
         mountPath: /var/log/nginx
