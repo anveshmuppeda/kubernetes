@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: backup-cronjob
 spec:
-  schedule: "*/2 * * * *"
+  schedule: "*/1 * * * *"
   jobTemplate:
     spec:
       template:
@@ -11,11 +11,13 @@ spec:
           containers:
           - name: backup-container
             image: busybox:1.28
-            command: ["/bin/sh", "-c", "chmod +x /scripts/backup_script.sh && /scripts/backup_script.sh"]
+            # command: ["/bin/sh", "-c", "cp /scripts/backup_script.sh /tmp/ && chmod +x /tmp/backup_script.sh && /tmp/backup_script.sh"]
+            # command: ["/bin/sh", "-c", "cp /tmp/backup_script.sh /tmp/backup_script2.sh && chmod +x /tmp/backup_script2.sh && /tmp/backup_script2.sh || echo 'Script not found or failed to execute'"]
+            #command: ["/bin/sh", "-c", "cat /scripts/backup_script.sh && ls -lrta /"]
+            command: ["/bin/sh", "-c", "cat /scripts/backup_script.sh && /bin/sh /scripts/backup_script.sh"]
             volumeMounts:
             - name: script-volume
               mountPath: /scripts
-              readOnly: false
           restartPolicy: OnFailure
           volumes:
           - name: script-volume
