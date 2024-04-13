@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: backup-cronjob
+spec:
+  schedule: "*/2 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup-container
+            image: busybox:1.28
+            command: ["/bin/sh", "-c", "chmod +x /scripts/backup_script.sh && /scripts/backup_script.sh"]
+            volumeMounts:
+            - name: script-volume
+              mountPath: /scripts
+              readOnly: false
+          restartPolicy: OnFailure
+          volumes:
+          - name: script-volume
+            configMap:
+              name: backup-script

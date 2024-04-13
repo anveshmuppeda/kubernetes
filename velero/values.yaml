@@ -1,0 +1,74 @@
+image:
+  repository: velero/velero
+  tag: v1.11.1
+  pullPolicy: IfNotPresent
+
+configuration:
+  backupStorageLocation:
+    - name: default
+      provider: digitalocean.com/velero
+      bucket: velero-backup-anvesh
+      config:
+        region: sfo3
+        s3Url: https://sfo3.digitaloceanspaces.com
+      credential:
+        name: cloud-credentials
+        key: cloud
+
+  volumeSnapshotLocation:
+    - name: default
+      provider: digitalocean.com/velero
+credentials:
+    useSecret: yes
+    secretContents:
+      cloud: |
+        [default]
+        aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID
+        aws_secret_access_key=<YOUR_AWS_SECRET_ACCESS_KEY>
+      # Update with your AWS access key and secret access key
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 128Mi
+  limits:
+    cpu: 1000m
+    memory: 512Mi
+
+dnsPolicy: ClusterFirst
+
+livenessProbe:
+  httpGet:
+    path: /metrics
+    port: http-monitoring
+    scheme: HTTP
+  initialDelaySeconds: 10
+  periodSeconds: 30
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 5
+
+readinessProbe:
+  httpGet:
+    path: /metrics
+    port: http-monitoring
+    scheme: HTTP
+  initialDelaySeconds: 10
+  periodSeconds: 30
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 5
+
+credentials:
+  useSecret: true
+  name: cloud-credentials
+  existingSecret: ""
+  secretContents: {}
+
+backupsEnabled: true
+snapshotsEnabled: true
+
+deployNodeAgent: false
+
+# This job upgrades the CRDs.
+upgradeCRDs: false

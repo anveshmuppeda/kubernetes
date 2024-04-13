@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backup-script
+data:
+  backup_script.sh: |
+    #!/bin/bash
+    
+    echo "Your backup script content goes here"
