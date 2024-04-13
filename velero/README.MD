@@ -41,3 +41,7 @@ velero install \
 kubectl logs -l job-name=backup-cronjob-28549554 -n velero
 /bin/sh: /scripts/backup_script.sh: Permission denied
 ```
+
+
+
+velero restore create --from-backup testing-backup-do
