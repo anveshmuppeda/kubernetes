@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: basic-cronjob
+spec:
+  schedule: "*/1 * * * *"  # Run every 1 minutes
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: basic-container
+            image: busybox
+            command: ["echo", "Hello from the basic CronJob"]
+          restartPolicy: Never

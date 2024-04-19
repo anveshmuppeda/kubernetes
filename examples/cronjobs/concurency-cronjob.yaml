@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: concurrency-cronjob
+spec:
+  schedule: "*/1 * * * *"  # Run every 1 minutes
+  concurrencyPolicy: Forbid  # Do not allow concurrent executions
+  # Allowed Values are
+  # : Allow (default)
+  # : Forbid
+  # : Replace
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: concurrency-container
+            image: busybox
+            command: ["sh", "-c", "echo 'Hello from the concurrency CronJob'; sleep 70"]
+          restartPolicy: Never
