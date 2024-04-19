@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: non-parallel-job
+spec:
+  template:
+    metadata:
+      name: non-parallel-pod
+    spec:
+      containers:
+      - name: non-parallel-container
+        image: busybox
+        command: ["echo", "Hello from the non-parallel job"]
+      restartPolicy: Never
+  # completions: 6
+  # parallelism: 10

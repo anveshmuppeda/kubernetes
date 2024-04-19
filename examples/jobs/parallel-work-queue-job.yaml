@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: parallel-work-queue-job
+spec:
+  template:
+    metadata:
+      name: parallel-work-queue-pod
+    spec:
+      containers:
+      - name: parallel-work-queue-container
+        image: busybox
+        command: ["echo", "Hello from the parallel-work-queue job"]
+      restartPolicy: Never
+  parallelism: 3

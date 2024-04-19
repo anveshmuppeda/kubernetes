@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: parallel-fixed-count-job
+spec:
+  template:
+    metadata:
+      name: parallel-fixed-count-pod
+    spec:
+      containers:
+      - name: parallel-fixed-count-container
+        image: busybox
+        command: ["echo", "Hello from the parallel-fixed-count job"]
+      restartPolicy: Never
+  completions: 6
+  parallelism: 3
