@@ -1,0 +1,11 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: custom-controller-role
+rules:
+- apiGroups: ["com.anvesh"]
+  resources: ["my-crds"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["create", "get", "update", "list", "watch", "delete"]

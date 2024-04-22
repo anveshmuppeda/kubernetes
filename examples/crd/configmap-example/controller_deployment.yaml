@@ -1,0 +1,19 @@
+# controller_deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: custom-controller
+  template:
+    metadata:
+      labels:
+        app: custom-controller
+    spec:
+      serviceAccountName: custom-controller-sa
+      containers:
+        - name: custom-controller
+          image: anvesh35/custom-controller:v1.0.0

@@ -1,0 +1,6 @@
+apiVersion: anvesh.com/v1
+kind: customconfigmap
+metadata:
+  name: my-custom-resource-instance
+spec:
+  my-own-property: 'My first CRD instance'
