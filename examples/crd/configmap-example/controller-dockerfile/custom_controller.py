@@ -1,11 +1,11 @@
 from kubernetes import client, config, watch
 
-def create_configmap(namespace, name):
+def create_configmap(namespace, name, data):
     core_v1_api = client.CoreV1Api()
 
     configmap = client.V1ConfigMap(
         metadata=client.V1ObjectMeta(namespace=namespace, name=name),
-        data={"key": "value"}  # You can customize data here
+        data=data
     )
 
     core_v1_api.create_namespaced_config_map(namespace=namespace, body=configmap)
@@ -37,9 +37,12 @@ def main():
             # Extract custom resource name
             resource_name = custom_resource['metadata']['name']
 
+            # Extract key-value pairs from the custom resource spec
+            resource_data = custom_resource.get('spec', {})
+
             # Handle events of type ADDED (resource created)
             if event_type == "ADDED":
-                create_configmap(namespace=namespace, name=resource_name)
+                create_configmap(namespace=namespace, name=resource_name, data=resource_data)
             # Handle events of type DELETED (resource deleted)
             elif event_type == "DELETED":
                 delete_configmap(namespace=namespace, name=resource_name)

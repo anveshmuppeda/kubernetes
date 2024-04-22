@@ -16,4 +16,4 @@ spec:
       serviceAccountName: custom-controller-sa
       containers:
         - name: custom-controller
-          image: anvesh35/custom-controller:v1.0.0
+          image: anvesh35/custom-controller:v4.0.0

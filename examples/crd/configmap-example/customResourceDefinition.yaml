@@ -5,8 +5,10 @@ metadata:
 spec:
   group: anvesh.com
   names:
-    kind: customConfigMap
+    kind: CustomConfigMap
     plural: customconfigmaps
+    shortNames:
+    - ccm
   scope: Namespaced
   versions:
     - name: v1

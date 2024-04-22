@@ -1,5 +1,5 @@
 apiVersion: anvesh.com/v1
-kind: customconfigmap
+kind: CustomConfigMap
 metadata:
   name: my-custom-resource-instance
 spec:
