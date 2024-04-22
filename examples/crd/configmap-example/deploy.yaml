@@ -1,0 +1,88 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: customconfigmaps.anvesh.com
+spec:
+  group: anvesh.com
+  names:
+    kind: CustomConfigMap
+    plural: customconfigmaps
+    shortNames:
+    - ccm
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            apiVersion:
+              type: string
+            kind:
+              type: string
+            metadata:
+              type: object
+            spec:
+              type: object
+              properties:
+                my-own-property:
+                  type: string
+---
+apiVersion: anvesh.com/v1
+kind: CustomConfigMap
+metadata:
+  name: my-custom-resource-instance
+spec:
+  my-own-property: 'My first CRD instance'
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: custom-controller-sa
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: custom-controller-role
+rules:
+- apiGroups: ["anvesh.com"]
+  resources: ["customconfigmaps"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["create", "get", "update", "list", "watch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: custom-controller-rolebinding
+subjects:
+- kind: ServiceAccount
+  name: custom-controller-sa
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: custom-controller-role
+  apiGroup: rbac.authorization.k8s.io
+---
+# controller_deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: custom-controller
+  template:
+    metadata:
+      labels:
+        app: custom-controller
+    spec:
+      serviceAccountName: custom-controller-sa
+      containers:
+        - name: custom-controller
+          image: anvesh35/custom-controller:v4.0.0
