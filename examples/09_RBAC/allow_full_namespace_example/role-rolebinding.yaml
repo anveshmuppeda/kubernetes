@@ -13,7 +13,7 @@ metadata:
   name: full-access-binding
 subjects:
 - kind: User
-  name: user1
+  name: john
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
