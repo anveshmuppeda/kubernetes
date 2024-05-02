@@ -19,7 +19,7 @@ helm upgrade --install amazon-cloudwatch \
 | `agentPrefix` | Name of the agent prefix | `cloudwatch-agent` | ✔
 | `fluentdPrefix` | Name of the FluentD prefix | `fluentd`
 | `namespace` | Namespace where Amazon-CloudWatch is to be deployed | `amazon-cloudwatch` | ✔
-| `clusterName` | Name of your cluster | `swbc_c2c_beta_eks-cluster` | ✔
+| `clusterName` | Name of your cluster | `eks-cluster` | ✔
 | `logsRegion` | The region of the cluster | `us-east-1` |
 | `agent.resources` | Resources configuration of the agent | |
 | `agent.image.respository` | Repository to deploy for agent | | ✔
