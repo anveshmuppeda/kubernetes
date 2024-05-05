@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: myclaim
+  name: myclaim-rom
 spec:
   storageClassName: my-own-sc
   accessModes:
-    - ReadWriteOnce
+    - ReadOnlyMany # the volume can be mounted as read-only by many nodes.
   resources:
     requests:
       storage: 1Gi

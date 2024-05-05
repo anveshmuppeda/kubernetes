@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: myclaim-rwm
+spec:
+  storageClassName: my-own-sc
+  accessModes:
+    - ReadWriteMany # the volume can be mounted as read-write by many nodes.
+  resources:
+    requests:
+      storage: 1Gi

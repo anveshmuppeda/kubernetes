@@ -1,0 +1,9 @@
+allowVolumeExpansion: true
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: my-own-wffc-sc
+provisioner: dobs.csi.digitalocean.com
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+# WaitForFirstConsumer mode which will delay the binding and provisioning of a PersistentVolume until a Pod using the PersistentVolumeClaim is created. 

@@ -1,0 +1,8 @@
+allowVolumeExpansion: true
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: my-own-retain-sc
+provisioner: dobs.csi.digitalocean.com
+reclaimPolicy: Retain # The Retain reclaim policy allows for manual reclamation of the resource. When the PersistentVolumeClaim is deleted, the PersistentVolume still exists and the volume is considered "released". But it is not yet available for another claim because the previous claimant's data remains on the volume. An administrator can manually reclaim the volume.
+volumeBindingMode: Immediate

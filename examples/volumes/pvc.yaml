@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: myclaim
+spec:
+  storageClassName: my-own-sc
+  accessModes:
+    - ReadWriteOnce # the volume can be mounted as read-write by a single node.
+  resources:
+    requests:
+      storage: 1Gi
+  volumeMode: Filesystem
+  # Filesystem is the default mode used when volumeMode parameter is omitted. 
+  # A volume with volumeMode: Filesystem is mounted into Pods into a directory. If the volume is backed by a block device and the device is empty, Kubernetes creates a filesystem on the device before mounting it for the first time.
+  # You can set the value of volumeMode to Block to use a volume as a raw block device. Such volume is presented into a Pod as a block device, without any filesystem on it. This mode is useful to provide a Pod the fastest possible way to access a volume, without any filesystem layer between the Pod and the volume. 

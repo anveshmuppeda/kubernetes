@@ -1,0 +1,9 @@
+allowVolumeExpansion: true
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: my-own-immediate-sc
+provisioner: dobs.csi.digitalocean.com
+reclaimPolicy: Retain
+volumeBindingMode: Immediate # When unset, Immediate mode is used by default.
+# The Immediate mode indicates that volume binding and dynamic provisioning occurs once the PersistentVolumeClaim is created. 
