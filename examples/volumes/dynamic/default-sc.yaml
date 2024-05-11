@@ -1,0 +1,21 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+allowVolumeExpansion: true
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  creationTimestamp: "2024-05-04T04:02:17Z"
+  labels:
+    c3.doks.digitalocean.com/component: csi-controller-service
+    c3.doks.digitalocean.com/plane: data
+    doks.digitalocean.com/managed: "true"
+  name: do-block-storage
+  resourceVersion: "4193021"
+  uid: f920a21f-e480-4201-8072-798341ed5dac
+provisioner: dobs.csi.digitalocean.com
+reclaimPolicy: Delete
+volumeBindingMode: Immediate

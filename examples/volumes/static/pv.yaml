@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-static-pv
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 1Gi
+  csi:
+    driver: dobs.csi.digitalocean.com
+    fsType: ext4
+    volumeAttributes:
+      storage.kubernetes.io/csiProvisionerIdentity: 1713598142351-7287-dobs.csi.digitalocean.com
+    volumeHandle: 8e532929-0e45-11ef-b20b-0a58ac1209da
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem

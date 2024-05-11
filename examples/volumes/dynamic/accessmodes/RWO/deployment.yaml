@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-writer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alpine-writer
+  template:
+    metadata:
+      labels:
+        app: alpine-writer
+    spec:
+      containers:
+      - name: alpine-writer
+        image: alpine
+        command: ["/bin/sh", "-c", "while true; do echo $(date) >> /mnt/data/date.txt; sleep 1; done"]
+        volumeMounts:
+        - name: data-volume
+          mountPath: /mnt/data
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: myclaim
