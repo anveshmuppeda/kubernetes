@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: canary-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: canary-app
+  template:
+    metadata:
+      labels:
+        app: canary-app
+    spec:
+      containers:
+      - name: canary-app
+        image: anvesh35/echo-pod-name
+        ports:
+          - containerPort: 80

@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: base-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - # host: canary.echo.pod.name.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: base-svc
+            port:
+              number: 80

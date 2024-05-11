@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-deploy
+  labels:
+    app: echo-application
+    env: green
+    version: v1.0.0
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: echo-application
+      env: green
+  template:
+    metadata:
+      labels:
+        app: echo-application
+        env: green
+        version: v1.0.0
+    spec:
+      containers:
+      - name: echoapp
+        image: anvesh35/echo-pod-name:v3.0.0
+        ports:
+        - containerPort: 80
