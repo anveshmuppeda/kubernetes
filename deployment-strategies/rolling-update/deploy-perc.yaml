@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-app-perc
+  labels:
+    app: echo-application
+    env: test
+    version: v1.0.0
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      # The default value is 25%.
+      # maxUnavailable is an optional field that specifies the maximum number of Pods that can be unavailable during the update process.
+      maxUnavailable: 20% # The value can be an absolute number (for example, 5) or a percentage of desired Pods (for example, 10%). 
+      # maxSurge is an optional field that specifies the maximum number of Pods that can be created over the desired number of Pods.
+      maxSurge: 20% # The value can be an absolute number (for example, 5) or a percentage of desired Pods (for example, 10%). 
+  replicas: 5
+  selector:
+    matchLabels:
+      app: echo-application
+      env: test
+  template:
+    metadata:
+      labels:
+        app: echo-application
+        env: test
+        version: v1.0.0
+    spec:
+      containers:
+      - name: echoapp
+        image: anvesh35/echo-pod-name:v3.0.0
+        ports:
+        - containerPort: 80
+        startupProbe:
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 5

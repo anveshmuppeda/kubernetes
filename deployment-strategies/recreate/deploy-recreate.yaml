@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-app
+  labels:
+    app: echo-application
+    env: test
+    version: v1.0.0
+spec:
+  strategy:
+    type: Recreate
+  replicas: 5
+  selector:
+    matchLabels:
+      app: echo-application
+      env: test
+  template:
+    metadata:
+      labels:
+        app: echo-application
+        env: test
+        version: v1.0.0
+    spec:
+      containers:
+      - name: echoapp
+        image: anvesh35/echo-pod-name
+        ports:
+        - containerPort: 80
+        startupProbe:
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 5

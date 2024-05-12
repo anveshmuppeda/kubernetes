@@ -5,7 +5,6 @@ metadata:
 spec:
   selector:
     app: echo-application
-    env: blue
   ports:
   - name: http
     port: 80

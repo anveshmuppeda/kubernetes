@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-app-count
+  labels:
+    app: echo-application
+    env: test
+    version: v1.0.0
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      # Max number of Pods that can be unavailable during the update process
+      maxUnavailable: 1 # The value can be an absolute number (for example, 5) or a percentage of desired Pods (for example, 10%). 
+      # Max number of Pods that can be created over the desired number of Pods
+      maxSurge: 1 # The value can be an absolute number (for example, 5) or a percentage of desired Pods (for example, 10%). 
+  replicas: 5
+  selector:
+    matchLabels:
+      app: echo-application
+      env: test
+  template:
+    metadata:
+      labels:
+        app: echo-application
+        env: test
+        version: v1.0.0
+    spec:
+      containers:
+      - name: echoapp
+        image: anvesh35/echo-pod-name:v3.0.0
+        ports:
+        - containerPort: 80
+        startupProbe:
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 5
