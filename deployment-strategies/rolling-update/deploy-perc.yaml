@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: echoapp
-        image: anvesh35/echo-pod-name:v3.0.0
+        image: anvesh35/echo-pod-name
         ports:
         - containerPort: 80
         startupProbe:
