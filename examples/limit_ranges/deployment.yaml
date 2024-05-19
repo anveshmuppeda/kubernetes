@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  limit-test
+  namespace: example-namespace
+  labels:
+    app:  deployment-label
+spec:
+  selector:
+    matchLabels:
+      app: deployment-label
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: deployment-label
+    spec:
+      containers:
+      - name:  nginx-deploy
+        image:  nginx:latest

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  quota-test
+  namespace: example-namespace
+  labels:
+    app:  deployment-label
+spec:
+  selector:
+    matchLabels:
+      app: deployment-label
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: deployment-label
+    spec:
+      containers:
+      - name:  nginx-deploy
+        image:  nginx:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort:  80
+          name:  nginx-deploy

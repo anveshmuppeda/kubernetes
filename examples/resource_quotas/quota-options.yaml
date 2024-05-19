@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: resource-quota-example
+  namespace: example-namespace
+spec:
+  hard:
+    pods: "10"                                 # Total number of Pods
+    requests.cpu: "20"                         # Total CPU requests
+    requests.memory: "50Gi"                    # Total memory requests
+    limits.cpu: "40"                           # Total CPU limits
+    limits.memory: "100Gi"                     # Total memory limits
+    persistentvolumeclaims: "10"               # Total number of PVCs
+    requests.storage: "1Ti"                    # Total storage requests
+    configmaps: "20"                           # Total number of ConfigMaps
+    secrets: "20"                              # Total number of Secrets
+    services: "10"                             # Total number of Services
+    services.loadbalancers: "2"                # Total number of LoadBalancer type Services
+    services.nodeports: "5"                    # Total number of NodePort type Services
+    replicationcontrollers: "10"               # Total number of ReplicationControllers
+    resourcequotas: "1"                        # Total number of ResourceQuotas
+    requests.nvidia.com/gpu: "5"               # Total GPU requests (example for extended resources)
+    limits.nvidia.com/gpu: "10"                # Total GPU limits (example for extended resources)
+    count/deployments: "2"
