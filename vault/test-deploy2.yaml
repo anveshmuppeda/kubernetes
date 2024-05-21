@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vault-test
+  labels:
+    app: read-vault-secret
+spec:
+  selector:
+    matchLabels:
+      app: read-vault-secret
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/agent-inject-status: "update"
+        vault.hashicorp.com/agent-inject-secret-login: "secret/login"
+        vault.hashicorp.com/agent-inject-template-login: |
+          {{- with secret "secret/login" -}}
+          username={{ .Data.data.username }}
+          password={{ .Data.data.password }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-my-first-secret: "secret/my-first-secret"
+        vault.hashicorp.com/agent-inject-template-my-first-secret: |
+          {{- with secret "secret/my-first-secret" -}}
+          username={{ .Data.data.username }}
+          password={{ .Data.data.password }}
+          {{- end }}
+        vault.hashicorp.com/role: "vault-role"
+      labels:
+        app: read-vault-secret
+    spec:
+      serviceAccountName: vault-serviceaccount
+      containers:
+      - name: nginx
+        image: nginx
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vault-serviceaccount
+  labels:
+    app: read-vault-secret
