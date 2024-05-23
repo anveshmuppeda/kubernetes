@@ -1,0 +1,47 @@
+# Owner: Anvesh Muppeda
+# The CloudFormation template provided provisions an AWS Secrets Manager secret named "My-First-SM-Secret", containing a username and password. Additionally, it creates an IAM user named "awssm-k8s-user" and attaches a policy called "AWSSM-Read-Policy" to this user. This policy grants permissions for various actions on secrets stored in AWS Secrets Manager, including retrieving secret values, listing secrets, and describing secrets. Finally, the template includes outputs for the ARN of the created secret and the name of the IAM user.
+
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MySecret:
+    Type: "AWS::SecretsManager::Secret"
+    Properties: 
+      Name: "My-First-SM-Secret"
+      SecretString: !Sub |
+        {
+          "username": "anvesh",
+          "password": "anveshpassword"
+        }
+
+  AWSSMUser:
+    Type: "AWS::IAM::User"
+    Properties:
+      UserName: "awssm-k8s-user"
+
+  SMReadPolicy:
+    Type: "AWS::IAM::Policy"
+    Properties:
+      PolicyName: "AWSSM-Read-Policy"
+      Users: 
+        - !Ref AWSSMUser
+      PolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - Effect: "Allow"
+            Action: 
+              - "secretsmanager:GetRandomPassword"
+              - "secretsmanager:GetResourcePolicy"
+              - "secretsmanager:GetSecretValue"
+              - "secretsmanager:DescribeSecret"
+              - "secretsmanager:ListSecretVersionIds"
+              - "secretsmanager:ListSecrets"
+              - "secretsmanager:BatchGetSecretValue"
+            Resource: !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:*"
+
+Outputs:
+  SecretARN:
+    Description: "The ARN of the created secret"
+    Value: !Ref MySecret
+  IAMUserName:
+    Description: "The name of the created IAM user"
+    Value: !Ref AWSSMUser
