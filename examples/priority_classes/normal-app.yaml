@@ -1,0 +1,28 @@
+# Deployment for normal application
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: normal-app
+  labels:
+    app: normal-application
+spec:
+  selector:
+    matchLabels:
+      app: normal-application
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: normal-application
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 500Mi
+          limits:
+            cpu: 100m
+            memory: 500Mi
+      # priorityClassName: normal-apps

@@ -1,0 +1,8 @@
+# PriorityClass for normal applications
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: normal-apps
+value: 100
+globalDefault: false
+description: "Priority class for normal applications."

@@ -1,0 +1,28 @@
+# Deployment for critical application
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: critical-app
+  labels:
+    app: critical-application
+spec:
+  selector:
+    matchLabels:
+      app: critical-application
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: critical-application
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 1Gi
+          limits:
+            cpu: 100m
+            memory: 1Gi
+      priorityClassName: critical-apps
