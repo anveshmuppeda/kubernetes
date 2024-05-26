@@ -1,7 +1,26 @@
 # Kubernetes  
 Kuberntes Complete Notes.  
 
-## Here is a List of My Blog Posts on Kubernetes  
+## Table of Contents
+- [Introduction](#introduction)
+- [My Blogs On Kubernetes](#my-blogs-on-kubernetes)
+- [Architecture](#architecture)
+  - [Master Node Components](#master-node-components)
+  - [Worker Node Components](#worker-node-components)
+- [Basic Concepts](#basic-concepts)
+  - [Pods](#pods)
+  - [Services](#services)
+  - [Volumes](#volumes)
+  - [Namespaces](#namespaces)
+  - [Deployments](#deployments)
+- [Conclusion](#conclusion)
+- [References](#references)
+
+## Introduction
+Kubernetes, also known as K8s, is an open-source container orchestration platform designed to automate the deployment, scaling, and management of containerized applications. It groups containers into logical units for easy management and discovery, ensuring high availability and scalability.
+
+## My Blogs On Kubernetes  
+### Here is a List of My Blog Posts on Kubernetes   
 1. [A Hands-on Guide to Kubernetes Custom Resource Definitions (CRDs) with a Practical Example](https://medium.com/@muppedaanvesh/a-hand-on-guide-to-kubernetes-custom-resource-definitions-crds-with-a-practical-example-%EF%B8%8F-84094861e90b)
 2. [A Hands-on Guide to Vault in Kubernetes](https://medium.com/@muppedaanvesh/a-hand-on-guide-to-vault-in-kubernetes-%EF%B8%8F-1daf73f331bd)
 3. [A Hands-on Guide to Kubernetes Resource Quotas & Limit Ranges](https://medium.com/@muppedaanvesh/a-hand-on-guide-to-kubernetes-resource-quotas-limit-ranges-%EF%B8%8F-8b9f8cc770c5)
@@ -31,159 +50,54 @@ Kuberntes Complete Notes.
 27. [Exploring Container Types in Kubernetes: Beyond Init and Sidecar Containers](https://medium.com/@muppedaanvesh/exploring-container-types-in-kubernetes-beyond-init-and-sidecar-containers-3c1001bb7a85)
 28. [Deploying NGINX on Kubernetes: A Quick Guide](https://medium.com/@muppedaanvesh/deploying-nginx-on-kubernetes-a-quick-guide-04d533414967)
 29. [Setting Up an Amazon EKS Cluster and Node Group Using eksctl](https://medium.com/@muppedaanvesh/setting-up-an-amazon-eks-cluster-and-node-group-using-eksctl-52acc808eb83)
-30. [Jump Box Setup on EKS Cluster](https://medium.com/@muppedaanvesh/jump-box-setup-on-eks-cluster-383ca92f51ef)
+30. [Jump Box Setup on EKS Cluster](https://medium.com/@muppedaanvesh/jump-box-setup-on-eks-cluster-383ca92f51ef)  
 
-### Kubernetes Icons Set   
-https://github.com/kubernetes/community/blob/master/icons/README.md  
+## Architecture
 
-### Use below link to run the K8's objects  
-https://kubernetes.io/docs/tutorials/hello-minikube/  
-https://labs.play-with-k8s.com/  
-https://killercoda.com/playgrounds/scenario/kubernetes  
+![image](https://user-images.githubusercontent.com/115966808/227559209-95505f77-2017-4266-8d47-14bb273e490b.png)  
 
-### Example code and execution for each k8's objects can be found under below path  
-```examples\<object-name>```
+### Master Node Components
+The master node is responsible for managing the Kubernetes cluster. It oversees the nodes and the pods running within the cluster. Key components of the master node include:
 
-## Kubernetes Architecture and It's Components
-![image](https://user-images.githubusercontent.com/115966808/227559209-95505f77-2017-4266-8d47-14bb273e490b.png)
-### 1. etcd
-#### Install etcd
-1. Download Binaries   
-``` curl -L https://github.com/etcd-io/etcd/releases/download/v3.3.11/etcdv3.3.11-linux-amd64.tar.gz -o etcd-v3.3.11-linux-amd64.tar.gz``` 
-2. Extract  
-```tar xzvf etcd-v3.3.11-linux-amd64.tar.gz``` 
-3. Run etcd service  
-```tar xzvf etcd-v3.3.11-linux-amd64.tar.gz```
-4. Assign key values.  
-```./etcdctl set key1 value1```
-5. Get the key value.  
-```./etcdctl get key1``` 
-### 2. Kube-API server. 
-#### Functionalities of Kube-API server.  
-1. Authenticate User.  
-2. Validate Request.  
-3. Retrieve Data. 
-4. Update ETCD. 
-5. Communicate with Scheduler. 
-6. Communicate with kubelet.  
-### 3. Kube Controller Manager.  
-#### Functionalities of Kube-Controller Manager  
-1. Watch Status  
-2. Remidiate Situation   
-#### Default Values  
-```
-Node Monitor Period = 5s
-Node Monitor Grace Period = 40s
-POD Eviction Timeout = 5m
-```
-### 4. Kube-Scheduler  
-#### Installing kube-scheduler   
-```wget https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kube-scheduler```  
-#### View kube-scheduler options - kubeadm   
-```cat /etc/kubernetes/manifests/kube-scheduler.yaml```  
+- **API Server:** Exposes the Kubernetes API, acting as the front end for the Kubernetes control plane.
+- **Etcd:** A consistent and highly-available key-value store used for all cluster data.
+- **Scheduler:** Assigns workloads to the worker nodes based on resource availability.
+- **Controller Manager:** Runs controller processes to regulate the state of the cluster, handling tasks like node failures and endpoint management.
+- **Cloud Controller Manager:** Manages cloud-specific controller processes.
 
-### 5. Kubelet  
-#### Functionalities  
-* Register Node  
-* Create PODs  
-* Monitor Node & PODs  
-#### Installing  
-```wget https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kubelet```
-#### Kubelet options  
-```ps -aux | grep kubelet``` 
-### 6. Kubeproxy  
- #### Installing  
-```wget https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kube-proxy``` 
+### Worker Node Components
+Worker nodes run the applications and handle the containerized workloads. Each worker node has its own set of components:
 
-***
+- **Kubelet:** Ensures that containers are running in a pod by communicating with the master node.
+- **Kube-proxy:** Maintains network rules and handles network communication within and outside the cluster.
+- **Container Runtime:** Runs the containers. Common runtimes include Docker, containerd, and CRI-O.
 
-## Kubernetes Objects 
-### Container
-### Pod  
-Command to check the pod details node wise:  
-```kubectl get pods -o wide```  
+## Basic Concepts
 
-### Replicaset  
-Command to override the existing definitions:  
-```kubectl replace -f replicaset.yamml```  
+### Pods
+Pods are the smallest deployable units in Kubernetes, representing a single instance of a running process. They encapsulate one or more containers, storage resources, a unique network IP, and options for how the containers should run.
 
-### Deployment
-### Daemonset
-### Statefulset
-### Labels and Selector 
-As their name suggests, label selectors allow you to identify the objects you have tagged with particular labels. Label selectors can either be equality-based or set-based. Equality-based label selectors work by specifying an exact value that you want to match against. If you provide multiple selectors, all of them must be satisfied to qualify as a match.   
-```
-metadata:
-  name: label-demo
-  labels:
-    environment: production
-    app: nginx
-```
-```
-kubectl get pods --selector app=nginx  
-kubectl get pods --l app=nginx  
-```
-To add a label to an existing resource, you can use the following command:  
-```
-# this will create a label “group” with a value of “main”  
-kubectl label pod/metadata-demo group=main  
-```
-You can also remove the label using this command:
-```
-# remove the “group” label from the resource  
-kubectl label pod/metadata-demo group-  
-```
-### Taints and Tolerations
-Update the taints on one or more nodes.
-A taint consists of a key, value, and effect. As an argument here, it is expressed as key=value:effect.  
+### Services
+Services provide stable endpoints for accessing the running pods. They enable communication between different parts of an application and can expose the application to external traffic.
 
-If a pod has tolerations that match the taints on a node, the scheduler will place the pod on that node. If there are no taints on the node, then any pod with or without tolerations can be scheduled on the node.  
+### Volumes
+Volumes offer persistent storage that pods can use. Unlike containers, which are ephemeral, volumes retain data even after a pod is terminated.
 
-The effect must be 
-* NoSchedule
-* PreferNoSchedule
-* NoExecute  
+### Namespaces
+Namespaces are a way to divide cluster resources between multiple users. They provide scope for names, allowing for resource management and access control.
 
-Currently taint can only apply to node.  
+### Deployments
+Deployments define the desired state for application deployment, specifying the number of replicas, the container image to use, and update strategies. They enable declarative updates to applications and rollbacks if necessary.
 
-**USAGE**  
-```
-$ kubectl taint NODE NAME KEY_1=VAL_1:TAINT_EFFECT_1
-$ kubectl taint nodes nodename dedicated=special-user:NoSchedule
-```
-For Untaint  
-```
-$ kubectl taint nodes nodename dedicated=special-user:NoSchedule-
-```
-You specify a toleration for a pod in the PodSpec. Both of the following tolerations "match" the taint created by the kubectl taint line above, and thus a pod with either toleration would be able to schedule onto node1.  
-```
-tolerations:
-- key: "dedicated"
-  operator: "Equal"
-  value: "special-user"
-  effect: "NoSchedule"
-```
-The default value for operator is **Equal**.  
-A toleration "matches" a taint if the keys are the same and the effects are the same, and:  
-* the operator is **Exists** (in which case no value should be specified). 
-* the operator is **Equal** and the values are equal.  
+## Conclusion
+Kubernetes provides a robust platform for managing containerized applications, offering powerful abstractions to ensure applications are scalable, resilient, and easy to manage. Understanding the basic architecture and concepts is essential for effectively leveraging Kubernetes in your projects.
 
-### Node Selector  
-This node selector helpful to schedule the pods on to specific node.  
-First we need to add the labels to the required node.  
-```
-kubectl label nodes nodename size=t2micro
-```
-Then we need to add the below code into the definition file.   
-```
-nodeSelector:
-    size: t2micro
-```
+## References
+- [Kubernetes Documentation](https://kubernetes.io/docs/home/)
+- [Kubernetes GitHub Repository](https://github.com/kubernetes/kubernetes)
+- [Kubernetes API Reference](https://kubernetes.io/docs/reference/)  
+- [Kubernetes Icon Set](https://github.com/kubernetes/community/blob/master/icons/README.md)
+- [Minikube Play Ground](https://kubernetes.io/docs/tutorials/hello-minikube/)
+- [K8s Labs](https://labs.play-with-k8s.com/)  
+- [Killercoda Play Ground](https://killercoda.com/playgrounds/scenario/kubernetes)  
 
-***
-
-## Commands  
- Generate POD Manifest YAML file (-o yaml). Don't create it(--dry-run)  
-
-```kubectl run nginx --image=nginx --dry-run=client -o yaml``` 
- 
