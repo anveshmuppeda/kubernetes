@@ -1,5 +1,5 @@
-# Kubernetes  
-Kuberntes Complete Notes.  
+# Kubernetes Hands-On  
+Kuberntes Complete Hands-On Guide.  
 
 ## Table of Contents
 - [Introduction](#introduction)
