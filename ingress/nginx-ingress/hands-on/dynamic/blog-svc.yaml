@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dynamic-svc
+  labels:
+    app: dynamic-application
+spec:
+  type: ClusterIP
+  selector:
+    app: dynamic-application
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

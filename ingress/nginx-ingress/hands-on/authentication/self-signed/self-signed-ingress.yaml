@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-ingress
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - my-self-signed-domain.com
+    secretName: self-signed-tls
+  rules:
+  - host: my-self-signed-domain.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: blogging-svc
+            port:
+              number: 80
+        path: /
+        pathType: Prefix

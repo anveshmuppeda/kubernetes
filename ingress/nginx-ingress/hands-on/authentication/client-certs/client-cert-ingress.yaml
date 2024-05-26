@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    # Enable client certificate authentication 
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    # Create the secret containing the trusted ca certificates
+    nginx.ingress.kubernetes.io/auth-tls-secret: "default/tls-secret"
+    # Specify if certificates are passed to upstream server
+    # nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+    # nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+  name: nginx-client-cert
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: ingress-domain.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: blogging-svc
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - ingress-domain.com
+    secretName: tls-secret

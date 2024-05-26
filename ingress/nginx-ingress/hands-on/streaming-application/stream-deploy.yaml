@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stream-app
+  labels:
+    app: streaming-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: streaming-application
+  template:
+    metadata:
+      labels:
+        app: streaming-application
+    spec:
+      containers:
+      - name: stream-container
+        image: anvesh35/streaming-application:v3.0.0

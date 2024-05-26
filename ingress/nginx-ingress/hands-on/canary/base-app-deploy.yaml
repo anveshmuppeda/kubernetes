@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: base-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: base-app
+  template:
+    metadata:
+      labels:
+        app: base-app
+    spec:
+      containers:
+      - name: base-app
+        image: anvesh35/echo-pod-name
+        ports:
+          - containerPort: 80

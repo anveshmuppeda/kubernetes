@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: path-based-ingress
+  labels:
+    app: routing-types
+    type: path-based
+  annotations:
+       nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "my.domain.com"
+    http:
+      paths:
+      - path: /stream
+        pathType: Prefix
+        backend:
+          service:
+            name: streaming-svc
+            port:
+              number: 80
+      - path: /blog
+        pathType: Prefix
+        backend:
+          service:
+            name: blogging-svc
+            port:
+              number: 80

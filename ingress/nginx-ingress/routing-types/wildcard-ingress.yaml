@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wildcard-ingress
+  namespace: testing
+  labels:
+    app: routing-types
+    type: wildcard-based
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "*.domain.com"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: streaming-svc
+            port:
+              number: 80

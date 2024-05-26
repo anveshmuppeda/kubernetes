@@ -1,0 +1,35 @@
+# INCOMPLETE MANIFEST
+# 
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blogging-ingress
+  labels:
+    app: blogging-application
+  namespace: testing
+  annotations:
+    # nginx.ingress.kubernetes.io/add-base-url: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - # host: "http://<your-domain.com>"
+    http:
+      paths:
+      - # path: /blogz
+        # The below one is used to manage static files 
+        path: /blogs/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: blogging-svc
+            port:
+              number: 80
+      - path: /stream/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: streaming-svc
+            port:
+              number: 80

@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dynamic-ingress
+  labels:
+    app: dynamic-application
+  namespace: testing
+  annotations:
+    nginx.ingress.kubernetes.io/add-base-url: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/add-header: "Content-Type: text/plain"
+    #nginx.ingress.kubernetes.io/add-header: "Content-Type: text/plain, Content-Disposition: inline"
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - # path: /blogz
+        # The below one is used to manage static files 
+        path: /dynamic
+        pathType: Prefix
+        backend:
+          service:
+            name: dynamic-svc
+            port:
+              number: 80

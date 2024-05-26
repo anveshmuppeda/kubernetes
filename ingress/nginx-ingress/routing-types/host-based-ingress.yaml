@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: host-based-ingress
+  labels:
+    app: routing-types
+    type: host-based
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "blog.example.com"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: blogging-svc
+            port:
+              number: 80
+  - host: "stream.example.com"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: streaming-svc
+            port:
+              number: 80

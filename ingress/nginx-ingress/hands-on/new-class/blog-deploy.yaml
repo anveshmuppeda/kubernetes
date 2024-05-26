@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: new-blog-app
+  labels:
+    app: blogging-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blogging-application
+  template:
+    metadata:
+      labels:
+        app: blogging-application
+    spec:
+      containers:
+      - name: blog-container
+        image: anvesh35/blogging-application:v1.0.0

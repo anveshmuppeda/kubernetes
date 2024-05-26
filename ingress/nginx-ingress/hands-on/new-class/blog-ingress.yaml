@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blogging-ingress
+  labels:
+    app: blogging-application
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: my-ingress-nginx
+  rules:
+  - # host: "138.197.232.25"
+    http: 
+      paths:
+      - path: /myblogging
+        pathType: Prefix
+        backend:
+          service:
+            name: blogging-svc
+            port:
+              number: 80
