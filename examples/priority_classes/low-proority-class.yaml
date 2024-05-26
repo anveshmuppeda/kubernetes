@@ -5,4 +5,5 @@ metadata:
   name: normal-apps
 value: 100
 globalDefault: false
+preemptionPolicy: PreemptLowerPriority
 description: "Priority class for normal applications."

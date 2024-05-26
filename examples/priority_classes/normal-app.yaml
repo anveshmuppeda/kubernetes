@@ -25,4 +25,4 @@ spec:
           limits:
             cpu: 100m
             memory: 500Mi
-      # priorityClassName: normal-apps
+      priorityClassName: normal-apps
