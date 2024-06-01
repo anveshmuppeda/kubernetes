@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: high-cpu-utilization-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cpu-utilization-app
+  template:
+    metadata:
+      labels:
+        app: cpu-utilization-app
+    spec:
+      containers:
+      - name: cpu-utilization-container
+        image: ubuntu
+        command: ["/bin/sh", "-c", "apt-get update && apt-get install -y stress-ng && while true; do stress-ng --cpu 1; done"]
+        resources:
+          limits:
+            cpu: "0.05"
+          requests:
+            cpu: "0.05"
