@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deploy
+  name: hpa-deploy
 spec:
   replicas: 1
   selector:
@@ -31,4 +31,4 @@ spec:
   ports:
   - port: 80
   selector:
-    app: nginx
+    app: nginx 
