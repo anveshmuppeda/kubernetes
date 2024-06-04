@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: test-quota
+spec:
+  hard:
+    requests.cpu: "100m"
+    requests.memory: "1Gi"
+    limits.cpu: "100m"
+    limits.memory: "2Gi"
