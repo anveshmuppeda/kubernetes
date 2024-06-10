@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  annotations:
+    endpoints.kubernetes.io/last-change-trigger-time: "2024-06-09T21:57:39Z"
+  creationTimestamp: "2024-06-09T18:48:30Z"
+  name: nginx-svc
+  namespace: endpoints
+  resourceVersion: "15136702"
+  uid: 8ecd5c61-bf96-41a2-b961-681b13f70b0b
+subsets:
+- addresses:
+  - ip: 10.244.0.118
+    nodeName: pool-t5ss0fagn-jeb47
+    targetRef:
+      kind: Pod
+      name: ep-test-96b7fff45-6sk7d
+      namespace: endpoints
+      uid: 73f17020-1350-4a30-9bc1-d72caa6e9d4e
+  - ip: 10.244.0.58
+    nodeName: pool-t5ss0fagn-jeb47
+    targetRef:
+      kind: Pod
+      name: ep-test-96b7fff45-dt78c
+      namespace: endpoints
+      uid: b8c8e4e7-c431-4521-8531-f1c2ef918984
+  - ip: 10.244.0.74
+    nodeName: pool-t5ss0fagn-jeb47
+    targetRef:
+      kind: Pod
+      name: ep-test-96b7fff45-z75nq
+      namespace: endpoints
+      uid: 863d9194-1b42-4a64-b05d-273d1dd23a99
+  ports:
+  - port: 80
+    protocol: TCP

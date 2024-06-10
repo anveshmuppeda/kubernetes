@@ -1,0 +1,64 @@
+addressType: IPv4
+apiVersion: discovery.k8s.io/v1
+endpoints:
+- addresses:
+  - 10.244.0.58
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  nodeName: pool-t5ss0fagn-jeb47
+  targetRef:
+    kind: Pod
+    name: ep-test-96b7fff45-dt78c
+    namespace: endpoints
+    uid: b8c8e4e7-c431-4521-8531-f1c2ef918984
+- addresses:
+  - 10.244.0.118
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  nodeName: pool-t5ss0fagn-jeb47
+  targetRef:
+    kind: Pod
+    name: ep-test-96b7fff45-6sk7d
+    namespace: endpoints
+    uid: 73f17020-1350-4a30-9bc1-d72caa6e9d4e
+- addresses:
+  - 10.244.0.74
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  nodeName: pool-t5ss0fagn-jeb47
+  targetRef:
+    kind: Pod
+    name: ep-test-96b7fff45-z75nq
+    namespace: endpoints
+    uid: 863d9194-1b42-4a64-b05d-273d1dd23a99
+kind: EndpointSlice
+metadata:
+  annotations:
+    endpoints.kubernetes.io/last-change-trigger-time: "2024-06-09T21:58:07Z"
+  creationTimestamp: "2024-06-09T18:48:30Z"
+  generateName: nginx-svc-
+  generation: 61
+  labels:
+    endpointslice.kubernetes.io/managed-by: endpointslice-controller.k8s.io
+    kubernetes.io/service-name: nginx-svc
+  name: nginx-svc-t9zx4
+  namespace: endpoints
+  ownerReferences:
+  - apiVersion: v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Service
+    name: nginx-svc
+    uid: b205cb1b-55bd-4d07-82b3-c60dff0b83f0
+  resourceVersion: "15136808"
+  uid: 12de64ee-6f80-4adc-aaac-bf2aa8156e1c
+ports:
+- name: ""
+  port: 80
+  protocol: TCP
