@@ -219,7 +219,7 @@ gossipPortName: gossip
 ##
 service:
   enabled: true
-  type: ClusterIP
+  type: NodePort
   loadBalancerIP: ""
   loadBalancerClass: ""
   loadBalancerSourceRanges: []

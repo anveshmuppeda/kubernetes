@@ -1,0 +1,6 @@
+prometheus:
+    service:
+        type: NodePort
+grafana:
+  service:
+    type: NodePort
