@@ -4,3 +4,6 @@ prometheus:
 grafana:
   service:
     type: NodePort
+alertmanager:
+  service:
+    type: NodePort
