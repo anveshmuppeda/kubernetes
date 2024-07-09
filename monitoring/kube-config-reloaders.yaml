@@ -1,0 +1,37 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kube-prometheus-stack
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2024-07-08T01:34:24Z"
+  generation: 1
+  labels:
+    app: kube-prometheus-stack
+    app.kubernetes.io/instance: kube-prometheus-stack
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: kube-prometheus-stack
+    app.kubernetes.io/version: 60.3.0
+    chart: kube-prometheus-stack-60.3.0
+    heritage: Helm
+    release: kube-prometheus-stack
+  name: kube-prometheus-stack-config-reloaders
+  namespace: default
+  resourceVersion: "1261876"
+  uid: 523561cc-f9a6-4698-b1c3-2f0b79007287
+spec:
+  groups:
+  - name: config-reloaders
+    rules:
+    - alert: ConfigReloaderSidecarErrors
+      annotations:
+        description: |-
+          Errors encountered while the {{$labels.pod}} config-reloader sidecar attempts to sync config in {{$labels.namespace}} namespace.
+          As a result, configuration for service running in {{$labels.pod}} may be stale and cannot be updated anymore.
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/prometheus-operator/configreloadersidecarerrors
+        summary: config-reloader sidecar has not had a successful reload for 10m
+      expr: max_over_time(reloader_last_reload_successful{namespace=~".+"}[5m]) ==
+        0
+      for: 10m
+      labels:
+        severity: warning

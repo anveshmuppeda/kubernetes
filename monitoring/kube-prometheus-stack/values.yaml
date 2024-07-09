@@ -327,13 +327,21 @@ alertmanager:
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 12h
-      receiver: 'null'
+      receiver: 'ipeacocks-alert'
       routes:
-      - receiver: 'null'
+      - receiver: 'ipeacocks-alert'
         matchers:
           - alertname = "Watchdog"
     receivers:
-    - name: 'null'
+    - name: ipeacocks-alert
+    email_configs:
+    - to: to-email@example.com
+      from: from-email@outlook.com
+      # Your smtp server address
+      smarthost: smtp-mail.outlook.com:587
+      auth_username: from-email@outlook.com
+      auth_identity: from-email@outlook.com
+      auth_password: y0ur-v3ry-h@rd-p@ssw0rd
     templates:
     - '/etc/alertmanager/config/*.tmpl'
 
@@ -526,7 +534,7 @@ alertmanager:
         timeoutSeconds: 10800
 
     ## Service type
-    ##
+    ## 
     type: ClusterIP
 
   ## Configuration for creating a separate Service for each statefulset Alertmanager replica
