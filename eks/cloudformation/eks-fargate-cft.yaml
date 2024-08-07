@@ -1,14 +1,14 @@
 # Author : Anvesh Muppeda  
 
 AWSTemplateFormatVersion: 2010-09-09
-Description: AWS CFT for - Creating VPC, NAT Gateway, EIP,  Public & Private Subnets, Route Tables, Internet Gateway, NACLs, Security Groups, EC2 Servers, Bastion, IAM Role, IAM Policy.
+Description: AWS CFT for - Creating EKS, Fargate Profile, VPC, NAT Gateway, EIP,  Public & Private Subnets, Route Tables, Internet Gateway, NACLs, Security Groups Bastion Server with AWSCLI & KUBECTL installed on it, IAM Role, IAM Policy.
 
 # Parameters for VPC configuration, instance settings, and resource tagging
 Parameters:
   myTag:
     Description: Tag for the all resources
     Type: String
-    Default: from-cft
+    Default: fargate-eks-project
 
   VpcCIDR:
     Description: Please enter the IP range (CIDR notation) for this VPC
@@ -61,15 +61,18 @@ Parameters:
   
   NameSpace:
     Type: String
-    Default: fargate-ns
-    Description: Enter namespace
+    Default: kube-system
+    Description: Enter Fargate Namespace
 
   EKSClusterName:
     Type: String
     Description: Name of k8s cluster
-    Default: eks-fargate-cluster
+    Default: fargate-demo-cluster
     
 Resources:
+  #######################################################################################################
+  #                                           VPC RESOURCES                                             #
+  #######################################################################################################
   # VPC resource
   MyVPC:
     Type: AWS::EC2::VPC
@@ -326,6 +329,15 @@ Resources:
       PortRange:
         From: '443'
         To: '443'
+  privateInboundRulePublic:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+       NetworkAclId:
+         Ref: MyPrivateNACL
+       RuleNumber: 97
+       Protocol: -1
+       RuleAction: allow
+       CidrBlock: 0.0.0.0/0
   privateOutboundRule:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
@@ -415,6 +427,9 @@ Resources:
       RouteTableId: !Ref PublicRouteTable
       SubnetId: !Ref PublicSubnet2
   
+  #######################################################################################################
+  #                                           BASTION SERVER                                            #
+  #######################################################################################################
   # Bastion Server in public subnet 1
   MyBastionServer:
     Type: AWS::EC2::Instance
@@ -449,6 +464,9 @@ Resources:
             mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
             kubectl version --short --client
   
+  #######################################################################################################
+  #                                           EKS CLUSTER                                               #
+  #######################################################################################################
   # Control plane
   ControlPlane:
     Type: AWS::EKS::Cluster
@@ -469,7 +487,7 @@ Resources:
             - Type: audit
       Tags:
         - Key: project
-          Value: demo
+          Value: EKS-FARGATE-DEMO
         - Key: costcenter
           Value: CC
         - Key: criticality
@@ -504,9 +522,12 @@ Resources:
       Tags:
         - Key: cfstack
           Value: !Sub "${AWS::StackName}-ControlPlaneSecurityGroup"
+  
+  #######################################################################################################
+  #                                           FARGATE PROFILE                                           #
+  #######################################################################################################
   # Configure Fargate Profile
   EKSFargateProfile:
-    #DependsOn: EKSIdpConfig
     DependsOn: ControlPlane
     Type: 'AWS::EKS::FargateProfile'
     Properties:
@@ -520,7 +541,7 @@ Resources:
         - Namespace: !Ref NameSpace
           Labels:
             - Key: service
-              Value: clamav
+              Value: eks-fargate
   # EKS Fargate PodExecution Role
   EKSFargatePodExecutionRole:
     Type: AWS::IAM::Role
@@ -537,6 +558,7 @@ Resources:
       ManagedPolicyArns: 
         - arn:aws:iam::aws:policy/AmazonEKSFargatePodExecutionRolePolicy
         - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+
 # Outputs for VPC, subnets, and EC2 instances
 Outputs:
   VpcId:
