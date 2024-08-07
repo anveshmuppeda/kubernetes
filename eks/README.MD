@@ -1,4 +1,4 @@
-# AWS EKS  
+# AWS EKS Fargate  
 
 Create EKS Cluster with Fargate profile  
 
