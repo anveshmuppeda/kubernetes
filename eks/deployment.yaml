@@ -6,11 +6,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      service: clamav
+      service: eks-fargate
   template:
     metadata:
       labels:
-        service: clamav
+        service: eks-fargate
     spec:
       containers:
       - name: nginx
