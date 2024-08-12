@@ -1,0 +1,4 @@
+# Override the ArgoCD service type to NodePort from ClusterIP  
+server:
+  service:
+    type: NodePort

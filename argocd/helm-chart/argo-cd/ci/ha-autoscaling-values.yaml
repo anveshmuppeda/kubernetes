@@ -1,0 +1,16 @@
+# Test High Availability with autoscaling
+crds:
+  keep: false
+
+redis-ha:
+  enabled: true
+
+server:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
