@@ -58,7 +58,7 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 
 ## Architecture
 
-![image](https://user-images.githubusercontent.com/115966808/227559209-95505f77-2017-4266-8d47-14bb273e490b.png)  
+![Kubernetes Architecture](./images/kubernetes-architecture.png)  
 
 ### Master Node Components
 The master node is responsible for managing the Kubernetes cluster. It oversees the nodes and the pods running within the cluster. Key components of the master node include:
