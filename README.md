@@ -54,6 +54,8 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 31. [⎈ A Hands-On Guide to Kubernetes External Secrets Operator 🛠️](https://medium.com/@muppedaanvesh/a-hands-on-guide-to-kubernetes-external-secrets-operator-%EF%B8%8F-6e630c2da25e)
 32. [⎈ A Hands-On Guide to Kubernetes Priority Classes 🛠️](https://medium.com/@muppedaanvesh/a-hands-on-guide-to-kubernetes-priority-classes-%EF%B8%8F-e4d37d789311)  
 33. [⎈ A Hands-On Guide to Kubernetes Horizontal & Vertical Pod Autoscalers 🛠️](https://medium.com/@muppedaanvesh/a-hands-on-guide-to-kubernetes-horizontal-vertical-pod-autoscalers-%EF%B8%8F-58903382ef71) 
+34. [⎈ A Hands-On Guide to Kubernetes QoS Classes🛠️](https://medium.com/@muppedaanvesh/a-hands-on-guide-to-kubernetes-qos-classes-%EF%B8%8F-571b5f8f7e58)
+35. [⎈ A Hands-On Guide to Kubernetes Endpoints & EndpointSlices 🛠️](https://medium.com/@muppedaanvesh/a-hands-on-guide-to-kubernetes-endpoints-endpointslices-%EF%B8%8F-1375dfc9075c)
 
 
 ## Architecture
