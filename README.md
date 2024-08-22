@@ -1,5 +1,5 @@
-# Kubernetes Hands-On [![GitHub](https://img.shields.io/github/license/anveshmuppeda/kubernetes?color=blue)](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE)  
-Kuberntes Complete Hands-On Guide.  
+# Kubernetes Complete Hands-On Guides [![GitHub](https://img.shields.io/github/license/anveshmuppeda/kubernetes?color=blue)](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE)  
+Kuberntes Complete Hands-On Guides.  
 
 ## Table of Contents
 - [Introduction](#introduction)
