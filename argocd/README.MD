@@ -47,3 +47,25 @@ tar -ztvf redis-ha-4.26.1.tgz
 ```  
 3. Then proceed with the installation of the argocd helm chart.  
 
+
+## Create project using CLI  
+```sh
+argocd proj create demo-proj \
+--description "My first demo project" \
+--dest 'https://kubernetes.default.svc,*' \
+--src '*' \
+--allow-cluster-resource '*/*'
+```
+
+## Create application using CLI 
+```sh
+argocd app create demo-app \
+--repo https://github.com/anveshmuppeda/argo-cd-demo.git \
+--path development \
+--dest-server https://kubernetes.default.svc \
+--dest-namespace argocd-demo \
+--revision main \
+--sync-policy auto \
+--project demo-proj \
+--sync-option CreateNamespace=true
+```
