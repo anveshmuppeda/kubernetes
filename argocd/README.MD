@@ -68,4 +68,129 @@ argocd app create demo-app \
 --sync-policy auto \
 --project demo-proj \
 --sync-option CreateNamespace=true
+```  
+
+## 1. Polling from Git to ArgoCD  
+ArgoCD periodically polls the Git repository (e.g., every minute, every 5 minutes).
+ArgoCD checks if there are any new commits or changes in the repository.
+If a change is detected, ArgoCD pulls the latest code and triggers a deployment to Kubernetes.  
+
+### Pros of Polling:  
+**Simplicity:** No need to configure webhooks or additional infrastructure. ArgoCD handles everything through periodic checks.   
+**Resilience:** Even if the network between ArgoCD and GitHub goes down for a while, it will still sync the changes at the next interval.   
+No reliance on external triggers: ArgoCD works independently, meaning there is no dependency on external services like webhooks.
+**Security benefits:** Since ArgoCD pulls the updates itself, you don't need to expose it to incoming HTTP traffic, reducing the risk of attacks.   
+
+### Cons of Polling:  
+**Latency:** There can be delays between code commits and deployment because ArgoCD only checks at fixed intervals. If the polling interval is set to 5 minutes, a change may not be deployed for up to 5 minutes.  
+**Resource consumption:** Polling regularly consumes more resources (CPU, network) as it makes constant requests to the Git repository, even when there are no changes.  
+**Higher network traffic:** For every polling interval, even if there are no updates, ArgoCD still makes requests to check for changes. This can create unnecessary network traffic in large environments.  
+
+## 2. Pushing via Webhooks from GitHub to ArgoCD  
+A Git webhook is configured in GitHub (or another Git provider). When a new commit is pushed to the repository, the webhook notifies ArgoCD. ArgoCD pulls the latest code immediately and triggers a deployment to Kubernetes.
+
+### Pros of Pushing:  
+**Immediate updates (low latency)**: As soon as a change is made in the Git repository, the webhook triggers ArgoCD. This leads to near real-time deployments without waiting for a polling interval.  
+**Efficient resource usage:** Since ArgoCD only syncs when it is triggered by the webhook, it doesn’t consume resources by polling the repository constantly.  
+**Reduced network traffic:** Webhooks minimize the number of requests sent between GitHub and ArgoCD, as the notification is only sent when a change occurs.  
+**More suited to frequent changes:** If your team frequently commits code, the push method ensures that all changes are handled and deployed quickly.  
+
+### Cons of Pushing:  
+**Dependency on webhook infrastructure:** If the webhook fails due to network issues, misconfigurations, or GitHub service outages, ArgoCD won’t be notified of the changes, potentially causing missed deployments.  
+**More complex setup:** Webhooks require manual setup in the Git repository. They also need to be maintained and monitored to ensure they are functioning correctly.  
+**Security concerns:** Webhooks rely on exposing an HTTP(S) endpoint. This endpoint needs to be secured with proper authentication, encryption (TLS), and access control to avoid malicious access or attacks.  
+
+## Which Approach is Better?  
+Both polling and pushing methods can be better suited to different scenarios, depending on your environment’s requirements:  
+
+### Pushing via Webhooks is usually the better choice when:  
+1. You need immediate and real-time deployments.  
+2. Your development team frequently commits changes, and it’s essential to have those changes deployed quickly.  
+3. You are looking to minimize resource consumption and network traffic.  
+4. You are comfortable setting up and securing webhooks.  
+5. Use Case: CI/CD pipelines, fast-moving teams, real-time updates.  
+
+### Polling is typically better suited when:  
+1. You want a simple, reliable system with minimal configuration.
+2. You are okay with some delay in deployments (e.g., polling every 5-10 minutes).
+3. You prefer to avoid exposing HTTP endpoints for security reasons.
+4. You have an environment where changes are infrequent or where occasional missed changes (in the case of failed webhooks) would be problematic.  
+
+Use Case: Environments with low-change frequency, high security needs, and lower urgency for real-time updates.  
+
+## Customization Options:  
+Both polling and pushing mechanisms can be tailored to your needs:  
+### 1. Customizing Polling:  
+The default polling interval is 3 minutes (180 seconds) with a configurable jitter. You can change the setting by updating the timeout.reconciliation value and the timeout.reconciliation.jitter in the **argocd-cm** config map. If there are any Git changes, Argo CD will only update applications with the auto-sync setting enabled. If you set it to 0 then Argo CD will stop polling Git repositories automatically and you can only use alternative methods such as webhooks and/or manual syncs for deploying applications.  
+
+Application reconciliation timeout is the max amount of time required to discover if a new manifests version got published to the repository. Reconciliation by timeout is disabled if timeout is set to 0. Three minutes by default.  
+
+> Note: argocd-repo-server deployment must be manually restarted after changing the setting.  
+
+**Example:**  
+```yaml
+apiVersion: v1
+data:
+  admin.enabled: "true"
+  application.instanceLabelKey: argocd.argoproj.io/instance
+  exec.enabled: "false"
+  server.rbac.log.enforce.enable: "false"
+  statusbadge.enabled: "false"
+  timeout.hard.reconciliation: 0s
+  timeout.reconciliation: 180s
+  url: https://argocd.example.com
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
 ```
+
+## Create The Webhook in GitHub  
+Login to GITHUB repository and navigate to the settings page where webhooks can be configured. The payload URL configured in the Git provider should use the **/api/webhook** endpoint of your Argo CD instance *ex:https://argocd.example.com/api/webhook*. If you wish to use a shared secret, input an arbitrary value in the secret. This value will be used when configuring the webhook.  
+
+![Webhook in GitHub](./images/github-webhook.png)
+
+### Please be noted:  
+* When creating the webhook in GitHub, the “Content type” needs to be set to “application/json“. The default value “application/x-www-form-urlencoded” is not supported by the library used to handle the hooks.  
+* The webhook handler does not differentiate between branch events and tag events where the branch and tag names are the same. A hook event for a push to branch x will trigger a refresh for an app pointing at the same repo with targetRevision: **refs/tags/x**.  
+* If Argo CD is publicly accessible, then configuring a webhook secret is recommended to prevent a DDoS attack.  
+
+### Configure Argo CD with The WebHook Secret  
+In the argocd-secret kubernetes secret, configure one of the following keys with the Git provider’s webhook secret configured.  
+
+Edit the Argo CD kubernetes secret:  
+```bash
+kubectl edit secret argocd-secret -n argocd
+```  
+
+**TIP:** for ease of entering secrets, kubernetes supports inputting secrets in the stringData field, which saves you the trouble of base64 encoding the values and copying it to the data field. Simply copy the shared webhook secret created, to the corresponding GitHub/GitLab/BitBucket key under the stringData field:  
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: argocd-secret
+  namespace: argocd
+type: Opaque
+data:
+...
+
+stringData:
+  # github webhook secret
+  webhook.github.secret: shhhh! it's a GitHub secret
+
+  # gitlab webhook secret
+  webhook.gitlab.secret: shhhh! it's a GitLab secret
+
+  # bitbucket webhook secret
+  webhook.bitbucket.uuid: your-bitbucket-uuid
+
+  # bitbucket server webhook secret
+  webhook.bitbucketserver.secret: shhhh! it's a Bitbucket server secret
+
+  # gogs server webhook secret
+  webhook.gogs.secret: shhhh! it's a gogs server secret
+```  
+
+After saving, the changes should take effect automatically. 
+Once you have add the secret(optional), you can goto your repository and edit any manifest.  
