@@ -1,0 +1,13 @@
+
+resources:
+  requests:
+    cpu: "200m"
+    memory: "200Mi"
+  limits:
+    cpu: "1000m"
+    memory: "2Gi"
+
+# Soft means that by default pods will scheduled based on "best effort"
+# Hard means that by default pods will only be scheduled if there are enough nodes for them
+# and that they will never end up on the same node.
+antiAffinity: "soft"
