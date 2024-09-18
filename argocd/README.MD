@@ -1,6 +1,7 @@
 # Argo CD 
 
-Argo CD, a declarative, GitOps continuous delivery tool for Kubernetes.
+## What is ArgoCD?  
+ArgoCD is a declarative, GitOps continuous delivery tool for Kubernetes. It follows the GitOps paradigm, where the desired state of your application is defined in Git, and ArgoCD ensures that your Kubernetes cluster matches this desired state.  
 
 Source code can be found here:
 
@@ -69,6 +70,64 @@ argocd app create demo-app \
 --project demo-proj \
 --sync-option CreateNamespace=true
 ```  
+
+## Installing ArgoCD on Kubernetes  
+You can install ArgoCD using the Helm chart, which offers greater flexibility for customization through Helm values.  
+
+### Steps:  
+1. Set up the ArgoCD Helm chart.
+2. Update ArgoCD image versions and set the desired version.
+3. Expose the ArgoCD UI using a NodePort or LoadBalancer by modifying the service type. Here's how to change it to NodePort:
+```yml
+server:
+  service:
+    type: NodePort
+```
+This configuration overrides the default ClusterIP service type, enabling access to the ArgoCD UI via a NodePort.  
+
+### Verifying the Installation  
+To confirm that ArgoCD is installed and running, use the following command:
+```bash
+kubectl get pods -n argocd
+```
+
+## Deploying Your First Application with ArgoCD
+**Step 1:** Set Up a Git Repository  
+Create a Git repository to host your Kubernetes manifests. This repository will serve as the source from which ArgoCD deploys your application.  
+
+**Step 2:** Create an ArgoCD Application  
+You can create an ArgoCD application by defining it in a YAML manifest and applying it with kubectl.  
+
+1. Create the Manifest:  
+Save the following configuration to a file named argocd-demo-app.yaml:  
+```yml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: first-argocd-demo-app
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: <target-github-repo-url>
+    targetRevision: HEAD
+    path: <github-path>
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: <target-namespace>
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
+```  
+This manifest creates an ArgoCD application named first-argocd-demo-app in the argocd namespace. It will sync Kubernetes manifests from the specified Git repository to your target Kubernetes namespace.  
+Once applied, ArgoCD will automatically deploy and manage your application based on the state defined in the Git repository.  
 
 ## 1. Polling from Git to ArgoCD  
 ArgoCD periodically polls the Git repository (e.g., every minute, every 5 minutes).
