@@ -1,0 +1,64 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: promtail-sidecar-config-map
+data:
+  promtail.yaml: |
+      server:
+        http_listen_port: 9080
+        grpc_listen_port: 0
+        log_level: "debug"
+      positions:
+        filename: /tmp/positions.yaml
+      clients: # Specify target
+        - url: http://loki:3100/loki/api/v1/push
+      scrape_configs:
+        - job_name:  "nginx" 
+          static_configs: 
+            - targets: 
+                - localhost 
+              labels:
+                app: "storage-service" 
+                __path__: /var/log/nginx/*.log # Any file .log in the EmptyDir Volume.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-promtail
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-promtail
+  template:
+    metadata:
+      labels:
+        app: nginx-promtail
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: shared-logs # shared space
+          mountPath:  /var/log/nginx
+      - name: promtail
+        image: grafana/promtail:latest
+        args:
+        - "--config.file=/etc/promtail/promtail.yaml" 
+        ports:
+        - containerPort: 9080
+        volumeMounts:
+        - name: config
+          mountPath: /etc/promtail
+        - name: shared-logs # shared space
+          mountPath: /var/log/nginx
+      volumes:
+      - name: config
+        configMap:
+          name: promtail-sidecar-config-map
+      - name: shared-logs # shared space monitored with Promtail
+        emptyDir:
+          sizeLimit: 500Mi

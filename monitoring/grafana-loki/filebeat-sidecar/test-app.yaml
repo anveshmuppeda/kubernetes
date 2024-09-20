@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+  labels:
+    app: hello-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-pod
+  template:
+    metadata:
+      name: hello-pod
+      labels:
+        app: hello-pod
+    spec:
+      containers:
+        - name: hello-world
+          image: nginxdemos/hello
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-logs
+              mountPath: var/log/nginx/
+        - name: filebeat-sidecar
+          image: docker.elastic.co/beats/filebeat:7.5.0
+          volumeMounts:
+            - name: nginx-logs
+              mountPath: var/log/nginx/
+            - name: filebeat-config
+              mountPath: /usr/share/filebeat/filebeat.yml
+              subPath: filebeat.yml 
+      volumes:
+        - name: nginx-logs
+        - name: filebeat-config
+          configMap:
+            name: filebeat-configmap
+            items:
+              - key: filebeat.yml
+                path: filebeat.yml
