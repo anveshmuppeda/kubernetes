@@ -6,6 +6,7 @@ test_pod:
 loki:
   enabled: true
   isDefault: true
+  fullnameOverride: loki
   url: http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}
   readinessProbe:
     httpGet:
@@ -47,14 +48,22 @@ grafana:
     type: NodePort
 
 prometheus:
-  enabled: false
+  enabled: true
   isDefault: false
   url: http://{{ include "prometheus.fullname" .}}:{{ .Values.prometheus.server.service.servicePort }}{{ .Values.prometheus.server.prefixURL }}
   datasource:
     jsonData: "{}"
+  server:
+    service:
+      type: NodePort
+    persistentVolume:
+      ## If true, Prometheus server will create/use a Persistent Volume Claim
+      ## If false, use emptyDir
+      ##
+      enabled: false
 
 filebeat:
-  enabled: false
+  enabled: true
   filebeatConfig:
     filebeat.yml: |
       # logging.level: debug
@@ -69,10 +78,10 @@ filebeat:
             - logs_path:
                 logs_path: "/var/log/containers/"
       output.logstash:
-        hosts: ["logstash-loki:5044"]
+        hosts: ["logstash-loki-headless:5044"]
 
 logstash:
-  enabled: false
+  enabled: true
   image: grafana/logstash-output-loki
   imageTag: 1.0.1
 
@@ -114,12 +123,7 @@ logstash:
         # stdout { codec => rubydebug }
       }
 
-# proxy is currently only used by loki test pod
-# Note: If http_proxy/https_proxy are set, then no_proxy should include the
-# loki service name, so that tests are able to communicate with the loki
-# service.
 proxy:
   http_proxy: ""
   https_proxy: ""
   no_proxy: ""
-

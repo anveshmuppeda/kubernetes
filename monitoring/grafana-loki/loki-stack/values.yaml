@@ -24,7 +24,7 @@ loki:
 
 
 promtail:
-  enabled: true
+  enabled: false
   config:
     logLevel: info
     serverPort: 3101
@@ -44,16 +44,26 @@ grafana:
       maxLines: 1000
   image:
     tag: 10.3.3
+  service:
+    type: NodePort
 
 prometheus:
-  enabled: false
+  enabled: true
   isDefault: false
   url: http://{{ include "prometheus.fullname" .}}:{{ .Values.prometheus.server.service.servicePort }}{{ .Values.prometheus.server.prefixURL }}
   datasource:
     jsonData: "{}"
+  server:
+    service:
+      type: NodePort
+    persistentVolume:
+      ## If true, Prometheus server will create/use a Persistent Volume Claim
+      ## If false, use emptyDir
+      ##
+      enabled: false
 
 filebeat:
-  enabled: false
+  enabled: true
   filebeatConfig:
     filebeat.yml: |
       # logging.level: debug
@@ -71,7 +81,7 @@ filebeat:
         hosts: ["logstash-loki-headless:5044"]
 
 logstash:
-  enabled: false
+  enabled: true
   image: grafana/logstash-output-loki
   imageTag: 1.0.1
 
