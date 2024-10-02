@@ -6,7 +6,7 @@ By Anvesh Muppeda & Sai Manasa Kota
 
 🚀 Kubectl Helper: Your Ultimate Kubernetes Command Companion! 🌐  
 
-Master the art of Kubernetes with our feature-packed Kubectl Cheatsheet! This comprehensive guide empowers both beginners and seasoned professionals to navigate the Kubernetes landscape effortlessly. From cluster management and context switching to intricate pod manipulations, we've got you covered. Say goodbye to command memorization and hello to streamlined operations!  
+Master the art of Kubernetes with our feature-packed Kubectl Cheatsheet! This comprehensive guide empowers beginners and seasoned professionals to navigate the Kubernetes landscape effortlessly. We've got you covered from cluster management and context switching to intricate pod manipulations. Say goodbye to command memorization and hello to streamlined operations!  
 
 <a name="tableofcontents"></a>  
 
