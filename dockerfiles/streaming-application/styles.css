@@ -1,0 +1,54 @@
+/* CSS for styling the streaming application */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.video-section, .chat-section {
+    width: 45%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.video-section h2, .chat-section h2 {
+    margin-top: 0;
+}
+
+.video-section video {
+    width: 100%;
+}
+
+.chat-container {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

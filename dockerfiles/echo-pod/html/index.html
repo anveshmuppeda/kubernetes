@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pod Info</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo and Kubernetes text -->
+        <div class="logo-container">
+            <img src="k8s-logo.png" alt="Kubernetes Logo" class="logo-img">
+            <span class="k8s-text">Kubernetes</span>
+        </div>
+
+        <!-- Information Box -->
+        <div class="info-box">
+            <!-- Welcome message -->
+            <div class="welcome-message">
+                Welcome from Echo Pod
+            </div>
+
+            <!-- Node name section -->
+            <div class="node-name">
+                Node Name: {{NODE_NAME}}
+            </div>
+
+            <!-- Pod name section -->
+            <div class="pod-name">
+                Pod Name: {{POD_NAME}}
+            </div>
+        </div>
+
+        <!-- Footer section using <footer> -->
+        <footer id="footer">
+            <span class="copyright">&copy; Anvesh Muppeda.</span>
+        </footer>
+    </div>
+</body>
+</html>
