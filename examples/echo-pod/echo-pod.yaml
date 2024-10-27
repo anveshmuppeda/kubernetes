@@ -10,10 +10,9 @@ spec:
       image: anvesh35/echo-pod-name:latest
       env:
         - name: NODE_NAME
-          value: MY_WORKER_NODE
-          # valueFrom:
-          #   fieldRef:
-          #     fieldPath: spec.nodeName
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
       ports:
         - containerPort: 80
 ---

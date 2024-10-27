@@ -1,0 +1,686 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app.kubernetes.io/component: manager
+    app.kubernetes.io/created-by: kube-startup-cpu-boost
+    app.kubernetes.io/instance: system
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: namespace
+    app.kubernetes.io/part-of: kube-startup-cpu-boost
+    control-plane: controller-manager
+  name: kube-startup-cpu-boost-system
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.16.3
+  name: startupcpuboosts.autoscaling.x-k8s.io
+spec:
+  group: autoscaling.x-k8s.io
+  names:
+    kind: StartupCPUBoost
+    listKind: StartupCPUBoostList
+    plural: startupcpuboosts
+    singular: startupcpuboost
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: StartupCPUBoost is the Schema for the startupcpuboosts API
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          selector:
+            description: |-
+              A label selector is a label query over a set of resources. The result of matchLabels and
+              matchExpressions are ANDed. An empty label selector matches all objects. A null
+              label selector matches no objects.
+            properties:
+              matchExpressions:
+                description: matchExpressions is a list of label selector requirements.
+                  The requirements are ANDed.
+                items:
+                  description: |-
+                    A label selector requirement is a selector that contains values, a key, and an operator that
+                    relates the key and values.
+                  properties:
+                    key:
+                      description: key is the label key that the selector applies
+                        to.
+                      type: string
+                    operator:
+                      description: |-
+                        operator represents a key's relationship to a set of values.
+                        Valid operators are In, NotIn, Exists and DoesNotExist.
+                      type: string
+                    values:
+                      description: |-
+                        values is an array of string values. If the operator is In or NotIn,
+                        the values array must be non-empty. If the operator is Exists or DoesNotExist,
+                        the values array must be empty. This array is replaced during a strategic
+                        merge patch.
+                      items:
+                        type: string
+                      type: array
+                      x-kubernetes-list-type: atomic
+                  required:
+                  - key
+                  - operator
+                  type: object
+                type: array
+                x-kubernetes-list-type: atomic
+              matchLabels:
+                additionalProperties:
+                  type: string
+                description: |-
+                  matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels
+                  map is equivalent to an element of matchExpressions, whose key field is "key", the
+                  operator is "In", and the values array contains only "value". The requirements are ANDed.
+                type: object
+            type: object
+            x-kubernetes-map-type: atomic
+          spec:
+            description: StartupCPUBoostSpec defines the desired state of StartupCPUBoost
+            properties:
+              durationPolicy:
+                description: DurationPolicy specifies policies for resource boost
+                  duration
+                properties:
+                  fixedDuration:
+                    description: fixed time duration policy
+                    properties:
+                      unit:
+                        description: unit of time for a fixed time policy
+                        enum:
+                        - Seconds
+                        - Minutes
+                        type: string
+                      value:
+                        description: duration value for a fixed time policy
+                        format: int64
+                        minimum: 1
+                        type: integer
+                    required:
+                    - unit
+                    - value
+                    type: object
+                  podCondition:
+                    description: podCondition based duration policy
+                    properties:
+                      status:
+                        description: status of a PODCondition to match in a policy
+                        type: string
+                      type:
+                        description: type of a PODCondition to check in a policy
+                        type: string
+                    type: object
+                type: object
+              resourcePolicy:
+                description: ResourcePolicy specifies policies for container resource
+                  increase
+                properties:
+                  containerPolicies:
+                    description: ContainerPolicies specifies resource policies for
+                      the containers
+                    items:
+                      description: |-
+                        ContainerPolicy defines the policy used to determine the target
+                        resources for a container
+                      properties:
+                        containerName:
+                          description: ContainerName specifies the name of container
+                            for a given policy
+                          type: string
+                        fixedResources:
+                          description: |-
+                            FixedResources specifies the CPU resource policy that sets the CPU
+                            resources to the given values
+                          properties:
+                            limits:
+                              anyOf:
+                              - type: integer
+                              - type: string
+                              description: Limits specifies the CPU requests
+                              pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                              x-kubernetes-int-or-string: true
+                            requests:
+                              anyOf:
+                              - type: integer
+                              - type: string
+                              description: Requests specifies the CPU requests
+                              pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                              x-kubernetes-int-or-string: true
+                          required:
+                          - requests
+                          type: object
+                        percentageIncrease:
+                          description: |-
+                            PercentageIncrease specifies the CPU resource policy that increases
+                            CPU resources by the given percentage value
+                          properties:
+                            value:
+                              description: Value specifies the percentage value
+                              format: int64
+                              minimum: 1
+                              type: integer
+                          required:
+                          - value
+                          type: object
+                      required:
+                      - containerName
+                      type: object
+                    minItems: 1
+                    type: array
+                required:
+                - containerPolicies
+                type: object
+            required:
+            - durationPolicy
+            type: object
+          status:
+            description: StartupCPUBoostStatus defines the observed state of StartupCPUBoost
+            properties:
+              activeContainerBoosts:
+                description: |-
+                  activeContainerBoosts is the number of containers which CPU
+                  resources were increased by the StartupCPUBoost and not yet
+                  reverted back to the original values
+                format: int32
+                type: integer
+              conditions:
+                description: |-
+                  Conditions hold the latest available observations of the StartupCPUBoost
+                  current state.
+                items:
+                  description: Condition contains details for one aspect of the current
+                    state of this API Resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        lastTransitionTime is the last time the condition transitioned from one status to another.
+                        This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        message is a human readable message indicating details about the transition.
+                        This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        observedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: |-
+                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
+                        Producers of specific condition types may define expected values and meanings for this field,
+                        and whether the values are considered a guaranteed API.
+                        The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              totalContainerBoosts:
+                description: |-
+                  totalContainerBoosts is the number of containers which CPU
+                  resources were increased by the StartupCPUBoost
+                format: int32
+                type: integer
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kube-startup-cpu-boost
+    app.kubernetes.io/instance: controller-manager-sa
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: serviceaccount
+    app.kubernetes.io/part-of: kube-startup-cpu-boost
+  name: kube-startup-cpu-boost-controller-manager
+  namespace: kube-startup-cpu-boost-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kube-startup-cpu-boost
+    app.kubernetes.io/instance: leader-election-role
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: role
+    app.kubernetes.io/part-of: kube-startup-cpu-boost
+  name: kube-startup-cpu-boost-leader-election-role
+  namespace: kube-startup-cpu-boost-system
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kube-startup-cpu-boost-manager-role
+rules:
+- nonResourceURLs:
+  - /metrics
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - secrets
+  verbs:
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - admissionregistration.k8s.io
+  resources:
+  - mutatingwebhookconfigurations
+  - validatingwebhookconfigurations
+  verbs:
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - autoscaling.x-k8s.io
+  resources:
+  - startupcpuboosts
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - autoscaling.x-k8s.io
+  resources:
+  - startupcpuboosts/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - autoscaling.x-k8s.io
+  resources:
+  - startupcpuboosts/status
+  verbs:
+  - get
+  - patch
+  - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/component: kube-rbac-proxy
+    app.kubernetes.io/created-by: kube-startup-cpu-boost
+    app.kubernetes.io/instance: metrics-reader
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/part-of: kube-startup-cpu-boost
+  name: kube-startup-cpu-boost-metrics-reader
+rules:
+- nonResourceURLs:
+  - /metrics
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/component: kube-rbac-proxy
+    app.kubernetes.io/created-by: kube-startup-cpu-boost
+    app.kubernetes.io/instance: proxy-role
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/part-of: kube-startup-cpu-boost
+  name: kube-startup-cpu-boost-proxy-role
+rules:
+- apiGroups:
+  - authentication.k8s.io
+  resources:
+  - tokenreviews
+  verbs:
+  - create
+- apiGroups:
+  - authorization.k8s.io
+  resources:
+  - subjectaccessreviews
+  verbs:
+  - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kube-startup-cpu-boost
+    app.kubernetes.io/instance: leader-election-rolebinding
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: rolebinding
+    app.kubernetes.io/part-of: kube-startup-cpu-boost
+  name: kube-startup-cpu-boost-leader-election-rolebinding
+  namespace: kube-startup-cpu-boost-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: kube-startup-cpu-boost-leader-election-role
+subjects:
+- kind: ServiceAccount
+  name: kube-startup-cpu-boost-controller-manager
+  namespace: kube-startup-cpu-boost-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kube-startup-cpu-boost
+    app.kubernetes.io/instance: manager-rolebinding
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: clusterrolebinding
+    app.kubernetes.io/part-of: kube-startup-cpu-boost
+  name: kube-startup-cpu-boost-manager-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kube-startup-cpu-boost-manager-role
+subjects:
+- kind: ServiceAccount
+  name: kube-startup-cpu-boost-controller-manager
+  namespace: kube-startup-cpu-boost-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: kube-rbac-proxy
+    app.kubernetes.io/created-by: kube-startup-cpu-boost
+    app.kubernetes.io/instance: proxy-rolebinding
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: clusterrolebinding
+    app.kubernetes.io/part-of: kube-startup-cpu-boost
+  name: kube-startup-cpu-boost-proxy-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kube-startup-cpu-boost-proxy-role
+subjects:
+- kind: ServiceAccount
+  name: kube-startup-cpu-boost-controller-manager
+  namespace: kube-startup-cpu-boost-system
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kube-startup-cpu-boost-webhook-secret
+  namespace: kube-startup-cpu-boost-system
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: kube-rbac-proxy
+    app.kubernetes.io/created-by: kube-startup-cpu-boost
+    app.kubernetes.io/instance: controller-manager-metrics-service
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: service
+    app.kubernetes.io/part-of: kube-startup-cpu-boost
+    control-plane: controller-manager
+  name: kube-startup-cpu-boost-controller-manager-metrics-service
+  namespace: kube-startup-cpu-boost-system
+spec:
+  ports:
+  - name: https
+    port: 8443
+    protocol: TCP
+    targetPort: https
+  selector:
+    control-plane: controller-manager
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: webhook
+    app.kubernetes.io/created-by: kube-startup-cpu-boost
+    app.kubernetes.io/instance: webhook-service
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: service
+    app.kubernetes.io/part-of: kube-startup-cpu-boost
+  name: kube-startup-cpu-boost-webhook-service
+  namespace: kube-startup-cpu-boost-system
+spec:
+  ports:
+  - appProtocol: https
+    port: 443
+    protocol: TCP
+    targetPort: 9443
+  selector:
+    control-plane: controller-manager
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: manager
+    app.kubernetes.io/created-by: kube-startup-cpu-boost
+    app.kubernetes.io/instance: controller-manager
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: deployment
+    app.kubernetes.io/part-of: kube-startup-cpu-boost
+    control-plane: controller-manager
+  name: kube-startup-cpu-boost-controller-manager
+  namespace: kube-startup-cpu-boost-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      control-plane: controller-manager
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: manager
+      labels:
+        control-plane: controller-manager
+    spec:
+      containers:
+      - command:
+        - /manager
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: LEADER_ELECTION
+          value: "true"
+        image: ghcr.io/google/kube-startup-cpu-boost:v0.11.0
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        name: manager
+        ports:
+        - containerPort: 9443
+          name: webhook-server
+          protocol: TCP
+        - containerPort: 8080
+          name: metrics
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - mountPath: /tmp/k8s-webhook-server/serving-certs
+          name: cert
+          readOnly: true
+      securityContext:
+        runAsNonRoot: true
+      serviceAccountName: kube-startup-cpu-boost-controller-manager
+      terminationGracePeriodSeconds: 10
+      volumes:
+      - name: cert
+        secret:
+          defaultMode: 420
+          secretName: kube-startup-cpu-boost-webhook-secret
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: kube-startup-cpu-boost-mutating-webhook-configuration
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: kube-startup-cpu-boost-webhook-service
+      namespace: kube-startup-cpu-boost-system
+      path: /mutate-v1-pod
+  failurePolicy: Ignore
+  name: cpuboost.autoscaling.x-k8s.io
+  namespaceSelector:
+    matchExpressions:
+    - key: app.kubernetes.io/part-of
+      operator: NotIn
+      values:
+      - kube-startup-cpu-boost
+  rules:
+  - apiGroups:
+    - ""
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    resources:
+    - pods
+  sideEffects: None
+  timeoutSeconds: 2
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: kube-startup-cpu-boost-validating-webhook-configuration
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: kube-startup-cpu-boost-webhook-service
+      namespace: kube-startup-cpu-boost-system
+      path: /validate-autoscaling-x-k8s-io-v1alpha1-startupcpuboost
+  failurePolicy: Fail
+  name: vstartupcpuboost.autoscaling.x-k8s.io
+  rules:
+  - apiGroups:
+    - autoscaling.x-k8s.io
+    apiVersions:
+    - v1alpha1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - startupcpuboosts
+  sideEffects: None
