@@ -25,8 +25,9 @@ Master the art of Kubernetes with our feature-packed Kubectl Cheatsheet! This co
 12. [ Port Forward ↔️ ](#portforward)  
 13. [ Create Resources 🏗️ ](#create)
 14. [ Delete Resources 🚮 ](#delete)
-15. [ Contact Information 📧 ](#contact)
-16. [ Feedback Welcome 🌟 ](#feedback)
+15. [ AWS CLI ](#awscli)
+16. [ Contact Information 📧 ](#contact)
+17. [ Feedback Welcome 🌟 ](#feedback)
 
 ---
 <a name="Cluster"></a>  
@@ -580,8 +581,23 @@ kubectl delete all --selector=<key>
   <a href="#tableofcontents">Go to Top ▲</a>
 </p>  
 
-<a name="blogs"></a>    
+<a name="blogs"></a> 
+## 15. To Connect To An EKS Cluster:  
+### a. Using aws CLI:
+```bash
+aws eks --region <region> update-kubeconfig --name <cluster_name>
+```
 
+### b. Using eksctl:
+```bash
+eksctl utils write-kubeconfig --cluster <cluster_name> --region <region>
+```
+---
+
+<p align="center">
+  <a href="#tableofcontents">Go to Top ▲</a>
+</p>  
+<a name="feedback"></a>
 
 ## Contact Information  
 If you have any questions or feedback, feel free to reach out:  
