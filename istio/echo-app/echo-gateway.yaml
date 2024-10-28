@@ -1,0 +1,37 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: echopod-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: edhopodvs
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - echopod-gateway
+  http:
+  - match:
+    - uri:
+        exact: /
+    - uri:
+        exact: /styles.css
+    - uri:
+        exact: /k8s-logo.png
+    route:
+    - destination:
+        host: echo-svc
+        port:
+          number: 80

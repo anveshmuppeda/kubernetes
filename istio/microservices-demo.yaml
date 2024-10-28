@@ -921,7 +921,7 @@ spec:
           value: "9555"
         resources:
           requests:
-            cpu: 1o0m
+            cpu: 100m
             memory: 120Mi
           limits:
             cpu: 300m
