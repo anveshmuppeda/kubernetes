@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: executable-script
+data:
+  executable-script.sh: |
+    #! /bin/sh
+    echo "This script is executable."
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: exit-code-126-fix
+spec:
+  containers:
+  - name: exit-code-126
+    image: alpine:latest
+    command: ["/bin/sh", "-c", "/executable-script.sh"]
+    volumeMounts:
+      - name: script-volume
+        mountPath: /executable-script.sh
+        subPath: executable-script.sh
+  volumes:
+    - name: script-volume
+      configMap:
+        name: executable-script
+        defaultMode: 0500  # Set the permissions to be executable
+  restartPolicy: OnFailure

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: exit-code-134-simulation
+spec:
+  containers:
+  - name: exit-code-134
+    image: python:alpine  # Use a lightweight Python image
+    command: ["python", "-c", "import sys; sys.exit(134)"]  # This simulates a SIGABRT
+  restartPolicy: OnFailure

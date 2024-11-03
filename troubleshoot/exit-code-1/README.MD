@@ -1,79 +1,99 @@
-## Exit Code 1: Application Error Example in Kubernetes
+## Exit Code 1 in Kubernetes
 
-**Scenario**: This example simulates an application error in a Kubernetes pod using a command that will fail intentionally.
+#### What is Exit Code 1?
+Exit Code 1 indicates that the container terminated due to an application error. This error often arises from runtime issues within the application code or misconfigured commands in the Pod specification.
 
-#### YAML Configuration
+#### Why Do We Get This Error?
+Common causes for Exit Code 1 include:
 
-Create a Kubernetes deployment YAML file named `exit-code-1-app-error.yaml`:
+- **Application Errors**: Errors in the application logic, such as unhandled exceptions or logical errors (e.g., division by zero).
+- **Invalid Command**: If the command specified in the Pod configuration fails or points to a non-existent file or directory.
+- **Misconfigured Environment**: Missing or incorrectly set environment variables that the application requires.
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: exit-code-1-app-error
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: exit-code-1-app
-  template:
-    metadata:
-      labels:
-        app: exit-code-1-app
-    spec:
-      containers:
-      - name: exit-code-1-app
-        image: python:alpine3.20  # Use a lightweight Python image
-        command: ["python", "-c", "print('Starting application...'); result = 1 / 0"]  # This will cause a division by zero error
-```
+#### Simulation of Exit Code 1
 
-### Steps to Deploy
+1. **Pod Configuration**:
+   We will create a Kubernetes Pod that runs a Python command that will intentionally fail due to a division by zero.
 
-1. **Apply the Deployment**:
+   **File Name**: `exit-code-1-simulation.yaml`
+   **Configuration**:
+   ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: exit-code-1-simulation
+   spec:
+     containers:
+     - name: exit-code-1-app
+       image: python:alpine3.20  # Use a lightweight Python image
+       command: ["python", "-c", "print('Starting application...'); result = 1 / 0"]  # This will cause a division by zero error
+     restartPolicy: OnFailure
+   ```
+
+2. **Deploy the Simulation**:
+   To deploy the above configuration, run the following command:
    ```bash
-   kubectl apply -f exit-code-1-app-error.yaml
+   kubectl apply -f exit-code-1-simulation.yaml
    ```
 
-2. **Check the Status of the Pod**:
+3. **Expected Outcome**:
+   When you apply this configuration, the Pod will terminate with Exit Code 1 due to the division by zero error in the Python code. You can check the logs with:
    ```bash
-   kubectl get pods
+   kubectl logs exit-code-1-simulation
+   ```
+   The output will indicate the error:
+   ```
+   Starting application...
+   Traceback (most recent call last):
+     File "<string>", line 1, in <module>
+   ZeroDivisionError: division by zero
    ```
 
-3. **Get the Logs of the Pod**:
+#### Fixing Exit Code 1
+
+To resolve the Exit Code 1 error, you should ensure the application logic is correct and does not attempt to divide by zero.
+
+1. **Updated Pod Configuration**:
+   Here’s an updated configuration that ensures the command will execute successfully without causing an error.
+
+   **File Name**: `exit-code-1-fix.yaml`
+   **Configuration**:
+   ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: exit-code-1-fix
+   spec:
+     containers:
+     - name: exit-code-1-app
+       image: python:alpine3.20  # Use a lightweight Python image
+       command: ["python", "-c", "print('Starting application...'); result = 1"]  # Fixed command with no error
+     restartPolicy: OnFailure
+   ```
+
+2. **Deploy the Fix**:
+   To deploy the fixed configuration, run the following command:
    ```bash
-   kubectl logs <pod-name>
+   kubectl apply -f exit-code-1-fix.yaml
    ```
-   Replace `<pod-name>` with the actual name of the pod created by the deployment.
 
-4. **Check the Pod Description**:
+3. **Expected Outcome**:
+   With this configuration, when you apply it and check the logs, you will see the successful execution of the command:
    ```bash
-   kubectl describe pod <pod-name>
+   kubectl logs exit-code-1-fix
    ```
-   In the output, look for the **State** and **Reason** fields, which should indicate that it terminated with exit code 1 due to the application error.
-
-### Understanding the Exit Code
-
-#### Why We Get This Error
-- **Error Type**: The error occurs because the command attempts to perform an invalid operation, specifically a division by zero (`result = 1 / 0`), which raises a `ZeroDivisionError` in Python.
-- **Application Failure**: The application fails and exits with status code **1**, indicating an error occurred during execution.
-
-#### How to Solve This in the Future
-1. **Error Handling**: Implement error handling in your application code. For instance, use try-except blocks in Python to gracefully handle exceptions:
-   ```python
-   try:
-       result = 1 / 0
-   except ZeroDivisionError:
-       print("Error: Division by zero!")
-       exit(1)
+   The output will be:
+   ```
+   Starting application...
    ```
 
-2. **Input Validation**: Always validate inputs and ensure they are appropriate for the operations being performed. This helps prevent situations that could lead to errors.
+#### How to Prevent Exit Code 1 in the Future
+To avoid encountering Exit Code 1 in future deployments, consider the following best practices:
 
-3. **Testing**: Include thorough unit tests and integration tests to catch errors during development before deploying applications to production.
+- **Error Handling in Application Code**: Implement proper error handling and validations in your application to prevent runtime exceptions, such as division by zero.
+- **Code Reviews and Testing**: Conduct thorough code reviews and testing in a staging environment to catch potential errors before deployment.
+- **Use Health Checks**: Implement readiness and liveness probes in your Kubernetes configurations to monitor and restart failing containers automatically.
+- **Logging**: Ensure comprehensive logging within your applications to facilitate debugging in case of errors.
 
-4. **Monitoring and Logging**: Use monitoring and logging solutions to track errors in production environments. This way, you can quickly identify and rectify issues before they affect users.
-
-5. **Graceful Degradation**: Design your application to handle failures gracefully, perhaps by falling back to a safe state or providing useful feedback to users.
-
-### Summary
-This configuration demonstrates how to create a Kubernetes deployment that simulates an application error, leading to an exit code of 1. By understanding the cause of this error and implementing preventative measures, you can enhance the reliability of your applications in the future.  
+#### Conclusion
+Exit Code 1 is a common issue that occurs due to application errors or incorrect commands in Kubernetes Pods. By validating your application logic and ensuring correct command execution, you can minimize the occurrence of this exit code. This guide provided a simulation of the error along with a straightforward fix and strategies to help avoid similar issues in the future.
