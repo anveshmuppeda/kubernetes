@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: exit-code-2-fix
+spec:
+  containers:
+  - name: exit-code-2
+    image: alpine:latest
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "Starting with correct syntax..."
+        if [ 1 -eq 1 ]; then
+          echo "Syntax is correct!"
+        fi
+  restartPolicy: OnFailure  # Do not restart on failure
