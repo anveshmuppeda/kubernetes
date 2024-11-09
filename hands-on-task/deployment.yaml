@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      initContainers:
+        - name: init-container
+          image: busybox
+          command: ["sh", "-c", " sleep 5"]
+          volumeMounts:
+            - name: shared-data
+              mountPath: /mnt/data
+      containers:
+        - name: app-container
+          image: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: shared-data
+              mountPath: /usr/share/nginx/html
+        - name: sidecar-container
+          image: busybox
+          command: ["sh", "-c", "while true; do date; sleep 10; done"]
+          volumeMounts:
+            - name: shared-data
+              mountPath: /mnt/data
+      volumes:
+        - name: shared-data
+          emptyDir: {}
+
+
+# This yaml file will create a deployment with init container and sidercar with your application container(running a simple nginx web server)
+# init container sleep for 5 seconds before the application container starts sidecar container do logs after every 10 seconds 
+#Both sidecar contianer and init conatier are mounted to same volume
