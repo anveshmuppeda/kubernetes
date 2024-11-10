@@ -2,7 +2,7 @@
 A static pod is a type of Kubernetes pod that is not managed by the Kubernetes control plane ,static pod is managed by kubelet  
 
 ### How to define static pods?
-A static pod is defined using a YAML or JSON manifest file, which typically resides in a directory : /etc/kubernetes/manifests on the node. This file contains the configuration for the pod.ku
+A static pod is defined using a YAML or JSON manifest file, which typically resides in a directory : /etc/kubernetes/manifests on the node. This file contains the configuration for the pod
 
 ### Here is an example of configuring a  static pod with readiness and liveliness probes
 ```yaml
