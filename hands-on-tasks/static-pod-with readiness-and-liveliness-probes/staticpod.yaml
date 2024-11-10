@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: static-pod
+  labels:
+    app: static-pod-demo
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+    ports:
+      - containerPort: 80
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: 80
+        scheme: HTTP
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      timeoutSeconds: 2
+      failureThreshold: 3
+    readinessProbe:
+      httpGet:
+        path: /readiness
+        port: 80
+        scheme: HTTP
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      timeoutSeconds: 2
+      failureThreshold: 3
