@@ -38,7 +38,7 @@ spec:
       failureThreshold: 3
 ```
 
-# This file would be placed in /etc/kubernetes/manifests/static-pod.yaml on the node where you want the static pod to run.
+ This file would be placed in /etc/kubernetes/manifests/static-pod.yaml on the node where you want the static pod to run.
   
 ### Conclusion
    Static pods are often used for the essential system components that must always run, such as the kube-apiserver, etcd, and other internal services in a Kubernetes cluster. 
