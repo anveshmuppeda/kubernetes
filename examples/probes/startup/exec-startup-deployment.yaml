@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exec-startup-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exec-app
+  template:
+    metadata:
+      labels:
+        app: exec-app
+    spec:
+      containers:
+      - name: exec-app
+        image: busybox
+        args:
+        - /bin/sh
+        - -c
+        - |
+          touch /tmp/startup; sleep 10; rm -f /tmp/startup; sleep 600
+        startupProbe:
+          exec:
+            command:
+            - cat
+            - /tmp/startup
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 5

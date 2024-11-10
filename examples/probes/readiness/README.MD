@@ -62,7 +62,7 @@ spec:
         - containerPort: 80
         readinessProbe:
           httpGet:
-            path: /healthz
+            path: /
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 10
