@@ -1,10 +1,10 @@
-### OBJECTIVE
- #  Deploy a DaemonSet that runs a monitoring agent (e.g., Fluentd) on     specific nodes based on node labels. Configure resource limits to control CPU and memory usage.
+## OBJECTIVE
+   Deploy a DaemonSet that runs a monitoring agent (e.g., Fluentd) on     specific nodes based on node labels. Configure resource limits to control CPU and memory usage.
 
 ### What is a daemonset?
+A DaemonSet in Kubernetes is a resource that ensures a copy of a specific pod is run on every node (or a subset of nodes) in the cluster. DaemonSets are useful for deploying system-level or infrastructure-related services that need to run on every node in the cluster, such as log collectors, monitoring agents, network proxies, or storage drivers.
 
-
-## In this example you have to use a cluster with at least two nodes that are not acting as control plane hosts
+# In this example you have to use a cluster with at least two nodes that are not acting as control plane hosts
 
    # To determine the nodes run
 ```bash
@@ -67,5 +67,5 @@ kubectl get pods -o wide
 ```
 ## The output shows you that your pod is running on the node with have label agent:monitor    
 
-### Conclusion
- ## If you want to run monitoring agent on each node along side with your application container then daemonset is the best choice and if you set node affinity your monitoring agent will run only on those nodes which you have defined and set resource quota for containers how much cpu and memorey they have to use to complete their job
+## Conclusion
+  If you want to run monitoring agent on each node along side with your application container then daemonset is the best choice and if you set node affinity your monitoring agent will run only on those nodes which you have defined and set resource quota for containers how much cpu and memorey they have to use to complete their job
