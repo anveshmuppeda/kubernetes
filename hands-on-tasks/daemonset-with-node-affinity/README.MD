@@ -19,8 +19,8 @@ kubectl get nodes
   ```bash
   kubectl get nodes --show-labels
   ```
-# Once you set the label to the nodes create a daemon set and add labels (which you set in your node) in the nodeselector: field in daemonset spec section 
-# This yaml file will create a daemonset with a monitoring agent fluentd to run on the nodes which have label agent:monitor and have a resource quota limit    
+ Once you set the label to the nodes create a daemon set and add labels (which you set in your node) in the nodeselector: field in daemonset spec section 
+ This yaml file will create a daemonset with a monitoring agent fluentd to run on the nodes which have label agent:monitor and have a resource quota limit    
   
   ```yaml
 apiVersion: apps/v1
@@ -57,15 +57,15 @@ spec:
             memory: "128Mi"
             cpu: "500m"
 ```
-## To implement this run:
+# To implement this run:
  ```bash
    kubectl apply -f daemonset.yaml
    ```
-## To check your pod is running on the nodes which have label agent:monitor run:
+# To check your pod is running on the nodes which have label agent:monitor run:
 ```bash
 kubectl get pods -o wide
 ```
-## The output shows you that your pod is running on the node with have label agent:monitor    
+# The output shows you that your pod is running on the node with have label agent:monitor    
 
 ## Conclusion
   If you want to run monitoring agent on each node along side with your application container then daemonset is the best choice and if you set node affinity your monitoring agent will run only on those nodes which you have defined and set resource quota for containers how much cpu and memorey they have to use to complete their job
