@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tcp-readiness-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tcp-nginx
+  template:
+    metadata:
+      labels:
+        app: tcp-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10

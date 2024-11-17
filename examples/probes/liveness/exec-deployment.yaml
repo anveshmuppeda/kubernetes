@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exec-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exec-app
+  template:
+    metadata:
+      labels:
+        app: exec-app
+    spec:
+      containers:
+      - name: exec-app
+        image: busybox
+        args:
+        - /bin/sh
+        - -c
+        - |
+          touch /tmp/healthy; sleep 10; rm -f /tmp/healthy; sleep 600
+        livenessProbe:
+          exec:
+            command:
+            - cat
+            - /tmp/healthy
+          initialDelaySeconds: 5
+          periodSeconds: 10
