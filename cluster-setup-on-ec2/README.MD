@@ -2,6 +2,7 @@
 
 This guide demonstrates how to set up a Kubernetes cluster with one control plane and one worker node on AWS EC2 instances. It covers EC2 instance configuration, Kubernetes installation, and deploying a sample application.
 
+![Kubernetes Cluster Setup](./k8s-cluster-setup.png)
 ### Introduction  
 Kubernetes has become the backbone of modern container orchestration, making it essential for developers and system administrators alike. Setting up a Kubernetes cluster can seem daunting, but with tools like kubeadm, it's more straightforward than ever.
 
