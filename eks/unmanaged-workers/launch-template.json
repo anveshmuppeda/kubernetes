@@ -1,0 +1,16 @@
+{
+    "ImageId": "ami-0b831bfe98b29906c",
+    "InstanceType": "t3.medium",
+    "UserData": "userdatabase64=",
+    "SecurityGroupIds": ["sg-01003b2955faeff54"],
+    "KeyName": "eksWorkerKey",
+    "IamInstanceProfile": {
+        "Name": "UnManagedNodeGroup_EKS_Instance_Profile"
+    },
+    "PrivateDnsNameOptions": {
+        "EnableResourceNameDnsARecord": true
+    },
+    "Monitoring": {
+        "Enabled": true
+    }
+}
