@@ -2,6 +2,8 @@
 ## **Step-by-Step Tutorial with Troubleshooting Tips**  
 
 Medium Blog Link: [⎈ Hands-On Guide to Creating an Amazon EKS Cluster with Self-Managed Worker Nodes ⎈](https://medium.com/@muppedaanvesh/hands-on-guide-to-creating-an-amazon-eks-cluster-with-self-managed-worker-nodes-fad026c34482)
+
+![EKS UnManaged Worker Nodes](./eks.unmanagedworkers.png)
 ---
 
 ### **Introduction**  
