@@ -82,8 +82,8 @@ In this guide, you’ll learn to:
    # Example
    aws eks create-cluster \
      --name Manged-EKS-Cluster-Demo \
-     --role-arn arn:aws:iam::463470985368:role/ManagedEKSClusterRole \
-     --resources-vpc-config subnetIds=subnet-07c52409a81459e92,subnet-02403219a42dbe1ea
+     --role-arn arn:aws:iam::1234567890:role/ManagedEKSClusterRole \
+     --resources-vpc-config subnetIds=subnet-12345678,subnet-12345678
    ```  
    - Replace `<AWS-Account-ID>` with your account ID (find it via `aws sts get-caller-identity`).  
    - Use **public subnets** from your VPC.  
