@@ -1,4 +1,4 @@
-# **"Getting Started with AWS EKS Fargate: A Complete Guide to Serverless Kubernetes"**  
+# **Getting Started with AWS EKS Fargate: A Complete Guide to Serverless Kubernetes**  
 ## **"Deploy Serverless Containers on EKS with Fargate Profiles – Step-by-Step Tutorial"**  
 
 ---
