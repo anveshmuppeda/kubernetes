@@ -110,17 +110,21 @@ Amazon Elastic Kubernetes Service (EKS) simplifies Kubernetes cluster management
    *Output*: `No resources found` (no nodes yet).  
 
 #### Retrieve Cluster Details  
-3.1 Get Cluster API Endpoint  
-```bash
-EKS_CLUSTER_API=$(aws eks describe-cluster --name UnManagedNodeGroup-Demo --query "cluster.endpoint" --output text)
-```
-3.2 Get Cluster CA Certificate  
-```bash
-EKS_CLUSTER_CA=$(aws eks describe-cluster --name UnManagedNodeGroup-Demo --query "cluster.certificateAuthority.data" --output text)
-```
-3.3 Get Kubernetes Service kubedns/coredns IP  
-fetch the kubedns/coredns IP as per your cluster from the service running in the kube-system namespace , in my cluster it was 172.20.0.10.
+  3.1 Get Cluster API Endpoint  
+  ```bash
+  EKS_CLUSTER_API=$(aws eks describe-cluster --name UnManagedNodeGroup-Demo --query "cluster.endpoint" --output text)
+  ```
+  3.2 Get Cluster CA Certificate  
+  ```bash
+  EKS_CLUSTER_CA=$(aws eks describe-cluster --name UnManagedNodeGroup-Demo --query "cluster.certificateAuthority.data" --output text)
+  ```
+  3.3 Get Kubernetes Service kubedns/coredns IP  
+  fetch the kubedns/coredns IP as per your cluster from the service running in the kube-system namespace , in my cluster it was 172.20.0.10.
 
+  3.4 Get the max number of running pods in your cluster 
+  you can use the below link to get max number of pods for your instance type  
+  https://github.com/awslabs/amazon-eks-ami/blob/main/templates/shared/runtime/eni-max-pods.txt  
+  in my case 17 for t3.medium  
 
 ---
 
@@ -201,55 +205,55 @@ fetch the kubedns/coredns IP as per your cluster from the service running in the
    ```  
 
 3. **Generate User Data for Worker Nodes**  
-Create userdata.tx  
-```sh
-cat <<EOF | base64 -w0 > userdata.txt
-MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="==UserDataEnd=="
+    Create userdata.tx  
+    ```sh
+    cat <<EOF | base64 -w0 > userdata.txt
+    MIME-Version: 1.0
+    Content-Type: multipart/mixed; boundary="==UserDataEnd=="
 
---==UserDataEnd==
-Content-Type: text/x-shellscript; charset="us-ascii"
+    --==UserDataEnd==
+    Content-Type: text/x-shellscript; charset="us-ascii"
 
-#!/bin/bash
+    #!/bin/bash
 
-set -ex
+    set -ex
 
-EKS_CLUSTER_API="Value of EKS_CLUSTER_API"
-EKS_CLUSTER_CA="value of EKS_CLUSTER_CA"
-EKS_CLUSTER_DNS_IP="172.20.0.10 or update with your ip"
+    EKS_CLUSTER_API="Value of EKS_CLUSTER_API"
+    EKS_CLUSTER_CA="value of EKS_CLUSTER_CA"
+    EKS_CLUSTER_DNS_IP="172.20.0.10 or update with your ip"
 
-/etc/eks/bootstrap.sh UnManagedNodeGroup-Demo \\
-  --apiserver-endpoint "\$EKS_CLUSTER_API" \\
-  --b64-cluster-ca "\$EKS_CLUSTER_CA" \\
-  --dns-cluster-ip "\$EKS_CLUSTER_DNS_IP" \\
-  --container-runtime containerd \\
-  --kubelet-extra-args '--max-pods=17' \\
-  --use-max-pods false
+    /etc/eks/bootstrap.sh <EKS-ClusterName> \\
+    --apiserver-endpoint "\$EKS_CLUSTER_API" \\
+    --b64-cluster-ca "\$EKS_CLUSTER_CA" \\
+    --dns-cluster-ip "\$EKS_CLUSTER_DNS_IP" \\
+    --container-runtime containerd \\
+    --kubelet-extra-args '--max-pods=17' \\
+    --use-max-pods false
 
---==UserDataEnd==--
-EOF
-```  
+    --==UserDataEnd==--
+    EOF
+    ```  
 4. **Create a LaunchTemplate.json:**  
-```sh
-cat <<EOF > launch-template.json
-{
-    "ImageId": "Update AMI ID which from above section",
-    "InstanceType": "t3.medium or other",
-    "UserData": "value from above userdata.txt file",
-    "SecurityGroupIds": ["<Worker Node SG ID which we created above>"],
-    "KeyName": "eksWorkerKey to ssh into workers",
-    "IamInstanceProfile": {
-        "Name": "UnManagedNodeGroup_EKS_Instance_Profile or update with your profilename"
-    },
-    "PrivateDnsNameOptions": {
-        "EnableResourceNameDnsARecord": true
-    },
-    "Monitoring": {
-        "Enabled": true
+    ```sh
+    cat <<EOF > launch-template.json
+    {
+        "ImageId": "Update AMI ID which from above section",
+        "InstanceType": "t3.medium or other",
+        "UserData": "value from above userdata.txt file",
+        "SecurityGroupIds": ["<Worker Node SG ID which we created above>"],
+        "KeyName": "eksWorkerKey to ssh into workers",
+        "IamInstanceProfile": {
+            "Name": "UnManagedNodeGroup_EKS_Instance_Profile or update with your profilename"
+        },
+        "PrivateDnsNameOptions": {
+            "EnableResourceNameDnsARecord": true
+        },
+        "Monitoring": {
+            "Enabled": true
+        }
     }
-}
-EOF
-``` 
+    EOF
+    ``` 
 Note: Update all the value and run the above to create launchTemplate.json file  
 
 5. **Now create the launch template using the above json file**:  

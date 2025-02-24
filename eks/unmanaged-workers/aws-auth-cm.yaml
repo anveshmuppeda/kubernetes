@@ -5,9 +5,8 @@ metadata:
   namespace: kube-system
 data:
   mapRoles: |
-    - rolearn: arn:aws:iam::463470985368:role/EKS_UnManagedNodeGroup_Role_Demo
+    - rolearn: arn:aws:iam::124567890:role/EKS_UnManagedNodeGroup_Role_Demo
       username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers
         - system:nodes
-        - eks-console-dashboard-full-access-group

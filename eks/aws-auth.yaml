@@ -9,15 +9,14 @@ data:
       - system:bootstrappers
       - system:nodes
       - system:node-proxier
-      rolearn: arn:aws:iam::472901755127:role/EKSFargatePodExecutionRole-CF-my-eks-fargate-cluster
+      rolearn: arn:aws:iam::124567890:role/EKSFargatePodExecutionRole-CF-my-eks-fargate-cluster
       username: system:node:{{SessionName}}
-    - rolearn: arn:aws:iam::472901755127:role/ec2-eks-admin-role
+    - rolearn: arn:aws:iam::124567890:role/ec2-eks-admin-role
       username: bastionuser
       groups:
       - system:masters
-      - eks-console-dashboard-full-access-group
   mapUsers: |
-    - userarn: arn:aws:iam::472901755127:user/test
+    - userarn: arn:aws:iam::124567890:user/test
       username: test
       groups:
       - system:bootstrappers
