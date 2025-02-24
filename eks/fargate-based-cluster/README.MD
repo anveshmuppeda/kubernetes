@@ -1,5 +1,9 @@
-# **Getting Started with AWS EKS Fargate: A Complete Guide to Serverless Kubernetes**  
+# **⎈ A Hands-On Guide to AWS EKS Fargate Cluster 🛠️**  
 ## **"Deploy Serverless Containers on EKS with Fargate Profiles – Step-by-Step Tutorial"**  
+
+Medium Blog Link: [⎈ Hands-On Guide to Creating an Amazon EKS Cluster with Self-Managed Worker Nodes ⎈](https://medium.com/@muppedaanvesh/hands-on-guide-to-creating-an-amazon-eks-cluster-with-self-managed-worker-nodes-fad026c34482)
+
+![EKS Fargate Cluster](./eks.fargateManaged.png)  
 
 ---
 
