@@ -1,4 +1,4 @@
-# ** Hands-On Guide  to Creating an Amazon EKS Cluster with Managed Node Groups**  
+# **Hands-On Guide  to Creating an Amazon EKS Cluster with Managed Node Groups**  
 ## **Simplify Kubernetes Operations with AWS-Managed Worker Nodes**  
 
 Medium Blog Link: [⎈ Hands-On Guide to Creating an Amazon EKS Cluster with Self-Managed Worker Nodes ⎈](https://medium.com/@muppedaanvesh/hands-on-guide-to-creating-an-amazon-eks-cluster-with-self-managed-worker-nodes-fad026c34482)
