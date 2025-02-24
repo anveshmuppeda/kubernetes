@@ -124,8 +124,8 @@ The following create-fargate-profile example creates an EKS Fargate Profile for 
   aws eks create-fargate-profile \
     --cluster-name FargateEKSClusterDemo \
     --fargate-profile-name demo-fargate-profile \
-    --pod-execution-role-arn arn:aws:iam::463470985368:role/EKSFargatePodExecutionRole \
-    --subnets subnet-0306cf3e80e146e92 \
+    --pod-execution-role-arn arn:aws:iam::1234567890:role/EKSFargatePodExecutionRole \
+    --subnets subnet-1234567890 \
     --selectors '[{"namespace": "fargate-ns"},{"namespace": "kube-system"}]'  # Target pods in this namespace
   
   ```  
