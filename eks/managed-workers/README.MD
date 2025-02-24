@@ -162,10 +162,10 @@ In this guide, you’ll learn to:
 
 ---
 
-### **Step 5: Launch SManaged Worker Nodes**  
+### **Step 5: Launch Managed Worker Nodes**  
 **Why?** Worker nodes run your Kubernetes pods.  
 
-6. **Create an Cluster Node Group**:  
+1. **Create an Cluster Node Group**:  
     ```bash
     # General Command
     > aws eks create-nodegroup \
@@ -202,11 +202,11 @@ In this guide, you’ll learn to:
 
 ---
 
-### **Step 6: AVerify Node Group Status**  
+### **Step 6: Verify Node Group Status**  
 **Why?** Nodes need RBAC permissions to register with the control plane.  
 
 1. **Verify the `aws-auth` ConfigMap**:  
-  Above node group creation command automatically added our Worker Node Role to aws-auth configmap.
+  Above node group creation command automatically added our Worker Node Role to aws-auth configmap since it is eks managed worker node group.
   ```yaml
   > kubectl get cm aws-auth -n kube-system -o yaml
   apiVersion: v1
