@@ -215,7 +215,7 @@ In this guide, you’ll learn to:
       - groups:
         - system:bootstrappers
         - system:nodes
-        rolearn: arn:aws:iam::463470985368:role/ManagedEKSNodeGroupRole
+        rolearn: arn:aws:iam::1234567890:role/ManagedEKSNodeGroupRole
         username: system:node:{{EC2PrivateDNSName}}
   kind: ConfigMap
   metadata:
