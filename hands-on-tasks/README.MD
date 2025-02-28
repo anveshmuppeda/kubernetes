@@ -16,7 +16,7 @@ Solution:[TASK 2 Solution](https://github.com/terrtt/kubernetes/tree/main/hands-
  ### TASK 3 (Static pods with readiness and liveliness probes)
   In this example you will learn how  to configure a staic pods with readiness and liveliness probes
    <br>
-Solution:[TASK 3 Solution](hands-on-tasks/static-pod-with-readiness-and-liveliness-probes) 
+Solution:[TASK 3 Solution](https://github.com/terrtt/kubernetes/tree/main/hands-on-tasks/static-pod-with-readiness-and-liveliness-probes) 
 
  ### TASK 4 (Network policy to control traffic)
  In this example you will learn how to Set up a Kubernetes NetworkPolicy to restrict communication between pods in different namespaces. This will introduce you to Kubernetes networking and security controls. 
