@@ -3,7 +3,7 @@
 ### TASK 1 (Daemonset with node affinit) 
  Deploy a DaemonSet that runs a monitoring agent (e.g., Fluentd) on specific nodes based on node labels. Configure resource limits to control CPU and memory usage.
  <br>
- Solution:[TASK 1 Solution](hands-on-tasks/daemonset-with-node-affinity)
+ Solution:[TASK 1 Solution](https://github.com/terrtt/kubernetes/tree/main/hands-on-tasks/daemonset-with-node-affinity)
 
 
 
