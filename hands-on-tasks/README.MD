@@ -21,4 +21,4 @@ Solution:[TASK 3 Solution](https://github.com/terrtt/kubernetes/tree/main/hands-
  ### TASK 4 (Network policy to control traffic)
  In this example you will learn how to Set up a Kubernetes NetworkPolicy to restrict communication between pods in different namespaces. This will introduce you to Kubernetes networking and security controls. 
 <br>
-Solution:[TASK 4 Solution](hands-on-tasks/Network-Policy-to-Control-Traffic)
+Solution:[TASK 4 Solution](https://github.com/terrtt/kubernetes/tree/main/hands-on-tasks/Network-Policy-to-Control-Traffic)
