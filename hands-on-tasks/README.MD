@@ -10,7 +10,7 @@
  ### TASK 2 (Deployment with sidecar and init containers)
  In this simple example you will learn how to create a deployment with init and sidecar container 
 <br>
-Solution:[TASK 2 Solution](hands-on-tasks/deployment-with-init-and-sidecar-container)
+Solution:[TASK 2 Solution](https://github.com/terrtt/kubernetes/tree/main/hands-on-tasks/deployment-with-init-and-sidecar-container)
 
 
  ### TASK 3 (Static pods with readiness and liveliness probes)
