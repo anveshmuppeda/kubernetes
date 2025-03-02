@@ -20,7 +20,7 @@
    - [Step 1: Create MiniDocker (Go Program)](#step-1-create-minidocker-go-program)  
    - [Step 2: Build MiniDocker (Go Program)](#step-2-build-minidocker-go-program)  
    - [Step 3: Pull Image Using MiniDocker](#step-3-pull-image-using-minidocker)  
-   - [Step 4: Run Image Using MiniDocker](#step-4-run-image-using-minidocker)  
+   - [Step 4: Run Container Using MiniDocker](#step-4-run-container-using-minidocker)  
 5. [Limitations](#limitations)  
 6. [Conclusion](#conclusion)  
 7. [Appendix](#appendix)  
@@ -327,8 +327,44 @@ go build minidocker.go
 ```  
 
 ### **Step 3: Pull Image Using MiniDocker**  
+```bash
+./minidocker pull nginx
+```  
 
-### **Step 4: Run Image Using MiniDocker**  
+1. Creates ./imagesource/nginx-root  
+2. Uses Docker to pull image and export its filesystem  
+3. Extracts files to nginx-root  
+
+### **Step 4: Run Container Using MiniDocker**  
+```bash
+sudo ./minidocker run nginx /usr/sbin/nginx
+````  
+
+1. Creates temporary copy of nginx-root  
+    ```bash
+    $ ls /tmp/minidocker-2945932407
+    bin  boot  dev  docker-entrypoint.d  docker-entrypoint.sh  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+    ```
+2. Creates essential device files (/dev/null)  
+3. Runs command in chroot environment  
+
+### **Step 5: Usage Example**   
+```bash
+# Pull NGINX image
+./minidocker pull nginx
+
+# Run NGINX server (requires sudo for chroot)
+sudo ./minidocker run nginx /usr/sbin/nginx
+
+# Verify it's running
+curl localhost:80
+
+# Check processes
+ps aux | grep nginx
+
+# Stop server
+sudo pkill nginx
+```
 
 ---
 
@@ -366,12 +402,18 @@ sudo mknod -m 666 nginx_root/dev/null c 1 3
 
 # Run MiniDocker
 go build minidocker.go
-sudo ./minidocker
+# Pull NGINX image
+./minidocker pull nginx
 
-# Check if running
+# Run NGINX server (requires sudo for chroot)
+sudo ./minidocker run nginx /usr/sbin/nginx
+
+# Verify it's running
+curl localhost:80
+
+# Check processes
 ps aux | grep nginx
-sudo netstat -tulpn | grep nginx
 
-# Stop NGINX
+# Stop server
 sudo pkill nginx
 ```  
