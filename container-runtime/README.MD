@@ -29,7 +29,7 @@
 ---
 
 ## **1. Introduction**  
-Why This Guide?
+### Why This Guide?  
 Containers are everywhere, but most explanations stop at calling them "lightweight VMs" or "isolated processes." This leaves developers wondering:
 
 * How do containers actually isolate filesystems?
@@ -38,13 +38,13 @@ Containers are everywhere, but most explanations stop at calling them "lightweig
 
 This guide bridges the gap between theory and practice. Instead of abstract concepts, we’ll build a minimalist container runtime using chroot, a 40-year-old Linux feature. By the end, you’ll see containers not as magic, but as clever combinations of Linux primitives.  
 
-What is the Use of This Guide?  
+### What is the Use of This Guide?  
 1. Demystify Containers: Learn how Docker isolates filesystems using chroot and why tools like runc exist.  
 2. Hands-On Learning: Run NGINX in a chroot jail and build your own MiniDocker runtime in Go.
 3. Debugging Skills: Understand container internals to troubleshoot issues like missing files or ports.
 4. Foundation for Advanced Topics: Grasp the basics before diving into Kubernetes, serverless, or edge computing.
 
-Who is this for?
+### Who is this for?
 
 1. Developers curious about container internals.
 2. DevOps engineers who want to debug containers effectively.
