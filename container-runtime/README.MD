@@ -21,7 +21,7 @@
    - [Step 2: Build MiniDocker (Go Program)](#step-2-build-minidocker-go-program)  
    - [Step 3: Pull Image Using MiniDocker](#step-3-pull-image-using-minidocker)  
    - [Step 4: Run Container Using MiniDocker](#step-4-run-container-using-minidocker)  
-   - [Step 5: Usage Example](#step-4-usage-example)  
+   - [Step 5: Usage Example](#step-5-usage-example)  
 5. [Limitations](#limitations)  
 6. [Conclusion](#conclusion)  
 7. [Appendix](#appendix)  
@@ -29,7 +29,26 @@
 ---
 
 ## **1. Introduction**  
-Docker has revolutionized software development, but its core concepts are often misunderstood. In this guide, we’ll demystify containers by building **MiniDocker**, a minimalist runtime using `chroot`, and explain how Docker itself works under the hood.
+Why This Guide?
+Containers are everywhere, but most explanations stop at calling them "lightweight VMs" or "isolated processes." This leaves developers wondering:
+
+* How do containers actually isolate filesystems?
+* What happens when you run docker run nginx?
+* Could I build something like Docker myself?
+
+This guide bridges the gap between theory and practice. Instead of abstract concepts, we’ll build a minimalist container runtime using chroot, a 40-year-old Linux feature. By the end, you’ll see containers not as magic, but as clever combinations of Linux primitives.  
+
+What is the Use of This Guide?  
+1. Demystify Containers: Learn how Docker isolates filesystems using chroot and why tools like runc exist.  
+2. Hands-On Learning: Run NGINX in a chroot jail and build your own MiniDocker runtime in Go.
+3. Debugging Skills: Understand container internals to troubleshoot issues like missing files or ports.
+4. Foundation for Advanced Topics: Grasp the basics before diving into Kubernetes, serverless, or edge computing.
+
+Who is this for?
+
+1. Developers curious about container internals.
+2. DevOps engineers who want to debug containers effectively.
+3. Tech enthusiasts who enjoy "building from scratch."
 
 ---
 
