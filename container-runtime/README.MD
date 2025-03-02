@@ -11,9 +11,16 @@
    - [Step 1: Pull and Extract NGINX Files](#step-1-pull-and-extract-nginx-files)  
    - [Step 2: Fix Missing System Files](#step-2-fix-missing-system-files)  
    - [Step 3: Run NGINX in a `chroot` Jail](#step-3-run-nginx-in-a-chroot-jail)  
-   - [Step 4: Create MiniDocker (Go Program)](#step-4-create-minidocker-go-program)  
-   - [Step 5: Check if NGINX Is Running](#step-5-check-if-nginx-is-running)  
-   - [Step 6: Stop NGINX](#step-6-stop-nginx)  
+   - [Step 4: Check if NGINX Is Running](#step-5-check-if-nginx-is-running)  
+   - [Step 5: Check Which Port NGINX Is Using](#step-6-check-which-port-nginx-is-using)  
+   - [Step 6: Check Which Filesystem NGINX Is Using](#step-7-check-which-filesystem-nginx-is-using)  
+   - [Step 7: Connect to New Filesystem and Run Some Basic Commands](#step-6-connect-to-new-filesystem-and-run-some-basic-commands)  
+   - [Step 8: Stop the NGINX Service](#step-6-stop-the-nginx-service)  
+5. [Create MiniDocker](#create-minidocker)  
+   - [Step 1: Create MiniDocker (Go Program)](#step-1-create-minidocker-go-program)  
+   - [Step 2: Build MiniDocker (Go Program)](#step-2-build-minidocker)  
+   - [Step 3: Pull Image Using MiniDocker](#step-3-pull-image-using-minidocker)  
+   - [Step 4: Run Image Using MiniDocker](#step-4-run-image-using-minidocker)  
 5. [Limitations](#limitations)  
 6. [Conclusion](#conclusion)  
 7. [Appendix](#appendix)  
@@ -104,6 +111,88 @@ sudo chroot /tmp/nginx_root /usr/sbin/nginx
 
 ---
 
+### **Step 4: Check If NGINX Is Running**
+#### **Method 1: Use `ps`**
+```bash
+ps aux | grep nginx
+```
+- **Output**:  
+  ```
+  root     12345  0.0  0.1  12345  6789 ?        S    12:34   0:00 /usr/sbin/nginx
+  ```
+  - The process ID (PID) here is `12345`.
+
+#### **Method 2: Use `pgrep`**
+```bash
+pgrep nginx
+```
+- **Output**:  
+  ```
+  12345
+  ```
+
+### **Step 5: Check Which Port NGINX Is Using**
+NGINX uses **port 80** by default. To confirm:
+#### **Method 1: Use `netstat`**
+```bash
+sudo netstat -tulpn | grep nginx
+```
+- **Output**:  
+  ```
+  tcp   0    0 0.0.0.0:80    0.0.0.0:*    LISTEN    12345/nginx
+  ```
+  - `0.0.0.0:80` means NGINX is listening on **port 80**.
+
+#### **Method 2: Use `ss` (modern alternative to `netstat`)**  
+```bash
+sudo ss -tulpn | grep nginx
+```
+
+
+### **Step 6: Check Which Filesystem NGINX Is Using**
+#### **Step 1: Find the Process’s Root Directory**
+```bash
+ls -l /proc/12345/root
+```
+- **Output**:  
+  ```
+  lrwxrwxrwx 1 root root 0 Oct 31 12:34 /proc/12345/root -> /path/to/nginx_root
+  ```
+  - This shows the process is using `/path/to/nginx_root` as its root (`/`).
+
+#### **Step 2: Inspect Files Inside the Jail**
+```bash
+sudo chroot /path/to/nginx_root /bin/sh
+# Inside the jail:
+ls /etc/nginx/nginx.conf  # View config file
+exit
+```
+
+### **Step 7: Connect to New Filesystem and Run Some Basic Commands**  
+```bash
+chroot nginx_root /bin/sh
+# service nginx status
+nginx is running.
+# 
+# ls
+bin  boot  dev	docker-entrypoint.d  docker-entrypoint.sh  etc	home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+#
+```  
+
+### **Step 8. Stop the NGINX Service**
+#### **Method 1: Kill by PID**
+```bash
+sudo kill 12345
+```
+
+#### **Method 2: Kill by Name**
+```bash
+sudo pkill nginx
+```
+
+
+---
+
 ### **Step 4: Create MiniDocker (Go Program)**  
 Automate this with a Go program named `minidocker.go`:  
 
@@ -145,88 +234,6 @@ func main() {
 go build minidocker.go
 sudo ./minidocker
 ```  
-
----
-
-## **1. Check If NGINX Is Running**
-#### **Method 1: Use `ps`**
-```bash
-ps aux | grep nginx
-```
-- **Output**:  
-  ```
-  root     12345  0.0  0.1  12345  6789 ?        S    12:34   0:00 /usr/sbin/nginx
-  ```
-  - The process ID (PID) here is `12345`.
-
-#### **Method 2: Use `pgrep`**
-```bash
-pgrep nginx
-```
-- **Output**:  
-  ```
-  12345
-  ```
-
-### **2. Check Which Port NGINX Is Using**
-NGINX uses **port 80** by default. To confirm:
-#### **Method 1: Use `netstat`**
-```bash
-sudo netstat -tulpn | grep nginx
-```
-- **Output**:  
-  ```
-  tcp   0    0 0.0.0.0:80    0.0.0.0:*    LISTEN    12345/nginx
-  ```
-  - `0.0.0.0:80` means NGINX is listening on **port 80**.
-
-#### **Method 2: Use `ss` (modern alternative to `netstat`)**  
-```bash
-sudo ss -tulpn | grep nginx
-```
-
-
-### **3. Check Which Filesystem NGINX Is Using**
-#### **Step 1: Find the Process’s Root Directory**
-```bash
-ls -l /proc/12345/root
-```
-- **Output**:  
-  ```
-  lrwxrwxrwx 1 root root 0 Oct 31 12:34 /proc/12345/root -> /path/to/nginx_root
-  ```
-  - This shows the process is using `/path/to/nginx_root` as its root (`/`).
-
-#### **Step 2: Inspect Files Inside the Jail**
-```bash
-sudo chroot /path/to/nginx_root /bin/sh
-# Inside the jail:
-ls /etc/nginx/nginx.conf  # View config file
-exit
-```
-
-### **4. Connect to New Filesystem and Run Some Basic Commands**  
-```bash
-chroot nginx_root /bin/sh
-# service nginx status
-nginx is running.
-# 
-# ls
-bin  boot  dev	docker-entrypoint.d  docker-entrypoint.sh  etc	home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
-#
-```  
-
-### **5. Stop the NGINX Service**
-#### **Method 1: Kill by PID**
-```bash
-sudo kill 12345
-```
-
-#### **Method 2: Kill by Name**
-```bash
-sudo pkill nginx
-```
-
 
 ---
 
