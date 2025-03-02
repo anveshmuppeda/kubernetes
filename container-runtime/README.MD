@@ -21,6 +21,7 @@
    - [Step 2: Build MiniDocker (Go Program)](#step-2-build-minidocker-go-program)  
    - [Step 3: Pull Image Using MiniDocker](#step-3-pull-image-using-minidocker)  
    - [Step 4: Run Container Using MiniDocker](#step-4-run-container-using-minidocker)  
+   - [Step 5: Usage Example](#step-4-usage-example)  
 5. [Limitations](#limitations)  
 6. [Conclusion](#conclusion)  
 7. [Appendix](#appendix)  
