@@ -7,7 +7,7 @@
 1. [Introduction](#introduction)  
 2. [Docker Runtimes Explained Simply](#docker-runtimes-explained-simply)  
 3. [Understanding `chroot`](#understanding-chroot)  
-4. [Hands-On Guide with MiniDocker](#hands-on-guide-with-minidocker)  
+4. [Hands-On Guide to Run Container in New Runtime](#hands-on-guide-to-run-container-in-new-runtime)  
    - [Step 1: Pull and Extract NGINX Files](#step-1-pull-and-extract-nginx-files)  
    - [Step 2: Fix Missing System Files](#step-2-fix-missing-system-files)  
    - [Step 3: Run NGINX in a `chroot` Jail](#step-3-run-nginx-in-a-chroot-jail)  
@@ -67,7 +67,7 @@ The process can’t see anything outside `/jail`!
 
 ---
 
-## **4. Hands-On Guide with MiniDocker**  
+## **4. Hands-On Guide to Run Container in New Runtime**  
 ### **Step 1: Pull and Extract NGINX Files**  
 1. **Pull the NGINX image**:  
    ```bash
@@ -88,16 +88,12 @@ The process can’t see anything outside `/jail`!
    tar -xf nginx.tar -C /tmp/nginx_root
    ```  
 
----
-
 ### **Step 2: Fix Missing System Files**  
 NGINX needs `/dev/null` (a virtual device). Create it:  
 ```bash
 sudo mkdir -p /tmp/nginx_root/dev
 sudo mknod -m 666 /tmp/nginx_root/dev/null c 1 3
 ```  
-
----
 
 ### **Step 3: Run NGINX in a `chroot` Jail**  
 ```bash
@@ -109,7 +105,6 @@ sudo chroot /tmp/nginx_root /usr/sbin/nginx
 
 **Test it**: Open `http://localhost:80` in your browser.  
 
----
 
 ### **Step 4: Check If NGINX Is Running**
 #### **Method 1: Use `ps`**
@@ -193,47 +188,147 @@ sudo pkill nginx
 
 ---
 
-### **Step 4: Create MiniDocker (Go Program)**  
+## **5. Create MiniDocker**  
+
+### **Step 1: Create MiniDocker (Go Program)**  
 Automate this with a Go program named `minidocker.go`:  
 
 ```go
 package main
 
 import (
-    "os"
-    "os/exec"
-    "syscall"
+	"fmt"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"syscall"
 )
 
+const ImageBaseDir = "./imagesource"
+
 func main() {
-    // 1. Path to the jail directory
-    rootDir := "./nginx_root"
+	if len(os.Args) < 2 {
+		printHelp()
+		os.Exit(1)
+	}
 
-    // 2. Command to run inside the jail
-    cmd := exec.Command("/usr/sbin/nginx")
+	switch os.Args[1] {
+	case "pull":
+		if len(os.Args) != 3 {
+			fmt.Println("Usage: minidocker pull <image-name>")
+			os.Exit(1)
+		}
+		pullImage(os.Args[2])
 
-    // 3. Attach input/output to the terminal
-    cmd.Stdin = os.Stdin
-    cmd.Stdout = os.Stdout
-    cmd.Stderr = os.Stderr
+	case "run":
+		if len(os.Args) < 4 {
+			fmt.Println("Usage: minidocker run <image-name> <command> [args...]")
+			os.Exit(1)
+		}
+		runContainer(os.Args[2], os.Args[3:])
 
-    // 4. Change root to the jail
-    if err := syscall.Chroot(rootDir); err != nil {
-        panic(err)
-    }
+	default:
+		printHelp()
+		os.Exit(1)
+	}
+}
 
-    // 5. Run the command
-    if err := cmd.Run(); err != nil {
-        panic(err)
-    }
+func printHelp() {
+	fmt.Println(`MiniDocker - A simple container runtime
+Commands:
+  pull <image-name>   Download and prepare a Docker image
+  run <image-name> <command>  Run a command in the container
+Example:
+  minidocker pull nginx
+  minidocker run nginx /usr/sbin/nginx`)
+}
+
+func pullImage(imageName string) {
+	// Create image directory
+	imageDir := filepath.Join(ImageBaseDir, imageName+"-root")
+	if err := os.MkdirAll(imageDir, 0755); err != nil {
+		fmt.Printf("Error creating image directory: %v\n", err)
+		os.Exit(1)
+	}
+
+	// Docker commands
+	fmt.Printf("Pulling image %s...\n", imageName)
+	runCommand("docker", "pull", imageName)
+
+	fmt.Printf("Creating temporary container...\n")
+	containerID := runCommand("docker", "create", imageName)
+
+	fmt.Printf("Exporting filesystem to %s...\n", imageDir)
+	runCommand("docker", "export", containerID, "-o", filepath.Join(imageDir, "image.tar"))
+	runCommand("tar", "-xf", filepath.Join(imageDir, "image.tar"), "-C", imageDir)
+
+	// Cleanup
+	os.Remove(filepath.Join(imageDir, "image.tar"))
+	runCommand("docker", "stop", containerID)
+	runCommand("docker", "rm", containerID)
+
+	fmt.Printf("Successfully pulled %s to %s\n", imageName, imageDir)
+}
+
+func runContainer(imageName string, command []string) {
+	imageDir := filepath.Join(ImageBaseDir, imageName+"-root")
+	if _, err := os.Stat(imageDir); os.IsNotExist(err) {
+		fmt.Printf("Image %s not found. Pull it first.\n", imageName)
+		os.Exit(1)
+	}
+
+	// Create temporary runtime directory
+	tempDir, err := os.MkdirTemp("", "minidocker-")
+	if err != nil {
+		fmt.Printf("Error creating temp directory: %v\n", err)
+		os.Exit(1)
+	}
+	defer os.RemoveAll(tempDir)
+
+	// Copy image files
+	fmt.Printf("Preparing container filesystem...\n")
+	runCommand("cp", "-a", imageDir+"/.", tempDir)
+
+	// Create essential device files
+	devDir := filepath.Join(tempDir, "dev")
+	if err := os.MkdirAll(devDir, 0755); err != nil {
+		fmt.Printf("Error creating dev directory: %v\n", err)
+		os.Exit(1)
+	}
+	runCommand("sudo", "mknod", "-m", "666", filepath.Join(devDir, "null"), "c", "1", "3")
+
+	// Run command in chroot
+	fmt.Printf("Starting container...\n")
+	cmd := exec.Command(command[0], command[1:]...)
+	cmd.Stdin = os.Stdin
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+
+	syscall.Chroot(tempDir)
+	cmd.Run()
+}
+
+func runCommand(name string, arg ...string) string {
+	cmd := exec.Command(name, arg...)
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		fmt.Printf("Error running command: %s %v\n", name, arg)
+		fmt.Printf("%s\n", output)
+		os.Exit(1)
+	}
+	return string(output)
 }
 ```  
 
+### **Step 2: Build MiniDocker (Go Program)**  
 **Build and Run**:  
 ```bash
 go build minidocker.go
-sudo ./minidocker
 ```  
+
+### **Step 3: Pull Image Using MiniDocker**  
+
+### **Step 4: Run Image Using MiniDocker**  
 
 ---
 
