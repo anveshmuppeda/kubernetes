@@ -28,9 +28,9 @@
    - [Step 3: Pull Image Using MiniDocker](#step-3-pull-image-using-minidocker)  
    - [Step 4: Run Container Using MiniDocker](#step-4-run-container-using-minidocker)  
    - [Step 5: Usage Example](#step-5-usage-example)  
-6. [Limitations](#limitations)  
-7. [Conclusion](#conclusion)  
-8. [Appendix](#appendix)  
+6. [Limitations](#6-limitations)  
+7. [Conclusion](#7-conclusion)  
+8. [Appendix](#8-appendix)  
 
 ---
 
