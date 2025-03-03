@@ -2,6 +2,8 @@
 ### **A Hands-On Guide to Linux Isolation, Process Jails, and MiniDocker Internals 🔍👨💻**
 *Learn how Docker works under the hood by creating a minimalist runtime called **MiniDocker**.*  
 
+![Mini Docker Runtime](./minidocker.png)   
+
 ---
 
 ## **Table of Contents**  
