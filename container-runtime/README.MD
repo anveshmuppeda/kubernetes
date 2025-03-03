@@ -28,9 +28,9 @@
    - [Step 3: Pull Image Using MiniDocker](#step-3-pull-image-using-minidocker)  
    - [Step 4: Run Container Using MiniDocker](#step-4-run-container-using-minidocker)  
    - [Step 5: Usage Example](#step-5-usage-example)  
-5. [Limitations](#limitations)  
-6. [Conclusion](#conclusion)  
-7. [Appendix](#appendix)  
+6. [Limitations](#limitations)  
+7. [Conclusion](#conclusion)  
+8. [Appendix](#appendix)  
 
 ---
 
@@ -394,7 +394,7 @@ sudo pkill nginx
 
 ---
 
-## **5. Limitations**  
+## **6. Limitations**  
 | MiniDocker          | Docker               |  
 |---------------------|----------------------|  
 | ❌ No network isolation | ✅ Uses network namespaces |  
@@ -403,7 +403,7 @@ sudo pkill nginx
 
 ---
 
-## **6. Conclusion**  
+## **7. Conclusion**  
 You’ve built **MiniDocker**, a minimalist container runtime! While Docker adds layers like networking and security, the core idea—**isolating processes with `chroot`**—remains simple.  
 
 **Try Next**:  
@@ -413,7 +413,7 @@ You’ve built **MiniDocker**, a minimalist container runtime! While Docker adds
 
 ---
 
-## **7. Appendix**  
+## **8. Appendix**  
 ### **Full Commands**  
 ```bash
 # Extract NGINX filesystem
