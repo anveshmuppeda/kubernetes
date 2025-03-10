@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .dashboard {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 300px;
+  }
+  
+  .dashboard img {
+    width: 80px;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .dashboard p {
+    font-size: 16px;
+    color: #333;
+  }
+  
