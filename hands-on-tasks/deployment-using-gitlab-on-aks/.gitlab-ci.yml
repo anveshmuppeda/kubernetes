@@ -1,0 +1,32 @@
+    stages:
+      - build
+      - deploy
+
+    build_job:
+      stage: build
+      image: docker:latest
+      services:
+        - docker:dind
+      before_script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+      script:
+        - docker build -t $CI_REGISTRY_IMAGE:latest .
+        - docker push $CI_REGISTRY_IMAGE:latest
+      tags:
+        - docker
+
+    deploy_job:
+      stage: deploy
+      image: bitnami/kubectl:latest
+      before_script:
+        - echo $KUBECONFIG | base64 --decode > kubeconfig
+        - export KUBECONFIG=kubeconfig
+        - kubectl config use-context $KUBECONCONFIG_CONTEXT
+      script:
+        - kubectl apply -f deployment.yaml
+      variables:
+        KUBECONFIG: $KUBECONFIG
+      tags:
+        - docker
+      dependencies:
+        - build_job
