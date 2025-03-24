@@ -3,18 +3,15 @@
 ### Prerequisites
 #### **GitLab Project: Create a GitLab project to store your code and CI/CD configuration.** 
 #### AKS Cluster: Ensure you have an AKS cluster set up and accessible. 
-#### Docker: Install Docker locally to build the Nginx image. 
-#### kubectl: Install and configure kubectl to interact with your AKS cluster.
 #### Container Registry: You'll need a container registry (like Azure Container Registry) to store the Nginx image.
 In this example fisrtly you have to create a simple aks cluster with resource group after creating the cluster you need to create a gitlab project in that gitlab project you push your code and create .gitlab-ci.yaml file and configure the pipeline, in this demo the file which i created has two stages only build and deploy ,in the build stage i give the user credintial to my docker registry to push the image i use docker image to run docker commands (docker client and docker deamon configured using that image) ,in the deploy stage you need to give your cluster credintials (kubeconfig file) and in the scripts section you need to run ```kubectl create dployment``` to create deployment.
-
 
 ####  step 1:  Get Cluster Credentials
 run :
 ```bash
 az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
 ```
-This allows kubectl to access the cluster
+This allows kubectl to access the cluster and this command downloads the kubeconfig file and merges it into your local ~/.kube/config file.
 
 ####  step 2: Configure GitLab CI/CD 
 
