@@ -10,15 +10,15 @@
  ### TASK 2 (Deployment with sidecar and init containers)
  In this simple example you will learn how to create a deployment with init and sidecar container 
 <br>
-Solution:[TASK 2 Solution](hands-on-tasks/deployment-with-init-and-sidecar-container)
+Solution:[TASK 2 Solution](./deployment-with-init-and-sidecar-container)
 
 
  ### TASK 3 (Static pods with readiness and liveliness probes)
   In this example you will learn how  to configure a staic pods with readiness and liveliness probes
    <br>
-Solution:[TASK 3 Solution](hands-on-tasks/static-pod-with-readiness-and-liveliness-probes) 
+Solution:[TASK 3 Solution](./static-pod-with-readiness-and-liveliness-probes) 
 
  ### TASK 4 (Network policy to control traffic)
  In this example you will learn how to Set up a Kubernetes NetworkPolicy to restrict communication between pods in different namespaces. This will introduce you to Kubernetes networking and security controls. 
 <br>
-Solution:[TASK 4 Solution](hands-on-tasks/Network-Policy-to-Control-Traffic)
+Solution:[TASK 4 Solution](./Network-Policy-to-Control-Traffic)
