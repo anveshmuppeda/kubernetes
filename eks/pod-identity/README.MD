@@ -10,6 +10,8 @@ Enter **EKS Pod Identity**—a game-changer announced in late 2023. This feature
 
 ---
 
+![EKS Pod Identity Architecture](./eks.pod.identity.architecture.png)
+
 ## Why EKS Pod Identity?
 
 ### The Problem with IRSA
