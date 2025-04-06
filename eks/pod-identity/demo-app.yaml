@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+ name: demo-ns
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+ name: demo-sa
+ namespace: demo-ns
+automountServiceAccountToken: false
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: awscli-app
+  name: awscli-app
+  namespace: demo-ns
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: awscli-app
+  template:
+    metadata:
+      labels:
+        app: awscli-app
+    spec:
+      serviceAccountName: demo-sa
+      containers:
+      - name: aws-cli-app
+        image: amazon/aws-cli:latest
+        securityContext:
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
+          runAsUser: 1
+        command:
+          - sleep
+          - "3600"
+---
