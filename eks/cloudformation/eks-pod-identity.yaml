@@ -1,7 +1,7 @@
 # Author : Anvesh Muppeda  
 
 AWSTemplateFormatVersion: 2010-09-09
-Description: AWS CFT for - Creating EKS, Managed Node Group, VPC, NAT Gateway, EIP,  Public & Private Subnets, Route Tables, Internet Gateway, NACLs, Security Groups Bastion Server with AWSCLI & KUBECTL installed on it, IAM Role, IAM Policy.
+Description: AWS CFT for - Creating EKS Cluster, Managed Node Group, required VPC Networking, and Pod Identity Association dependecies.
 
 # Parameters for VPC configuration, instance settings, and resource tagging
 Parameters:
@@ -601,7 +601,7 @@ Resources:
               - sts:AssumeRole
               - sts:TagSession
       ManagedPolicyArns: 
-        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
   
   # EKS Pod Identity Association
   EKSPodIdentityAssociation:
@@ -631,3 +631,9 @@ Outputs:
         - !GetAtt 
           - MyBastionServer
           - PublicIp
+  
+  EKSClusterEndpoint:
+    Value: !GetAtt ControlPlane.Endpoint
+    
+  PodIdentityRoleARN:
+    Value: !GetAtt EKSWebIdentityRole.Arn
