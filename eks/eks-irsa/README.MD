@@ -69,7 +69,43 @@ For an enterprise-ready approach, use [IRSA CloudFormation Template](./../cloudf
 - OIDC Provider
 - IAM Roles with proper trust relationships
 
-**Note:** If you need to change the namespace or service account for IRSA, update the `EKSIAMRoleforServiceAccount` logical ID in the template.
+**Note:** If you need to change the namespace or service account for IRSA, update the `EKSIAMRoleforServiceAccount` logical ID in the template.  
+
+```yaml
+  # IRSA: IAM role for Kubernetes service accounts
+  EKSIAMRoleforServiceAccount:
+    Type: AWS::IAM::Role
+    DependsOn: EKSOpenIDConnectProvider
+    Properties:
+      RoleName: !Sub "EKSIAMRoleforServiceAccount-${AWS::StackName}"
+      AssumeRolePolicyDocument: !Sub
+        - |
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Federated": "${OIDCProviderArn}"
+                    },
+                    "Action": "sts:AssumeRoleWithWebIdentity",
+                    "Condition": {
+                        "StringEquals": {
+                            "${OIDCProvider}:aud": "sts.amazonaws.com",
+                            "${OIDCProvider}:sub": "system:serviceaccount:${NameSpace}:${ServiceAccountName}"
+                        }
+                    }
+                }
+            ]
+          }
+        - OIDCProvider: !Select [1, !Split ["//", !GetAtt ControlPlane.OpenIdConnectIssuerUrl]]
+          OIDCProviderArn: !GetAtt EKSOpenIDConnectProvider.Arn
+          NameSpace: demo-ns
+          ServiceAccountName: demo-sa
+      ManagedPolicyArns:
+          - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+      Description: IAM role for Kubernetes service accounts
+```
 
 ---
 
@@ -88,9 +124,9 @@ Deploy IRSA for your service account with a single command:
 
 ```bash
 eksctl create iamserviceaccount \
-  --name s3-reader-sa \
-  --namespace default \
-  --cluster eks-irsa-demo \
+  --name IRSA-S3-READER \
+  --namespace demo-ns \
+  --cluster irsa-demo-cluster #Replace with your cluster name \
   --role-name IRSA-S3-Reader-Role \
   --attach-policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess \
   --approve
@@ -98,15 +134,45 @@ eksctl create iamserviceaccount \
 
 ### Manual Implementation Using AWS CLI
 
-1. **Create Trust Policy:**  
-   Create a `trust-policy.json` file using your account ID and OIDC provider URL.
+Run below commands to populate the required variables:  
+```bash
+account_id=$(aws sts get-caller-identity --query "Account" --output text)
+oidc_provider=$(aws eks describe-cluster --name my-cluster --region $AWS_REGION --query "cluster.identity.oidc.issuer" --output text | sed -e "s/^https:\/\///")
+export namespace=demo-ns
+export service_account=demo-sa
+```  
 
+1. **Create Trust Policy:**  
+   Create a `trust-relationship.json` file using your account ID and OIDC provider URL (above variables will do that).
+
+    ```json
+    cat >trust-relationship.json <<EOF
+    {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+        "Effect": "Allow",
+        "Principal": {
+            "Federated": "arn:aws:iam::$account_id:oidc-provider/$oidc_provider"
+        },
+        "Action": "sts:AssumeRoleWithWebIdentity",
+        "Condition": {
+            "StringEquals": {
+            "$oidc_provider:aud": "sts.amazonaws.com",
+            "$oidc_provider:sub": "system:serviceaccount:$namespace:$service_account"
+            }
+        }
+        }
+    ]
+    }
+    EOF
+    ```
 2. **Create IAM Role:**
 
    ```bash
    aws iam create-role \
      --role-name IRSA-S3-Reader-Role \
-     --assume-role-policy-document file://trust-policy.json
+     --assume-role-policy-document file://trust-relationship.json
    ```
 
 3. **Attach Policy:**
@@ -134,7 +200,7 @@ eksctl create iamserviceaccount \
    apiVersion: v1
    kind: ServiceAccount
    metadata:
-     name: s3-reader-sa
+     name: IRSA-S3-READER
      namespace: demo-ns
      annotations:
        eks.amazonaws.com/role-arn: arn:aws:iam::<YOUR_AWS_ACCOUNT_ID>:role/IRSA-S3-Reader-Role
@@ -144,7 +210,7 @@ eksctl create iamserviceaccount \
 3. **Verify the Annotation:**
 
    ```bash
-   kubectl describe sa s3-reader-sa -n demo-ns | grep eks.amazonaws.com/role-arn
+   kubectl describe sa IRSA-S3-READER -n demo-ns | grep eks.amazonaws.com/role-arn
    ```
 
 ---
@@ -163,7 +229,7 @@ metadata:
   name: s3-access-test
   namespace: demo-ns
 spec:
-  serviceAccountName: s3-reader-sa
+  serviceAccountName: IRSA-S3-READER
   containers:
     - name: aws-cli
       image: amazon/aws-cli:latest
