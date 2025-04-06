@@ -1,235 +1,240 @@
-# Simplifying AWS EKS IRSA: IAM Roles for Service Accounts 
+# AWS EKS IAM Roles for Service Accounts (IRSA): A Comprehensive Guide
+
+In modern cloud-native architectures, securing Kubernetes workloads is paramount. **IRSA (IAM Roles for Service Accounts)** on AWS EKS provides a robust solution by enabling Pod-level permissions without sharing static AWS credentials. This guide will walk you through everything—from understanding IRSA to setting up your EKS cluster using both `eksctl` and CloudFormation, and finally deploying and testing a sample application.
+
 ---
 
-## Introduction to EKS Pod Identity
+## 1. Introduction
 
-## Step 1: Create an EKS Cluster
+IAM Roles for Service Accounts (IRSA) revolutionizes permission management in EKS. By assigning each Kubernetes service account its own IAM role, IRSA ensures that Pods receive fine-grained AWS permissions. This eliminates the need for shared credentials or broadly scoped EC2 instance roles.
 
-### Option 1: Using eksctl
-Save this as **cluster.yaml**:
+---
+
+## 2. What is IRSA?
+
+IRSA leverages AWS’s OpenID Connect (OIDC) provider integration with EKS, allowing Kubernetes service accounts to assume IAM roles. Each service account is bound to an IAM role that defines specific AWS permissions. This ensures that Pods operate with the principle of least privilege, enhancing both security and auditability.
+
+---
+
+## 3. Why IRSA?
+
+- **Enhanced Security:**  
+  No need for static AWS credentials or overly permissive instance roles.
+  
+- **Granular Permission Control:**  
+  Each Pod gets dedicated, least-privilege access based on its role.
+  
+- **Improved Auditability:**  
+  All API calls made by Pods are traceable in CloudTrail.
+  
+- **Simplified Management:**  
+  Removes the necessity for sidecar tools like kiam or kube2iam.
+
+---
+
+## 4. Create an EKS Cluster
+
+### Using eksctl
+
+Create your EKS cluster with a configuration file that automatically sets up the OIDC provider—required for IRSA.
+
+**cluster.yaml:**
+
 ```yaml
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 metadata:
-  name: eks-pod-identity-demo
+  name: eks-irsa-demo
   region: us-west-2
   version: "1.28"
-addons:
-  - name: vpc-cni
-  - name: coredns
-  - name: kube-proxy
+iam:
+  withOIDC: true  # Required for IRSA
 managedNodeGroups:
-  - name: eks-shared-demo-mng
+  - name: ng-1
     instanceType: t3.medium
-    privateNetworking: true
     minSize: 2
-    desiredCapacity: 2
-    maxSize: 5
 ```
 
-Create the cluster:
+Run the following command to create your cluster:
+
 ```bash
 eksctl create cluster -f cluster.yaml
 ```
 
-### Option 2: Using CloudFormation
-Use the template [eks-irsa.yaml](./../cloudformation/eks-pod-identity.yaml).  
-This CloudFormation Template (CFT):
-1. Creates the EKS cluster with the `eks-pod-identity-agent` addon.
-2. Provisions an IAM role with the correct trust relationship for Pod Identity.
-3. Sets up a Pod Identity association for:
-   - Namespace: `demo-ns`
-   - Service Account: `demo-sa`
-   - IAM Role: `AmazonS3ReadOnlyAccess`
+### Using CloudFormation (CFT)
 
-**To modify namespaces/service accounts**:  
-Edit the `EKSPodIdentityAssociation` resource in the CFT:
-```yaml
-EKSPodIdentityAssociation:
-  Type: AWS::EKS::PodIdentityAssociation
-  Properties:
-    ClusterName: !Ref ClusterName
-    Namespace: "demo-ns"  # ← Change this
-    ServiceAccount: "demo-sa"  # ← Change this
-    RoleArn: !GetAtt PodIdentityRole.Arn
-```
+For an enterprise-ready approach, use CloudFormation to provision your entire environment. The CFT template creates all required AWS resources including:
+
+- EKS Cluster
+- OIDC Provider
+- IAM Roles with proper trust relationships
+
+**Note:** If you need to change the namespace or service account for IRSA, update the `EKSIAMRoleforServiceAccount` logical ID in the template.
 
 ---
 
-## Step 2: Verify Pod Identity Agent
-Ensure the agent pods are running:
+> **Important:**  
+> When using CloudFormation, if your cluster is created via CFT then **skip Step 5** (Create IAM Role and Service Account) as these resources are already provisioned by the template. The manual creation is optional in this case.
+
+---
+
+## 5. 🛠️ IRSA Implementation
+
+You can implement IRSA using either the convenience of `eksctl` or manually with AWS CLI.
+
+### Using eksctl
+
+Deploy IRSA for your service account with a single command:
+
 ```bash
-kubectl get pods -n kube-system \
-  --selector app.kubernetes.io/name=eks-pod-identity-agent
+eksctl create iamserviceaccount \
+  --name s3-reader-sa \
+  --namespace default \
+  --cluster eks-irsa-demo \
+  --role-name IRSA-S3-Reader-Role \
+  --attach-policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess \
+  --approve
 ```
-Output:
-```
-NAME                           READY   STATUS    RESTARTS   AGE
-eks-pod-identity-agent-vkdmm   1/1     Running   0          31m
-eks-pod-identity-agent-wt6m6   1/1     Running   0          31m
-```
+
+### Manual Implementation Using AWS CLI
+
+1. **Create Trust Policy:**  
+   Create a `trust-policy.json` file using your account ID and OIDC provider URL.
+
+2. **Create IAM Role:**
+
+   ```bash
+   aws iam create-role \
+     --role-name IRSA-S3-Reader-Role \
+     --assume-role-policy-document file://trust-policy.json
+   ```
+
+3. **Attach Policy:**
+
+   ```bash
+   aws iam attach-role-policy \
+     --role-name IRSA-S3-Reader-Role \
+     --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+   ```
 
 ---
 
-> **IMPORTANT**:  
-> - If you used **CloudFormation (Option 2)**, skip to [Step 5](#step-5-deploy-the-demo-application).  
-> - If you used **eksctl (Option 1)**, proceed to Step 3.
+## 6. Create Namespace & Service Account and Annotate with IAM Role
+
+1. **Create a Namespace:**
+
+   ```bash
+   kubectl create namespace demo-ns
+   ```
+
+2. **Create the Service Account with Annotation:**
+
+   ```bash
+   cat <<EOF | kubectl apply -f -
+   apiVersion: v1
+   kind: ServiceAccount
+   metadata:
+     name: s3-reader-sa
+     namespace: demo-ns
+     annotations:
+       eks.amazonaws.com/role-arn: arn:aws:iam::<YOUR_AWS_ACCOUNT_ID>:role/IRSA-S3-Reader-Role
+   EOF
+   ```
+
+3. **Verify the Annotation:**
+
+   ```bash
+   kubectl describe sa s3-reader-sa -n demo-ns | grep eks.amazonaws.com/role-arn
+   ```
 
 ---
 
-## Step 3: Create an IAM Role (Skip if Using CFT)
+## 7. Deploy a Simple AWS CLI App and Test
 
-### Trust Policy
-Save as **eks-pod-identity-trust-policy.json**:
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [{
-        "Effect": "Allow",
-        "Principal": { "Service": "pods.eks.amazonaws.com" },
-        "Action": ["sts:AssumeRole", "sts:TagSession"]
-    }]
-}
-```
+### Deploy the Test Pod
 
-Create the role and attach the S3 read-only policy:
+Deploy a pod running the AWS CLI to test the IRSA configuration:
+
 ```bash
-# Create role
-export POD_ROLE_ARN=$(aws iam create-role \
-  --role-name s3-app-eks-pod-identity-role \
-  --assume-role-policy-document file://eks-pod-identity-trust-policy.json \
-  --output text --query 'Role.Arn')
-
-# Attach policy
-aws iam attach-role-policy \
-  --role-name s3-app-eks-pod-identity-role \
-  --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
-```
-
----
-
-## Step 4: Associate the Role with EKS (Skip if Using CFT)
-
-Replace `$CLUSTER_NAME` and `$AWS_REGION` with your values:
-```bash
-aws eks create-pod-identity-association \
-  --cluster-name $CLUSTER_NAME \
-  --namespace demo-ns \
-  --service-account demo-sa \
-  --role-arn $POD_ROLE_ARN \
-  --region $AWS_REGION
-```
-
----
-
-## Step 5: Deploy the Demo Application
-
-Save as **demo-app.yaml**:
-```yaml
+cat <<EOF | kubectl apply -f -
 apiVersion: v1
-kind: Namespace
+kind: Pod
 metadata:
-  name: demo-ns
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: demo-sa
-  namespace: demo-ns
-  annotations:
-    # Optional: Add if using IRSA for migration
-    eks.amazonaws.com/role-arn: $POD_ROLE_ARN
-automountServiceAccountToken: false  # Security best practice
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: awscli-app
-  name: awscli-app
+  name: s3-access-test
   namespace: demo-ns
 spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: awscli-app
-  template:
-    metadata:
-      labels:
-        app: awscli-app
-    spec:
-      serviceAccountName: demo-sa
-      containers:
-      - name: aws-cli-app
-        image: amazon/aws-cli:latest
-        securityContext:
-          runAsNonRoot: true
-          allowPrivilegeEscalation: false
-          runAsUser: 1
-        command: ["sleep", "infinity"]
+  serviceAccountName: s3-reader-sa
+  containers:
+    - name: aws-cli
+      image: amazon/aws-cli:latest
+      command: ["/bin/sh", "-c"]
+      args: ["sleep 3600"]
+EOF
 ```
 
-Apply the manifest:
-```bash
-kubectl apply -f demo-app.yaml
-```
+### Test the IRSA Configuration
+
+1. **Enter the Pod:**
+
+   ```bash
+   kubectl exec -it s3-access-test -n demo-ns -- /bin/sh
+   ```
+
+2. **Inside the Pod, Run:**
+
+   - **Verify IAM Role:**
+
+     ```bash
+     aws sts get-caller-identity
+     ```
+
+   - **List S3 Buckets (should succeed):**
+
+     ```bash
+     aws s3 ls
+     ```
+
+   - **Try Creating an S3 Bucket (should fail due to read-only permissions):**
+
+     ```bash
+     aws s3 mb s3://test-bucket-$(date +%s)
+     ```
 
 ---
 
-## Step 6: Test AWS Access
+## 8. Troubleshooting
 
-Exec into a pod and verify permissions:
-```bash
-kubectl exec -it -n demo-ns awscli-app-78c6cf97f4-qj7xm -- sh
+- **AccessDenied Errors:**  
+  Check that the IAM policy is correctly attached and that the trust policy matches the service account (`system:serviceaccount:<namespace>:<sa-name>`).
 
-# 1. List S3 buckets (should succeed)
-sh-4.2$ aws s3 ls
+- **InvalidIdentityToken Issues:**  
+  Ensure the OIDC provider URL in your IAM trust policy exactly matches the one from your EKS cluster.
 
-# 2. Check assumed role
-sh-4.2$ aws sts get-caller-identity
-{
-    "UserId": "AROA6GBMDR6242KGGAMZP:eks-...",
-    "Account": "975050084277",
-    "Arn": "arn:aws:sts::975050084277:assumed-role/s3-app-eks-pod-identity-role/..."
-}
+- **Role Not Being Assumed:**  
+  Verify the service account’s annotation (`eks.amazonaws.com/role-arn`) and confirm that the namespace and service account names are correct.
 
-# 3. Attempt to create a bucket (should FAIL)
-sh-4.2$ aws s3 mb s3://my-test-bucket-$(date +%s)
-An error occurred (AccessDenied) when calling the CreateBucket operation: Access Denied
-```
+- **OIDC Provider Verification:**  
+  Confirm that the OIDC provider is registered in the IAM console under Identity Providers.
 
 ---
 
-## Key Takeaways
+## 9. Conclusion
 
-1. **Seamless Integration**: Pod Identity removes the friction of OIDC setup.
-2. **Unified Role Management**: Use one IAM role across multiple clusters/namespaces.
-3. **Security First**: Ephemeral credentials reduce blast radius compared to IRSA.
-4. **Least Privilege**: The read-only access test confirms our role restrictions work.
+IRSA fundamentally transforms AWS EKS security by enabling Pod-specific IAM roles. In this guide, we covered:
 
----
+1. **Introduction:** Overview of IRSA and its benefits.
+2. **What is IRSA:** How IRSA works to secure Kubernetes workloads.
+3. **Why IRSA:** The security, auditability, and management advantages.
+4. **Creating an EKS Cluster:** Methods using both `eksctl` and CloudFormation (with CFT provisioning all required resources).
+5. **IRSA Implementation:** Options using `eksctl` and manual AWS CLI commands.
+6. **Namespace & Service Account Creation:** Setting up and annotating the service account.
+7. **Deploying & Testing:** Running a sample AWS CLI application.
+8. **Troubleshooting:** Addressing common issues.
+9. **Conclusion:** Final recap and best practices.
 
-## Cleanup
-```bash
-# Delete association (if not using CFT)
-aws eks delete-pod-identity-association \
-  --cluster-name $CLUSTER_NAME \
-  --association-id <ID>
-
-# Delete role (if not using CFT)
-aws iam delete-role --role-name s3-app-eks-pod-identity-role
-
-# Delete cluster
-eksctl delete cluster --name eks-pod-identity-demo
-```
+**Final Note:**  
+If you opt for the CloudFormation deployment, skip the manual creation of the IAM Role and Service Account—they’re automatically provisioned by the template.
 
 ---
 
-## Conclusion
-
-EKS Pod Identity simplifies secure access to AWS services from Kubernetes pods while adhering to least-privilege principles. By following this guide, you've learned how to:  
-- Set up a cluster with the Pod Identity agent (via both eksctl and CloudFormation).
-- Create and associate IAM roles with service accounts.
-- Validate read-only access through success/failure tests.  
-
-The failed bucket creation attempt proves our security model works as intended. For production, combine this with IAM Conditions (e.g., `eks:SourceNamespace`) for granular access control.
+*Happy deploying! For more details and community insights, consider joining AWS EKS workshops or visiting the [AWS Documentation](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).*

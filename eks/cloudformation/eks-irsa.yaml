@@ -618,8 +618,7 @@ Resources:
           NameSpace: demo-ns
           ServiceAccountName: demo-sa
       ManagedPolicyArns:
-          - arn:aws:iam::aws:policy/AmazonS3FullAccess
-          - !GetAtt KarpenterControllerPolicy.PolicyArn
+          - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
       Description: IAM role for Kubernetes service accounts
       Tags:
         - Key: Name
