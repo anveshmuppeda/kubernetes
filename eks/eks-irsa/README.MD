@@ -63,7 +63,7 @@ eksctl create cluster -f cluster.yaml
 
 ### Using CloudFormation (CFT)
 
-For an enterprise-ready approach, use CloudFormation to provision your entire environment. The CFT template creates all required AWS resources including:
+For an enterprise-ready approach, use [IRSA CloudFormation Template](./../cloudformation/eks-irsa.yaml) to provision your entire environment. The CFT template creates all required AWS resources including:
 
 - EKS Cluster
 - OIDC Provider
