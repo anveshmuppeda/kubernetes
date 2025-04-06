@@ -51,7 +51,7 @@ addons:
   - name: eks-pod-identity-agent  # Critical for Pod Identity
 managedNodeGroups:
   - name: eks-shared-demo-mng
-    instanceType: m6a.large
+    instanceType: t3.medium
     privateNetworking: true
     minSize: 2
     desiredCapacity: 2
@@ -64,7 +64,7 @@ eksctl create cluster -f cluster.yaml
 ```
 
 ### Option 2: Using CloudFormation
-Use the template [eks-pod-identity.yaml](./cloudformation/eks-pod-identity.yaml).  
+Use the template [eks-pod-identity.yaml](./../cloudformation/eks-pod-identity.yaml).  
 This CloudFormation Template (CFT):
 1. Creates the EKS cluster with the `eks-pod-identity-agent` addon.
 2. Provisions an IAM role with the correct trust relationship for Pod Identity.
