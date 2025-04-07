@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: s3-access-test
+  namespace: demo-ns
+spec:
+  serviceAccountName: demo-sa
+  containers:
+    - name: aws-cli
+      image: amazon/aws-cli:latest
+      command: ["/bin/sh", "-c"]
+      args: ["sleep 3600"]

@@ -1,0 +1,12 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: eks-irsa-demo
+  region: us-west-2
+  version: "1.28"
+iam:
+  withOIDC: true  # Required for IRSA
+managedNodeGroups:
+  - name: ng-1
+    instanceType: t3.medium
+    minSize: 2
