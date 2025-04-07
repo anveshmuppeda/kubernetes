@@ -8,6 +8,8 @@ In modern cloud-native architectures, securing Kubernetes workloads is paramount
 
 IAM Roles for Service Accounts (IRSA) revolutionizes permission management in EKS. By assigning each Kubernetes service account its own IAM role, IRSA ensures that Pods receive fine-grained AWS permissions. This eliminates the need for shared credentials or broadly scoped EC2 instance roles.
 
+![EKS IRSA Architecture](./eks.irsa.png)
+
 ---
 
 ## 2. What is IRSA?
