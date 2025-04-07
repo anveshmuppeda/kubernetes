@@ -124,7 +124,7 @@ Deploy IRSA for your service account with a single command:
 
 ```bash
 eksctl create iamserviceaccount \
-  --name IRSA-S3-READER \
+  --name demo-sa \
   --namespace demo-ns \
   --cluster irsa-demo-cluster #Replace with your cluster name \
   --role-name IRSA-S3-Reader-Role \
@@ -136,6 +136,7 @@ eksctl create iamserviceaccount \
 
 Run below commands to populate the required variables:  
 ```bash
+export AWS_REGION="us-east-1"
 account_id=$(aws sts get-caller-identity --query "Account" --output text)
 oidc_provider=$(aws eks describe-cluster --name my-cluster --region $AWS_REGION --query "cluster.identity.oidc.issuer" --output text | sed -e "s/^https:\/\///")
 export namespace=demo-ns
@@ -200,17 +201,30 @@ export service_account=demo-sa
    apiVersion: v1
    kind: ServiceAccount
    metadata:
-     name: IRSA-S3-READER
+     name: demo-sa
      namespace: demo-ns
-     annotations:
-       eks.amazonaws.com/role-arn: arn:aws:iam::<YOUR_AWS_ACCOUNT_ID>:role/IRSA-S3-Reader-Role
    EOF
    ```
-
+3. **Annotate your service account with the Amazon Resource Name (ARN) of the IAM role that you want the service account to assume**  
+    ```bash
+    kubectl annotate serviceaccount -n $namespace $service_account eks.amazonaws.com/role-arn=arn:aws:iam::$account_id:role/my-role
+    ```
+    ```bash
+    ex:
+    kubectl annotate serviceaccount -n demo-ns demo-sa eks.amazonaws.com/role-arn=arn:aws:iam::1234567890:role/my-role
+    ```
 3. **Verify the Annotation:**
 
    ```bash
-   kubectl describe sa IRSA-S3-READER -n demo-ns | grep eks.amazonaws.com/role-arn
+   > k describe sa demo-sa -n demo-ns
+    Name:                demo-sa
+    Namespace:           demo-ns
+    Labels:              <none>
+    Annotations:         eks.amazonaws.com/role-arn: arn:aws:iam::975050084277:role/EKSIAMRoleforServiceAccount-irsa-cluster-stack
+    Image pull secrets:  <none>
+    Mountable secrets:   <none>
+    Tokens:              <none>
+    Events:              <none>
    ```
 
 ---
@@ -229,7 +243,7 @@ metadata:
   name: s3-access-test
   namespace: demo-ns
 spec:
-  serviceAccountName: IRSA-S3-READER
+  serviceAccountName: demo-sa
   containers:
     - name: aws-cli
       image: amazon/aws-cli:latest
@@ -251,19 +265,30 @@ EOF
    - **Verify IAM Role:**
 
      ```bash
-     aws sts get-caller-identity
+     sh-4.2# aws sts get-caller-identity
+    {
+        "UserId": "AROA6GBMDR62RO6NME5EQ:botocore-session-1743984333",
+        "Account": "975050084277",
+        "Arn": "arn:aws:sts::975050084277:assumed-role/EKSIAMRoleforServiceAccount-irsa-cluster-stack/botocore-session-1743984333"
+    }
+    sh-4.2#
      ```
 
    - **List S3 Buckets (should succeed):**
 
      ```bash
-     aws s3 ls
+     sh-4.2# aws s3 ls
+    2025-04-06 16:59:17 cf-templates-bo1tkidmyuqb-us-east-1
+    2025-04-06 22:00:56 my-test-bucket-1743976854
+    sh-4.2#
      ```
 
    - **Try Creating an S3 Bucket (should fail due to read-only permissions):**
 
      ```bash
-     aws s3 mb s3://test-bucket-$(date +%s)
+     sh-4.2# aws s3 mb s3://test-bucket-$(date +%s)
+    make_bucket failed: s3://test-bucket-1743984371 An error occurred (AccessDenied) when calling the CreateBucket operation: User: arn:aws:sts::975050084277:assumed-role/EKSIAMRoleforServiceAccount-irsa-cluster-stack/botocore-session-1743984333 is not authorized to perform: s3:CreateBucket on resource: "arn:aws:s3:::test-bucket-1743984371" because no identity-based policy allows the s3:CreateBucket action
+    sh-4.2#
      ```
 
 ---
