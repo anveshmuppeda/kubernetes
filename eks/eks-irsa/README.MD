@@ -266,31 +266,31 @@ EOF
 
    - **Verify IAM Role:**
 
-     ```bash
-     sh-4.2# aws sts get-caller-identity
-    {
+     ```
+        sh-4.2# aws sts get-caller-identity
+        {
         "UserId": "AROA6GBMDR62RO6NME5EQ:botocore-session-1743984333",
         "Account": "975050084277",
         "Arn": "arn:aws:sts::975050084277:assumed-role/EKSIAMRoleforServiceAccount-irsa-cluster-stack/botocore-session-1743984333"
-    }
-    sh-4.2#
+        }
+        sh-4.2#
      ```
 
    - **List S3 Buckets (should succeed):**
 
      ```bash
-     sh-4.2# aws s3 ls
-    2025-04-06 16:59:17 cf-templates-bo1tkidmyuqb-us-east-1
-    2025-04-06 22:00:56 my-test-bucket-1743976854
-    sh-4.2#
+        sh-4.2# aws s3 ls
+        2025-04-06 16:59:17 cf-templates-bo1tkidmyuqb-us-east-1
+        2025-04-06 22:00:56 my-test-bucket-1743976854
+        sh-4.2#
      ```
 
    - **Try Creating an S3 Bucket (should fail due to read-only permissions):**
 
      ```bash
-     sh-4.2# aws s3 mb s3://test-bucket-$(date +%s)
-    make_bucket failed: s3://test-bucket-1743984371 An error occurred (AccessDenied) when calling the CreateBucket operation: User: arn:aws:sts::975050084277:assumed-role/EKSIAMRoleforServiceAccount-irsa-cluster-stack/botocore-session-1743984333 is not authorized to perform: s3:CreateBucket on resource: "arn:aws:s3:::test-bucket-1743984371" because no identity-based policy allows the s3:CreateBucket action
-    sh-4.2#
+        sh-4.2# aws s3 mb s3://test-bucket-$(date +%s)
+        make_bucket failed: s3://test-bucket-1743984371 An error occurred (AccessDenied) when calling the CreateBucket operation: User: arn:aws:sts::975050084277:assumed-role/EKSIAMRoleforServiceAccount-irsa-cluster-stack/botocore-session-1743984333 is not authorized to perform: s3:CreateBucket on resource: "arn:aws:s3:::test-bucket-1743984371" because no identity-based policy allows the s3:CreateBucket action
+        sh-4.2#
      ```
 
 ---
