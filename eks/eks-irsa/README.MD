@@ -266,7 +266,7 @@ EOF
 
    - **Verify IAM Role:**
 
-     ```bash
+     ```
      sh-4.2# aws sts get-caller-identity
     {
         "UserId": "AROA6GBMDR62RO6NME5EQ:botocore-session-1743984333",
