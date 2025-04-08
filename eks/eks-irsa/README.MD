@@ -267,13 +267,13 @@ EOF
    - **Verify IAM Role:**
 
      ```
-     sh-4.2# aws sts get-caller-identity
-    {
+        sh-4.2# aws sts get-caller-identity
+        {
         "UserId": "AROA6GBMDR62RO6NME5EQ:botocore-session-1743984333",
         "Account": "975050084277",
         "Arn": "arn:aws:sts::975050084277:assumed-role/EKSIAMRoleforServiceAccount-irsa-cluster-stack/botocore-session-1743984333"
-    }
-    sh-4.2#
+        }
+        sh-4.2#
      ```
 
    - **List S3 Buckets (should succeed):**
