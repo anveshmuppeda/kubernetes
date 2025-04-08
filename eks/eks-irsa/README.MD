@@ -279,10 +279,10 @@ EOF
    - **List S3 Buckets (should succeed):**
 
      ```bash
-     sh-4.2# aws s3 ls
-    2025-04-06 16:59:17 cf-templates-bo1tkidmyuqb-us-east-1
-    2025-04-06 22:00:56 my-test-bucket-1743976854
-    sh-4.2#
+        sh-4.2# aws s3 ls
+        2025-04-06 16:59:17 cf-templates-bo1tkidmyuqb-us-east-1
+        2025-04-06 22:00:56 my-test-bucket-1743976854
+        sh-4.2#
      ```
 
    - **Try Creating an S3 Bucket (should fail due to read-only permissions):**
