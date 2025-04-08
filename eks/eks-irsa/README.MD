@@ -288,9 +288,9 @@ EOF
    - **Try Creating an S3 Bucket (should fail due to read-only permissions):**
 
      ```bash
-     sh-4.2# aws s3 mb s3://test-bucket-$(date +%s)
-    make_bucket failed: s3://test-bucket-1743984371 An error occurred (AccessDenied) when calling the CreateBucket operation: User: arn:aws:sts::975050084277:assumed-role/EKSIAMRoleforServiceAccount-irsa-cluster-stack/botocore-session-1743984333 is not authorized to perform: s3:CreateBucket on resource: "arn:aws:s3:::test-bucket-1743984371" because no identity-based policy allows the s3:CreateBucket action
-    sh-4.2#
+        sh-4.2# aws s3 mb s3://test-bucket-$(date +%s)
+        make_bucket failed: s3://test-bucket-1743984371 An error occurred (AccessDenied) when calling the CreateBucket operation: User: arn:aws:sts::975050084277:assumed-role/EKSIAMRoleforServiceAccount-irsa-cluster-stack/botocore-session-1743984333 is not authorized to perform: s3:CreateBucket on resource: "arn:aws:s3:::test-bucket-1743984371" because no identity-based policy allows the s3:CreateBucket action
+        sh-4.2#
      ```
 
 ---
