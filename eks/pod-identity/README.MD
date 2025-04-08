@@ -24,7 +24,6 @@ IRSA required:
 - **Simplified Setup**: No OIDC provider or manual trust relationships.
 - **Enhanced Security**: Credentials are ephemeral and rotated every hour.
 - **Scalability**: Associate one IAM role with multiple service accounts across namespaces/clusters.
-- **Future-Proof**: AWS plans to deprecate IRSA in favor of Pod Identity by late 2024.
 
 ---
 
@@ -266,3 +265,7 @@ EKS Pod Identity simplifies secure access to AWS services from Kubernetes pods w
 - Validate read-only access through success/failure tests.  
 
 The failed bucket creation attempt proves our security model works as intended. For production, combine this with IAM Conditions (e.g., `eks:SourceNamespace`) for granular access control.
+
+---
+
+*Happy deploying!*
