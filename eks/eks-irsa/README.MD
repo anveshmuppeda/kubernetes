@@ -330,4 +330,4 @@ If you opt for the CloudFormation deployment, skip the manual creation of the IA
 
 ---
 
-*Happy deploying! For more details and community insights, consider joining AWS EKS workshops or visiting the [AWS Documentation](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).*
+*Happy deploying!*
