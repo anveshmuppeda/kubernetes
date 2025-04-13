@@ -20,14 +20,16 @@ Before you begin, make sure your cluster’s Kubernetes version is compatible wi
 | 1.31                   | >= 1.0.5                                 |
 | 1.32                   | >= 1.2                                   |
 
-*Note:* If you prefer to set up the EKS cluster and the required IAM permissions using a CloudFormation template, skip steps 1 and 2 in the detailed instructions below. Instead, deploy the provided CloudFormation file (e.g., `karpenter.cft.yaml`) as follows:
+*Note:* If you prefer to set up the EKS cluster and the required IAM permissions using a CloudFormation template, skip steps 1 and 2 in the detailed instructions below. Instead, deploy the provided CloudFormation file (e.g., [EKS-Karpenter.cft.yaml](./../cloudformation/eks-karpenter.cft.yaml)) as follows:
 
 ```bash
+export CLUSTER_NAME="karpenter-demo-cluster"  # Name of your EKS cluster
+
 aws cloudformation deploy \
   --stack-name "Karpenter-${CLUSTER_NAME}" \
-  --template-file "file://karpenter.yaml" \
+  --template-file "file://karpenter.cft.yaml" \
   --capabilities CAPABILITY_NAMED_IAM \
-  --parameter-overrides "ClusterName=${CLUSTER_NAME}"
+  --parameter-overrides "EKSClusterName=${CLUSTER_NAME}"
 ```
 
 ---
@@ -62,7 +64,11 @@ export AWS_ACCOUNT_ID="$(aws sts get-caller-identity --query Account --output te
 *Additional Variables:*  
 If you plan to use dynamic AMI selection for your node classes, export extra variables such as `ALIAS_VERSION` (determined by querying SSM for your chosen Kubernetes version).
 
-### 2. Create the EKS Cluster
+```bash
+export ALIAS_VERSION="$(aws ssm get-parameter --name "/aws/service/eks/optimized-ami/${K8S_VERSION}/amazon-linux-2023/x86_64/standard/recommended/image_id" --query Parameter.Value | xargs aws ec2 describe-images --query 'Images[0].Name' --image-ids | sed -r 's/^.*(v[[:digit:]]+).*$/\1/')"
+```
+
+### 2. Create the EKS Cluster (if not using CFT)  
 
 Using **eksctl**, create your cluster with a configuration file. The following snippet demonstrates a minimal configuration. Note that tagging the cluster (using `karpenter.sh/discovery`) is critical for resource discovery by Karpenter:
 
@@ -100,6 +106,8 @@ managedNodeGroups:
   desiredCapacity: 2
   minSize: 1
   maxSize: 10
+addons:
+- name: eks-pod-identity-agent
 EOF
 ```
 
@@ -125,7 +133,14 @@ Logout from the Helm registry and install the chart:
 
 ```bash
 helm registry logout public.ecr.aws
+```
 
+Export KARPENTER_IAM_ROLE_ARN, which we have created as a part of step 3.
+```bash
+export KARPENTER_IAM_ROLE_ARN="arn:${AWS_PARTITION}:iam::${AWS_ACCOUNT_ID}:role/${CLUSTER_NAME}-karpenter"  
+```
+
+```bash
 helm upgrade --install karpenter oci://public.ecr.aws/karpenter/karpenter \
   --version "${KARPENTER_VERSION}" \
   --namespace "${KARPENTER_NAMESPACE}" --create-namespace \
@@ -303,6 +318,110 @@ When finished, uninstall Karpenter and delete your cluster resources:
 
 ---
 
+## Detailed Steps of EC2 Node Provisioning by Karpenter
+
+### 1. Detection of Unschedulable Pods  
+- **What Happens:**  
+  Karpenter continuously watches the cluster for pods that cannot be scheduled because there isn’t sufficient capacity.  
+- **Key Point:**  
+  These unschedulable or “pending” pods have specific resource needs (CPU, memory, special constraints like architecture or OS) that Karpenter will consider when deciding what type of node to provision.
+
+### 2. Matching Pod Requirements to NodePools and EC2NodeClasses  
+- **What Happens:**  
+  Karpenter reviews the pre‑configured **NodePools** (which set general capacity limits, disruption policies, and scheduling preferences) and the detailed **EC2NodeClasses** (which specify AWS configuration like instance roles, AMI aliases, subnets, and security groups).  
+- **Key Point:**  
+  The combination of NodePool and EC2NodeClass tells Karpenter the “shape” or capacity required for a new node that will satisfy the pending pods.
+
+### 3. Computing and Creating a NodeClaim  
+- **What Happens:**  
+  Based on the pod requirements and available AWS configurations, Karpenter computes the optimal “node shape.” This includes deciding on the total resource (CPU, memory, pods) that the node should offer.  
+- **NodeClaim:**  
+  Karpenter creates an immutable NodeClaim object in Kubernetes. This resource represents the demand for capacity and encapsulates details such as resource requests, scheduling constraints, and a link to the relevant NodePool/EC2NodeClass.
+- **Key Point:**  
+  NodeClaims serve as both the request for capacity and the marker that links the cloud provider’s capacity to your cluster’s Kubernetes node.
+
+### 4. Provisioning Capacity via the EC2 Fleet API  
+- **What Happens:**  
+  Once a NodeClaim is computed, Karpenter translates it into an AWS API call to request new capacity.  
+  - **Multiple Instance Options:**  
+    Instead of requesting a single instance type, Karpenter uses the **EC2 Fleet API** (often via the `CreateFleet` call) to provide a list of candidate instance types that match the computed resource requirements.  
+  - **Price and Capacity Optimized:**  
+    The EC2 Fleet API uses strategies such as “price capacity optimized” to choose from the candidate instances. In this way, Karpenter leverages a diverse set of options (on‑demand, spot, multiple instance families) to maximize cost efficiency and availability.
+- **Key Point:**  
+  The Fleet API is critical because it allows a single API call to consider many instance types simultaneously. If capacity is insufficient for one option, the API can allocate a different compatible instance type without requiring multiple separate requests.
+
+### 5. Instance Launch and Bootstrapping  
+- **What Happens:**  
+  After the EC2 Fleet API selects an instance, AWS launches the EC2 instance with the parameters defined in your EC2NodeClass (including the AMI, security groups, and IAM role/instance profile).  
+- **Bootstrap Process:**  
+  The new instance runs startup scripts (often embedded via UserData) to install the kubelet, configure networking, and apply instance settings. These steps ensure the node is ready to run workloads.
+- **Key Point:**  
+  The instance is tagged and given a provider ID. It represents the physical (or virtual) resource that will be registered as a Kubernetes node.
+
+### 6. Registration and Initialization of the Node  
+- **What Happens:**  
+  As the instance boots up, its kubelet registers the node with the Kubernetes API server.  
+- **Node Association:**  
+  Karpenter watches for the node’s registration and correlates it with the earlier NodeClaim. This process includes:
+  - Updating labels, taints, and annotations as defined by the NodePool and EC2NodeClass.
+  - Waiting until the node’s reported resources (CPU, memory, pod capacity) match those requested in the NodeClaim.
+- **Key Point:**  
+  Once the node reaches the “Ready” state (all startup taints are removed and reported resource capacities are in line with expectations), the previously unschedulable pods are scheduled onto it.
+
+### 7. Continuous Monitoring and Disruption Handling  
+- **What Happens:**  
+  Karpenter continues to monitor nodes and NodeClaims. If a node becomes underutilized or conditions change (for example, when pods are removed), Karpenter may decide to consolidate nodes to improve efficiency.
+- **Disruption Management:**  
+  If a node fails (for instance, due to an AWS capacity error or a node registration failure), the NodeClaim lifecycle includes marking such errors, possibly deleting the NodeClaim, and then reinitiating the provisioning process.
+- **Key Point:**  
+  This monitoring ensures that your cluster’s capacity always matches the real-time demand for pods while preventing unnecessary resource spending.
+
+### In Summary
+
+---  
+
+- **Karpenter starts by detecting unschedulable pods** and then consults its NodePool and EC2NodeClass definitions to determine what kind of node is required.
+- **A NodeClaim is computed and created,** representing a request for new capacity.
+- **Karpenter translates the NodeClaim into an API call** using the EC2 Fleet API to request a set of candidate instance types and capacity, optimizing for price and available capacity.
+- **AWS launches the instance**, and the instance boots up using startup scripts. The new EC2 node then registers itself with the Kubernetes cluster.
+- **Karpenter updates the NodeClaim** to reflect that the node is now live, and the previously pending pods are scheduled onto the new node.
+- **Karpenter then monitors the lifecycle** of nodes—handling scaling up and consolidation as needed to match the cluster’s workload.
+
+This workflow illustrates that Karpenter leverages the EC2 Fleet API to dynamically request capacity from AWS. The Fleet API call is central because it allows Karpenter to select from a range of instance types efficiently and to adjust rapidly based on capacity availability and pricing, ensuring your cluster scales both reliably and cost‑effectively.
+
+---  
+
+## Differences between NodePools and NodeClasses in Karpenter:
+
+Below is a simple explanation of the differences between **NodePools** and **NodeClasses** in Karpenter:
+
+- **NodePools:**  
+  - **High-Level Scheduling Grouping:**  
+    They act as a “policy” or blueprint for how nodes should behave in your cluster.  
+  - **Pod Constraints:**  
+    They define which pods can be scheduled on the nodes by setting taints, startup taints, labels, and requirements. For example, you can use NodePools to require that only certain pods (those that tolerate a specific taint) run on a given set of nodes.
+  - **Lifecycle Management:**  
+    They set broader rules for node expiration, disruption (like consolidation behavior), and resource limits (e.g., maximum CPU or memory across the pool). Think of a NodePool as the high‑level “scheduling bucket” that determines overall node behavior.
+  - **Policy Customization:**  
+    They allow you to configure things like weight (which one to choose when a pod matches more than one pool), disruption budgets, and expiration policies.
+
+- **NodeClasses (EC2NodeClasses):**  
+  - **Low-Level Cloud Configuration:**  
+    These provide the AWS‑specific settings needed to actually launch an EC2 instance. They define which AMI to use, the AWS subnets, security groups, block device mappings, and even low-level kubelet configurations.
+  - **Instance Provisioning Details:**  
+    When you create a NodeClaim, Karpenter refers to the NodeClass specified in the NodePool’s template. The NodeClass tells AWS exactly how to create the instance — including what instance profile or IAM role to attach.
+  - **Reusable AWS Settings:**  
+    Multiple NodePools can point to the same NodeClass if they want to use the same underlying AWS setup. For example, if several groups in your organization want nodes with similar networking, storage, and operating system settings, they can all refer to one common NodeClass.
+
+### In Simple Terms
+
+- **NodePools** are like the **“rules of engagement”** for your nodes — they determine which pods go where, when nodes are replaced, and set high-level resource limits.
+- **NodeClasses** are like the **“technical spec sheet”** for your nodes — they define how to build the EC2 instance (AMI, networking, security, etc.) that will run your pods.
+
+Together, they let Karpenter efficiently match the demand (unschedulable pods) to the right type of node by first determining *what* kind of node is needed (via the NodePool) and then *how* to build it on AWS (via the NodeClass).  
+
+---
+
 ## Conclusion
 
 This guide detailed each step in deploying Karpenter on an AWS EKS cluster—from setting up the cluster and configuring IAM permissions (or using a CloudFormation template) to deploying Karpenter, provisioning nodes via NodePool and EC2NodeClass, and finally testing autoscaling with a sample deployment. With a clear compatibility matrix, straightforward commands, and well-documented steps, you now have a blueprint to enable dynamic, cost‑efficient autoscaling for your Kubernetes workloads.
@@ -320,5 +439,5 @@ Be sure to test all changes in lower environments before moving to production. K
 
 ---
 
-Happy scaling!
+Happy scaling!  
 
