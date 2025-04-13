@@ -20,12 +20,12 @@ Before you begin, make sure your cluster’s Kubernetes version is compatible wi
 | 1.31                   | >= 1.0.5                                 |
 | 1.32                   | >= 1.2                                   |
 
-*Note:* If you prefer to set up the EKS cluster and the required IAM permissions using a CloudFormation template, skip steps 1 and 2 in the detailed instructions below. Instead, deploy the provided CloudFormation file (e.g., `karpenter.cft.yaml`) as follows:
+*Note:* If you prefer to set up the EKS cluster and the required IAM permissions using a CloudFormation template, skip steps 1 and 2 in the detailed instructions below. Instead, deploy the provided CloudFormation file (e.g., [EKS-Karpenter.cft.yaml](eks-karpenter.cft.yaml)) as follows:
 
 ```bash
 aws cloudformation deploy \
   --stack-name "Karpenter-${CLUSTER_NAME}" \
-  --template-file "file://karpenter.yaml" \
+  --template-file "file://karpenter.cft.yaml" \
   --capabilities CAPABILITY_NAMED_IAM \
   --parameter-overrides "ClusterName=${CLUSTER_NAME}"
 ```
