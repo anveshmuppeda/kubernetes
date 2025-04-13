@@ -309,5 +309,16 @@ This guide detailed each step in deploying Karpenter on an AWS EKS cluster—fro
 
 Be sure to test all changes in lower environments before moving to production. Keep abreast of updates via the official [Karpenter documentation](https://karpenter.sh/docs) and upgrade guides for any breaking changes.
 
+---
+
+## References
+
+- [Getting Started with Karpenter Documentation](https://karpenter.sh/docs/getting-started/getting-started-with-karpenter/) citeturn0search3
+- [CloudFormation for Karpenter IAM Permissions](https://karpenter.sh/docs/reference/cloudformation/) citeturn0search1
+- [Karpenter NodeClasses Concepts](https://karpenter.sh/docs/concepts/nodeclasses/) citeturn0search13
+- [Karpenter Upgrade Guide](https://karpenter.sh/docs/upgrading/upgrade-guide/) citeturn0search15
+
+---
+
 Happy scaling!
 
