@@ -8,6 +8,6 @@ Related Blog: [⎈ A Hands-On Guide to Fully Secured EKS Fargate Cluster using C
 
 ![Fully Secured EKS Fargate Cluster](./../images/eks-fargate.png)  
 
-## AWS EKS Pod Identity vs IRSA  
+## [AWS EKS Pod Identity vs IRSA](./Pod.Identity.vs.IRSA.MD)  
 
 
