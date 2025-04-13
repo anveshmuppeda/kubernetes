@@ -6,6 +6,8 @@
 
 Karpenter is a modern Kubernetes node autoscaler designed for ease of use, performance, and flexibility. It streamlines node provisioning on AWS EKS by monitoring unschedulable pods and automatically launching or terminating EC2 instances based on real‑time demand. This guide will walk you through setting up an EKS cluster, configuring the required IAM permissions, deploying Karpenter via Helm, and testing node autoscaling with a sample application. Whether you prefer a programmatic approach using **eksctl** or the simplicity of CloudFormation templates, you’ll find clear and concise instructions below.
 
+![Karpenter Architecture](./images/eks.karpenter.arch.png)  
+
 ---
 
 ## Compatibility Matrix
