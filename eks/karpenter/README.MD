@@ -23,11 +23,13 @@ Before you begin, make sure your cluster’s Kubernetes version is compatible wi
 *Note:* If you prefer to set up the EKS cluster and the required IAM permissions using a CloudFormation template, skip steps 1 and 2 in the detailed instructions below. Instead, deploy the provided CloudFormation file (e.g., [EKS-Karpenter.cft.yaml](./../cloudformation/eks-karpenter.cft.yaml)) as follows:
 
 ```bash
+export CLUSTER_NAME="karpenter-demo-cluster"  # Name of your EKS cluster
+
 aws cloudformation deploy \
   --stack-name "Karpenter-${CLUSTER_NAME}" \
   --template-file "file://karpenter.cft.yaml" \
   --capabilities CAPABILITY_NAMED_IAM \
-  --parameter-overrides "ClusterName=${CLUSTER_NAME}"
+  --parameter-overrides "EKSClusterName=${CLUSTER_NAME}"
 ```
 
 ---
@@ -62,7 +64,11 @@ export AWS_ACCOUNT_ID="$(aws sts get-caller-identity --query Account --output te
 *Additional Variables:*  
 If you plan to use dynamic AMI selection for your node classes, export extra variables such as `ALIAS_VERSION` (determined by querying SSM for your chosen Kubernetes version).
 
-### 2. Create the EKS Cluster
+```bash
+export ALIAS_VERSION="$(aws ssm get-parameter --name "/aws/service/eks/optimized-ami/${K8S_VERSION}/amazon-linux-2023/x86_64/standard/recommended/image_id" --query Parameter.Value | xargs aws ec2 describe-images --query 'Images[0].Name' --image-ids | sed -r 's/^.*(v[[:digit:]]+).*$/\1/')"
+```
+
+### 2. Create the EKS Cluster (if not using CFT)  
 
 Using **eksctl**, create your cluster with a configuration file. The following snippet demonstrates a minimal configuration. Note that tagging the cluster (using `karpenter.sh/discovery`) is critical for resource discovery by Karpenter:
 
@@ -100,6 +106,8 @@ managedNodeGroups:
   desiredCapacity: 2
   minSize: 1
   maxSize: 10
+addons:
+- name: eks-pod-identity-agent
 EOF
 ```
 
@@ -125,7 +133,14 @@ Logout from the Helm registry and install the chart:
 
 ```bash
 helm registry logout public.ecr.aws
+```
 
+Export KARPENTER_IAM_ROLE_ARN, which we have created as a part of step 3.
+```bash
+export KARPENTER_IAM_ROLE_ARN="arn:${AWS_PARTITION}:iam::${AWS_ACCOUNT_ID}:role/${CLUSTER_NAME}-karpenter"  
+```
+
+```bash
 helm upgrade --install karpenter oci://public.ecr.aws/karpenter/karpenter \
   --version "${KARPENTER_VERSION}" \
   --namespace "${KARPENTER_NAMESPACE}" --create-namespace \
@@ -320,5 +335,5 @@ Be sure to test all changes in lower environments before moving to production. K
 
 ---
 
-Happy scaling!
+Happy scaling!  
 
