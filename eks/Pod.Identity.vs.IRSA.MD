@@ -10,10 +10,8 @@ Securely managing access to AWS services is critical when running applications o
 In this guide, we’ll rephrase and update the discussion by comparing these methods on aspects like role extensibility, cluster scalability, role scalability, role reusability, and environment support. For those who want to jump into hands-on implementation, refer to these detailed guides:
 
 - **[Simplifying AWS EKS Pod Identity: A Step-by-Step Guide to Secure Cloud Access](./pod-identity/README.MD)**  
-  *(Replace with your actual article link)*
 
-- **AWS EKS IAM Roles for Service Accounts (IRSA): A Comprehensive Guide**  
-  *(Replace with your actual article link)*
+- **[AWS EKS IAM Roles for Service Accounts (IRSA): A Comprehensive Guide](./eks-irsa/README.MD)**  
 
 ---
 
