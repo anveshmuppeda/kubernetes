@@ -22,7 +22,7 @@ In this guide, we’ll rephrase and update the discussion by comparing these met
 - **Direct Pod Association:** Each pod carries its own AWS identity without relying on a shared service account.
 - **Enhanced Security Isolation:** With pod-level identities, if a pod is compromised, the breach remains isolated to its specific permissions.
 - **Simpler Role Extensibility:** There is no need to change the role’s trust policy when deploying into new clusters—one IAM role can work across multiple clusters.
-- **Hands-On Example:** Follow the step-by-step instructions in our guide [Simplifying AWS EKS Pod Identity](#) to see how to implement this model.
+- **Hands-On Example:** Follow the step-by-step instructions in our guide [Simplifying AWS EKS Pod Identity](./pod-identity/README.MD) to see how to implement this model.
 
 ---
 
@@ -34,7 +34,7 @@ In this guide, we’ll rephrase and update the discussion by comparing these met
 - **Ease of Credential Management:** AWS temporarily provides credentials without extra sidecar containers or additional tooling.
 - **Role Reusability:** The same IAM role can be assigned to multiple pods via a shared service account; however, every pod assumes all the role’s permissions.
 - **Broader Environmental Support:** IRSA isn’t limited to EKS—it can also be implemented with Amazon EKS Anywhere, Red Hat OpenShift on AWS, and self-managed Kubernetes clusters on EC2 instances.
-- **Hands-On Example:** To get started, consult our detailed guide [AWS EKS IAM Roles for Service Accounts (IRSA)](#).
+- **Hands-On Example:** To get started, consult our detailed guide [AWS EKS IAM Roles for Service Accounts (IRSA)](./eks-irsa/README.MD).
 
 ---
 
