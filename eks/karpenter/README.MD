@@ -376,9 +376,9 @@ When finished, uninstall Karpenter and delete your cluster resources:
 - **Key Point:**  
   This monitoring ensures that your cluster’s capacity always matches the real-time demand for pods while preventing unnecessary resource spending.
 
----
+### In Summary
 
-## In Summary
+---  
 
 - **Karpenter starts by detecting unschedulable pods** and then consults its NodePool and EC2NodeClass definitions to determine what kind of node is required.
 - **A NodeClaim is computed and created,** representing a request for new capacity.
