@@ -1,4 +1,5 @@
-# Hands‑On Guide to Karpenter on AWS EKS
+# Karpenter + EKS: The Smart Way to Scale  
+## A Hands-On Tutorial for Setting Up Karpenter with AWS EKS
 
 
 ## Introduction
