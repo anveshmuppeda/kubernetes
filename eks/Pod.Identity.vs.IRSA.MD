@@ -83,7 +83,7 @@ Below is an enhanced comparison table that rephrases the critical differences be
 4. **Monitoring:**  
    Use AWS CloudTrail and logging to track the usage of these credentials and ensure compliance.
 
-*For a detailed tutorial, see [Simplifying AWS EKS Pod Identity](#).*
+*For a detailed tutorial, see [Simplifying AWS EKS Pod Identity](./pod-identity/README.MD).*
 
 ### Implementing IRSA
 
@@ -99,7 +99,7 @@ Below is an enhanced comparison table that rephrases the critical differences be
 4. **Security Check:**  
    Verify the role’s trust policies and monitor credential usage through AWS auditing services.
 
-*For a comprehensive walkthrough, refer to [AWS EKS IAM Roles for Service Accounts (IRSA)](#).*
+*For a comprehensive walkthrough, refer to [AWS EKS IAM Roles for Service Accounts (IRSA)](./eks-irsa/README.MD).*
 
 ---
 
