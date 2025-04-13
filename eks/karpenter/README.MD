@@ -1,8 +1,12 @@
-# Hands‑On Guide to Karpenter on AWS EKS
+# Karpenter + EKS: The Smart Way to Scale  
+## A Hands-On Tutorial for Setting Up Karpenter with AWS EKS
+
 
 ## Introduction
 
 Karpenter is a modern Kubernetes node autoscaler designed for ease of use, performance, and flexibility. It streamlines node provisioning on AWS EKS by monitoring unschedulable pods and automatically launching or terminating EC2 instances based on real‑time demand. This guide will walk you through setting up an EKS cluster, configuring the required IAM permissions, deploying Karpenter via Helm, and testing node autoscaling with a sample application. Whether you prefer a programmatic approach using **eksctl** or the simplicity of CloudFormation templates, you’ll find clear and concise instructions below.
+
+![Karpenter Architecture](./images/eks.karpenter.arch.png)  
 
 ---
 
@@ -127,7 +131,25 @@ aws cloudformation deploy \
   --parameter-overrides "ClusterName=${CLUSTER_NAME}"
 ```
 
-### 4. Install Karpenter via Helm
+### 4. aws-auth ConfigMap Entries with Karpenter Node role  
+The nodes Karpenter launches need to be mapped in aws-auth. Run:  
+```yaml
+kubectl edit configmap aws-auth -n kube-system
+```
+Make sure the IAM role used by Karpenter nodes is listed under mapRoles. For example:  
+```yaml 
+- rolearn: arn:aws:iam::<account-id>:role/KarpenterNodeRole
+  username: system:node:{{EC2PrivateDNSName}}
+  groups:
+    - system:bootstrappers
+    - system:nodes
+```
+
+*Note:* If missing, Karpenter nodes won’t be able to join the cluster.  
+
+
+
+### 5. Install Karpenter via Helm
 
 Logout from the Helm registry and install the chart:
 
@@ -137,7 +159,9 @@ helm registry logout public.ecr.aws
 
 Export KARPENTER_IAM_ROLE_ARN, which we have created as a part of step 3.
 ```bash
-export KARPENTER_IAM_ROLE_ARN="arn:${AWS_PARTITION}:iam::${AWS_ACCOUNT_ID}:role/${CLUSTER_NAME}-karpenter"  
+$ export KARPENTER_IAM_ROLE_ARN="arn:${AWS_PARTITION}:iam::${AWS_ACCOUNT_ID}:role/${CLUSTER_NAME}-karpenter"  
+ex: 
+$ export KARPENTER_IAM_ROLE_ARN="arn:aws:iam::1234567890:role/EKSWebIdentityRole-CF-karpenter-demo"
 ```
 
 ```bash
@@ -156,7 +180,7 @@ helm upgrade --install karpenter oci://public.ecr.aws/karpenter/karpenter \
 
 Ensure that IRSA is properly configured and your service account is associated with the correct IAM role.
 
-### 5. Create a NodePool
+### 6. Create a NodePool
 
 Define a NodePool that details the scheduling requirements and capacity limits:
 
@@ -196,7 +220,7 @@ spec:
     consolidateAfter: 1m
 ```
 
-### 6. Create an EC2NodeClass
+### 7. Create an EC2NodeClass
 
 This custom resource defines the AWS settings (such as the role, AMI selection, subnets, security groups, and block device mappings) for node provisioning:
 
@@ -221,7 +245,7 @@ EOF
 
 *Note:* For private EKS clusters (with no outbound internet access) you can supply a pre‑created instance profile ARN using the `spec.instanceProfile` field.
 
-### 7. Deploy a Sample Application
+### 8. Deploy a Sample Application
 
 Deploy a simple application (using the Kubernetes pause image) that starts with zero replicas. This allows you to test that Karpenter provisions nodes when you scale up:
 
@@ -257,22 +281,33 @@ spec:
 EOF
 ```
 
-### 8. Scale Up the Deployment
+### 9. Scale Up the Deployment
 
 Trigger node provisioning by scaling the deployment:
 
 ```bash
 kubectl scale deployment inflate --replicas 5
-```
+```  
+
+![Scale Deployment](./images/pods-status.png)
 
 Monitor the Karpenter logs and check your node list:
 
 ```bash
 kubectl logs -f -n "${KARPENTER_NAMESPACE}" -l app.kubernetes.io/name=karpenter -c controller
 kubectl get nodes
-```
+```  
 
-### 9. Scale Down and Consolidate
+#### Node Claim Status  
+![Node Claim Status](./images/nodeclaim-status.png)  
+
+#### Fleet Manager Status  
+![Fleet Manager Status](./images/before-fleet-manager.png)  
+
+#### Node Status  
+![Nodes Status](./images/before-nodes.png)  
+
+### 10. Scale Down and Consolidate
 
 Delete the deployment to allow Karpenter to consolidate unneeded nodes:
 
@@ -286,7 +321,17 @@ You can also manually delete a node if needed:
 kubectl delete node "${NODE_NAME}"
 ```
 
-### 10. Clean Up Your Resources
+#### Delete Node  
+![Delete Node](./images/delete-node.png)  
+
+#### Fleet Manager Status  
+![Fleet Manager Status](./images/after-fleet-manager.png)  
+
+#### Node Status  
+![Nodes Status](./images/after-nodes.png)  
+
+
+### 11. Clean Up Your Resources
 
 When finished, uninstall Karpenter and delete your cluster resources:
 
