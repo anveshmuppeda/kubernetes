@@ -25,6 +25,7 @@ jobs:
 
       - name: Fetch and update README
         run: |
+          cd ./.github/
           python update_readme.py
 
       - name: Commit and push changes
