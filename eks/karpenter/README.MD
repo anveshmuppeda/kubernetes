@@ -481,6 +481,7 @@ Be sure to test all changes in lower environments before moving to production. K
 - [CloudFormation for Karpenter IAM Permissions](https://karpenter.sh/docs/reference/cloudformation/)  
 - [Karpenter NodeClasses Concepts](https://karpenter.sh/docs/concepts/nodeclasses/) 
 - [Karpenter Upgrade Guide](https://karpenter.sh/docs/upgrading/upgrade-guide/)  
+- [Understand NodeClaims](https://karpenter.sh/docs/concepts/nodeclaims/)  
 
 ---
 
