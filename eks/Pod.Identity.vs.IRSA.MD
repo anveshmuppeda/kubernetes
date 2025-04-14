@@ -3,6 +3,8 @@
 
 ---
 
+![AWS EKS Pod Identity vs IRSA](./../images/eks.podidentity.vs.irsa.png)
+
 ## Introduction
 
 Securely managing access to AWS services is critical when running applications on Amazon EKS. Both **AWS EKS Pod Identity** and **IRSA (IAM Roles for Service Accounts)** allow you to assign AWS credentials to your applications without embedding long-lived keys. They do so in fundamentally different ways—either by directly binding a role to each pod (Pod Identity) or by linking an IAM role to a Kubernetes service account that pods consume (IRSA).
