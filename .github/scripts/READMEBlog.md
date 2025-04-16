@@ -11,5 +11,4 @@
 | 4 | 2025-03-31 | [EKS Debug with AI Assistant ️](https://medium.com/@muppedaanvesh/eks-debug-with-ai-assistant-%EF%B8%8F-7e235c46cace?source=rss-15b2de10f77d------2) |
 | 5 | 2025-02-24 | [⎈ A Hands-On Guide to AWS EKS Fargate Cluster ️](https://medium.com/@muppedaanvesh/a-hands-on-guide-to-aws-eks-fargate-cluster-%EF%B8%8F-2172934fff94?source=rss-15b2de10f77d------2) |
 | 6 | 2025-02-24 | [⎈ Hands-On Guide to Creating an Amazon EKS Cluster with Managed Node Groups⎈](https://medium.com/@muppedaanvesh/hands-on-guide-to-creating-an-amazon-eks-cluster-with-managed-worker-nodes-1bd983e0fcbd?source=rss-15b2de10f77d------2) |
-| 7 | 2025-02-23 | [⎈ Hands-On Guide to Creating an Amazon EKS Cluster with Self-Managed Worker Nodes ⎈](https://medium.com/@muppedaanvesh/hands-on-guide-to-creating-an-amazon-eks-cluster-with-self-managed-worker-nodes-fad026c34482?source=rss-15b2de10f77d------2) |
 <!-- BLOG-POST-LIST:END -->
