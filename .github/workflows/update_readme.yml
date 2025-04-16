@@ -30,10 +30,11 @@ jobs:
 
       - name: Commit and push changes
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PR_PAT_TOKEN }}
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          cd ./.github/scripts/
+          git config --global user.name "Kubernetes Bot"
+          git config --global user.email "kubernetes-bot@anveshmuppeda.com"
           git add README.md
           git commit -m "Update README with latest Kubernetes blogs"
           git push origin dev
