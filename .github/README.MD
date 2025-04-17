@@ -4,14 +4,14 @@
 
 This project includes a Python script (`update_readme.py`) that automates updating your `README.md` with **only your Kubernetes‑related Medium posts** in a Markdown table.  
 
-- **Fetch & Filter**: It uses the [feedparser](https://feedparser.readthedocs.io/en/latest/) library to read your Medium RSS feed, then filters entries whose tags include any of your specified categories (e.g. “kubernetes”, “k8s”). citeturn1search0  
+- **Fetch & Filter**: It uses the [feedparser](https://feedparser.readthedocs.io/en/latest/) library to read your Medium RSS feed, then filters entries whose tags include any of your specified categories (e.g. “kubernetes”, “k8s”). 
 - **Locate Table Block**: It scans your README for the markers  
   ```md
   <!-- BLOG-POST-LIST:START -->
      …table rows…
   <!-- BLOG-POST-LIST:END -->
   ```  
-  and extracts the existing table rows between them. citeturn0search2  
+  and extracts the existing table rows between them. 
 - **Preserve & Append**: It keeps all existing rows, then appends only _new_ posts (by comparing URLs) at the end—renumbering each row sequentially.  
 - **Rewrite README**: Finally, it stitches the updated table (header + all rows) back into the README between your markers.
 
@@ -31,13 +31,13 @@ README.md         ← contains your markers & table
 To let GitHub Actions run this script daily and push changes, you need:
 
 1. **Personal Access Token**  
-   - Classic PAT with the **`repo`** scope (“Full control of private repositories”) so it can read/write your code and open PRs. citeturn2search0  
-   - If you also update workflow files, add the **`workflow`** scope. citeturn2search6  
+   - Classic PAT with the **`repo`** scope (“Full control of private repositories”) so it can read/write your code and open PRs. 
+   - If you also update workflow files, add the **`workflow`** scope.  
 
 2. **Repository‑level Actions Permissions**  
    In **Settings → Actions → General**:  
    - Under **Workflow permissions**, select **Read and write permissions**.  
-   - Enable **“Allow GitHub Actions to create and approve pull requests”** if you want the script to open PRs automatically. citeturn2search9  
+   - Enable **“Allow GitHub Actions to create and approve pull requests”** if you want the script to open PRs automatically.  
 
 3. **Store Your Token**  
    - Go to **Settings → Secrets and variables → Actions** and click **New repository secret**.  
