@@ -1,2 +1,0 @@
-feedparser
-medium_api
