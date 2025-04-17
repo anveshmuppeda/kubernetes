@@ -25,14 +25,14 @@ jobs:
 
       - name: Fetch and update README
         run: |
-          cd ./.github/scripts/
-          python update_readme.py
+          # cd ./.github/scripts/
+          python ./.github/scripts/update_readme.py
 
       - name: Commit and push changes
         env:
           GITHUB_TOKEN: ${{ secrets.PR_PAT_TOKEN }}
         run: |
-          cd ./.github/scripts/
+          # cd ./.github/scripts/
           git config --global user.name "Kubernetes Bot"
           git config --global user.email "kubernetes-bot@anveshmuppeda.com"
           git add READMEBlog.md

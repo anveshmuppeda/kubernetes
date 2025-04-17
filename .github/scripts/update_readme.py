@@ -6,7 +6,7 @@ import os
 # ─── Configuration ─────────────────────────────────────────────────────────────
 
 RSS_FEED_URL = os.getenv("RSS_FEED_URL", "https://medium.com/feed/@muppedaanvesh")
-README_FILE   = "READMEBlog.md"
+README_FILE   = "README.md"
 START_MARKER  = "<!-- BLOG-POST-LIST:START -->"
 END_MARKER    = "<!-- BLOG-POST-LIST:END -->"
 
