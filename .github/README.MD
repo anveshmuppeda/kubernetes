@@ -1,4 +1,3 @@
----
 # GitHub Actions "Update README with Kubernetes Blogs" Overview  
 
 ## 🚀 Script Overview
