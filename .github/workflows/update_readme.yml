@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: dev       # ensures the runner is on the dev branch
+          fetch-depth: 0 # (optional) fetch full history if you need to push tags, etc.
 
       - name: Set up Python
         uses: actions/setup-python@v4
