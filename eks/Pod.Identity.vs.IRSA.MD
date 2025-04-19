@@ -3,7 +3,7 @@
 
 ---
 
-![AWS EKS Pod Identity vs IRSA](./../images/eks.podidentity.vs.irsa.png)
+![AWS EKS Pod Identity vs IRSA](./../assets/eks.podidentity.vs.irsa.png)
 
 ## Introduction
 
