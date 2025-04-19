@@ -3,7 +3,7 @@
 Here are the different ways you can spin up a Kubernetes cluster:
 
 - [Using kind (Kubernetes IN Docker)](./kind/README.md)
-- [Using minikube - TODO..](./minikube/README.md)
+- [Using minikube](./minikube/README.md)
 - [Using kubeadm (manual setup)](./kubeadm/README.md)
 - Managed Kubernetes Services
   - [Amazon EKS](./eks/README.md)
