@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1
+  labels:
+    app: app1
+    project: fluxcd-demo
+  namespace: fluxcd-demo
+spec:
+  selector:
+    matchLabels:
+      app: app1
+      project: fluxcd-demo
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: app1
+        project: fluxcd-demo
+    spec:
+      containers:
+      - name: app1
+        image: anvesh35/fluxcd-demo-app1:v1.0.0
+        ports:
+        - containerPort: 80
