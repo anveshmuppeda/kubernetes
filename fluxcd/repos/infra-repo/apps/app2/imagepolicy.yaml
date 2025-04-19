@@ -8,4 +8,4 @@ spec:
     name: app2
   policy:
     semver:
-      range: 0.0.x
+      range: vx.0.x

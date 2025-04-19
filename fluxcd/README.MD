@@ -249,7 +249,53 @@ flux bootstrap github \
   --token-auth \
   --owner=anveshmuppeda \
   --repository=kubernetes \
-  --path=fluxcd/repos/infra-repo/clusters/staging \
+  --path=fluxcd/repos/infra-repo/clusters/dev \
   --components-extra=image-reflector-controller,image-automation-controller \
   --personal \
   --branch fluxcd
+
+We need to create a image registry credential where we will push our image:
+
+kubectl -n default create secret docker-registry dockerhub-credential --docker-username '' --docker-password '' --docker-email 'test@test.com'
+
+
+build and push app-2
+
+Login to dockerhub or any other repo:
+docker login -u <username>
+
+cd src
+docker build . -t fluxcd-demo-app2:v1.0.0
+
+tag image
+docker tag fluxcd-demo-app2:v1.0.0 anvesh35/fluxcd-demo-app2:v1.0.0
+
+Push image to docker hub 
+docker push anvesh35/fluxcd-demo-app2:v1.0.0
+
+
+We will need to tell Flux how to manage our image deployment
+Note that this time our Kubernetes YAML is in the configs repo.
+This is because our application repo triggers it's CI which will build and push a new image to our cluster
+Flux will then detect the new image tag and update our Kubernetes YAML in our configs repo.
+If Flux pushed the update to our application repo, it will cause a CI/CD loop.
+
+add image policy and repository
+
+
+kubectl -n default apply -f kubernetes/fluxcd/repositories/infra-repo/apps/example-app-2/gitrepository.yaml
+kubectl -n default apply -f kubernetes/fluxcd/repositories/infra-repo/apps/example-app-2/kustomization.yaml
+
+# see our application 
+kubectl get deploy
+kubectl get pods
+
+# tell flux about our image update policy
+kubectl -n default apply -f kubernetes/fluxcd/repositories/infra-repo/apps/example-app-2/imagerepository.yaml
+kubectl -n default apply -f kubernetes/fluxcd/repositories/infra-repo/apps/example-app-2/imagepolicy.yaml
+kubectl -n default apply -f kubernetes/fluxcd/repositories/infra-repo/apps/example-app-2/imageupdateautomation.yaml
+
+# we will also need to provide authentication for our git repo
+flux create secret git example-app-2-github --url https://github.com/anveshmuppeda/kubernetes --username '' --password '' --namespace default
+
+

@@ -2,7 +2,7 @@ apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
   name: app2
-  namespace: default
+  namespace: fluxcd-demo
 spec:
   interval: 1m0s
   sourceRef:
