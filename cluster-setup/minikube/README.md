@@ -1,6 +1,3 @@
-Here’s a ready-to-go `README.md` for your `minikube/` folder, matching the same style as the KIND guide:
-
-```markdown
 # 🐳 Getting Started with Minikube  
 ### Spin up a local Kubernetes cluster in one command
 
