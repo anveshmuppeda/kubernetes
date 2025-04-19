@@ -160,6 +160,70 @@ docker tag fluxcd-demo-app1:v2.0.0 anvesh35/fluxcd-demo-app1:v2.0.0
 Push image to docker hub 
 docker push anvesh35/fluxcd-demo-app1:v2.0.0
 
+Now update our kubernetes deployment YAML image tag under /fluxcd/repos/app1/app1-deployment.yaml 
+
+Then git commit  & git push to fluxcd branch!
+
+Now check the pods status 
+# check deployed resources
+kubectl -n fluxcd-demo get all
+
+kubectl -n fluxcd-demo port-forward svc/app1 80:80
+
+we can latest version pods are now deployed to cluster 
+and you can see the latest version on the app.
+
+Even I have automated above docker build and updating the manifest files step using below steps:
+
+Here's a concise step-by-step explanation :
+
+### CI/CD Workflow Steps
+
+1. **Trigger Conditions**:
+   - Runs when code is pushed to `main` or `fluxcd` branches
+   - Also runs when new version tags (`v*`) are created
+
+2. **Build Process**:
+   - Checks out the repository code
+   - Determines version:
+     - Uses tag name for version tags (e.g., `v1.0.0`)
+     - Uses first 8 characters of commit SHA for branch pushes
+   - Builds Docker image from:
+     ```
+     fluxcd/repos/app1/src/Dockerfile
+     ```
+   - Tags image with format: `anvesh35/fluxcd-demo-app1:<version>`
+   - Pushes image to Docker Hub
+
+3. **Manifest Update**:
+   - Updates deployment YAML with new image tag:
+     ```
+     fluxcd/repos/app1/deploy/app1-deployment.yaml
+     ```
+   - Commits the change to `fluxcd` branch with message:
+     ```
+     "Update image to <version>"
+     ```
+
+4. **Required Setup**:
+   - Repository secrets needed:
+     - `DOCKERHUB_USERNAME` - Your Docker Hub username
+     - `DOCKERHUB_TOKEN` - Docker Hub access token
+   - Repository permissions:
+     - GitHub Actions must have write permissions
+     - Branch protection rules must allow Actions to push to `fluxcd` branch
+
+5. **Directory Structure**:
+   ```
+   /fluxcd/repos/app1/
+     ├── src/
+     │   └── Dockerfile      # Source Dockerfile
+     └── deploy/
+         └── app1-deployment.yaml  # Deployment manifest
+   ```
+
+This workflow automatically keeps your deployment manifests synchronized with your built images, pushing all changes to the `fluxcd` branch where Flux can detect and apply them.
+
 
 
 

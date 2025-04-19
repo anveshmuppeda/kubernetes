@@ -1,13 +1,14 @@
 # .github/workflows/docker-build-push-update.yaml
-name: Docker Build, Push & Update Manifests
+name: App1 Docker Build, Push & Update Manifests
 
 on:
   push:
     branches:
       - main
       - fluxcd
-    tags:
-      - 'v*'
+    paths:
+      - 'fluxcd/repos/app1/src/**'
+      - '.github/workflows/docker-build-push-update.yaml'
 
 jobs:
   build-push-update:
@@ -67,4 +68,4 @@ jobs:
           signoff: true
           push: true
           branch: fluxcd
-          token: ${{ secrets.PR_PAT_TOKEN }}
+          #token: ${{ secrets.PR_PAT_TOKEN }}
