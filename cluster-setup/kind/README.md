@@ -185,4 +185,8 @@ Omit `--name` to delete the default `kind` cluster.
 
 kind provides a fast, Kubernetes‑native way to run clusters locally. Whether you’re iterating on Helm charts, experimenting with CRDs, or teaching fellow engineers, kind makes it easy to get a sandboxed K8s environment in seconds. Next time you need a local cluster, reach for kind! 🚀
 
+## References  
+
+- [Kind Quick Start](https://kind.sigs.k8s.io/docs/user/quick-start/)
+
 *Happy clustering!*
