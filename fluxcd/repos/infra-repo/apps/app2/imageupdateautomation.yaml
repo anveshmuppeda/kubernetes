@@ -1,0 +1,24 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: app2
+  namespace: default
+spec:
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: app2
+  git:
+    checkout:
+      ref:
+        branch: fluxcd
+    commit:
+      author:
+        email: fluxcdbot@users.noreply.github.com
+        name: fluxcdbot
+      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+    push:
+      branch: fluxcd
+  update:
+    path: ../fluxcd/repos/infra-repo/apps/app2/deploy/app2-deployment.yaml
+    strategy: Setters

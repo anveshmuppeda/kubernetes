@@ -1,0 +1,10 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: app2
+  namespace: fluxcd-demo
+spec:
+  image: docker.io/anvesh35/fluxcd-demo-app2
+  interval: 1m0s
+  secretRef:
+    name: dockerhub-credential

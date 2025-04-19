@@ -118,6 +118,12 @@ So in my case my structure like below
 ```
 
 So now all the requirements are ready now let's start with our actual exmaple 
+
+
+Example one: 
+Develop source code & Dockerfile -> Commit changes to fluxcd repo under app1 -> build docker image -> push docker image -> update tag in manifest files <- deploy kustomizations & gitrepositories which will deploy these manifest automatically inside the cluster.
+
+
 lets build app1 from the repos/app1/ diretory
 
 # go to our "git repo"
@@ -180,8 +186,10 @@ Here's a concise step-by-step explanation :
 ### CI/CD Workflow Steps
 
 1. **Trigger Conditions**:
-   - Runs when code is pushed to `main` or `fluxcd` branches
-   - Also runs when new version tags (`v*`) are created
+   - Runs when code is pushed to `main` or `fluxcd` branches and with below paths 
+    paths:
+      - 'fluxcd/repos/app1/src/**'
+      - '.github/workflows/docker-build-push-update.yaml'
 
 2. **Build Process**:
    - Checks out the repository code
@@ -227,3 +235,21 @@ This workflow automatically keeps your deployment manifests synchronized with yo
 
 
 
+Example Two: 
+Develop source code & Dockerfile -> Commit changes to fluxcd repo under app2 -> build docker image -> push docker image 
+Flux will then detect the new image tag and update our Kubernetes YAML in our configs repo. If Flux pushed the update to our application repo, it will cause a CI/CD loop.
+
+
+
+
+We firstly need to enable image scanning as its not enabled by default.
+To do this we just need to re-bootstrap flux with an addition flag
+
+flux bootstrap github \
+  --token-auth \
+  --owner=anveshmuppeda \
+  --repository=kubernetes \
+  --path=fluxcd/repos/infra-repo/clusters/staging \
+  --components-extra=image-reflector-controller,image-automation-controller \
+  --personal \
+  --branch fluxcd
