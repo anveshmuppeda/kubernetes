@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: app2
-        image: anvesh35/fluxcd-demo-app2:v1.0.0 # {"$imagepolicy": "default:example-app-2"}
+        image: anvesh35/fluxcd-demo-app2:v1.0.0 # {"$imagepolicy": "fluxcd-demo:app2"}
         ports:
         - containerPort: 80
