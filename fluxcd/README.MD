@@ -141,6 +141,24 @@ Create namespace fluxcd-demo
 > k create ns fluxcd-demo
 namespace/fluxcd-demo created
 
+# check deployed resources
+kubectl -n fluxcd-demo get all
+
+kubectl -n fluxcd-demo port-forward svc/app1 80:80
+
+
+Now I am able to see the app with version v1.0.0
+
+Now let's try to update the version of the app to v2.0.0 by updating the source code and build docker image with new version 
+
+cd src
+docker build . -t fluxcd-demo-app1:v2.0.0
+
+tag image
+docker tag fluxcd-demo-app1:v2.0.0 anvesh35/fluxcd-demo-app1:v2.0.0
+
+Push image to docker hub 
+docker push anvesh35/fluxcd-demo-app1:v2.0.0
 
 
 
