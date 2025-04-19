@@ -8,5 +8,6 @@ Here are the different ways you can spin up a Kubernetes cluster:
 - Managed Kubernetes Services
   - [Amazon EKS](./eks/README.md)
   - [Google GKE - TODO..](./gke/README.md)
-  - [Azure AKS - TODO..](./aks/README.md)
+  - [Azure AKS - TODO..](./aks/README.md)  
+  - [DigitalOcean DOKS - TODO..](./doks/README.md)
 - [Using Docker Desktop’s built-in Kubernetes - TODO..](./docker-desktop/README.md)
