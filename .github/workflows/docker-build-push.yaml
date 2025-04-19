@@ -19,6 +19,7 @@ on:
       - fluxcd
     paths:
       - 'fluxcd/repos/app2/src/**'
+      - '.github/workflows/docker-build-push.yaml'
 
 jobs:
   version-calculator:
