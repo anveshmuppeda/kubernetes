@@ -34,14 +34,14 @@ This guide demonstrates how to implement **GitOps workflows** using FluxCD and G
 
 ## **Repository Structure**  
 ```bash
-📂 kubernetes-repo  
-└── fluxcd  
-    ├── repos  
-    │   ├── app1/               # App1 code + Kubernetes manifests  
-    │   ├── app2/               # App2 code  
-    │   ├── app3/               # Helm chart for App3  
-    │   └── infra-repo/         # Flux configurations  
-    └── .github/workflows/      # CI/CD pipelines  
+📂 kubernetes  
+|── fluxcd  
+|   ├── repos  
+|   │   ├── app1/               # App1 code + Kubernetes manifests  
+|   │   ├── app2/               # App2 code  
+|   │   ├── app3/               # Helm chart for App3  
+|   │   └── infra-repo/         # Flux configurations  
+└── .github/workflows/         # CI/CD pipelines  
 ```
 
 ---
