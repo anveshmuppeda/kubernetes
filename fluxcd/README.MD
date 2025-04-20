@@ -35,7 +35,7 @@ This guide demonstrates how to implement **GitOps workflows** using FluxCD and G
 ## **Repository Structure**  
 ```bash
 📂 kubernetes  
-|── fluxcd  
+│── fluxcd  
 │   ├── repos  
 │   │   ├── app1/               # App1 code + Kubernetes manifests  
 │   │   ├── app2/               # App2 code  
