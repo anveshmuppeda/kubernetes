@@ -442,13 +442,98 @@ flux logs --level=error
 ```
 
 ### **Common Issues**  
-1. **Sync Failures**:  
+1. **Troubleshooting: "Cannot Create Empty Commit" Error**  
+    *Resolving Flux's `clean working tree` Issue*  
+    ## **Error Message**  
+    ```bash
+    ✗ cannot create empty commit: clean working tree
+    ```
+
+    #### **What Does This Mean?**  
+    Flux attempted to commit its generated manifests to your Git repository but found **no changes** to commit.  
+    - **Technical Cause**: The go-git library (used by Flux) detected a clean working tree (no file changes) and rejected an empty commit.  
+    - **Flux Equivalent**:  
+      ```bash
+      git add -A
+      git commit -m "Add Flux manifests"  # Fails if no changes
+      ```
+
+    #### **Why This Happens**  
+    Common scenarios:  
+
+    1. **Repeated Bootstrap**  
+      - You've already run `flux bootstrap` on the same branch/path.  
+      - Flux generates identical manifests, so Git sees no difference.  
+
+    2. **Pre-Existing Manifests**  
+      - Your target `--path` already contains Flux files (`gotk-components.yaml`, etc.).  
+      - Flux doesn't overwrite existing files without explicit changes.  
+
+    3. **Empty Branch**  
+      - Brand-new branch with no prior commits (Git disallows first commit being empty).  
+
+
+    #### **Step-by-Step Solutions**  
+
+    ##### **1. Bootstrap to a New Path/Branch**  
+    ```bash
+    # New path
+    flux bootstrap github \
+      --path=clusters/new-environment \  # Changed from original path
+      --branch=fluxcd \
+      # ...other flags
+
+    # New branch
+    git checkout --orphan flux-new
+    flux bootstrap github \
+      --branch=flux-new \  # New branch name
+      # ...other flags
+    ```
+
+    ##### **2. Clean Existing Manifests**  
+    ```bash
+    git checkout fluxcd
+    rm -rf clusters/my-cluster/*  # Replace with your --path
+    git add -A && git commit -m "chore: reset for Flux bootstrap"
+    flux bootstrap ...  # Re-run with original flags
+    ```
+
+    ##### **3. Seed Initial Commit (For Empty Branches)**  
+    ```bash
+    git checkout --orphan fluxcd
+    git commit --allow-empty -m "chore: initial commit"
+    git push origin fluxcd
+    flux bootstrap ...  # Now works on non-empty branch
+    ```
+
+    ##### **4. Manual Flux Installation (Non-GitOps)**  
+    ```bash
+    flux install \
+      --components=source-controller,kustomize-controller \
+      --namespace=flux-system
+    ```
+
+    #### **Prevention Tips**  
+    - **First-Time Setup**: Always start with an empty directory for `--path`.  
+    - **Branch Hygiene**: Use dedicated branches for Flux (e.g., `flux-prod`, `flux-staging`).  
+    - **Automation Guard**: In CI/CD pipelines, add checks:  
+      ```bash
+      git diff-index --quiet HEAD || git commit -m "Update Flux manifests"
+      ```
+
+    **Pro Tip**: If you're **re-bootstrapping** to update components, use:  
+    ```bash
+    flux bootstrap ... --force  # Overwrites existing files
+    ```
+
+    Integrate this into your troubleshooting section to help users resolve empty-commit issues quickly! 🛠️
+2. **Sync Failures**:  
    - Verify GitHub token permissions  
    - Check `flux-system` pod logs  
-2. **Image Not Updated**:  
+3. **Image Not Updated**:  
    - Confirm ImagePolicy matches tag format  
    - Check ImageUpdateAutomation commit history  
-3. **Helm Chart Issues**:  
+4. **Helm Chart Issues**:  
    - Validate chart dependencies (`helm dependency update`)  
    - Check values.yaml compatibility  
 
