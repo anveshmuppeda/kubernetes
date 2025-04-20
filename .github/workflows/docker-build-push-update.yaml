@@ -58,8 +58,8 @@ jobs:
       - name: Update Kubernetes manifests
         run: |
           sed -i "s|image: anvesh35/fluxcd-demo-app1:.*|image: ${{ env.IMAGE }}|" fluxcd/repos/app1/deploy/app1-deployment.yaml
-          sed -i "s|tag:.*|tag: ${{ env.IMAGE }}|" fluxcd/repos/infra-repo/apps/app3/helmrelease.yaml
-          sed -i "s|tag:.*|tag: ${{ env.IMAGE }}|" fluxcd/repos/app3/charts/simple-chart/values.yaml
+          sed -i "s|tag:.*|tag: ${{ env.VERSION }}|" fluxcd/repos/infra-repo/apps/app3/helmrelease.yaml
+          sed -i "s|tag:.*|tag: ${{ env.VERSION }}|" fluxcd/repos/app3/charts/simple-chart/values.yaml
           git config user.name "FluxCDBot CI"
           git config user.email "fluxcdbot@users.noreply.github.com"
 
