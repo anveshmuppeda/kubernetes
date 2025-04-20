@@ -27,7 +27,7 @@
 ---
 
 ## Table of Contents
-- [Why These Guides? 💡](#why-these-guides?-💡)
+- [Why These Guides?](#why-these-guides?)
 - [Introduction](#introduction)
 - [My Blogs On Kubernetes](#my-blogs-on-kubernetes)
 - [Architecture](#architecture)
