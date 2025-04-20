@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmChart
+metadata:
+  name: app3-chart
+  namespace: fluxcd-demo
+spec:
+  interval: 1m                            # how often to re‑package the chart
+  chart: fluxcd/repos/app3/charts/simple-chart            # relative path inside your Git repo
+  sourceRef:
+    kind: GitRepository
+    name: app3                            # matches your existing GitRepository
+  # optional: choose Revision to pick every commit (vs. ChartVersion)
+  reconcileStrategy: Revision
+  # optional: you can pin to a version semver range if desired
+  version: "*"
