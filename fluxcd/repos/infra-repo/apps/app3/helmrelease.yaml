@@ -14,5 +14,5 @@ spec:
         name: app3
   values:
     image:
-      tag: anvesh35/fluxcd-demo-app1:86b00984
+      tag: fc63008f
       repository: "anvesh35/fluxcd-demo-app1"

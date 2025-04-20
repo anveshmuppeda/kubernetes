@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: app1
-        image: anvesh35/fluxcd-demo-app1:86b00984
+        image: anvesh35/fluxcd-demo-app1:fc63008f
         ports:
         - containerPort: 80
