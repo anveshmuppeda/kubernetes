@@ -31,13 +31,25 @@ jobs:
           # cd ./.github/scripts/
           python ./.github/scripts/update_readme.py
 
+      # - name: Commit and push changes
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.PR_PAT_TOKEN }}
+      #   run: |
+      #     # cd ./.github/scripts/
+      #     git config --global user.name "GitHub Actions"
+      #     git config --global user.email "actions@users.noreply.github.com"
+      #     git add README.md
+      #     git commit -m "Update README with latest Kubernetes blogs"
+      #     git push origin dev
+      
       - name: Commit and push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.PR_PAT_TOKEN }}
-        run: |
-          # cd ./.github/scripts/
-          git config --global user.name "Kubernetes Bot"
-          git config --global user.email "kubernetes-bot@anveshmuppeda.com"
-          git add README.md
-          git commit -m "Update README with latest Kubernetes blogs"
-          git push origin dev
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: 'README.md'
+          message: "Update README with latest Kubernetes blogs"
+          signoff: true
+          push: true
+          branch: dev
+          author_name: "Kubernetes CI"
+          author_email: "k8s-ci-bot@users.noreply.github.com"
+          #token: ${{ secrets.PR_PAT_TOKEN }}

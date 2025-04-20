@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: fluxcd-demo
+  name: app1
+  labels:
+    app: app1
+    project: fluxcd-demo
+spec:
+  type: ClusterIP
+  selector:
+    app: app1
+    project: fluxcd-demo
+  ports:
+    - protocol: TCP
+      name: http
+      port: 80
+      targetPort: 80

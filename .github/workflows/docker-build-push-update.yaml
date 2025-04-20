@@ -1,0 +1,73 @@
+# .github/workflows/docker-build-push-update.yaml
+name: App1 Docker Build, Push & Update Manifests
+
+on:
+  push:
+    branches:
+      - main
+      - fluxcd
+    paths:
+      - 'fluxcd/repos/app1/src/**'
+      - '.github/workflows/docker-build-push-update.yaml'
+
+jobs:
+  build-push-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code (with all branches)
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref }}
+
+      - name: Prepare version
+        id: prep
+        run: |
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/}
+            BUILD_IMAGE=true
+          else
+            VERSION=${GITHUB_SHA::8}
+            BUILD_IMAGE=true
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "IMAGE=anvesh35/fluxcd-demo-app1:$VERSION" >> $GITHUB_ENV
+          echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
+
+      - name: Set up Docker Buildx
+        if: env.BUILD_IMAGE == 'true'
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Hub
+        if: env.BUILD_IMAGE == 'true'
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        if: env.BUILD_IMAGE == 'true'
+        uses: docker/build-push-action@v4
+        with:
+          context: fluxcd/repos/app1/src/
+          file: fluxcd/repos/app1/src/Dockerfile
+          push: true
+          tags: ${{ env.IMAGE }}
+
+      - name: Update Kubernetes manifests
+        run: |
+          sed -i "s|image: anvesh35/fluxcd-demo-app1:.*|image: ${{ env.IMAGE }}|" fluxcd/repos/app1/deploy/app1-deployment.yaml
+          git config user.name "Kubernetes CI"
+          git config user.email "k8s-ci-bot@users.noreply.github.com"
+
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: 'fluxcd/repos/app1/deploy/app1-deployment.yaml'
+          message: "Update image to ${{ env.VERSION }}"
+          signoff: true
+          push: true
+          branch: fluxcd
+          author_name: "Kubernetes CI"
+          author_email: "k8s-ci-bot@users.noreply.github.com"
+          #token: ${{ secrets.PR_PAT_TOKEN }}
