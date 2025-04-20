@@ -19,5 +19,5 @@ spec:
     namespace: fluxcd-demo
   values:
     image:
-      tag: 042fa62b
+      tag: f08f56c1
       repository: "anvesh35/fluxcd-demo-app1"
