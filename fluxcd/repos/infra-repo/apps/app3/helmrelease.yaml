@@ -8,7 +8,7 @@ spec:
   releaseName: app3-release
   chart:
     spec:
-      chart: fluxcd/repos/app3/simple-chart
+      chart: fluxcd/repos/app3/charts/simple-chart
       sourceRef:
         kind: GitRepository
         name: app3
