@@ -444,7 +444,7 @@ flux logs --level=error
 ### **Common Issues**  
 1. **Troubleshooting: "Cannot Create Empty Commit" Error**  
     *Resolving Flux's `clean working tree` Issue*  
-    ## **Error Message**  
+    #### **Error Message**  
     ```bash
     ✗ cannot create empty commit: clean working tree
     ```
