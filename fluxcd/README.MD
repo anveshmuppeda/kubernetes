@@ -1,34 +1,7 @@
 # **Hands-On FluxCD: GitOps for Kubernetes at Scale**  
 *Real-World Examples for Seamless Kubernetes Automation*  
 
-**Author**: Anvesh Muppeda [![Profile Pic](https://avatars.githubusercontent.com/u/115966808?v=4&s=20)](https://github.com/anveshmuppeda)  
-
-## **Author**  
-
-<table>
-  <tr>
-    <td align="center">
-      <sub><b>Anvesh Muppeda</b></sub>
-    </td>
-    <td align="center">
-      <a href="https://github.com/anveshmuppeda">
-        <img src="https://avatars.githubusercontent.com/u/115966808?v=4" width="50;" style="border-radius: 50%" alt="Anvesh Muppeda"/>
-      </a>
-    </td>
-    <td>☁️ Cloud Native Advocate<br/>📖 Technical Author<br/>🚀 DevOps Practitioner</td>
-  </tr>
-</table>
-
-<div align="left">
-
-## **Author**  
-**Anvesh Muppeda** [<img src="https://avatars.githubusercontent.com/u/115966808?v=4" width="25" style="border-radius: 50%; vertical-align: middle; margin-left: 5px">](https://github.com/anveshmuppeda)  
-[![GitHub](https://img.shields.io/badge/-@anveshmuppeda-181717?logo=github&style=flat)](https://github.com/anveshmuppeda)
-[![LinkedIn](https://img.shields.io/badge/-@anvesh--muppeda-0A66C2?logo=linkedin&style=flat)](https://linkedin.com/in/anvesh-muppeda)
-[![Medium](https://img.shields.io/badge/-@anveshmuppeda-000000?logo=medium&style=flat)](https://medium.com/@anveshmuppeda)
-[![Twitter](https://img.shields.io/badge/-@AnveshMuppeda-1DA1F2?logo=twitter&style=flat)](https://twitter.com/AnveshMuppeda)
-[![Email](https://img.shields.io/badge/-Contact%20Me-EA4335?logo=gmail&style=flat)](mailto:your@email.com)
-
+## **Author**: Anvesh Muppeda [![Profile Pic](https://avatars.githubusercontent.com/u/115966808?v=4&s=20)](https://github.com/anveshmuppeda)  
 
 [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?logo=github&style=flat)](https://github.com/anveshmuppeda)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat)](https://www.linkedin.com/in/anveshmuppeda/)
