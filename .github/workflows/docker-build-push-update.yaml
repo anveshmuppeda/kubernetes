@@ -53,6 +53,7 @@ jobs:
           file: fluxcd/repos/app1/src/Dockerfile
           push: true
           tags: ${{ env.IMAGE }}
+          platforms: linux/amd64,linux/arm64
 
       - name: Update Kubernetes manifests
         run: |

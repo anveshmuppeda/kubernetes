@@ -52,7 +52,7 @@ flux bootstrap github \
   --owner=anveshmuppeda \
   --repository=kubernetes \
   --branch=fluxcd \
-  --path=./fluxcd/repos/infra-repo/clusters/dev \
+  --path=./fluxcd/repos/infra-repo/clusters/test \
   --personal
 
 > flux check
