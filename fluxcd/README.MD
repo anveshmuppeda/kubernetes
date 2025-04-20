@@ -20,6 +20,11 @@
 
 <div align="left">
 
+## **Author**  
+**Anvesh Muppeda**  
+[<img src="https://avatars.githubusercontent.com/u/115966808?v=4" width="25" style="border-radius: 50%; vertical-align: middle;" alt="Profile">](https://github.com/anveshmuppeda)  
+
+
 [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?logo=github&style=flat)](https://github.com/anveshmuppeda)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat)](https://www.linkedin.com/in/anveshmuppeda/)
 [![Twitter](https://img.shields.io/badge/Twitter-Follow-blue?logo=twitter&style=flat)](https://twitter.com/Anvesh66743877)
