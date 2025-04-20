@@ -1,7 +1,9 @@
-# **Complete FluxCD GitOps Guide with GitHub Actions**  
-*A Comprehensive Walkthrough for Kubernetes Deployment Automation*  
+# **Hands-On FluxCD: GitOps for Kubernetes at Scale**  
+*Real-World Examples for Seamless Kubernetes Automation*  
 
 ---
+
+![FluxCD Architecture](./../Contents/fluxcd.png)
 
 ## **Table of Contents**  
 1. [Introduction](#introduction)  
