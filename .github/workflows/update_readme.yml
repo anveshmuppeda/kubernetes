@@ -51,5 +51,5 @@ jobs:
           push: true
           branch: dev
           author_name: "Kubernetes CI"
-          author_email: "k8s-ci-bot@users.noreply.github.com"
+          author_email: "k8s-ci-robot@users.noreply.github.com"
           #token: ${{ secrets.PR_PAT_TOKEN }}

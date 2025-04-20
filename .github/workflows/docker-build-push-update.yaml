@@ -57,8 +57,8 @@ jobs:
       - name: Update Kubernetes manifests
         run: |
           sed -i "s|image: anvesh35/fluxcd-demo-app1:.*|image: ${{ env.IMAGE }}|" fluxcd/repos/app1/deploy/app1-deployment.yaml
-          git config user.name "Kubernetes CI"
-          git config user.email "k8s-ci-bot@users.noreply.github.com"
+          git config user.name "Fluxcdbot CI"
+          git config user.email "fluxcdbot@users.noreply.github.com"
 
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v7
@@ -68,6 +68,6 @@ jobs:
           signoff: true
           push: true
           branch: fluxcd
-          author_name: "Kubernetes CI"
-          author_email: "k8s-ci-bot@users.noreply.github.com"
+          author_name: "Fluxcdbot CI"
+          author_email: "fluxcdbot@users.noreply.github.com"
           #token: ${{ secrets.PR_PAT_TOKEN }}
