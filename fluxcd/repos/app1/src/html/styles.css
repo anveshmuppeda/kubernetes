@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative; /* Allow absolute positioning of the footer */
+}
+
+.container {
+    text-align: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.logo-img {
+    width: 100px; /* Adjust the logo size here */
+    margin-right: 10px; /* Space between the logo and text */
+}
+
+.k8s-text {
+    font-size: 65px;
+    font-weight: bold;
+    color: #007acc;
+}
+
+.info-box {
+    background-color: white; /* Background color of the box */
+    border: 2px solid #007acc; /* Border color */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Space inside the box */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin: 20px auto; /* Center the box with margin */
+    width: fit-content; /* Allow width to adjust based on content */
+    max-width: 90%; /* Max width to prevent overflow */
+}
+
+.welcome-message, .node-name, .pod-name {
+    font-size: 20px; /* Font size for all messages */
+    color: #333; /* Text color for contrast */
+    margin: 10px 0; /* Margin for spacing */
+}
+
+.welcome-message {
+    font-size: 20px; /* Font size for all messages */
+    font-weight: bold;
+}
+
+#footer {
+    font-size: 14px;
+    color: #666;
+    position: absolute; /* Change to absolute positioning */
+    bottom: 10px; /* Distance from the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust to center */
+    text-align: center; /* Center text inside footer */
+    font-style: italic;
+}
