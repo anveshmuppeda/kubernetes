@@ -9,7 +9,7 @@
   <tr>
     <td align="center">
       <a href="https://github.com/anveshmuppeda">
-        <img src="https://avatars.githubusercontent.com/u/115966808?v=4" width="100px;" alt="Anvesh Muppeda"/>
+        <img src="https://avatars.githubusercontent.com/u/115966808?v=4" width="50;" style="border-radius: 50%" alt="Anvesh Muppeda"/>
       </a>
       <br />
       <sub><b>Anvesh Muppeda</b></sub>
@@ -21,10 +21,10 @@
 <div align="left">
 
 [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?logo=github&style=flat)](https://github.com/anveshmuppeda)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat)](https://www.linkedin.com/in/anvesh-muppeda/)
-[![Twitter](https://img.shields.io/badge/Twitter-Follow-blue?logo=twitter&style=flat)](https://twitter.com/AnveshMuppeda)
-[![Medium](https://img.shields.io/badge/Medium-Blog-black?logo=medium&style=flat)](https://medium.com/@anveshmuppeda)
-[![Email](https://img.shields.io/badge/Email-Contact%20Me-red?logo=gmail&style=flat)](mailto:your.email@example.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat)](https://www.linkedin.com/in/anveshmuppeda/)
+[![Twitter](https://img.shields.io/badge/Twitter-Follow-blue?logo=twitter&style=flat)](https://twitter.com/Anvesh66743877)
+[![Medium](https://img.shields.io/badge/Medium-Blog-black?logo=medium&style=flat)](https://medium.com/@muppedaanvesh)
+[![Email](https://img.shields.io/badge/Email-Contact%20Me-red?logo=gmail&style=flat)](muppedaanvesh@gmail.com)
 
 </div>
 
