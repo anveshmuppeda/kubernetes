@@ -65,7 +65,9 @@ jobs:
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v7
         with:
-          add: 'fluxcd/repos/app1/deploy/app1-deployment.yaml'
+          add: |
+            - fluxcd/repos/app1/deploy/app1-deployment.yaml
+            - fluxcd/repos/infra-repo/apps/app3/helmrelease.yaml
           message: "Update image to ${{ env.VERSION }}"
           signoff: true
           push: true
