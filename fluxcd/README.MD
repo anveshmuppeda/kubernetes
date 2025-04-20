@@ -1,7 +1,7 @@
 # **Hands-On FluxCD: GitOps for Kubernetes at Scale**  
 *Real-World Examples for Seamless Kubernetes Automation*  
 
-**Author**: Anvesh Muppeda [![Profile Pic](https://avatars.githubusercontent.com/u/115966808?v=4&s=40)](https://github.com/anveshmuppeda)  
+**Author**: Anvesh Muppeda [![Profile Pic](https://avatars.githubusercontent.com/u/115966808?v=4&s=20)](https://github.com/anveshmuppeda)  
 
 ---
 
