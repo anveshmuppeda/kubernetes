@@ -3,7 +3,7 @@
 
 ---
 
-![FluxCD Architecture](./../Contents/fluxcd.png)
+![FluxCD Architecture](./../assets/fluxcd.png)
 
 ## **Table of Contents**  
 1. [Introduction](#introduction)  
