@@ -8,7 +8,6 @@
 <table>
   <tr>
     <td align="center">
-      <br />
       <sub><b>Anvesh Muppeda</b></sub>
     </td>
     <td align="center">
