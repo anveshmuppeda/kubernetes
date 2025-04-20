@@ -469,7 +469,13 @@ flux logs --level=error
 2. Configure [Notifications](https://fluxcd.io/docs/guides/notifications/) (Slack/Teams)  
 3. Implement [Multi-Tenancy](https://fluxcd.io/docs/guides/multi-tenancy/)  
 
-[🔗 Official FluxCD Documentation](https://fluxcd.io/docs/) | [📂 Example Repository](https://github.com/anveshmuppeda/fluxcd-demo)  
+## References  
+- [🔗 Official FluxCD Documentation](https://fluxcd.io/docs/) 
+- [📂 Example Repository](https://github.com/anveshmuppeda/kubernetes/)  
+- [Get Started with Flux](https://fluxcd.io/flux/get-started/)  
+- [ Manage Helm Releases](https://fluxcd.io/flux/guides/helmreleases/)
+- [Flux bootstrap](https://fluxcd.io/flux/installation/bootstrap/)  
+- [Ways of structuring your repositories](https://fluxcd.io/flux/guides/repository-structure/)  
 
 ---
 
