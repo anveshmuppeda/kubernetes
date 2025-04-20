@@ -1,3 +1,31 @@
+# Kubernetes Complete Hands‑On Guides [![GitHub License](https://img.shields.io/github/license/anveshmuppeda/kubernetes?color=blue)](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
+### **Author**: [Anvesh Muppeda ![Profile Pic](https://avatars.githubusercontent.com/u/115966808?v=4&s=20)](https://github.com/anveshmuppeda)  
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?logo=github&style=flat)](https://github.com/anveshmuppeda)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat)](https://www.linkedin.com/in/anveshmuppeda/)
+[![Twitter](https://img.shields.io/badge/Twitter-Follow-blue?logo=twitter&style=flat)](https://twitter.com/Anvesh66743877)
+[![Medium](https://img.shields.io/badge/Medium-Blog-black?logo=medium&style=flat)](https://medium.com/@muppedaanvesh)
+[![Email](https://img.shields.io/badge/Email-Contact%20Me-red?logo=gmail&style=flat)](mailto:muppedaanvesh@gmail.com)
+
+---
+
+🚀 **Community-Driven Knowledge Hub**  
+*We welcome contributions to build the most comprehensive Kubernetes hands-on resource!*
+
+📢 **How You Can Help**:
+- 🐛 [Report Issues](https://github.com/anveshmuppeda/kubernetes/issues)
+- 💡 [Suggest New Guides](https://github.com/anveshmuppeda/kubernetes/discussions)
+- ✍️ [Submit Article Improvements](https://github.com/anveshmuppeda/kubernetes/pulls)
+- 📚 [Add Missing Concepts](CONTRIBUTING.md#adding-content)
+- ✅ [Review Open PRs](https://github.com/anveshmuppeda/kubernetes/pulls)
+
+[![Open Issues](https://img.shields.io/github/issues-raw/anveshmuppeda/kubernetes)](https://github.com/anveshmuppeda/kubernetes/issues)
+[![Good First Issues](https://img.shields.io/github/issues/anveshmuppeda/kubernetes/good%20first%20issue)](https://github.com/anveshmuppeda/kubernetes/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+[![Open PRs](https://img.shields.io/github/issues-pr-raw/anveshmuppeda/kubernetes)](https://github.com/anveshmuppeda/kubernetes/pulls)
+
+---
+
 # Kubernetes Complete Hands‑On Guides  [![GitHub License](https://img.shields.io/github/license/anveshmuppeda/kubernetes?color=blue)](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE) 
 
 ### **Author**: [Anvesh Muppeda ![Profile Pic](https://avatars.githubusercontent.com/u/115966808?v=4&s=20)](https://github.com/anveshmuppeda)  
