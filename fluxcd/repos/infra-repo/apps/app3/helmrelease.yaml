@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: app3-release
+  namespace: fluxcd-demo
+spec:
+  interval: 1m
+  #releaseName: app3-release
+  # chart:
+  #   spec:
+  #     chart: fluxcd/repos/app3/charts/simple-chart
+  #     sourceRef:
+  #       kind: GitRepository
+  #       name: app3
+  # Reference the pre‑packaged HelmChart
+  chartRef:
+    kind: HelmChart
+    name: app3-chart
+    namespace: fluxcd-demo
+  values:
+    image:
+      tag: 042fa62b
+      repository: "anvesh35/fluxcd-demo-app1"

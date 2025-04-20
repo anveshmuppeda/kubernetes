@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: app3
+  namespace: fluxcd-demo
+spec:
+  interval: 1m0s
+  ref:
+    branch: fluxcd
+  url: https://github.com/anveshmuppeda/kubernetes
+  ignore: |-
+    # exclude all
+    /*
+    # include charts directory
+    !/fluxcd/repos/app3/
