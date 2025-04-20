@@ -68,7 +68,6 @@ jobs:
           signoff: true
           push: true
           branch: fluxcd
-          default_author: false
           author_name: "Kubernetes CI"
           author_email: "k8s-ci-bot@users.noreply.github.com"
           #token: ${{ secrets.PR_PAT_TOKEN }}
