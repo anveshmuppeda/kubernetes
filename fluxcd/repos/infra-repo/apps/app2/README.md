@@ -18,6 +18,10 @@ graph LR
 ### **1. Configure Flux Components**  
 
 #### **a. GitRepository**  
+##### We will also need to provide authentication for our git repo  
+```bash
+flux create secret git app2-githubsecret --url https://github.com/anveshmuppeda/kubernetes --username '' --password '' --namespace fluxcd-demo
+```  
 **File**: `fluxcd/repos/infra-repo/apps/app2/gitrepository.yaml`  
 ```yaml
 apiVersion: source.toolkit.fluxcd.io/v1
@@ -26,10 +30,12 @@ metadata:
   name: app2
   namespace: fluxcd-demo
 spec:
-  url: https://github.com/anveshmuppeda/kubernetes
+  interval: 1m0s
   ref:
     branch: fluxcd
-  interval: 1m
+  url: https://github.com/anveshmuppeda/kubernetes
+  secretRef:
+    name: app2-githubsecret
 ```
 
 **What it does**:  
@@ -61,7 +67,13 @@ spec:
 
 ---
 
+
 #### **c. Image Automation Objects**  
+##### Create Docker registry secret to authenticate docker registry  
+We need to create a image registry credential where we will push our image:  
+```bash
+kubectl -n default create secret docker-registry dockerhub-credential --docker-username '' --docker-password '' --docker-email 'test@test.com'
+```
 **i. ImageRepository**  
 **File**: `fluxcd/repos/infra-repo/apps/app2/imagerepository.yaml`  
 ```yaml
@@ -72,7 +84,9 @@ metadata:
   namespace: fluxcd-demo
 spec:
   image: docker.io/anvesh35/fluxcd-demo-app2
-  interval: 1m
+  interval: 1m0s
+  secretRef:
+    name: dockerhub-credential
 ```
 
 **What it does**:  
