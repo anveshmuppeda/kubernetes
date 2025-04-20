@@ -194,7 +194,13 @@ graph LR
   C --> D[Flux Detects New Image]
   D --> E[Auto-Update Deployment]
   E --> F[Git Commit]
-```
+```  
+
+
+### We will also need to provide authentication for our git repo  
+```bash
+flux create secret git app2-githubsecret --url https://github.com/anveshmuppeda/kubernetes --username '' --password '' --namespace fluxcd-demo
+```  
 
 ### **1. Configure Flux Components**  
 
@@ -206,10 +212,12 @@ metadata:
   name: app2
   namespace: fluxcd-demo
 spec:
-  url: https://github.com/anveshmuppeda/kubernetes
+  interval: 1m0s
   ref:
     branch: fluxcd
-  interval: 1m
+  url: https://github.com/anveshmuppeda/kubernetes
+  secretRef:
+    name: app2-githubsecret
 ```
 
 **b. Kustomization (fluxcd/repos/infra-repo/apps/app2/kustomization.yaml)**  
@@ -234,6 +242,12 @@ kubectl apply -f fluxcd/repos/infra-repo/apps/app2/imagepolicy.yaml
 kubectl apply -f fluxcd/repos/infra-repo/apps/app2/imageupdateautomation.yaml
 ```
 
+### Create Docker registry secret to authenticate docker registry  
+We need to create a image registry credential where we will push our image:  
+```bash
+kubectl -n default create secret docker-registry dockerhub-credential --docker-username '' --docker-password '' --docker-email 'test@test.com'
+```
+
 **imagerepository.yaml**  
 ```yaml
 apiVersion: image.toolkit.fluxcd.io/v1beta2
@@ -243,7 +257,9 @@ metadata:
   namespace: fluxcd-demo
 spec:
   image: docker.io/anvesh35/fluxcd-demo-app2
-  interval: 1m
+  interval: 1m0s
+  secretRef:
+    name: dockerhub-credential
 ```
 
 **What it does**:  
@@ -275,18 +291,30 @@ metadata:
   name: app2
   namespace: fluxcd-demo
 spec:
-  interval: 1m
+  interval: 1m0s
   sourceRef:
     kind: GitRepository
     name: app2
+  git:
+    checkout:
+      ref:
+        branch: fluxcd
+    commit:
+      author:
+        email: fluxcdbot@users.noreply.github.com
+        name: fluxcdbot
+      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+    push:
+      branch: fluxcd
   update:
-    path: ./fluxcd/repos/infra-repo/apps/app2/deploy
-    strategy: setters
+    path: ../fluxcd/repos/infra-repo/apps/app2/deploy/app2-deployment.yaml
+    strategy: Setters
 ```
 
 **What it does**:  
 - Updates [app2-deployment.yaml](fluxcd/repos/infra-repo/apps/app2/deploy/app2-deployment.yaml) with new image tags  
 - Commits changes back to Git  
+
 
 ### **2. GitHub Actions Pipeline (.github/workflows/docker-build-push.yaml)**  
 ```yaml
