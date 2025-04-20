@@ -8,11 +8,13 @@
 <table>
   <tr>
     <td align="center">
+      <br />
+      <sub><b>Anvesh Muppeda</b></sub>
+    </td>
+    <td align="center">
       <a href="https://github.com/anveshmuppeda">
         <img src="https://avatars.githubusercontent.com/u/115966808?v=4" width="50;" style="border-radius: 50%" alt="Anvesh Muppeda"/>
       </a>
-      <br />
-      <sub><b>Anvesh Muppeda</b></sub>
     </td>
     <td>☁️ Cloud Native Advocate<br/>📖 Technical Author<br/>🚀 DevOps Practitioner</td>
   </tr>
