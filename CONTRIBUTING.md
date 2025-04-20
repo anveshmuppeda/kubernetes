@@ -43,7 +43,6 @@ We welcome all forms of contributions:
 
 ### 3. Writing Blog-Style Guides
 - See detailed [blog guidelines](#blog-contribution-guide)
-- Use our [blog template](.templates/BLOG_TEMPLATE.md)
 
 ### 4. Improving Documentation
 - Fix typos in existing guides
@@ -55,7 +54,7 @@ We welcome all forms of contributions:
 
 1. **Fork & Clone**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/kubernetes.git
+   git clone https://github.com/anveshmuppeda/kubernetes.git
    cd kubernetes
    ```
 
@@ -84,8 +83,8 @@ We welcome all forms of contributions:
 
 ### File Structure
 ```
-blogs/
-└── YYYY-MM-DD-guide-title.md
+topicname/
+└── README.md
 ```
 
 ### Front Matter Template
@@ -200,11 +199,4 @@ All participants must adhere to our [Code of Conduct](CODE_OF_CONDUCT.md). Pleas
 ---
 
 🙌 Ready to contribute? [Find Good First Issues](https://github.com/anveshmuppeda/kubernetes/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
-```
-
-**To implement**:
-1. Create `.templates/BLOG_TEMPLATE.md` with the front matter template
-2. Add `.markdownlint.json` with your linting rules
-3. Create `CODE_OF_CONDUCT.md` (use [Contributor Covenant](https://www.contributor-covenant.org/))
-4. Add sample cover images to `images/covers/`
 
