@@ -1,6 +1,8 @@
 # **Hands-On FluxCD: GitOps for Kubernetes at Scale**  
 *Real-World Examples for Seamless Kubernetes Automation*  
 
+**Author**: Anvesh Muppeda [![Profile Pic](https://avatars.githubusercontent.com/u/115966808?v=4&s=40)](https://github.com/anveshmuppeda)  
+
 ---
 
 ![FluxCD Architecture](./../assets/fluxcd.png)
@@ -27,7 +29,7 @@ This guide demonstrates how to implement **GitOps workflows** using FluxCD and G
 ---
 
 ## **Prerequisites**  
-- Kubernetes cluster (e.g., [Kind](https://kind.sigs.k8s.io/))  
+- Kubernetes cluster (e.g., kind [Spin Up a Local Kubernetes Cluster with kind in Minutes](./../cluster-setup/kind/README.md))  
 - `kubectl` access to the cluster  
 - GitHub repository with [personal access token](https://github.com/settings/tokens) (repo scope)  
 - Docker Hub account (for image registry)  
@@ -73,6 +75,8 @@ This:
 - Creates `flux-system` namespace  
 - Deploys Flux controllers (source, kustomize, helm)  
 - Configures Git repository synchronization  
+
+![FluxCD Setup](./../assets/fluxcd-setup.png)
 
 ---
 
@@ -124,7 +128,7 @@ spec:
 ```
 
 **What it does**:  
-- Applies manifests from `app1/deploy` directory  
+- Applies manifests from [app1/deploy](fluxcd/repos/app1/deploy) directory  
 - Auto-deletes removed resources (`prune: true`)  
 - Syncs every 5 minutes  
 
@@ -167,7 +171,7 @@ jobs:
 1. Developer pushes code to `app1/src`  
 2. GitHub Actions:  
    - Builds Docker image with commit SHA tag  
-   - Updates `app1-deployment.yaml`  
+   - Updates [app1-deployment.yaml](fluxcd/repos/app1/deploy/app1-deployment.yaml)  
    - Commits changes to `fluxcd` branch  
 3. Flux detects Git changes and deploys new image  
 
@@ -237,7 +241,7 @@ spec:
 ```
 
 **What it does**:  
-- Scans Docker Hub for new tags of `fluxcd-demo-app2`  
+- Scans Docker Hub for new tags of [fluxcd-demo-app2](https://hub.docker.com/repository/docker/anvesh35/fluxcd-demo-app2/general)    
 
 **imagepolicy.yaml**  
 ```yaml
@@ -275,7 +279,7 @@ spec:
 ```
 
 **What it does**:  
-- Updates `app2-deployment.yaml` with new image tags  
+- Updates [app2-deployment.yaml](fluxcd/repos/infra-repo/apps/app2/deploy/app2-deployment.yaml) with new image tags  
 - Commits changes back to Git  
 
 ### **2. GitHub Actions Pipeline (.github/workflows/docker-build-push.yaml)**  
@@ -397,7 +401,7 @@ spec:
 ```
 
 **What it does**:  
-- Deploys `app3-chart` with custom image values  
+- Deploys `simple-chart` with custom image values  
 - Auto-upgrades on chart changes  
 
 ### **2. GitHub Actions Integration**  
@@ -567,3 +571,4 @@ flux logs --level=error
 ---
 
 This guide provides an end-to-end implementation of GitOps with FluxCD. Adapt the examples to your environment and scale as needed!  
+
