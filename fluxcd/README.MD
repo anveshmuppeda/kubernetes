@@ -7,7 +7,7 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat)](https://www.linkedin.com/in/anveshmuppeda/)
 [![Twitter](https://img.shields.io/badge/Twitter-Follow-blue?logo=twitter&style=flat)](https://twitter.com/Anvesh66743877)
 [![Medium](https://img.shields.io/badge/Medium-Blog-black?logo=medium&style=flat)](https://medium.com/@muppedaanvesh)
-[![Email](https://img.shields.io/badge/Email-Contact%20Me-red?logo=gmail&style=flat)](muppedaanvesh@gmail.com)
+[![Email](https://img.shields.io/badge/Email-Contact%20Me-red?logo=gmail&style=flat)](mailto:muppedaanvesh@gmail.com)
 
 ---
 
