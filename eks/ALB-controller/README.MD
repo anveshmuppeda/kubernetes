@@ -1,20 +1,20 @@
-AWS Load Balancer Controller on EKS: A Comprehensive Guide
+**AWS Load Balancer Controller on EKS: A Comprehensive Guide**
 
 In this guide, we will walk through the steps to install the AWS Load Balancer Controller on an Amazon EKS (Elastic Kubernetes Service) cluster. This controller allows you to manage AWS Elastic Load Balancers (ELBs) for your Kubernetes services.
 The AWS Load Balancer Controller is a Kubernetes controller that automatically manages AWS Elastic Load Balancers (ELBs) for Kubernetes Ingresses and Services.
 
-It supports:
+**It supports:**
 Application Load Balancer (ALB) 
 Network Load Balancer (NLB)
 
-How ALB Controller Works (Simplified)
+**How ALB Controller Works (Simplified)**
 
 You define an Ingress or a Service of type LoadBalancer in your Kubernetes manifest.
 The AWS Load Balancer Controller watches for those resources.
 It automatically creates and configures an ALB/NLB in your AWS account.
 It keeps the AWS resources in sync with changes in your cluster.
 
-Prerequisites
+**Prerequisites**
 Before starting the installation, ensure that you have the following prerequisites:
 
 AWS CLI and kubectl installed and configured.
