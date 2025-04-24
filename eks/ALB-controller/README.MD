@@ -114,6 +114,7 @@ App3: A simple echo service
 Each of these applications is exposed using a Service of type ClusterIP
 
 Create an yaml file with name Test-App.yaml in the namespace alb-test as below
+
 ```bash
 apiVersion: apps/v1
 kind: Deployment
