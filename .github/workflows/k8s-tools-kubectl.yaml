@@ -17,7 +17,7 @@ on:
       - main
       - fluxcd
     paths:
-      - 'dockerfiles/k8s-toolbox/kubectl/Dockerfile'
+      - 'dockerfiles/k8s-tools/kubectl/Dockerfile'
 
 jobs:
   build-push-update:
@@ -58,8 +58,8 @@ jobs:
         if: env.BUILD_IMAGE == 'true'
         uses: docker/build-push-action@v4
         with:
-          context: dockerfiles/k8s-toolbox/kubectl/
-          file: dockerfiles/k8s-toolbox/kubectl/Dockerfile
+          context: dockerfiles/k8s-tools/kubectl/
+          file: dockerfiles/k8s-tools/kubectl/Dockerfile
           push: true
           tags: ${{ env.IMAGE }}
           platforms: linux/amd64,linux/arm64
