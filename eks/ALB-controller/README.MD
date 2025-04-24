@@ -30,7 +30,7 @@ By using the Below Command, we are creating EKS cluster without node group Infor
 ```bash
 eksctl create cluster --name=my-ALB-eks-cluster --region=us-east-1 --without-nodegroup
 ```
-**Step: Create node group for EKS Cluster**\n
+**Step: Create node group for EKS Cluster**"\n"
 In this step, we will create node group Information as below
 
 ```bash
@@ -45,7 +45,7 @@ eksctl create nodegroup \
   --ssh-access \
   --ssh-public-key=test-eks-alb
 ```
-**Step: Connect to your EKS Cluster**\n
+**Step: Connect to your EKS Cluster**"\n"
 Use the below mentioned command to connect to your EKS Cluser using Command Line Interface
 ```bash
 aws eks --region us-east-1 update-kubeconfig --name my-eks-ALB-cluster
