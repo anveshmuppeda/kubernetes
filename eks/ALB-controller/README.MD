@@ -1,4 +1,4 @@
-**AWS Load Balancer Controller on EKS: A Comprehensive Guide**
+<h2>AWS Load Balancer Controller on EKS: A Comprehensive Guide</h2>
 
 In this guide, we will walk through the steps to install the AWS Load Balancer Controller on an Amazon EKS (Elastic Kubernetes Service) cluster. This controller allows you to manage AWS Elastic Load Balancers (ELBs) for your Kubernetes services.
 The AWS Load Balancer Controller is a Kubernetes controller that automatically manages AWS Elastic Load Balancers (ELBs) for Kubernetes Ingresses and Services.
@@ -23,14 +23,14 @@ IAM OIDC provider enabled for the EKS cluster.
 Helm installed on your local machine.
 
 
-Step: Create EKS Cluster using eksctl
+**Step: Create EKS Cluster using eksctl**
 
 By using the Below Command, we are creating EKS cluster without node group Information.
 
 ```bash
 aws eks --region us-east-1 update-kubeconfig --name my-eks-ALB-cluster
 ```
-Step: Create node group for EKS Cluster
+**Step: Create node group for EKS Cluster**
 In this step, we will create node group Information as below
 
 ```bash
@@ -45,23 +45,23 @@ eksctl create nodegroup \
   --ssh-access \
   --ssh-public-key=test-eks-alb
 ```
-Step: Connect to your EKS Cluster
+**Step: Connect to your EKS Cluster**
 Use the below mentioned command to connect to your EKS Cluser using Command Line Interface
 ```bash
 aws eks --region us-east-1 update-kubeconfig --name my-eks-ALB-cluster
 ```
-Step: Associate OIDC Provider (if not done)
+**Step: Associate OIDC Provider (if not done)**
 This command connects your EKS cluster to an OpenID Connect (OIDC) provider, which is required for securely allowing AWS resources to interact with your Kubernetes services.
 ```bash
    curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
 ```
-Step:Create IAM Policy
+**Step:Create IAM Policy**
 Create an IAM policy in AWS using the downloaded `iam-policy.json` file. This policy allows the Load Balancer Controller to access required AWS resources.
 
 ```bash
    aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam-policy.json
 ```
-Step: Create Service Account for Load Balancer Controller
+**Step: Create Service Account for Load Balancer Controller**
 Creates a Kubernetes service account in the `kube-system` namespace for the Load Balancer Controller, associating it with the IAM policy you just created. This allows the controller to interact with AWS resources securely.
 ```bash
 eksctl create iamserviceaccount \
@@ -75,14 +75,14 @@ eksctl create iamserviceaccount \
 ```
 From the Above Command placeholder ########## must be replaced with your actual AWS account ID.
 
-Step 7:Helm Installation
+**Step :Helm Installation**
 Adds the AWS EKS Helm chart repository and updates it to ensure you have the latest charts available.
 
 ```bash
 helm repo add eks https://aws.github.io/eks-charts
 helm repo update
 ```
-Step :Install the AWS Load Balancer Controller using Helm
+**Step :Install the AWS Load Balancer Controller using Helm**
 
 This installs the AWS Load Balancer Controller in your EKS cluster using Helm. It specifies the cluster name, uses the service account you created, and sets the region and VPC ID. It also sets the ingress class to `ALB`, which means the Load Balancer Controller will use AWS Application Load Balancers.
 
@@ -96,7 +96,7 @@ helm upgrade --install aws-load-balancer-controller eks/aws-load-balancer-contro
      --set vpcId=vpc-########## \
      --set ingressClass=alb
 ```
-Step :Deploy Applications to Test Application LoadBalancer Controller
+**Step :Deploy Applications to Test Application LoadBalancer Controller**
 
 deployed three simple applications on your Kubernetes cluster using Deployment resources. These are standard workloads that run containerized applications, in your case:
 
@@ -269,7 +269,7 @@ Apply the Ingress-resource.yaml in the alb-test namespace.
 Now we can verify in the AWS that an Application Load Balancer(ALB) has been created in the Backend.
 We can now access the Applications created by using The DNS Name app1.kubecluster.xyz,app1.kubecluster.xyz/api,app2.kubecluster.xyz
 
-Step: Create an Application In different Namespace with Load Balancer Service type
+**Step: Create an Application In different Namespace with Load Balancer Service type**
 
 The below Yaml CTest-App2.yaml reates an namespace called Dev and deploys the Nginx using Load Balancer Type service.
 
@@ -315,7 +315,7 @@ spec:
 ```
 As per the Load Balancer controller if we use service type as Load Balancer, Network Load Balancer will create.
 
-ANNOTATION
+<h2>ANNOTATION</h2>
 
 ```bash
 service.beta.kubernetes.io/aws-load-balancer-type: "alb"
@@ -362,13 +362,13 @@ spec:
       targetPort: 80
 ```
 
-Default Behavior Without Annotation:
+**Default Behavior Without Annotation:**
 
 If you create a Service of type Load Balancer without this annotation, here’s what usually happens:
 Default behavior (in AWS): it creates a Network Load Balancer (NLB).
 This is because the classic Kubernetes AWS cloud provider only supports NLB for Service of type Load Balancer.
 
-When the Annotation Is Useful:
+**When the Annotation Is Useful:**
 
 The AWS Load Balancer Controller extends this functionality.
 With the annotation, you override the default and instruct the controller to provision an ALB instead — even though it’s a Service, not an Ingress.
