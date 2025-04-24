@@ -4,6 +4,7 @@ In this guide, we will walk through the steps to install the AWS Load Balancer C
 The AWS Load Balancer Controller is a Kubernetes controller that automatically manages AWS Elastic Load Balancers (ELBs) for Kubernetes Ingresses and Services.
 
 **It supports:**
+
 Application Load Balancer (ALB) 
 Network Load Balancer (NLB)
 
@@ -15,6 +16,7 @@ It automatically creates and configures an ALB/NLB in your AWS account.
 It keeps the AWS resources in sync with changes in your cluster.
 
 **Prerequisites**
+
 Before starting the installation, ensure that you have the following prerequisites:
 
 AWS CLI and kubectl installed and configured.
@@ -30,7 +32,8 @@ By using the Below Command, we are creating EKS cluster without node group Infor
 ```bash
 eksctl create cluster --name=my-ALB-eks-cluster --region=us-east-1 --without-nodegroup
 ```
-**Step: Create node group for EKS Cluster**"\n"
+**Step: Create node group for EKS Cluster**
+
 In this step, we will create node group Information as below
 
 ```bash
@@ -45,23 +48,27 @@ eksctl create nodegroup \
   --ssh-access \
   --ssh-public-key=test-eks-alb
 ```
-**Step: Connect to your EKS Cluster**"\n"
+**Step: Connect to your EKS Cluster**
+
 Use the below mentioned command to connect to your EKS Cluser using Command Line Interface
 ```bash
 aws eks --region us-east-1 update-kubeconfig --name my-eks-ALB-cluster
 ```
 **Step: Associate OIDC Provider (if not done)**
+
 This command connects your EKS cluster to an OpenID Connect (OIDC) provider, which is required for securely allowing AWS resources to interact with your Kubernetes services.
 ```bash
    curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
 ```
 **Step:Create IAM Policy**
+
 Create an IAM policy in AWS using the downloaded `iam-policy.json` file. This policy allows the Load Balancer Controller to access required AWS resources.
 
 ```bash
    aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam-policy.json
 ```
 **Step: Create Service Account for Load Balancer Controller**
+
 Creates a Kubernetes service account in the `kube-system` namespace for the Load Balancer Controller, associating it with the IAM policy you just created. This allows the controller to interact with AWS resources securely.
 ```bash
 eksctl create iamserviceaccount \
@@ -76,6 +83,7 @@ eksctl create iamserviceaccount \
 From the Above Command placeholder ########## must be replaced with your actual AWS account ID.
 
 **Step :Helm Installation**
+
 Adds the AWS EKS Helm chart repository and updates it to ensure you have the latest charts available.
 
 ```bash
