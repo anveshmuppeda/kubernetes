@@ -40,7 +40,7 @@ jobs:
             BUILD_IMAGE=true
           fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "IMAGE=anvesh35/k8s-tools:v1.29.3-$VERSION" >> $GITHUB_ENV
+          echo "IMAGE=anvesh35/k8s-tools:kubectl-v1.29.3-$VERSION" >> $GITHUB_ENV
           echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
