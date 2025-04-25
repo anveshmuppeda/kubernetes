@@ -15,7 +15,7 @@ on:
   push:
     branches:
       - main
-      - fluxcd
+      - dev
     paths:
       - 'dockerfiles/k8s-tools/kubectl/Dockerfile'
 
@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          ref: fluxcd
+          ref: dev
 
       - name: Prepare version
         id: prep
@@ -40,7 +40,7 @@ jobs:
             BUILD_IMAGE=true
           fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "IMAGE=anvesh35/k8s-tools:v1.29.3-$VERSION" >> $GITHUB_ENV
+          echo "IMAGE=anvesh35/k8s-tools:kubectl-v1.29.3-$VERSION" >> $GITHUB_ENV
           echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
