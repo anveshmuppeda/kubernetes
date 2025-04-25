@@ -3,14 +3,16 @@
 
 # Credits
 
-### Author: Rohini Gundala
+### Author: [**Rohini Gundala**](https://github.com/Rohinigundala2019)
 
 You can reach me through the following platforms:
 
-- **GitHub**: [Rohini's GitHub](https://github.com/Rohinigundala2019)
-- **LinkedIn**: [Rohini's LinkedIn](www.linkedin.com/in/rohini-gundala)
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?logo=github&style=flat)](https://github.com/Rohinigundala2019)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat)](https://www.linkedin.com/in/rohini-gundala/)
+
 
 In this guide, we will walk through the steps to install the AWS Load Balancer Controller on an Amazon EKS (Elastic Kubernetes Service) cluster. This controller allows you to manage AWS Elastic Load Balancers (ELBs) for your Kubernetes services.
+
 The AWS Load Balancer Controller is a Kubernetes controller that automatically manages AWS Elastic Load Balancers (ELBs) for Kubernetes Ingresses and Services.
 
 ![AWS Load Balancer Controller](https://docs.aws.amazon.com/images/eks/latest/userguide/images/lbc-overview.png)
