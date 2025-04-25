@@ -34,10 +34,13 @@ It keeps the AWS resources in sync with changes in your cluster.
 
 Before starting the installation, ensure that you have the following prerequisites:
 
-AWS CLI and kubectl installed and configured.
-An EKS Cluster already created.
-IAM OIDC provider enabled for the EKS cluster.
-Helm installed on your local machine.
+`AWS CLI` and  `KUBECTL` installed and configured.
+
+An `EKS-cluster` already created.
+
+`IAM OIDC` provider enabled for the EKS cluster.
+
+`Helm` installed on your local machine.
 
 
 **Step: Create EKS Cluster using eksctl**
