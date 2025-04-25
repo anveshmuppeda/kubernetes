@@ -1,0 +1,81 @@
+# .github/workflows/docker-build-push.yaml
+name: K8s-Tools | Helm - Docker Build & Manifest Update
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to use for the Docker image'
+        required: true
+        default: 'v3.12.3'
+        type: choice
+        options:
+        - v3.12.3
+        - v3.12.2
+  push:
+    branches:
+      - main
+      - dev
+    paths:
+      - 'dockerfiles/k8s-tools/helm/Dockerfile'
+
+jobs:
+  build-push-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code (with all branches)
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: dev
+
+      - name: Prepare version
+        id: prep
+        run: |
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/}
+          elif [[ ${{ github.event_name }} == 'workflow_dispatch' ]]; then
+            VERSION=${{ github.event.inputs.version }}
+          else
+            VERSION=${GITHUB_SHA::8}
+          fi
+          BUILD_IMAGE=true
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "IMAGE=anvesh35/k8s-tools:helm-$VERSION" >> $GITHUB_ENV
+          echo "HELMMAGE=anvesh35/helm-cli:$VERSION" >> $GITHUB_ENV
+          echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
+
+      - name: Set up Docker Buildx
+        if: env.BUILD_IMAGE == 'true'
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Hub
+        if: env.BUILD_IMAGE == 'true'
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push k8s-tools Docker image
+        if: env.BUILD_IMAGE == 'true'
+        uses: docker/build-push-action@v4
+        with:
+          context: dockerfiles/k8s-tools/helm/
+          file: dockerfiles/k8s-tools/helm/Dockerfile
+          push: true
+          tags: ${{ env.IMAGE }}
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            VERSION=${{ env.VERSION }}
+      
+      - name: Build and push helm Docker image
+        if: env.BUILD_IMAGE == 'true'
+        uses: docker/build-push-action@v4
+        with:
+          context: dockerfiles/k8s-tools/helm/
+          file: dockerfiles/k8s-tools/helm/Dockerfile
+          push: true
+          tags: ${{ env.HELMMAGE }}
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            VERSION=${{ env.VERSION }}
