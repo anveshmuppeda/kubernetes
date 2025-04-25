@@ -1,7 +1,7 @@
 <h2>AWS Load Balancer Controller on EKS: A Comprehensive Guide</h2>
 
 
-# Credits
+<h3>Credits</h3>
 
 ### Author: [**Rohini Gundala**](https://github.com/Rohinigundala2019)
 
@@ -15,7 +15,8 @@ In this guide, we will walk through the steps to install the AWS Load Balancer C
 
 The AWS Load Balancer Controller is a Kubernetes controller that automatically manages AWS Elastic Load Balancers (ELBs) for Kubernetes Ingresses and Services.
 
-![AWS Load Balancer Controller](https://docs.aws.amazon.com/images/eks/latest/userguide/images/lbc-overview.png)
+![AWS LoadBalancer Controller Overview](assets/lbc-overview.png)
+
 
 **It supports:**
 
