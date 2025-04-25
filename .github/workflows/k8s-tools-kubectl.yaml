@@ -3,15 +3,15 @@ name: K8s-Tools Kubectl - Docker Build & Manifest Update
 
 on:
   workflow_dispatch:
-    # inputs:
-    #   bump-type:
-    #     description: 'Version bump type'
-    #     required: true
-    #     default: 'v1.29.3'
-    #     type: choice
-    #     options:
-    #     - 1.29.3
-    #     - 1.29.2
+    inputs:
+      version:
+        description: 'Version to use for the Docker image'
+        required: true
+        default: 'v1.29.3'
+        type: choice
+        options:
+        - v1.29.3
+        - v1.29.2
   push:
     branches:
       - main
@@ -34,13 +34,14 @@ jobs:
         run: |
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION=${GITHUB_REF#refs/tags/}
-            BUILD_IMAGE=true
+          elif [[ ${{ github.event_name }} == 'workflow_dispatch' ]]; then
+            VERSION=${{ github.event.inputs.version }}
           else
             VERSION=${GITHUB_SHA::8}
-            BUILD_IMAGE=true
           fi
+          BUILD_IMAGE=true
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "IMAGE=anvesh35/k8s-tools:kubectl-v1.29.3-$VERSION" >> $GITHUB_ENV
+          echo "IMAGE=anvesh35/k8s-tools:kubectl-$VERSION" >> $GITHUB_ENV
           echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
@@ -63,3 +64,5 @@ jobs:
           push: true
           tags: ${{ env.IMAGE }}
           platforms: linux/amd64,linux/arm64
+          build-args: |
+            VERSION=${{ env.VERSION }}
