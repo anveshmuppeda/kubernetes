@@ -32,9 +32,7 @@ jobs:
       - name: Prepare version
         id: prep
         run: |
-          if [[ $GITHUB_REF == refs/tags/* ]]; then
-            VERSION=${GITHUB_REF#refs/tags/}
-          elif [[ ${{ github.event_name }} == 'workflow_dispatch' ]]; then
+          if [[ ${{ github.event_name }} == 'workflow_dispatch' ]]; then
             VERSION=${{ github.event.inputs.version }}
           else
             VERSION=${GITHUB_SHA::8}
