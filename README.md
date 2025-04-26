@@ -3,8 +3,8 @@
 [![GitHub License](https://img.shields.io/github/license/anveshmuppeda/kubernetes?color=blue)](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE) 
 [![GitHub contributors](https://img.shields.io/github/contributors/anveshmuppeda/kubernetes)](https://github.com/anveshmuppeda/kubernetes/graphs/contributors) 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/anveshmuppeda/kubernetes/pulls) 
+[![Star Badge](https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99)](https://github.com/anveshmuppeda/kubernetes)
 <img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Star Badge"/>  
-[![](https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99)](https://github.com/anveshmuppeda/kubernetes)
 
 ### **Author**: [Anvesh Muppeda ![Profile Pic](https://avatars.githubusercontent.com/u/115966808?v=4&s=20)](https://github.com/anveshmuppeda)  
 
