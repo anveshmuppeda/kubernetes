@@ -1,5 +1,5 @@
 # .github/workflows/docker-build-push.yaml
-name: K8s-Tools | Velero - Docker Build & Manifest Update
+name: K8s-Tools | ArgoCD - Docker Build & Manifest Update
 
 on:
   workflow_dispatch:
@@ -7,17 +7,17 @@ on:
       version:
         description: 'Version to use for the Docker image'
         required: true
-        default: 'v1.11.0'
+        default: 'v2.8.3'
         type: choice
         options:
-        - v1.11.0
-        - v1.10.0
+        - v2.8.3
+        - v2.8.2
   push:
     branches:
       - main
       - dev
     paths:
-      - 'dockerfiles/k8s-tools/velero/Dockerfile'
+      - 'dockerfiles/k8s-tools/argocd/Dockerfile'
 
 jobs:
   build-push-update:
@@ -39,8 +39,8 @@ jobs:
           fi
           BUILD_IMAGE=true
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "IMAGE=anvesh35/k8s-tools:velero-$VERSION" >> $GITHUB_ENV
-          echo "VELEROIMAGE=anvesh35/velero-cli:$VERSION" >> $GITHUB_ENV
+          echo "IMAGE=anvesh35/k8s-tools:argocd-$VERSION" >> $GITHUB_ENV
+          echo "AERGOCDIMAGE=anvesh35/argocd-cli:$VERSION" >> $GITHUB_ENV
           echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
@@ -58,22 +58,22 @@ jobs:
         if: env.BUILD_IMAGE == 'true'
         uses: docker/build-push-action@v4
         with:
-          context: dockerfiles/k8s-tools/velero/
-          file: dockerfiles/k8s-tools/velero/Dockerfile
+          context: dockerfiles/k8s-tools/argocd/
+          file: dockerfiles/k8s-tools/argocd/Dockerfile
           push: true
           tags: ${{ env.IMAGE }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}
       
-      - name: Build and push Velero Docker image
+      - name: Build and push ArgoCD Docker image
         if: env.BUILD_IMAGE == 'true'
         uses: docker/build-push-action@v4
         with:
-          context: dockerfiles/k8s-tools/velero/
-          file: dockerfiles/k8s-tools/velero/Dockerfile
+          context: dockerfiles/k8s-tools/argocd/
+          file: dockerfiles/k8s-tools/argocd/Dockerfile
           push: true
-          tags: ${{ env.VELEROIMAGE }}
+          tags: ${{ env.AERGOCDIMAGE }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}
