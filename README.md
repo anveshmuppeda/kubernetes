@@ -1,10 +1,7 @@
 <div align="center"> 
   <h1>🚀 Kubernetes Complete Hands‑On Guides 🌟 </h1>
   <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=italic&weight=700&size=18&duration=4000&pause=1000&color=F727A9&center=true&width=600&lines=Learn+Kubernetes+with+hands-on+guides+and+practical+examples." alt="Typing SVG" /></a>
-
-  ;; <p> 
-  ;;   <i>Learn Kubernetes with hands-on guides and practical examples.</i>
-  ;; </p>
+  
   <img src="https://img.shields.io/github/forks/anveshmuppeda/kubernetes" alt="Forks"/>
   <img src="https://img.shields.io/github/stars/anveshmuppeda/kubernetes" alt="Stars"/>
   <img src="https://img.shields.io/github/watchers/anveshmuppeda/kubernetes" alt="Watchers"/>
