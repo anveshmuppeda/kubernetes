@@ -19,15 +19,6 @@
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"/>
 </div>
 
-<div align="center">
-  <img src="https://img.shields.io/github/forks/anveshmuppeda/kubernetes" alt="Forks"/>
-  <img src="https://img.shields.io/github/stars/anveshmuppeda/kubernetes" alt="Stars"/>
-  <img src="https://img.shields.io/github/watchers/anveshmuppeda/kubernetes" alt="Watchers"/>
-  <img src="https://img.shields.io/github/last-commit/anveshmuppeda/kubernetes" alt="Last Commit"/>
-  <img src="https://img.shields.io/github/commit-activity/m/anveshmuppeda/kubernetes" alt="Commit Activity"/>
-  <img src="https://img.shields.io/github/repo-size/anveshmuppeda/kubernetes" alt="Repo Size"/>
-</div>
-
 <!-- 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) 
 [![GitHub License](https://img.shields.io/github/license/anveshmuppeda/kubernetes?color=blue)](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE) 
