@@ -13,10 +13,10 @@
 
   <img src="https://awesome.re/badge.svg" alt="Awesome"/>
   <a href="https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE"> <img src="https://img.shields.io/github/license/anveshmuppeda/kubernetes" alt="GitHub License"/> </a>
-  <img src="https://img.shields.io/github/contributors/anveshmuppeda/kubernetes" alt="GitHub contributors"/>
-  <img src="https://img.shields.io/github/issues/anveshmuppeda/kubernetes" alt="Open Issues"/>
-  <img src="https://img.shields.io/github/issues-pr-raw/anveshmuppeda/kubernetes" alt="Open PRs"/>
-  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"/>
+  <a href="https://img.shields.io/github/contributors/anveshmuppeda/kubernetes"> <img src="https://img.shields.io/github/contributors/anveshmuppeda/kubernetes" alt="GitHub contributors"/> </a>
+  <a href="https://github.com/anveshmuppeda/kubernetes/issues">  <img src="https://img.shields.io/github/issues/anveshmuppeda/kubernetes" alt="Open Issues"/> </a>
+  <a href="https://github.com/anveshmuppeda/kubernetes/pulls"> <img src="https://img.shields.io/github/issues-pr-raw/anveshmuppeda/kubernetes" alt="Open PRs"/> </a>
+  <a href="https://github.com/anveshmuppeda/kubernetes/pulls"> <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"/> </a>
 </div>
 
 <!-- 
