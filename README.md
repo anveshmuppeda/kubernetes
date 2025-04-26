@@ -7,6 +7,7 @@
 [![Twitter](https://img.shields.io/badge/Twitter-Follow-blue?logo=twitter&style=flat)](https://twitter.com/Anvesh66743877)
 [![Medium](https://img.shields.io/badge/Medium-Blog-black?logo=medium&style=flat)](https://medium.com/@muppedaanvesh)
 [![Email](https://img.shields.io/badge/Email-Contact%20Me-red?logo=gmail&style=flat)](mailto:muppedaanvesh@gmail.com)
+[![DockerHub](https://img.shields.io/badge/DockerHub-Profile-blue?logo=docker&style=flat)](https://hub.docker.com/u/anvesh35)
 
 ---
 
@@ -181,3 +182,6 @@ Kubernetes provides a robust platform for managing containerized applications, o
 
 ## License
 This project is licensed under the GNU License - see the [LICENSE](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE) file for details.  
+
+## Stargazers over time
+[![Stargazers over time](https://starchart.cc/anveshmuppeda/kubernetes.svg?variant=adaptive)](https://starchart.cc/anveshmuppeda/kubernetes)  
