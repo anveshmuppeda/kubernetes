@@ -88,3 +88,4 @@ jobs:
             anvesh35/echo-pod-name:${{ needs.version-calculator.outputs.new-version }}
             anvesh35/echo-pod-name:latest
           push: true
+          platforms: linux/amd64,linux/arm64
