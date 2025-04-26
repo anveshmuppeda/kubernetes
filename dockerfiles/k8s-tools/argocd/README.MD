@@ -1,19 +1,19 @@
-# **K8s Tools Docker Images - Velero**
+# **K8s Tools Docker Images - ArgoCD**
 
-*Lightweight, Versioned Velero CLI Container for Seamless Kubernetes Backup and Restore Management*
+*Lightweight, Versioned ArgoCD CLI Container for Seamless Kubernetes Application Management*
 
 ---
 
 ## Summary
 
-This repository provides a Docker image under the `anvesh35/velero-cli` namespace that packages the Velero CLI into a lightweight, self-contained container. This allows users to manage Kubernetes backups and restores without installing Velero locally. The image is built using a multi-stage build process on Alpine Linux, ensuring a minimal footprint and secure execution.
+This repository provides a Docker image under the `anvesh35/argocd-cli` namespace that packages the ArgoCD CLI into a lightweight, self-contained container. This allows users to manage ArgoCD applications and clusters without installing the ArgoCD CLI locally. The image is built using a multi-stage build process on Alpine Linux, ensuring a minimal footprint and secure execution.
 
 ---
 
 ## Image Naming Convention
 
-All images are hosted on Docker Hub under the `anvesh35/velero-cli` repository.  
-Tags follow the pattern `<version>`, for example `v1.11.0`, to indicate the Velero version included in the image.
+All images are hosted on Docker Hub under the `anvesh35/argocd-cli` repository.  
+Tags follow the pattern `<version>`, for example `v2.8.3`, to indicate the ArgoCD CLI version included in the image.
 
 ---
 
@@ -22,22 +22,22 @@ Tags follow the pattern `<version>`, for example `v1.11.0`, to indicate the Vele
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/anveshmuppeda/kubernetes.git
-cd dockerfiles/k8s-tools/velero
+cd dockerfiles/k8s-tools/argocd
 ```
 
 ### 2. Build the Image
-Replace `<version>` with the desired Velero version (e.g., `v1.11.0`):
+Replace `<version>` with the desired ArgoCD CLI version (e.g., `v2.8.3`):
 ```bash
 docker build \
-  --build-arg VELERO_VERSION=<version> \
-  -t anvesh35/velero-cli:<version> .
+  --build-arg ARGOCD_VERSION=<version> \
+  -t anvesh35/argocd-cli:<version> .
 ```
 
 Example:
 ```bash
 docker build \
-  --build-arg VELERO_VERSION=v1.11.0 \
-  -t anvesh35/velero-cli:v1.11.0 .
+  --build-arg ARGOCD_VERSION=v2.8.3 \
+  -t anvesh35/argocd-cli:v2.8.3 .
 ```
 
 ---
@@ -47,12 +47,12 @@ docker build \
 ### Pull the Image from Docker Hub
 To use the pre-built image from Docker Hub, pull it using:
 ```bash
-docker pull anvesh35/velero-cli:<version>
+docker pull anvesh35/argocd-cli:<version>
 ```
 
 Example:
 ```bash
-docker pull anvesh35/velero-cli:v1.11.0
+docker pull anvesh35/argocd-cli:v2.8.3
 ```
 
 ---
@@ -62,52 +62,52 @@ Run the container interactively with your kubeconfig mounted for cluster access:
 ```bash
 docker run --rm -it \
   --network host \
-  -v $HOME/.kube/config:/home/velero/.kube/config:ro \
-  anvesh35/velero-cli:<version> bash
+  -v $HOME/.kube/config:/home/argocd/.kube/config:ro \
+  anvesh35/argocd-cli:<version> bash
 ```
 
-This opens a Bash shell with Velero installed and ready to use.
+This opens a Bash shell with the ArgoCD CLI installed and ready to use.
 
 ---
 
-### One-Off Velero Commands
-Run Velero commands directly without entering the container:
+### One-Off ArgoCD Commands
+Run ArgoCD commands directly without entering the container:
 ```bash
 docker run --rm \
   --network host \
-  -v $HOME/.kube/config:/home/velero/.kube/config:ro \
-  anvesh35/velero-cli:<version> \
-  velero backup get
+  -v $HOME/.kube/config:/home/argocd/.kube/config:ro \
+  anvesh35/argocd-cli:<version> \
+  argocd app list
 ```
 
 ---
 
 ## Features
 
-- **Multi-Stage Build**: Downloads and verifies the Velero binary in a builder stage, then copies only the necessary files into the final image.
+- **Multi-Stage Build**: Downloads and verifies the ArgoCD CLI binary in a builder stage, then copies only the necessary files into the final image.
 - **Minimal Alpine Base**: Uses Alpine Linux to keep the image size small (~9 MB).
-- **Non-Root User**: Runs as a dedicated `velero` user to adhere to container security best practices.
+- **Non-Root User**: Runs as a dedicated `argocd` user to adhere to container security best practices.
 - **Version-Pinned Binaries**: Ensures reproducible environments by using explicit semantic versions.
-- **Flexible Tagging**: Supports version-specific tags (e.g., `v1.11.0`).
+- **Flexible Tagging**: Supports version-specific tags (e.g., `v2.8.3`).
 
 ---
 
 ## Example Commands
 
-### Check Velero Version
+### Check ArgoCD Version
 ```bash
 docker run --rm \
-  anvesh35/velero-cli:v1.11.0 \
-  velero version
+  anvesh35/argocd-cli:v2.8.3 \
+  argocd version
 ```
 
-### List All Backups
+### List All Applications
 ```bash
 docker run --rm \
   --network host \
-  -v $HOME/.kube/config:/home/velero/.kube/config:ro \
-  anvesh35/velero-cli:v1.11.0 \
-  velero backup get
+  -v $HOME/.kube/config:/home/argocd/.kube/config:ro \
+  anvesh35/argocd-cli:v2.8.3 \
+  argocd app list
 ```
 
 ---
