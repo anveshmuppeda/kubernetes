@@ -1,5 +1,5 @@
 # .github/workflows/docker-build-push.yaml
-name: K8s-Tools | ArgoCD - Docker Build & Manifest Update
+name: K8s-Tools | ArgoCD - Docker Build
 
 on:
   workflow_dispatch:
@@ -41,6 +41,7 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "IMAGE=anvesh35/k8s-tools:argocd-$VERSION" >> $GITHUB_ENV
           echo "AERGOCDIMAGE=anvesh35/argocd-cli:$VERSION" >> $GITHUB_ENV
+          echo "LATESTARGOCDIMAGE=anvesh35/argocd-cli:latest" >> $GITHUB_ENV
           echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
@@ -73,7 +74,9 @@ jobs:
           context: dockerfiles/k8s-tools/argocd/
           file: dockerfiles/k8s-tools/argocd/Dockerfile
           push: true
-          tags: ${{ env.AERGOCDIMAGE }}
+          tags: |
+            ${{ env.AERGOCDIMAGE }}
+            ${{ env.LATESTARGOCDIMAGE }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}
