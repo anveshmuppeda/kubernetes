@@ -5,24 +5,19 @@
   <img src="https://img.shields.io/github/contributors/anveshmuppeda/kubernetes" alt="GitHub contributors"/>
   <img src="https://img.shields.io/github/issues/anveshmuppeda/kubernetes" alt="Open Issues"/>
   <img src="https://img.shields.io/github/issues-pr-raw/anveshmuppeda/kubernetes" alt="Open PRs"/>
-  <img src="https://img.shields.io/github/issues/anveshmuppeda/kubernetes/good%20first%20issue" alt="Good First Issues"/>
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"/>
   <img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Star Badge"/>
-  <img src="https://img.shields.io/badge/GitHub-Profile-blue?logo=github&style=flat" alt="GitHub"/>
-  <img src="https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat" alt="LinkedIn"/>
-  <img src="https://img.shields.io/badge/Twitter-Follow-blue?logo=twitter&style=flat" alt="Twitter"/>
-  <img src="https://img.shields.io/badge/Medium-Blog-black?logo=medium&style=flat" alt="Medium"/>
-  <img src="https://img.shields.io/badge/Email-Contact%20Me-red?logo=gmail&style=flat" alt="Email"/>
-  <img src="https://img.shields.io/badge/DockerHub-Profile-blue?logo=docker&style=flat" alt="DockerHub"/>
-  <img src="https://starchart.cc/anveshmuppeda/kubernetes.svg?variant=adaptive" alt="Stargazers over time"/>
 </div>
 
+<!-- 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) 
 [![GitHub License](https://img.shields.io/github/license/anveshmuppeda/kubernetes?color=blue)](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE) 
 [![GitHub contributors](https://img.shields.io/github/contributors/anveshmuppeda/kubernetes)](https://github.com/anveshmuppeda/kubernetes/graphs/contributors) 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/anveshmuppeda/kubernetes/pulls) 
 [![Star Badge](https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99)](https://github.com/anveshmuppeda/kubernetes)
-<!-- <img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Star Badge"/> -->  
+<img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Star Badge"/> 
+
+-->  
 
 </div>
 
