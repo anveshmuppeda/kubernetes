@@ -25,7 +25,7 @@
 
 ---  
 <div align="center">
-  <h2> Author: Anvesh Muppeda </h2>
+  <h2><b>Author: <a href="https://github.com/anveshmuppeda">Anvesh Muppeda</a></b></h2>
   <p> 
     <i>Cloud Engineer | Kubernetes Developer | Open Source Contributor</i>
   </p>
@@ -35,7 +35,8 @@
   <img src="https://img.shields.io/badge/Medium-Blog-black?logo=medium&style=flat" alt="Medium"/>
   <img src="https://img.shields.io/badge/Email-Contact%20Me-red?logo=gmail&style=flat" alt="Email"/>
   <img src="https://img.shields.io/badge/DockerHub-Profile-blue?logo=docker&style=flat" alt="DockerHub"/>
-</div>
+</div>  
+
 ---
 
 
