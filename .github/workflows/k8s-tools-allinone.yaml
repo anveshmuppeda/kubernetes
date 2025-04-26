@@ -3,6 +3,56 @@ name: K8s-Tools | All-In-One - Docker Build
 
 on:
   workflow_dispatch:
+    inputs:
+      kubectl-version:
+        description: 'Version to use for the kubectl client'
+        required: true
+        default: '1.29.3'
+        type: choice
+        options:
+        - 1.29.3
+        - 1.28.3
+      velero-version:
+        description: 'Version to use for the Velero client'
+        required: true
+        default: '1.12.2'
+        type: choice
+        options:
+        - 1.12.2
+        - 1.12.1
+      helm-version:
+        description: 'Version to use for the Helm client'
+        required: true
+        default: '3.14.4'
+        type: choice
+        options:
+        - 3.14.4
+        - 3.14.3
+      argocd-version:
+        description: 'Version to use for the ArgoCD client'
+        required: true
+        default: '2.8.3'
+        type: choice
+        options:
+        - 2.8.3
+        - 2.8.2
+      flux-version:
+        description: 'Version to use for the FluxCD client'
+        required: true
+        default: '2.1.0'
+        type: choice
+        options:
+        - 2.1.0
+        - 2.0.0
+      eksctl-version:
+        description: 'Version to use for the EKSCTL client'
+        required: true
+        default: '0.150.0'
+        type: choice
+        options:
+        - 0.150.0
+        - 0.149.0
+
   push:
     branches:
       - main
@@ -32,8 +82,8 @@ jobs:
           fi
           BUILD_IMAGE=true
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "ALLINONEIMAGE=anvesh35/allinone:$VERSION" >> $GITHUB_ENV
-          echo "LATESTALLINONEIMAGE=anvesh35/allinone:latest" >> $GITHUB_ENV
+          echo "ALLINONEIMAGE=anvesh35/k8s-tools:allinone-$VERSION" >> $GITHUB_ENV
+          echo "LATESTALLINONEIMAGE=anvesh35/k8s-tools:latest" >> $GITHUB_ENV
           echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
@@ -59,4 +109,9 @@ jobs:
             ${{ env.LATESTALLINONEIMAGE }}
           platforms: linux/amd64,linux/arm64
           build-args: |
-            VERSION=${{ env.VERSION }}
+            KUBECTL_VERSION=${{ github.event.inputs.kubectl-version }}
+            VELERO_VERSION=${{ github.event.inputs.velero-version }}
+            HELM_VERSION=${{ github.event.inputs.helm-version }}
+            ARGOCD_VERSION=${{ github.event.inputs.argocd-version }}
+            FLUX_VERSION=${{ github.event.inputs.flux-version }}
+            EKSCTL_VERSION=${{ github.event.inputs.eksctl-version }}
