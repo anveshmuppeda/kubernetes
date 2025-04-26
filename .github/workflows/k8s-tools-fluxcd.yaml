@@ -1,5 +1,5 @@
 # .github/workflows/docker-build-push.yaml
-name: K8s-Tools | FluxCD - Docker Build & Manifest Update
+name: K8s-Tools | FluxCD - Docker Build 
 
 on:
   workflow_dispatch:
