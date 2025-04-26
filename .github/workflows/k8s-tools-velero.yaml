@@ -1,5 +1,5 @@
 # .github/workflows/docker-build-push.yaml
-name: K8s-Tools | Velero - Docker Build & Manifest Update
+name: K8s-Tools | Velero - Docker Build 
 
 on:
   workflow_dispatch:
@@ -41,6 +41,7 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "IMAGE=anvesh35/k8s-tools:velero-$VERSION" >> $GITHUB_ENV
           echo "VELEROIMAGE=anvesh35/velero-cli:$VERSION" >> $GITHUB_ENV
+          echo "LATESTVELEROIMAGE=anvesh35/velero-cli:latest" >> $GITHUB_ENV
           echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
@@ -73,7 +74,9 @@ jobs:
           context: dockerfiles/k8s-tools/velero/
           file: dockerfiles/k8s-tools/velero/Dockerfile
           push: true
-          tags: ${{ env.VELEROIMAGE }}
+          tags: |
+            ${{ env.VELEROIMAGE }}
+            ${{ env.LATESTVELEROIMAGE }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}

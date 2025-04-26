@@ -1,5 +1,5 @@
 # .github/workflows/docker-build-push.yaml
-name: K8s-Tools | eksctl - Docker Build & Manifest Update
+name: K8s-Tools | eksctl - Docker Build
 
 on:
   workflow_dispatch:
@@ -41,6 +41,7 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "IMAGE=anvesh35/k8s-tools:eksctl-$VERSION" >> $GITHUB_ENV
           echo "EKSCTLIMAGE=anvesh35/eksctl-cli:$VERSION" >> $GITHUB_ENV
+          echo "LATESTEKSCTLIMAGE=anvesh35/eksctl-cli:latest" >> $GITHUB_ENV
           echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
@@ -73,7 +74,9 @@ jobs:
           context: dockerfiles/k8s-tools/eksctl/
           file: dockerfiles/k8s-tools/eksctl/Dockerfile
           push: true
-          tags: ${{ env.EKSCTLIMAGE }}
+          tags: |
+            ${{ env.EKSCTLIMAGE }}
+            ${{ env.LATESTEKSCTLIMAGE }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}
