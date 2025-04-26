@@ -5,18 +5,23 @@
   </p>
   <img src="https://awesome.re/badge.svg" alt="Awesome"/>
   <a href="https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE"> <img src="https://img.shields.io/github/license/anveshmuppeda/kubernetes" alt="GitHub License"/> </a>
-  <img src="https://img.shields.io/github/repo-size/anveshmuppeda/kubernetes" alt="Repo Size"/>
-  <img src="https://img.shields.io/github/last-commit/anveshmuppeda/kubernetes" alt="Last Commit"/>
-  <img src="https://img.shields.io/github/forks/anveshmuppeda/kubernetes" alt="Forks"/>
-  <img src="https://img.shields.io/github/stars/anveshmuppeda/kubernetes" alt="Stars"/>
-  <img src="https://img.shields.io/github/commit-activity/m/anveshmuppeda/kubernetes" alt="Commit Activity"/>
   <img src="https://img.shields.io/github/commit-activity/y/anveshmuppeda/kubernetes" alt="Commit Activity Year"/>
-  <img src="https://img.shields.io/github/last-commit/anveshmuppeda/kubernetes" alt="Last Commit"/>
   <img src="https://img.shields.io/github/contributors/anveshmuppeda/kubernetes" alt="GitHub contributors"/>
   <img src="https://img.shields.io/github/issues/anveshmuppeda/kubernetes" alt="Open Issues"/>
   <img src="https://img.shields.io/github/issues-pr-raw/anveshmuppeda/kubernetes" alt="Open PRs"/>
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"/>
   <img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Star Badge"/>
+</div>
+
+<div align="center">
+  <img src="https://img.shields.io/github/forks/anveshmuppeda/kubernetes" alt="Forks"/>
+  <img src="https://img.shields.io/github/stars/anveshmuppeda/kubernetes" alt="Stars"/>
+  <img src="https://img.shields.io/github/watchers/anveshmuppeda/kubernetes" alt="Watchers"/>
+  <img src="https://img.shields.io/github/last-commit/anveshmuppeda/kubernetes" alt="Last Commit"/>
+  <img src="https://img.shields.io/github/commit-activity/m/anveshmuppeda/kubernetes" alt="Commit Activity"/>
+  <img src="https://img.shields.io/github/commit-activity/w/anveshmuppeda/kubernetes" alt="Commit Activity Week"/>
+  <img src="https://img.shields.io/github/commit-activity/d/anveshmuppeda/kubernetes" alt="Commit Activity Day"/>
+  <img src="https://img.shields.io/github/repo-size/anveshmuppeda/kubernetes" alt="Repo Size"/>
 </div>
 
 <!-- 
