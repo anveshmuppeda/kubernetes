@@ -25,7 +25,7 @@
 
 ---  
 <div align="center">
-  <h2><b>Author: <a href="https://github.com/anveshmuppeda">Anvesh Muppeda</a></b></h2>
+  <h2><b>Author: <a href="https://github.com/anveshmuppeda">Anvesh Muppeda</a> <img src="https://avatars.githubusercontent.com/u/115966808?v=4&s=20" alt="Profile Pic"/></b></h2>
   <p> 
     <i>Cloud Engineer | Kubernetes Developer | Open Source Contributor</i>
   </p>
