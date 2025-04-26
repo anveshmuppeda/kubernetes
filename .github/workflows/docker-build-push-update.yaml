@@ -1,5 +1,5 @@
 # .github/workflows/docker-build-push-update.yaml
-name: App1 Docker Build, Push & Update Manifests
+name: FluxCD Demo | App1 Docker Build, Push & Update Manifests
 
 on:
   workflow_dispatch:
