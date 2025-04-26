@@ -1,7 +1,7 @@
 <div align="center"> 
   <h1>🚀 Kubernetes Complete Hands‑On Guides 🌟 </h1>
   <p> 
-    <strong>Learn Kubernetes with hands-on guides and practical examples.</strong>
+    <i>Learn Kubernetes with hands-on guides and practical examples.</i>
   </p>
   <img src="https://awesome.re/badge.svg" alt="Awesome"/>
   <img src="https://img.shields.io/github/license/anveshmuppeda/kubernetes" alt="GitHub License"/>
