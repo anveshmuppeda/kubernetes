@@ -1,23 +1,23 @@
 # .github/workflows/docker-build-push.yaml
-name: K8s-Tools | FluxCD - Docker Build & Manifest Update
+name: K8s-Tools | eksctl - Docker Build & Manifest Update
 
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version to use for the Docker image(x.y.z)'
+        description: 'Version to use for the Docker image(vx.y.z)'
         required: true
-        default: '2.1.0'
+        default: 'v0.150.0'
         type: choice
         options:
-        - 2.1.0
-        - 2.0.0
+        - v0.150.0
+        - v0.140.0
   push:
     branches:
       - main
       - dev
     paths:
-      - 'dockerfiles/k8s-tools/fluxcd/Dockerfile'
+      - 'dockerfiles/k8s-tools/eksctl/Dockerfile'
 
 jobs:
   build-push-update:
@@ -39,8 +39,8 @@ jobs:
           fi
           BUILD_IMAGE=true
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "IMAGE=anvesh35/k8s-tools:fluxcd-$VERSION" >> $GITHUB_ENV
-          echo "FLUXCDIMAGE=anvesh35/fluxcd-cli:$VERSION" >> $GITHUB_ENV
+          echo "IMAGE=anvesh35/k8s-tools:eksctl-$VERSION" >> $GITHUB_ENV
+          echo "EKSCTLIMAGE=anvesh35/eksctl-cli:$VERSION" >> $GITHUB_ENV
           echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
@@ -58,22 +58,22 @@ jobs:
         if: env.BUILD_IMAGE == 'true'
         uses: docker/build-push-action@v4
         with:
-          context: dockerfiles/k8s-tools/fluxcd/
-          file: dockerfiles/k8s-tools/fluxcd/Dockerfile
+          context: dockerfiles/k8s-tools/eksctl/
+          file: dockerfiles/k8s-tools/eksctl/Dockerfile
           push: true
           tags: ${{ env.IMAGE }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}
       
-      - name: Build and push FluxCD Docker image
+      - name: Build and push eksctl Docker image
         if: env.BUILD_IMAGE == 'true'
         uses: docker/build-push-action@v4
         with:
-          context: dockerfiles/k8s-tools/fluxcd/
-          file: dockerfiles/k8s-tools/fluxcd/Dockerfile
+          context: dockerfiles/k8s-tools/eksctl/
+          file: dockerfiles/k8s-tools/eksctl/Dockerfile
           push: true
-          tags: ${{ env.FLUXCDIMAGE }}
+          tags: ${{ env.EKSCTLIMAGE }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}
