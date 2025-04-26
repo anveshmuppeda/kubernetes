@@ -1,4 +1,4 @@
-name: Update README with Kubernetes Blogs
+name: Medium | Update README with Kubernetes Blogs
 
 on:
   schedule:

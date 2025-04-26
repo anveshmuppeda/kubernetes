@@ -1,5 +1,11 @@
 # .github/workflows/docker-build-push.yaml
-name: FluxCD Demo | App2 Docker Build & Manifest Update
+name: Echo-Pod | Docker Build & Push
+# This workflow builds and pushes a Docker image for the Echo-Pod application
+# and updates the Kubernetes manifests with the new image version.
+# It is triggered on workflow dispatch or when changes are made to the specified paths.
+# The workflow calculates the new version based on the latest version in Docker Hub
+# and the specified bump type (major, minor, or patch).
+# The new version is then used to build and push the Docker image,
 
 on:
   workflow_dispatch:
@@ -16,10 +22,10 @@ on:
   push:
     branches:
       - main
-      - fluxcd
+      - dev
     paths:
-      - 'fluxcd/repos/app2/src/**'
-      - '.github/workflows/docker-build-push.yaml'
+      - 'dockerfiles/echo-pod/**'
+      - '.github/workflows/echo-pod.yaml'
 
 jobs:
   version-calculator:
@@ -31,10 +37,10 @@ jobs:
         id: get-version
         run: |
           # Get auth token if needed (for private repos)
-          # TOKEN=$(curl -s "https://auth.docker.io/token?service=registry.docker.io&scope=repository:anvesh35/fluxcd-demo-app2:pull" | jq -r .token)
+          # TOKEN=$(curl -s "https://auth.docker.io/token?service=registry.docker.io&scope=repository:anvesh35/echo-pod-name:pull" | jq -r .token)
           
           # Get all tags
-          TAGS=$(curl -s "https://hub.docker.com/v2/repositories/anvesh35/fluxcd-demo-app2/tags/?page_size=100" | jq -r '.results[].name')
+          TAGS=$(curl -s "https://hub.docker.com/v2/repositories/anvesh35/echo-pod-name/tags/?page_size=100" | jq -r '.results[].name')
           
           # Filter and sort semantic versions
           LATEST=$(echo "$TAGS" | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -1)
@@ -79,6 +85,6 @@ jobs:
         with:
           context: fluxcd/repos/app2/src/
           tags: |
-            anvesh35/fluxcd-demo-app2:${{ needs.version-calculator.outputs.new-version }}
-            anvesh35/fluxcd-demo-app2:latest
+            anvesh35/echo-pod-name:${{ needs.version-calculator.outputs.new-version }}
+            anvesh35/echo-pod-name:latest
           push: true
