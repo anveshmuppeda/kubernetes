@@ -1,5 +1,5 @@
 # .github/workflows/docker-build-push.yaml
-name: K8s-Tools | Kubectl - Docker Build & Manifest Update
+name: K8s-Tools | Kubectl - Docker Build 
 
 on:
   workflow_dispatch:
@@ -41,6 +41,7 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "IMAGE=anvesh35/k8s-tools:kubectl-$VERSION" >> $GITHUB_ENV
           echo "KUBECTLIMAGE=anvesh35/kubectl-cli:$VERSION" >> $GITHUB_ENV
+          echo "LATESTKUBECTLIMAGE=anvesh35/kubectl-cli:latest" >> $GITHUB_ENV
           echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
@@ -73,7 +74,9 @@ jobs:
           context: dockerfiles/k8s-tools/kubectl/
           file: dockerfiles/k8s-tools/kubectl/Dockerfile
           push: true
-          tags: ${{ env.KUBECTLIMAGE }}
+          tags: |
+            ${{ env.KUBECTLIMAGE }}
+            ${{ env.LATESTKUBECTLIMAGE }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}
