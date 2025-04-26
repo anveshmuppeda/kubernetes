@@ -1,5 +1,9 @@
 # Kubernetes Complete Hands‑On Guides 
 <div align="center"> 
+  <h1>🚀 Kubernetes Complete Hands‑On Guides 🌟 </h1>
+  <p> 
+    <strong>Learn Kubernetes with hands-on guides and practical examples.</strong>
+  </p>
   <img src="https://awesome.re/badge.svg" alt="Awesome"/>
   <img src="https://img.shields.io/github/license/anveshmuppeda/kubernetes" alt="GitHub License"/>
   <img src="https://img.shields.io/github/contributors/anveshmuppeda/kubernetes" alt="GitHub contributors"/>
