@@ -41,6 +41,7 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "IMAGE=anvesh35/k8s-tools:fluxcd-$VERSION" >> $GITHUB_ENV
           echo "FLUXCDIMAGE=anvesh35/fluxcd-cli:$VERSION" >> $GITHUB_ENV
+          echo "LATESTFLUXCDIMAGE=anvesh35/fluxcd-cli:latest" >> $GITHUB_ENV
           echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
@@ -73,7 +74,9 @@ jobs:
           context: dockerfiles/k8s-tools/fluxcd/
           file: dockerfiles/k8s-tools/fluxcd/Dockerfile
           push: true
-          tags: ${{ env.FLUXCDIMAGE }}
+          tags: |
+            ${{ env.FLUXCDIMAGE }}
+            ${{ env.LATESTFLUXCDIMAGE }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}
