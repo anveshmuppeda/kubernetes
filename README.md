@@ -4,7 +4,14 @@
     <i>Learn Kubernetes with hands-on guides and practical examples.</i>
   </p>
   <img src="https://awesome.re/badge.svg" alt="Awesome"/>
-  <img src="https://img.shields.io/github/license/anveshmuppeda/kubernetes" alt="GitHub License"/>
+  <a href="https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE"> <img src="https://img.shields.io/github/license/anveshmuppeda/kubernetes" alt="GitHub License"/> </a>
+  <img src="https://img.shields.io/github/repo-size/anveshmuppeda/kubernetes" alt="Repo Size"/>
+  <img src="https://img.shields.io/github/last-commit/anveshmuppeda/kubernetes" alt="Last Commit"/>
+  <img src="https://img.shields.io/github/forks/anveshmuppeda/kubernetes" alt="Forks"/>
+  <img src="https://img.shields.io/github/stars/anveshmuppeda/kubernetes" alt="Stars"/>
+  <img src="https://img.shields.io/github/commit-activity/m/anveshmuppeda/kubernetes" alt="Commit Activity"/>
+  <img src="https://img.shields.io/github/commit-activity/y/anveshmuppeda/kubernetes" alt="Commit Activity Year"/>
+  <img src="https://img.shields.io/github/last-commit/anveshmuppeda/kubernetes" alt="Last Commit"/>
   <img src="https://img.shields.io/github/contributors/anveshmuppeda/kubernetes" alt="GitHub contributors"/>
   <img src="https://img.shields.io/github/issues/anveshmuppeda/kubernetes" alt="Open Issues"/>
   <img src="https://img.shields.io/github/issues-pr-raw/anveshmuppeda/kubernetes" alt="Open PRs"/>
