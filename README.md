@@ -29,7 +29,7 @@
   <p> 
     <i>Cloud Engineer | Kubernetes Developer | Open Source Contributor</i>
   </p>
-  <img src="https://avatars.githubusercontent.com/u/115966808?v=4" width="100px;" alt=""/>
+  <img src="https://avatars.githubusercontent.com/u/115966808?v=4&s=20" alt="Profile Pic"/>
   <img src="https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat" alt="LinkedIn"/>
   <img src="https://img.shields.io/badge/Twitter-Follow-blue?logo=twitter&style=flat" alt="Twitter"/>
   <img src="https://img.shields.io/badge/Medium-Blog-black?logo=medium&style=flat" alt="Medium"/>
