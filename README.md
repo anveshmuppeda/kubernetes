@@ -182,3 +182,6 @@ Kubernetes provides a robust platform for managing containerized applications, o
 
 ## License
 This project is licensed under the GNU License - see the [LICENSE](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE) file for details.  
+
+## Stargazers over time
+[![Stargazers over time](https://starchart.cc/anveshmuppeda/kubernetes.svg?variant=adaptive)](https://starchart.cc/anveshmuppeda/kubernetes)  
