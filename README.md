@@ -1,4 +1,3 @@
-# Kubernetes Complete Hands‑On Guides 
 <div align="center"> 
   <h1>🚀 Kubernetes Complete Hands‑On Guides 🌟 </h1>
   <p> 
