@@ -82,8 +82,8 @@ jobs:
           fi
           BUILD_IMAGE=true
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "ALLINONEIMAGE=anvesh35/k8-tools:allinone-$VERSION" >> $GITHUB_ENV
-          echo "LATESTALLINONEIMAGE=anvesh35/k8-tools:latest" >> $GITHUB_ENV
+          echo "ALLINONEIMAGE=anvesh35/k8s-tools:allinone-$VERSION" >> $GITHUB_ENV
+          echo "LATESTALLINONEIMAGE=anvesh35/k8s-tools:latest" >> $GITHUB_ENV
           echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
