@@ -1,5 +1,50 @@
-# Kubernetes Complete Hands‑On Guides [![GitHub License](https://img.shields.io/github/license/anveshmuppeda/kubernetes?color=blue)](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/anveshmuppeda/kubernetes/pulls)
+<div align="center"> 
+  <h1>🚀 Kubernetes Complete Hands‑On Guides 🌟 </h1>
+  <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=italic&weight=700&size=18&duration=4000&pause=1000&color=F727A9&center=true&width=600&lines=Learn+Kubernetes+with+hands-on+guides+and+practical+examples." alt="Typing SVG" /> </a>  
+  <br>
+  <img src="https://img.shields.io/github/forks/anveshmuppeda/kubernetes" alt="Forks"/>
+  <img src="https://img.shields.io/github/stars/anveshmuppeda/kubernetes" alt="Stars"/>
+  <img src="https://img.shields.io/github/watchers/anveshmuppeda/kubernetes" alt="Watchers"/>
+  <img src="https://img.shields.io/github/last-commit/anveshmuppeda/kubernetes" alt="Last Commit"/>
+  <img src="https://img.shields.io/github/commit-activity/m/anveshmuppeda/kubernetes" alt="Commit Activity"/>
+  <img src="https://img.shields.io/github/repo-size/anveshmuppeda/kubernetes" alt="Repo Size"/>
+  <img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Star Badge"/>
 
+  <img src="https://awesome.re/badge.svg" alt="Awesome"/>
+  <a href="https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE"> <img src="https://img.shields.io/github/license/anveshmuppeda/kubernetes" alt="GitHub License"/> </a>
+  <a href="https://github.com/anveshmuppeda/kubernetes/graphs/contributors"> <img src="https://img.shields.io/github/contributors/anveshmuppeda/kubernetes" alt="GitHub contributors"/> </a>
+  <a href="https://github.com/anveshmuppeda/kubernetes/issues">  <img src="https://img.shields.io/github/issues/anveshmuppeda/kubernetes" alt="Open Issues"/> </a>
+  <a href="https://github.com/anveshmuppeda/kubernetes/pulls"> <img src="https://img.shields.io/github/issues-pr-raw/anveshmuppeda/kubernetes" alt="Open PRs"/> </a>
+  <a href="https://github.com/anveshmuppeda/kubernetes/pulls"> <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"/> </a>
+</div>
+
+<!-- 
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re) 
+[![GitHub License](https://img.shields.io/github/license/anveshmuppeda/kubernetes?color=blue)](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE) 
+[![GitHub contributors](https://img.shields.io/github/contributors/anveshmuppeda/kubernetes)](https://github.com/anveshmuppeda/kubernetes/graphs/contributors) 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/anveshmuppeda/kubernetes/pulls) 
+[![Star Badge](https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99)](https://github.com/anveshmuppeda/kubernetes)
+<img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Star Badge"/> 
+
+-->  
+
+---  
+
+<div align="center">
+  <h2><b>Author: <a href="https://github.com/anveshmuppeda">Anvesh Muppeda</a> <img src="https://avatars.githubusercontent.com/u/115966808?v=4&s=20" alt="Profile Pic"/></b></h2>
+  <p> 
+    <i>Cloud Engineer | Kubernetes Developer | Open Source Contributor</i>
+  </p>
+  <img src="https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat" alt="LinkedIn"/>
+  <img src="https://img.shields.io/badge/Twitter-Follow-blue?logo=twitter&style=flat" alt="Twitter"/>
+  <img src="https://img.shields.io/badge/Medium-Blog-black?logo=medium&style=flat" alt="Medium"/>
+  <img src="https://img.shields.io/badge/Email-Contact%20Me-red?logo=gmail&style=flat" alt="Email"/>
+  <img src="https://img.shields.io/badge/DockerHub-Profile-blue?logo=docker&style=flat" alt="DockerHub"/>
+</div>  
+
+---  
+ 
+<!-- 
 ### **Author**: [Anvesh Muppeda ![Profile Pic](https://avatars.githubusercontent.com/u/115966808?v=4&s=20)](https://github.com/anveshmuppeda)  
 
 [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?logo=github&style=flat)](https://github.com/anveshmuppeda)
@@ -8,8 +53,7 @@
 [![Medium](https://img.shields.io/badge/Medium-Blog-black?logo=medium&style=flat)](https://medium.com/@muppedaanvesh)
 [![Email](https://img.shields.io/badge/Email-Contact%20Me-red?logo=gmail&style=flat)](mailto:muppedaanvesh@gmail.com)
 [![DockerHub](https://img.shields.io/badge/DockerHub-Profile-blue?logo=docker&style=flat)](https://hub.docker.com/u/anvesh35)
-
----
+-->  
 
 🚀 **Community-Driven Knowledge Hub**  
 *We welcome contributions to build the most comprehensive Kubernetes hands-on resource!*
