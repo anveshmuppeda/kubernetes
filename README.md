@@ -163,6 +163,7 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 
 
 
+
 <!-- BLOG-POST-LIST:END -->
 
 ## Architecture
@@ -185,25 +186,89 @@ Worker nodes run the applications and handle the containerized workloads. Each w
 - **Kube-proxy:** Maintains network rules and handles network communication within and outside the cluster.
 - **Container Runtime:** Runs the containers. Common runtimes include Docker, containerd, and CRI-O.
 
-## Basic Concepts
+## 📚 Guides Covered in This Repository
 
-### Pods
-Pods are the smallest deployable units in Kubernetes, representing a single instance of a running process. They encapsulate one or more containers, storage resources, a unique network IP, and options for how the containers should run.
+This repository contains a comprehensive set of hands-on guides and practical examples for mastering Kubernetes. Below is a categorized list of topics covered:
 
-### Services
-Services provide stable endpoints for accessing the running pods. They enable communication between different parts of an application and can expose the application to external traffic.
+### **Kubernetes Basics**
+- Introduction to Kubernetes Architecture
+- Understanding Master and Worker Node Components
+- Pods, Services, and Deployments
+- Namespaces and Resource Management
+- Volumes and Persistent Storage
 
-### Volumes
-Volumes offer persistent storage that pods can use. Unlike containers, which are ephemeral, volumes retain data even after a pod is terminated.
+### **Advanced Kubernetes Concepts**
+- Rolling Updates and Recreate Deployment Strategies
+- Blue-Green and Canary Deployment Strategies
+- Kubernetes RBAC (Role-Based Access Control)
+- Kubernetes Resource Quotas and Limit Ranges
+- Kubernetes Pod Disruption Budgets (PDBs)
 
-### Namespaces
-Namespaces are a way to divide cluster resources between multiple users. They provide scope for names, allowing for resource management and access control.
+### **Kubernetes Tools**
+- Using `kubectl` for Cluster Management
+- Helm: Kubernetes Package Manager
+- Velero: Backup and Restore for Kubernetes
+- ArgoCD: Continuous Delivery for Kubernetes
+- FluxCD: GitOps for Kubernetes
+- eksctl: Managing Amazon EKS Clusters
 
-### Deployments
-Deployments define the desired state for application deployment, specifying the number of replicas, the container image to use, and update strategies. They enable declarative updates to applications and rollbacks if necessary.
+### **Kubernetes Networking**
+- Kubernetes Ingress and Routing
+- Transitioning to HTTPS with Self-Signed Certificates
+- Kubernetes Taints and Tolerations
+- Kubernetes Endpoints and EndpointSlices
 
-## Conclusion
-Kubernetes provides a robust platform for managing containerized applications, offering powerful abstractions to ensure applications are scalable, resilient, and easy to manage. Understanding the basic architecture and concepts is essential for effectively leveraging Kubernetes in your projects.
+### **Kubernetes Scaling and Performance**
+- Horizontal and Vertical Pod Autoscalers
+- Kubernetes Priority Classes and QoS Classes
+- Scaling with Karpenter on AWS EKS
+
+### **Kubernetes on Cloud**
+- Setting Up Amazon EKS Clusters with eksctl
+- Using Fargate Profiles in Amazon EKS
+- Azure DevOps Self-Hosted Agents on Kubernetes
+
+---
+
+## 🚀 How to Use This Repository Effectively
+
+### **1. Clone the Repository**
+Start by cloning the repository to your local machine:
+```bash
+git clone https://github.com/anveshmuppeda/kubernetes.git
+cd kubernetes
+```
+### **2. Explore the Guides**
+The repository is organized into directories and files for each topic. Navigate through the folders to find the guide you are interested in.
+
+### **3. Run the Examples**  
+Each guide includes practical examples. Follow the instructions provided in the guide to execute the examples in your Kubernetes environment.
+
+### **4. Use the Docker Images**  
+This repository also includes Dockerfiles for Kubernetes tools like kubectl, helm, velero, argocd, fluxcd, and eksctl. You can build and use these images as follows:
+
+Build the All-in-One Docker Image:
+```bash
+docker build \
+  --build-arg KUBECTL_VERSION=<kubectl_version> \
+  --build-arg HELM_VERSION=<helm_version> \
+  --build-arg VELERO_VERSION=<velero_version> \
+  --build-arg ARGOCD_VERSION=<argocd_version> \
+  --build-arg FLUX_VERSION=<flux_version> \
+  --build-arg EKSCTL_VERSION=<eksctl_version> \
+  -t anvesh35/k8s-tools:allinone \
+  -f dockerfiles/k8s-tools/allinone/Dockerfile .
+```
+Run the All-in-One Docker Image:
+```bash
+docker run --rm -it anvesh35/k8s-tools:allinone bash
+```
+
+### **5. Contribute to the Repository**  
+We welcome contributions! If you find an issue or have an idea for improvement, feel free to open an issue or submit a pull request.
+
+## Conclusion  
+This repository is a one-stop resource for learning Kubernetes with hands-on examples and practical guides. Whether you are a beginner or an advanced user, you will find valuable content to enhance your Kubernetes knowledge and skills.
 
 ## References
 - [Kubernetes Documentation](https://kubernetes.io/docs/home/)
@@ -220,7 +285,8 @@ Kubernetes provides a robust platform for managing containerized applications, o
   <tr>
     <td align="center"><a href="https://anveshmuppeda.github.io/profile/"><img src="https://avatars.githubusercontent.com/u/115966808?v=4" width="100px;" alt=""/><br /><sub><b>Anvesh Muppeda</b></sub></a></td>
     <td align="center"><a href="https://github.com/saimanasak"><img src="https://avatars.githubusercontent.com/u/47205414?v=4" width="100px;" alt=""/><br /><sub><b>Sai Manasa Kota</b></sub></a></td>  
-    <td align="center"><a href="https://github.com/Rohinigundala2019"><img src="https://avatars.githubusercontent.com/u/181216819?v=4" width="100px;" alt=""/><br /><sub><b>Rohini Gundala</b></sub></a></td> 
+    <td align="center"><a href="https://github.com/Rohinigundala2019"><img src="https://avatars.githubusercontent.com/u/181216819?v=4" width="100px;" alt=""/><br /><sub><b>Rohini Gundala</b></sub></a></td>  
+    <td align="center"><a href="https://github.com/terrtt"><img src="https://avatars.githubusercontent.com/u/159054162?v=4" width="100px;" alt=""/><br /><sub><b>Devansh Bharadwaj</b></sub></a></td>  
   </tr>
 </table>  
 
