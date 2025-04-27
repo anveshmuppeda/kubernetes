@@ -249,7 +249,15 @@ This repository also includes Dockerfiles for Kubernetes tools like kubectl, hel
 
 Build the All-in-One Docker Image:
 ```bash
-docker build -t anvesh35/k8s-tools:allinone -f dockerfiles/k8s-tools/allinone/Dockerfile .
+docker build \
+  --build-arg KUBECTL_VERSION=<kubectl_version> \
+  --build-arg HELM_VERSION=<helm_version> \
+  --build-arg VELERO_VERSION=<velero_version> \
+  --build-arg ARGOCD_VERSION=<argocd_version> \
+  --build-arg FLUX_VERSION=<flux_version> \
+  --build-arg EKSCTL_VERSION=<eksctl_version> \
+  -t anvesh35/k8s-tools:allinone \
+  -f dockerfiles/k8s-tools/allinone/Dockerfile .
 ```
 Run the All-in-One Docker Image:
 ```bash
@@ -277,7 +285,8 @@ This repository is a one-stop resource for learning Kubernetes with hands-on exa
   <tr>
     <td align="center"><a href="https://anveshmuppeda.github.io/profile/"><img src="https://avatars.githubusercontent.com/u/115966808?v=4" width="100px;" alt=""/><br /><sub><b>Anvesh Muppeda</b></sub></a></td>
     <td align="center"><a href="https://github.com/saimanasak"><img src="https://avatars.githubusercontent.com/u/47205414?v=4" width="100px;" alt=""/><br /><sub><b>Sai Manasa Kota</b></sub></a></td>  
-    <td align="center"><a href="https://github.com/Rohinigundala2019"><img src="https://avatars.githubusercontent.com/u/181216819?v=4" width="100px;" alt=""/><br /><sub><b>Rohini Gundala</b></sub></a></td> 
+    <td align="center"><a href="https://github.com/Rohinigundala2019"><img src="https://avatars.githubusercontent.com/u/181216819?v=4" width="100px;" alt=""/><br /><sub><b>Rohini Gundala</b></sub></a></td>  
+    <td align="center"><a href="https://github.com/terrtt"><img src="https://avatars.githubusercontent.com/u/159054162?v=4" width="100px;" alt=""/><br /><sub><b>Devansh Bharadwaj</b></sub></a></td>  
   </tr>
 </table>  
 
