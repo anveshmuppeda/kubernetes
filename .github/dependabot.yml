@@ -1,15 +1,49 @@
 version: 2
 updates:
-  # Update Docker dependencies
+  # Update Docker dependencies for the first Dockerfile
   - package-ecosystem: "docker"
-    directory: "/" # Root directory where Dockerfiles are located
+    directory: "/dockerfiles/k8s-tools/allinone/" # Path to the first Dockerfile
     schedule:
-      interval: "weekly" # Check for updates weekly
-    open-pull-requests-limit: 20 # Limit the number of open PRs to 5
-    # ignore:
-    #   # Ignore updates for specific images or versions
-    #   - dependency-name: "alpine"
-    #     versions: ["3.14"]
-    # allow:
-    #   # Allow updates for specific images
-    #   - dependency-name: "ubuntu"
+      interval: "weekly"
+
+  # Update Docker dependencies for the second Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/k8s-tools/fluxcd/" # Path to the second Dockerfile
+    schedule:
+      interval: "weekly"
+  
+  # Update Docker dependencies for the third Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/k8s-tools/kubectl/" # Path to the third Dockerfile
+    schedule:
+      interval: "weekly"
+  
+  # Update Docker dependencies for the fourth Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/k8s-tools/helm/" # Path to the fourth Dockerfile
+    schedule:
+      interval: "weekly"
+  
+  # Update Docker dependencies for the fifth Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/k8s-tools/argocd/" # Path to the fifth Dockerfile
+    schedule:
+      interval: "weekly"
+  
+  # Update Docker dependencies for the sixth Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/k8s-tools/eksctl/" # Path to the sixth Dockerfile
+    schedule:
+      interval: "weekly"
+  
+  # Update Docker dependencies for the seventh Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/k8s-tools/velero/" # Path to the seventh Dockerfile
+    schedule:
+      interval: "weekly"
+  
+  # Update Docker dependencies for the eighth Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/echo-pod/" # Path to the eighth Dockerfile
+    schedule:
+      interval: "weekly"
