@@ -1,49 +1,61 @@
 version: 2
 updates:
-  # Update Docker dependencies for the first Dockerfile
+  # Update Docker dependencies for the allinone Dockerfile
   - package-ecosystem: "docker"
     directory: "/dockerfiles/k8s-tools/allinone/" # Path to the first Dockerfile
     schedule:
       interval: "weekly"
 
-  # Update Docker dependencies for the second Dockerfile
+  # Update Docker dependencies for the fluxcd Dockerfile
   - package-ecosystem: "docker"
     directory: "/dockerfiles/k8s-tools/fluxcd/" # Path to the second Dockerfile
     schedule:
       interval: "weekly"
   
-  # Update Docker dependencies for the third Dockerfile
+  # Update Docker dependencies for the kubectl Dockerfile
   - package-ecosystem: "docker"
     directory: "/dockerfiles/k8s-tools/kubectl/" # Path to the third Dockerfile
     schedule:
       interval: "weekly"
   
-  # Update Docker dependencies for the fourth Dockerfile
+  # Update Docker dependencies for the helm Dockerfile
   - package-ecosystem: "docker"
     directory: "/dockerfiles/k8s-tools/helm/" # Path to the fourth Dockerfile
     schedule:
       interval: "weekly"
   
-  # Update Docker dependencies for the fifth Dockerfile
+  # Update Docker dependencies for the argoce Dockerfile
   - package-ecosystem: "docker"
     directory: "/dockerfiles/k8s-tools/argocd/" # Path to the fifth Dockerfile
     schedule:
       interval: "weekly"
   
-  # Update Docker dependencies for the sixth Dockerfile
+  # Update Docker dependencies for the eksctl Dockerfile
   - package-ecosystem: "docker"
     directory: "/dockerfiles/k8s-tools/eksctl/" # Path to the sixth Dockerfile
     schedule:
       interval: "weekly"
   
-  # Update Docker dependencies for the seventh Dockerfile
+  # Update Docker dependencies for the velero Dockerfile
   - package-ecosystem: "docker"
     directory: "/dockerfiles/k8s-tools/velero/" # Path to the seventh Dockerfile
     schedule:
       interval: "weekly"
   
-  # Update Docker dependencies for the eighth Dockerfile
+  # Update Docker dependencies for the echo app Dockerfile
   - package-ecosystem: "docker"
     directory: "/dockerfiles/echo-pod/" # Path to the eighth Dockerfile
+    schedule:
+      interval: "weekly" 
+
+  # Update Docker dependencies for the blogging app Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/blogging-application/" # Path to the blogging app Dockerfile
+    schedule:
+      interval: "weekly"
+  
+  # Update Docker dependencies for the streamin app Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/streaming-application/" # Path to the streaming app Dockerfile
     schedule:
       interval: "weekly"
