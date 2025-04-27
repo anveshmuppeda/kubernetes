@@ -1,5 +1,50 @@
-# Kubernetes Complete Hands‑On Guides [![GitHub License](https://img.shields.io/github/license/anveshmuppeda/kubernetes?color=blue)](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/anveshmuppeda/kubernetes/pulls)
+<div align="center"> 
+  <h1>🚀 Kubernetes Complete Hands‑On Guides 🌟 </h1>
+  <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=italic&weight=700&size=18&duration=4000&pause=1000&color=F727A9&center=true&width=600&lines=Learn+Kubernetes+with+hands-on+guides+and+practical+examples." alt="Typing SVG" /> </a>  
+  <br>
+  <img src="https://img.shields.io/github/forks/anveshmuppeda/kubernetes" alt="Forks"/>
+  <img src="https://img.shields.io/github/stars/anveshmuppeda/kubernetes" alt="Stars"/>
+  <img src="https://img.shields.io/github/watchers/anveshmuppeda/kubernetes" alt="Watchers"/>
+  <img src="https://img.shields.io/github/last-commit/anveshmuppeda/kubernetes" alt="Last Commit"/>
+  <img src="https://img.shields.io/github/commit-activity/m/anveshmuppeda/kubernetes" alt="Commit Activity"/>
+  <img src="https://img.shields.io/github/repo-size/anveshmuppeda/kubernetes" alt="Repo Size"/>
+  <img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Star Badge"/>
 
+  <img src="https://awesome.re/badge.svg" alt="Awesome"/>
+  <a href="https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE"> <img src="https://img.shields.io/github/license/anveshmuppeda/kubernetes" alt="GitHub License"/> </a>
+  <a href="https://github.com/anveshmuppeda/kubernetes/graphs/contributors"> <img src="https://img.shields.io/github/contributors/anveshmuppeda/kubernetes" alt="GitHub contributors"/> </a>
+  <a href="https://github.com/anveshmuppeda/kubernetes/issues">  <img src="https://img.shields.io/github/issues/anveshmuppeda/kubernetes" alt="Open Issues"/> </a>
+  <a href="https://github.com/anveshmuppeda/kubernetes/pulls"> <img src="https://img.shields.io/github/issues-pr-raw/anveshmuppeda/kubernetes" alt="Open PRs"/> </a>
+  <a href="https://github.com/anveshmuppeda/kubernetes/pulls"> <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"/> </a>
+</div>
+
+<!-- 
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re) 
+[![GitHub License](https://img.shields.io/github/license/anveshmuppeda/kubernetes?color=blue)](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE) 
+[![GitHub contributors](https://img.shields.io/github/contributors/anveshmuppeda/kubernetes)](https://github.com/anveshmuppeda/kubernetes/graphs/contributors) 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/anveshmuppeda/kubernetes/pulls) 
+[![Star Badge](https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99)](https://github.com/anveshmuppeda/kubernetes)
+<img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Star Badge"/> 
+
+-->  
+
+---  
+
+<div align="center">
+  <h2><b>Author: <a href="https://github.com/anveshmuppeda">Anvesh Muppeda</a> <img src="https://avatars.githubusercontent.com/u/115966808?v=4&s=20" alt="Profile Pic"/></b></h2>
+  <p> 
+    <i>Cloud Engineer | Kubernetes Developer | Open Source Contributor</i>
+  </p>
+  <img src="https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat" alt="LinkedIn"/>
+  <img src="https://img.shields.io/badge/Twitter-Follow-blue?logo=twitter&style=flat" alt="Twitter"/>
+  <img src="https://img.shields.io/badge/Medium-Blog-black?logo=medium&style=flat" alt="Medium"/>
+  <img src="https://img.shields.io/badge/Email-Contact%20Me-red?logo=gmail&style=flat" alt="Email"/>
+  <img src="https://img.shields.io/badge/DockerHub-Profile-blue?logo=docker&style=flat" alt="DockerHub"/>
+</div>  
+
+---  
+ 
+<!-- 
 ### **Author**: [Anvesh Muppeda ![Profile Pic](https://avatars.githubusercontent.com/u/115966808?v=4&s=20)](https://github.com/anveshmuppeda)  
 
 [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?logo=github&style=flat)](https://github.com/anveshmuppeda)
@@ -7,8 +52,8 @@
 [![Twitter](https://img.shields.io/badge/Twitter-Follow-blue?logo=twitter&style=flat)](https://twitter.com/Anvesh66743877)
 [![Medium](https://img.shields.io/badge/Medium-Blog-black?logo=medium&style=flat)](https://medium.com/@muppedaanvesh)
 [![Email](https://img.shields.io/badge/Email-Contact%20Me-red?logo=gmail&style=flat)](mailto:muppedaanvesh@gmail.com)
-
----
+[![DockerHub](https://img.shields.io/badge/DockerHub-Profile-blue?logo=docker&style=flat)](https://hub.docker.com/u/anvesh35)
+-->  
 
 🚀 **Community-Driven Knowledge Hub**  
 *We welcome contributions to build the most comprehensive Kubernetes hands-on resource!*
@@ -100,6 +145,18 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 | 41 | 2025-02-24 | [⎈ A Hands-On Guide to AWS EKS Fargate Cluster ️](https://medium.com/@muppedaanvesh/a-hands-on-guide-to-aws-eks-fargate-cluster-%EF%B8%8F-2172934fff94?source=rss-15b2de10f77d------2) |
 | 42 | 2025-02-24 | [⎈ Hands-On Guide to Creating an Amazon EKS Cluster with Managed Node Groups⎈](https://medium.com/@muppedaanvesh/hands-on-guide-to-creating-an-amazon-eks-cluster-with-managed-worker-nodes-1bd983e0fcbd?source=rss-15b2de10f77d------2) |
 | 43 | 2025-02-23 | [⎈ Hands-On Guide to Creating an Amazon EKS Cluster with Self-Managed Worker Nodes ⎈](https://medium.com/@muppedaanvesh/hands-on-guide-to-creating-an-amazon-eks-cluster-with-self-managed-worker-nodes-fad026c34482?source=rss-15b2de10f77d------2) |
+| 44 | 2025-04-21 | [⎈ Hands-On FluxCD: GitOps for Kubernetes at Scale ️](https://medium.com/@muppedaanvesh/hands-on-fluxcd-gitops-for-kubernetes-at-scale-%EF%B8%8F-7e3d06ed4c35?source=rss-15b2de10f77d------2) |
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -129,25 +186,89 @@ Worker nodes run the applications and handle the containerized workloads. Each w
 - **Kube-proxy:** Maintains network rules and handles network communication within and outside the cluster.
 - **Container Runtime:** Runs the containers. Common runtimes include Docker, containerd, and CRI-O.
 
-## Basic Concepts
+## 📚 Guides Covered in This Repository
 
-### Pods
-Pods are the smallest deployable units in Kubernetes, representing a single instance of a running process. They encapsulate one or more containers, storage resources, a unique network IP, and options for how the containers should run.
+This repository contains a comprehensive set of hands-on guides and practical examples for mastering Kubernetes. Below is a categorized list of topics covered:
 
-### Services
-Services provide stable endpoints for accessing the running pods. They enable communication between different parts of an application and can expose the application to external traffic.
+### **Kubernetes Basics**
+- Introduction to Kubernetes Architecture
+- Understanding Master and Worker Node Components
+- Pods, Services, and Deployments
+- Namespaces and Resource Management
+- Volumes and Persistent Storage
 
-### Volumes
-Volumes offer persistent storage that pods can use. Unlike containers, which are ephemeral, volumes retain data even after a pod is terminated.
+### **Advanced Kubernetes Concepts**
+- Rolling Updates and Recreate Deployment Strategies
+- Blue-Green and Canary Deployment Strategies
+- Kubernetes RBAC (Role-Based Access Control)
+- Kubernetes Resource Quotas and Limit Ranges
+- Kubernetes Pod Disruption Budgets (PDBs)
 
-### Namespaces
-Namespaces are a way to divide cluster resources between multiple users. They provide scope for names, allowing for resource management and access control.
+### **Kubernetes Tools**
+- Using `kubectl` for Cluster Management
+- Helm: Kubernetes Package Manager
+- Velero: Backup and Restore for Kubernetes
+- ArgoCD: Continuous Delivery for Kubernetes
+- FluxCD: GitOps for Kubernetes
+- eksctl: Managing Amazon EKS Clusters
 
-### Deployments
-Deployments define the desired state for application deployment, specifying the number of replicas, the container image to use, and update strategies. They enable declarative updates to applications and rollbacks if necessary.
+### **Kubernetes Networking**
+- Kubernetes Ingress and Routing
+- Transitioning to HTTPS with Self-Signed Certificates
+- Kubernetes Taints and Tolerations
+- Kubernetes Endpoints and EndpointSlices
 
-## Conclusion
-Kubernetes provides a robust platform for managing containerized applications, offering powerful abstractions to ensure applications are scalable, resilient, and easy to manage. Understanding the basic architecture and concepts is essential for effectively leveraging Kubernetes in your projects.
+### **Kubernetes Scaling and Performance**
+- Horizontal and Vertical Pod Autoscalers
+- Kubernetes Priority Classes and QoS Classes
+- Scaling with Karpenter on AWS EKS
+
+### **Kubernetes on Cloud**
+- Setting Up Amazon EKS Clusters with eksctl
+- Using Fargate Profiles in Amazon EKS
+- Azure DevOps Self-Hosted Agents on Kubernetes
+
+---
+
+## 🚀 How to Use This Repository Effectively
+
+### **1. Clone the Repository**
+Start by cloning the repository to your local machine:
+```bash
+git clone https://github.com/anveshmuppeda/kubernetes.git
+cd kubernetes
+```
+### **2. Explore the Guides**
+The repository is organized into directories and files for each topic. Navigate through the folders to find the guide you are interested in.
+
+### **3. Run the Examples**  
+Each guide includes practical examples. Follow the instructions provided in the guide to execute the examples in your Kubernetes environment.
+
+### **4. Use the Docker Images**  
+This repository also includes Dockerfiles for Kubernetes tools like kubectl, helm, velero, argocd, fluxcd, and eksctl. You can build and use these images as follows:
+
+Build the All-in-One Docker Image:
+```bash
+docker build \
+  --build-arg KUBECTL_VERSION=<kubectl_version> \
+  --build-arg HELM_VERSION=<helm_version> \
+  --build-arg VELERO_VERSION=<velero_version> \
+  --build-arg ARGOCD_VERSION=<argocd_version> \
+  --build-arg FLUX_VERSION=<flux_version> \
+  --build-arg EKSCTL_VERSION=<eksctl_version> \
+  -t anvesh35/k8s-tools:allinone \
+  -f dockerfiles/k8s-tools/allinone/Dockerfile .
+```
+Run the All-in-One Docker Image:
+```bash
+docker run --rm -it anvesh35/k8s-tools:allinone bash
+```
+
+### **5. Contribute to the Repository**  
+We welcome contributions! If you find an issue or have an idea for improvement, feel free to open an issue or submit a pull request.
+
+## Conclusion  
+This repository is a one-stop resource for learning Kubernetes with hands-on examples and practical guides. Whether you are a beginner or an advanced user, you will find valuable content to enhance your Kubernetes knowledge and skills.
 
 ## References
 - [Kubernetes Documentation](https://kubernetes.io/docs/home/)
@@ -163,9 +284,14 @@ Kubernetes provides a robust platform for managing containerized applications, o
 <table>
   <tr>
     <td align="center"><a href="https://anveshmuppeda.github.io/profile/"><img src="https://avatars.githubusercontent.com/u/115966808?v=4" width="100px;" alt=""/><br /><sub><b>Anvesh Muppeda</b></sub></a></td>
-    <td align="center"><a href="https://github.com/saimanasak"><img src="https://avatars.githubusercontent.com/u/47205414?v=4" width="100px;" alt=""/><br /><sub><b>Sai Manasa Kota</b></sub></a></td> 
+    <td align="center"><a href="https://github.com/saimanasak"><img src="https://avatars.githubusercontent.com/u/47205414?v=4" width="100px;" alt=""/><br /><sub><b>Sai Manasa Kota</b></sub></a></td>  
+    <td align="center"><a href="https://github.com/Rohinigundala2019"><img src="https://avatars.githubusercontent.com/u/181216819?v=4" width="100px;" alt=""/><br /><sub><b>Rohini Gundala</b></sub></a></td>  
+    <td align="center"><a href="https://github.com/terrtt"><img src="https://avatars.githubusercontent.com/u/159054162?v=4" width="100px;" alt=""/><br /><sub><b>Devansh Bharadwaj</b></sub></a></td>  
   </tr>
 </table>  
 
 ## License
 This project is licensed under the GNU License - see the [LICENSE](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE) file for details.  
+
+## Stargazers over time
+[![Stargazers over time](https://starchart.cc/anveshmuppeda/kubernetes.svg?variant=adaptive)](https://starchart.cc/anveshmuppeda/kubernetes)  
