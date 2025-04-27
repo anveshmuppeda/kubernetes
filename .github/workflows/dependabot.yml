@@ -1,0 +1,15 @@
+version: 2
+updates:
+  # Update Docker dependencies
+  - package-ecosystem: "docker"
+    directory: "/" # Root directory where Dockerfiles are located
+    schedule:
+      interval: "weekly" # Check for updates weekly
+    open-pull-requests-limit: 5 # Limit the number of open PRs to 5
+    # ignore:
+    #   # Ignore updates for specific images or versions
+    #   - dependency-name: "alpine"
+    #     versions: ["3.14"]
+    # allow:
+    #   # Allow updates for specific images
+    #   - dependency-name: "ubuntu"
