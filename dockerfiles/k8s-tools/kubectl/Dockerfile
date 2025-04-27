@@ -1,5 +1,5 @@
 # --- Builder Stage: Download kubectl ---
-FROM alpine:3.19 AS builder
+FROM alpine:3.21 AS builder
 
 # Versions (update these as needed)
 ARG KUBECTL_VERSION=v1.29.3
@@ -10,7 +10,7 @@ RUN curl -Lo /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl
 
 # --- Final Stage: Runtime Image ---
-FROM alpine:3.19
+FROM alpine:3.21
 
 # 1. Create non-root user
 RUN addgroup -S kube && adduser -S kube -G kube
