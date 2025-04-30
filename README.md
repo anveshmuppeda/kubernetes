@@ -149,6 +149,8 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 | 45 | 2025-04-27 | [⎈ Containerized Helm: Zero-Install Cluster Management ️](https://medium.com/@muppedaanvesh/containerized-helm-zero-install-cluster-management-%EF%B8%8F-8ff8fff34279?source=rss-15b2de10f77d------2) |
 | 46 | 2025-04-27 | [⎈ Containerized Helm: Zero-Install Cluster Management ️](https://medium.com/@muppedaanvesh/containerized-helm-zero-install-cluster-management-%EF%B8%8F-1ea8393da3bf?source=rss-15b2de10f77d------2) |
 | 47 | 2025-04-27 | [⎈ K8s Tools Docker Images — kubectl ️](https://medium.com/@muppedaanvesh/k8s-tools-docker-images-kubectl-%EF%B8%8F-acd446b5c079?source=rss-15b2de10f77d------2) |
+| 48 | 2025-04-29 | [⎈ Containerized FluxCD: Zero-Install Cluster Management ️](https://medium.com/@muppedaanvesh/containerized-fluxcd-zero-install-cluster-management-%EF%B8%8F-4f2ace623eb4?source=rss-15b2de10f77d------2) |
+
 
 
 
