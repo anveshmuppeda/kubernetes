@@ -35,11 +35,11 @@
   <p> 
     <i>Cloud Engineer | Kubernetes Developer | Open Source Contributor</i>
   </p>
-  <img src="https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat" alt="LinkedIn"/>
-  <img src="https://img.shields.io/badge/Twitter-Follow-blue?logo=twitter&style=flat" alt="Twitter"/>
-  <img src="https://img.shields.io/badge/Medium-Blog-black?logo=medium&style=flat" alt="Medium"/>
-  <img src="https://img.shields.io/badge/Email-Contact%20Me-red?logo=gmail&style=flat" alt="Email"/>
-  <img src="https://img.shields.io/badge/DockerHub-Profile-blue?logo=docker&style=flat" alt="DockerHub"/>
+  <a href="https://www.linkedin.com/in/anveshmuppeda/"> <img src="https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat" alt="LinkedIn"/> </a>
+  <a href="https://twitter.com/Anvesh66743877"> <img src="https://img.shields.io/badge/Twitter-Follow-blue?logo=twitter&style=flat" alt="Twitter"/> </a>
+  <a href="https://medium.com/@muppedaanvesh"> <img src="https://img.shields.io/badge/Medium-Blog-black?logo=medium&style=flat" alt="Medium"/> </a>
+  <a href="mailto:muppedaanvesh@gmail.com"> <img src="https://img.shields.io/badge/Email-Contact%20Me-red?logo=gmail&style=flat" alt="Email"/> </a>
+  <a href="https://hub.docker.com/u/anvesh35"> <img src="https://img.shields.io/badge/DockerHub-Profile-blue?logo=docker&style=flat" alt="DockerHub"/> </a>
 </div>  
 
 ---  
@@ -150,6 +150,7 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 | 46 | 2025-04-27 | [⎈ Containerized Helm: Zero-Install Cluster Management ️](https://medium.com/@muppedaanvesh/containerized-helm-zero-install-cluster-management-%EF%B8%8F-1ea8393da3bf?source=rss-15b2de10f77d------2) |
 | 47 | 2025-04-27 | [⎈ K8s Tools Docker Images — kubectl ️](https://medium.com/@muppedaanvesh/k8s-tools-docker-images-kubectl-%EF%B8%8F-acd446b5c079?source=rss-15b2de10f77d------2) |
 | 48 | 2025-04-29 | [⎈ Containerized FluxCD: Zero-Install Cluster Management ️](https://medium.com/@muppedaanvesh/containerized-fluxcd-zero-install-cluster-management-%EF%B8%8F-4f2ace623eb4?source=rss-15b2de10f77d------2) |
+
 
 
 
