@@ -1,12 +1,13 @@
 ---
 slug: welcome
 title: Welcome
-authors: [slorber, yangshun]
-tags: [facebook, hello, docusaurus]
+authors: [anvesh, manasa]
+tags: [kubernetes, hello, eks]
 ---
 
-[Docusaurus blogging features](https://docusaurus.io/docs/blog) are powered by the [blog plugin](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog).
-
+# Welcome
+This is your first post. Edit or delete it, then start writing!
+This is a test blog post. You can use it to test the blog functionality of your Docusaurus site.  
 Here are a few tips you might find useful.
 
 <!-- truncate -->
