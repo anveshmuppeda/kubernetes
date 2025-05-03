@@ -21,7 +21,14 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            Start Kubernetes Hands-On - 5min ⏱️
+          </Link>
+        </div>
+        <div className={styles.buttons}>
+          <Link
+            className="button button--outline button--lg"
+            to="/blog">
+            Read Latest Blogs 📝
           </Link>
         </div>
       </div>
@@ -33,8 +40,8 @@ export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`Welcome to ${siteConfig.title}`}
+      description="Master Kubernetes with hands-on tutorials, blogs, and tools.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

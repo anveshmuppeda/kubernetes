@@ -11,32 +11,29 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Step-by-Step Tutorials',
+    Svg: require('@site/static/img/undraw_tutorial.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Learn Kubernetes with detailed, step-by-step tutorials designed for beginners and advanced users alike. Start mastering Kubernetes today!
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Comprehensive Blogs',
+    Svg: require('@site/static/img/undraw_blog.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Stay updated with the latest Kubernetes trends, tips, and best practices through our regularly updated blogs.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Kubernetes Tools & Commands',
+    Svg: require('@site/static/img/undraw_tools.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Explore essential Kubernetes tools and commands to simplify your workflow and manage your clusters effectively.
       </>
     ),
   },
