@@ -74,7 +74,7 @@ const config: Config = {
         path: 'commands', // Path to the commands directory
         routeBasePath: 'commands', // URL path for the commands section
         //sidebarPath: require.resolve('./sidebars-commands.js'), // Sidebar configuration for commands
-        editUrl: 'https://github.com/anveshmuppeda/kubernetes/tree/dev/commands/',
+        editUrl: 'https://github.com/anveshmuppeda/kubernetes/tree/dev/',
       },
     ],
   ],
