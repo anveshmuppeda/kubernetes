@@ -1,6 +1,7 @@
 ---
 // filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/eks-fargate-guide.MD
 sidebar_position: 1
+sidebar_label: "EKS Fargate Cluster"
 ---  
 
 # A Hands-On Guide to AWS EKS Fargate Cluster  
