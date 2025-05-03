@@ -1,3 +1,27 @@
+anvesh:
+  name: Anvesh Muppeda
+  title: Kubernetes Developer
+  url: https://github.com/anveshMuppeda
+  image_url: https://github.com/anveshmuppeda.png
+  page: true
+  socials:
+    x: Anvesh66743877
+    github: anveshmuppeda
+    linkedin: anveshmuppeda
+    medium: muppedaanvesh
+
+manasa:
+  name: Sai Manasa Kota
+  title: Backstage Developer
+  url: https://github.com/saimanasak
+  image_url: https://github.com/saimanasak.png
+  # page:
+  #   # customize the url of the author page at /blog/authors/<permalink>
+  #   permalink: '/all-sebastien-lorber-articles'
+  socials:
+    linkedin: saimanasak
+    github: saimanasak
+
 yangshun:
   name: Yangshun Tay
   title: Front End Engineer @ Facebook

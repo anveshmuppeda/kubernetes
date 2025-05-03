@@ -1,0 +1,8 @@
+{
+  "label": "Kubectl Commands",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Kubectl is a command-line tool for interacting with Kubernetes clusters. It allows you to deploy applications, inspect and manage cluster resources, and view logs. This guide provides a comprehensive list of kubectl commands, their usage, and examples to help you effectively manage your Kubernetes environment."
+  }
+}

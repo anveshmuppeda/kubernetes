@@ -1,0 +1,8 @@
+{
+  "label": "Deployment Strategies",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "A comprehensive guide to getting started with Amazon Elastic Kubernetes Service (EKS). Learn how to set up and manage EKS clusters with Managed Node Groups, Unmanaged Node Groups, and Fargate. This guide covers best practices, IAM roles, security groups, scaling, monitoring, logging, and troubleshooting tips. Whether you're a beginner or an experienced user, this guide provides step-by-step instructions and practical examples to help you deploy and manage applications on EKS effectively."
+  }
+}

@@ -1,19 +1,13 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+# This file contains the tags for the blog posts.
+# The tags are used to categorize the blog posts and are displayed on the blog page.
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+kubernetes:
+  label: Kubernetes
+  permalink: /kubernetes
+  description: Kubernetes tag description
 
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
+eks:
+  label: EKS
+  permalink: /eks
+  description: EKS tag description
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
