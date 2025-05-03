@@ -1,0 +1,8 @@
+{
+  "label": "Helm Commands",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Helm is a package manager for Kubernetes that simplifies the deployment and management of applications on Kubernetes clusters. This guide provides a comprehensive list of Helm commands, their usage, and examples to help you effectively manage your Kubernetes applications."
+  }
+}

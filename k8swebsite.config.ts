@@ -1,5 +1,5 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -54,7 +54,7 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/anveshmuppeda/kubernetes/tree/dev/',
-          // Useful options to enforce blogging best practices
+// Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -63,6 +63,19 @@ const config: Config = {
           customCss: './src/css/custom.css',
         },
       } satisfies Preset.Options,
+    ],
+  ],
+
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'commands', // Unique ID for the commands plugin
+        path: 'commands', // Path to the commands directory
+        routeBasePath: 'commands', // URL path for the commands section
+        //sidebarPath: require.resolve('./sidebars-commands.js'), // Sidebar configuration for commands
+        editUrl: 'https://github.com/anveshmuppeda/kubernetes/tree/dev/commands/',
+      },
     ],
   ],
 
@@ -82,7 +95,14 @@ const config: Config = {
           position: 'left',
           label: 'Tutorial',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          // type: 'docSidebar',
+          // sidebarId: 'tutorialSidebar', // Sidebar for commands
+          position: 'left',
+          to: '/commands',
+          label: 'Commands',
+        },
+        { to: '/blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/anveshmuppeda/kubernetes',
           label: 'GitHub',
@@ -115,7 +135,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/anveshmuppeda'
+              href: 'https://github.com/anveshmuppeda',
             },
             {
               label: 'Stack Overflow',

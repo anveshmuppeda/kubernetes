@@ -1,3 +1,10 @@
+---
+// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/commands/kubectl/commands.md
+sidebar_label: "Kubectl Commands"
+sidebar_id: "kubectl"
+sidebar_position: 2
+---
+
 # Welcome to Kubectl cheatsheet [![GitHub](https://img.shields.io/github/license/anveshmuppeda/kubernetes?color=blue)](https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE)  
 
 <p align="center">  
@@ -129,35 +136,35 @@ The `kubectl rollout` command is primarily used with Kubernetes **Deployments**,
 
 ### b. To check the rollout status  
  ```sh
-  kubectl rollout status <resource-type>/<resource-name>
+  kubectl rollout status \<resource-type>//<resource-name>
   ```  
 
 ### c. To get the rollout history  
   ```sh
-  kubectl rollout status <resource-type>/<resource-name>
+  kubectl rollout status \<resource-type>//<resource-name>
   ```  
 
 ### d. To restart the deployment  
   ```sh 
-  kubectl restart status <resource-type>/<resource-name> 
+  kubectl restart status \<resource-type>//<resource-name> 
   ```  
   
 ### e. To pause the deployment updates  
   ```sh 
-  kubectl rollout pause <resource-type>/<resource-name>
+  kubectl rollout pause \<resource-type>//<resource-name>
   ```  
 
 ### f. To resume the deployment updates  
   ```sh
-  kubectl rollout resume <resource-type>/<resource-name>
+  kubectl rollout resume \<resource-type>//<resource-name>
   ```  
 
 ### g. To undo the deployment updates to previous revision  
   ```sh
-  kubectl rollout undo <resource-type>/<resource-name>
+  kubectl rollout undo \<resource-type>//<resource-name>
   ```   
   > [!TIP]  
-  > Here you can use **Deployments**, **Statefulsets** and **DaemonSets** in place of <resource-type>.
+  > Here you can use **Deployments**, **Statefulsets** and **DaemonSets** in place of \<resource-type>/.
 
 ---
 <p align="center">
@@ -169,19 +176,19 @@ The `kubectl rollout` command is primarily used with Kubernetes **Deployments**,
 
 ### a. Adding a label to a specific resource  
   ```bash
-  kubectl label <resource-type> <resource-name> <label-key>=<label-value>
+  kubectl label \<resource-type>/ <resource-name> <label-key>=<label-value>
   ```
 ### b. Removing a label to a specific resource
   ```bash
-  kubectl label <resource-type> <resource-name> <label-key>-
+  kubectl label \<resource-type>/ <resource-name> <label-key>-
   ```
 ### c. List all the labels from a resource  
   ```bash
-  kubectl get <resource-type> <resource-name> --show-labels 
+  kubectl get \<resource-type>/ <resource-name> --show-labels 
   ```  
 ### d. Overwrite the resource label  
   ```bash
-  kubectl label --overwrite <resource-type> <resource-name> <label-key>=<label-new-value>  
+  kubectl label --overwrite \<resource-type>/ <resource-name> <label-key>=<label-new-value>  
   ```  
 
 ---  
@@ -361,10 +368,10 @@ The `kubectl rollout` command is primarily used with Kubernetes **Deployments**,
   ```  
 ### f. Filter the logs based on a time window  
   ```bash
-  kubectl logs --since=<time-period> <pod-name>
+  kubectl logs --since=\<time-period>/ <pod-name>
   ```  
   > [!TIP]  
-  > Here you can mention **10s**, **10m**, **10h**, and **10d** in place of <time-period>(Just an exmaple).  
+  > Here you can mention **10s**, **10m**, **10h**, and **10d** in place of \<time-period>/(Just an exmaple).  
 
 ### g. Add timestamps in the Logs  
   ```bash 
@@ -372,10 +379,10 @@ The `kubectl rollout` command is primarily used with Kubernetes **Deployments**,
   ```  
 ### h. Deployment, Statefulset, Daemonset, and Job logs 
   ```bash
-  kubectl -n <namespace> logs <resource-type>/<resource-name> 
+  kubectl -n <namespace> logs \<resource-type>//<resource-name> 
   ``` 
   > [!TIP]  
-  > Here you can use **Deployments**, **Statefulsets**, **DaemonSets**, and **Jobs** in place of <resource-type>. 
+  > Here you can use **Deployments**, **Statefulsets**, **DaemonSets**, and **Jobs** in place of \<resource-type>/. 
 ---
 
 <p align="center">
@@ -408,10 +415,10 @@ The `kubectl rollout` command is primarily used with Kubernetes **Deployments**,
   ``` 
 ### b. Add a Taint to a node  
   ```bash 
-  kubectl taint nodes <nodename> <key>=<value>:<effect>  
+  kubectl taint nodes <nodename> <key>=<value>:\<effect >/  
   ``` 
   > [!TIP]  
-  > Here you can use **NoSchedule**, **NoExecute**, and **NoSchedule** in place of <effect>.  
+  > Here you can use **NoSchedule**, **NoExecute**, and **NoSchedule** in place of \<effect >/.  
 
 ### c. Remove a Taint from a Node 
   ```bash
@@ -424,7 +431,7 @@ The `kubectl rollout` command is primarily used with Kubernetes **Deployments**,
   - key: "<key>"
     operator: "Equal"
     value: "<value>"
-    effect: "<effect>"
+    effect: "\<effect >/"
   ```  
 ### e. Get Toleration in a Running Pod  
   ```bash
@@ -469,7 +476,7 @@ The `kubectl rollout` command is primarily used with Kubernetes **Deployments**,
 ## 11. Set Command  
 ### a. Set a resource with specific option   
   ```bash
-  kubectl set <resource-type> <resource-name> [options]
+  kubectl set \<resource-type>/ <resource-name> [options]
   ``` 
 #### Example  
   ```bash 
@@ -488,7 +495,7 @@ kubectl port-forward is useful for testing/debugging purposes so you can access 
 
 ### a. Syntax 
 ```bash
-kubectl port-forward -n <namespace> <resource-type>/<resource-name> <localhost-port>:<pod-port>
+kubectl port-forward -n <namespace> \<resource-type>//<resource-name> <localhost-port>:<pod-port>
 ``` 
 #### Example
 ```bash 
@@ -510,7 +517,7 @@ curl -X GET -s http://localhost:80/_cluster/health
 ## 13. Create a Resource  
 ### a. Create a resource in imperative way.  
 ```bash 
-kubectl create <resource-type> <resource-name> --PARAMETER1=VALUE1
+kubectl create \<resource-type>/ <resource-name> --PARAMETER1=VALUE1
 ```  
 #### Example 
 ```bash
@@ -538,7 +545,7 @@ kubectl create -f 'URL'
 ```  
 ### f. Edit and update the resources  
 ```bash
-kubectl edit <resource-type> <resource-name>
+kubectl edit \<resource-type>/ <resource-name>
 ```
 ---  
 <p align="center">
@@ -549,7 +556,7 @@ kubectl edit <resource-type> <resource-name>
 ## 14. Delete a Resource 
 ### a. Delete a resource by name  
 ```bash
-kubectl -n <namespace> delete <resource-type> <resource-name>
+kubectl -n <namespace> delete \<resource-type>/ <resource-name>
 ```  
 ### b. Delete a resource using a manifest file  
 ```bash 
@@ -557,8 +564,8 @@ kubectl delete -f manifest-file.yaml
 ```  
 ### d. Deleting resources with a label selector 
 ```bash
-kubectl delete <resource-type> --selector=<key>=<value>
-kubectl delete <resource-type> --selector=<key>
+kubectl delete \<resource-type>/ --selector=<key>=<value>
+kubectl delete \<resource-type>/ --selector=<key>
 ```  
 > [!CAUTION]
 > PLEASE DOUBLE CHECK BEFORE RUNNING THESE COMMANDS!!
