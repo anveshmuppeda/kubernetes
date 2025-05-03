@@ -1,17 +1,16 @@
 {
-  "name": "my-website",
+  "name": "Kubernetes Hands-on Labs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "build": "docusaurus build",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
-    "clear": "docusaurus clear",
-    "serve": "docusaurus serve",
-    "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids",
+    "start": "docusaurus start --config k8swebsite.config.ts",
+    "build": "docusaurus build --config k8swebsite.config.ts",
+    "swizzle": "docusaurus swizzle --config k8swebsite.config.ts",
+    "deploy": "docusaurus deploy --config k8swebsite.config.ts",
+    "clear": "docusaurus clear --config k8swebsite.config.ts",
+    "serve": "docusaurus serve --config k8swebsite.config.ts",
+    "write-translations": "docusaurus write-translations --config k8swebsite.config.ts",
+    "write-heading-ids": "docusaurus write-heading-ids --config k8swebsite.config.ts",
     "typecheck": "tsc"
   },
   "dependencies": {
