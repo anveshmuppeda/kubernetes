@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
-const version = 'v1.0.0'; // Define the version number
+const { version } = require('./package.json'); // Import version from package.json
 
 const config: Config = {
   // Update the title and tagline
@@ -93,7 +93,7 @@ const config: Config = {
     announcementBar: {
       id: 'announcement', // Unique ID for the announcement
       content:
-        '⭐️ If you like this project, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/anveshmuppeda/kubernetes">GitHub</a>! ⭐️',
+        '⭐️ If you like this project, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/anveshmuppeda/kubernetes">GitHub</a> and follow me on <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/anveshmuppeda/">LinkedIn</a> ⭐️',
       backgroundColor: '#fafbfc', // Background color
       textColor: '#091E42', // Text color
       isCloseable: true, // Allow users to close the bar
@@ -130,7 +130,7 @@ const config: Config = {
         {
           type: 'html', // Use a custom component for the version number
           position: 'right', // Place it after the search bar
-          value: `<span class="navbar-version">Version ${version}</span>`, // Use a span with a custom class
+          value: `<a href="https://github.com/anveshmuppeda/kubernetes/releases/tag/${version}" target="_blank" rel="noopener noreferrer" class="navbar-version">Version ${version}</a>`, // Use a link with a custom class
         },
         
       ],
