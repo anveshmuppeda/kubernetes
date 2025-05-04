@@ -16,12 +16,13 @@ on:
       - 'k8swebsite.config.js'
       - 'package.json'
       - 'sidebars.ts'
+      - '.github/workflows/deploy.yaml'
     # Review gh actions docs if you want to further define triggers, paths, etc 
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
 jobs:
   build:
-    name: Build Docusaurus
+    name: Build Kubernetes Website
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

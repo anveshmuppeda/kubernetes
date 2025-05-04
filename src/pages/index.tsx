@@ -31,8 +31,17 @@ function HomepageHeader() {
             Read Latest Blogs 📝
           </Link>
         </div>
-        <div className={styles.hitCounter}>
-          <p>Website Views:</p>
+        {/* Centered Website Views Counter */}
+        <div
+          className={styles.hitCounter}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: '20px',
+          }}
+        >
+          <p style={{ margin: 0, marginRight: '8px' }}>Website Views:</p>
           <div id="sfcyskq12yb9xjpkmf7tqcssx1m7d1glsjj"></div>
           <script
             type="text/javascript"
