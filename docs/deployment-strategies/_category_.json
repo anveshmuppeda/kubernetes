@@ -1,8 +1,8 @@
 {
   "label": "Deployment Strategies",
-  "position": 3,
+  "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "A comprehensive guide to getting started with Amazon Elastic Kubernetes Service (EKS). Learn how to set up and manage EKS clusters with Managed Node Groups, Unmanaged Node Groups, and Fargate. This guide covers best practices, IAM roles, security groups, scaling, monitoring, logging, and troubleshooting tips. Whether you're a beginner or an experienced user, this guide provides step-by-step instructions and practical examples to help you deploy and manage applications on EKS effectively."
+    "description": "Deployment strategies are the methods used to deploy applications and services in a cloud environment. They help ensure that applications are available, reliable, and scalable. This section covers various deployment strategies, including blue-green deployments, canary releases, rolling updates, and more. Each strategy has its own advantages and disadvantages, and the choice of strategy depends on the specific requirements of the application and the organization.",
   }
 }
