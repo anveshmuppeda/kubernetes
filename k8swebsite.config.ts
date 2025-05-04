@@ -59,6 +59,11 @@ const config: Config = {
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
         },
+// commands: {
+        //   sidebarPath: './sidebars.ts',
+        //   editUrl:
+        //     '',
+        // },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -73,7 +78,7 @@ const config: Config = {
         id: 'commands', // Unique ID for the commands plugin
         path: 'commands', // Path to the commands directory
         routeBasePath: 'commands', // URL path for the commands section
-        //sidebarPath: require.resolve('./sidebars-commands.js'), // Sidebar configuration for commands
+        sidebarPath: require.resolve('./sidebars.js'), // Sidebar configuration for commands
         editUrl: 'https://github.com/anveshmuppeda/kubernetes/tree/dev/',
       },
     ],
@@ -96,11 +101,11 @@ const config: Config = {
           label: 'Tutorial',
         },
         {
-          // type: 'docSidebar',
-          // sidebarId: 'tutorialSidebar', // Sidebar for commands
+          //type: 'docSidebar',
+          //sidebarId: 'tutorialSidebar', // Sidebar for commands
           position: 'left',
-          to: '/commands',
           label: 'Commands',
+          to: '/commands/intro', // URL path for the commands section
         },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
