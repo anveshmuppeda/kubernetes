@@ -1,0 +1,8 @@
+{
+  "label": "Velero Commands",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Velero is an open-source tool that provides backup and restore capabilities for Kubernetes clusters. It allows you to back up your cluster resources and persistent volumes, making it easier to recover from data loss or cluster failures. This guide provides a comprehensive list of Velero commands, their usage, and examples to help you effectively manage your Kubernetes backups."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "label": "Security in Kubernetes",
+  "position": 9,
+  "link": {
+    "type": "generated-index",
+    "description": "This section provides a comprehensive guide on how to secure your Kubernetes cluster. It covers best practices, tools, and techniques for ensuring the security of your applications and data in a Kubernetes environment. Topics include network policies, role-based access control (RBAC), secrets management, and more.",
+  }
+}

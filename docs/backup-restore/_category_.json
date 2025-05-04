@@ -1,0 +1,8 @@
+{
+  "label": "Backup and Restore Guides",
+  "position": 8,
+  "link": {
+    "type": "generated-index",
+    "description": "This section provides a comprehensive guide on how to use Velero for backup and restore operations in Kubernetes. It covers the installation, configuration, and usage of Velero, along with best practices and troubleshooting tips.",
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "label": "FluxCD Getting Started",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "A comprehensive guide to getting started with FluxCD. Learn how to set up and manage GitOps workflows with FluxCD, including installation, configuration, and best practices. This guide covers topics such as continuous delivery, automated deployments, and monitoring with FluxCD. Whether you're a beginner or an experienced user, this guide provides step-by-step instructions and practical examples to help you deploy and manage applications using GitOps principles."
+  }
+}
