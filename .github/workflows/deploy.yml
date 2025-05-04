@@ -1,9 +1,21 @@
 name: Deploy to GitHub Pages
 
 on:
+  workflow_dispatch:
+  # This workflow is triggered on push events to the main branch
+  # and only for specific paths. You can customize the paths as needed.
   push:
     branches:
       - main
+    paths:
+      - 'docs/**'
+      - 'src/**'
+      - 'static/**'
+      - 'blog/**'
+      - 'commands/**'
+      - 'k8swebsite.config.js'
+      - 'package.json'
+      - 'sidebars.ts'
     # Review gh actions docs if you want to further define triggers, paths, etc 
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
