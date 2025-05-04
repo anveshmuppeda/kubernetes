@@ -1,7 +1,19 @@
 anvesh:
   name: Anvesh Muppeda
   title: Kubernetes Developer
-  url: https://github.com/anveshMuppeda
+  url: https://github.com/anveshmuppeda
+  image_url: https://github.com/anveshmuppeda.png
+  page: true
+  socials:
+    x: Anvesh66743877
+    github: anveshmuppeda
+    linkedin: anveshmuppeda
+    medium: muppedaanvesh
+
+muppedaanvesh:
+  name: Anvesh Muppeda
+  title: Kubernetes Developer
+  url: https://medium.com/@muppedaanvesh
   image_url: https://github.com/anveshmuppeda.png
   page: true
   socials:
@@ -15,9 +27,6 @@ manasa:
   title: Backstage Developer
   url: https://github.com/saimanasak
   image_url: https://github.com/saimanasak.png
-  # page:
-  #   # customize the url of the author page at /blog/authors/<permalink>
-  #   permalink: '/all-sebastien-lorber-articles'
   socials:
     linkedin: saimanasak
     github: saimanasak
@@ -38,7 +47,6 @@ slorber:
   url: https://sebastienlorber.com
   image_url: https://github.com/slorber.png
   page:
-    # customize the url of the author page at /blog/authors/<permalink>
     permalink: '/all-sebastien-lorber-articles'
   socials:
     x: sebastienlorber
