@@ -24,13 +24,6 @@ function HomepageHeader() {
             Start Kubernetes Hands-On - 5min ⏱️
           </Link>
         </div>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--outline button--lg"
-            to="/blog">
-            Read Latest Blogs 📝
-          </Link>
-        </div>
         {/* Centered Website Views Counter */}
         <div
           className={styles.hitCounter}

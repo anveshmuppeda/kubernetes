@@ -4,6 +4,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const { version } = require('./package.json'); // Import version from package.json
+
 const config: Config = {
   // Update the title and tagline
   title: 'Kubernetes Hands-On Guides',
@@ -54,16 +56,11 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/anveshmuppeda/kubernetes/tree/dev/',
-// Useful options to enforce blogging best practices
+          // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
         },
-// commands: {
-        //   sidebarPath: './sidebars.ts',
-        //   editUrl:
-        //     '',
-        // },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -93,10 +90,17 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
+    announcementBar: {
+      id: 'announcement', // Unique ID for the announcement
+      content:
+        '⭐️ If you like this project, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/anveshmuppeda/kubernetes">GitHub</a> and follow me on <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/anveshmuppeda/">LinkedIn</a> ⭐️',
+      backgroundColor: '#fafbfc', // Background color
+      textColor: '#091E42', // Text color
+      isCloseable: true, // Allow users to close the bar
+    },
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'Kubernetes Guides',
+      title: 'Kubernetes Guides', // Keep the title as is
       logo: {
         alt: 'Kubernetes Logo',
         src: 'img/logo.png',
@@ -123,6 +127,12 @@ const config: Config = {
           type: 'search', // Add the search bar to the navbar
           position: 'right',
         },
+        {
+          type: 'html', // Use a custom component for the version number
+          position: 'right', // Place it after the search bar
+          value: `<a href="https://github.com/anveshmuppeda/kubernetes/releases/tag/${version}" target="_blank" rel="noopener noreferrer" class="navbar-version">Version ${version}</a>`, // Use a link with a custom class
+        },
+        
       ],
     },
     footer: {
@@ -138,7 +148,7 @@ const config: Config = {
             {
               label: 'Commands',
               to: '/commands/intro',
-            }
+            },
           ],
         },
         {

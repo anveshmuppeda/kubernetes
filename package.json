@@ -1,6 +1,6 @@
 {
   "name": "Kubernetes Hands-on Labs",
-  "version": "0.0.0",
+  "version": "v1.5.1",
   "private": true,
   "scripts": {
     "start": "docusaurus start --config k8swebsite.config.ts",

@@ -28,3 +28,14 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Style the version link in the navbar */
+.navbar-version {
+  font-weight: bold;
+  color: #4caf50; /* Green color */
+  text-decoration: none;
+}
+
+.navbar-version:hover {
+  text-decoration: underline;
+}
