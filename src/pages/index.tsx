@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -9,7 +9,7 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
@@ -31,13 +31,34 @@ function HomepageHeader() {
             Read Latest Blogs 📝
           </Link>
         </div>
+        <div className={styles.hitCounter}>
+          <p>Website Views:</p>
+          <div id="sfcyskq12yb9xjpkmf7tqcssx1m7d1glsjj"></div>
+          <script
+            type="text/javascript"
+            src="https://counter4.optistats.ovh/private/counter.js?c=yskq12yb9xjpkmf7tqcssx1m7d1glsjj&down=async"
+            async
+          ></script>
+          <noscript>
+            <a
+              href="https://github.com/anveshmuppeda/kubernetes"
+              title="Kubernetes HandsOn Guides">
+              <img
+                src="https://counter4.optistats.ovh/private/freecounterstat.php?c=yskq12yb9xjpkmf7tqcssx1m7d1glsjj"
+                border="0"
+                title="Kubernetes HandsOn Guides"
+                alt="Kubernetes HandsOn Guides"
+              />
+            </a>
+          </noscript>
+        </div>
       </div>
     </header>
   );
 }
 
 export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`Welcome to ${siteConfig.title}`}

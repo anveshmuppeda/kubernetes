@@ -3,7 +3,6 @@
 sidebar_label: "FluxCD"
 sidebar_id: "fluxcd"
 sidebar_position: 1
-sidebar_label: "EKS Fargate Cluster"
 ---  
 
 # Hands-On FluxCD: GitOps for Kubernetes at Scale 
