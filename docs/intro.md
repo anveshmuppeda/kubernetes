@@ -18,10 +18,10 @@ Start your Kubernetes journey by exploring our comprehensive guides and tutorial
 ✅ **Cloud-Agnostic** - Works on AWS EKS, GCP GKE, Azure AKS, and bare metal  
 ✅ **Version Current** - Updated for Kubernetes 1.32+ features  
 ✅ **Zero Fluff** - Direct executable examples with explanations  
-✅ **Hands-On** - Practical exercises to reinforce learning
-✅ **Open Source** - Contribute to the community and share your knowledge
-✅ **Multi-Cloud** - Works on AWS EKS, GCP GKE, Azure AKS, and bare metal
-✅ **Zero Fluff** - Direct executable examples with explanations  
+✅ **Hands-On** - Practical exercises to reinforce learning  
+✅ **Open Source** - Contribute to the community and share your knowledge  
+✅ **Multi-Cloud** - Works on AWS EKS, GCP GKE, Azure AKS, and bare metal  
+✅ **Zero Fluff** - Direct executable examples with explanations    
 
 ## Architecture
 
