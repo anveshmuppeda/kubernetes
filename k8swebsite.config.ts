@@ -101,8 +101,6 @@ const config: Config = {
           label: 'Tutorial',
         },
         {
-          //type: 'docSidebar',
-          //sidebarId: 'tutorialSidebar', // Sidebar for commands
           position: 'left',
           label: 'Commands',
           to: '/commands/intro', // URL path for the commands section
@@ -125,6 +123,10 @@ const config: Config = {
               label: 'Tutorial',
               to: '/docs/intro',
             },
+            {
+              label: 'Commands',
+              to: '/commands/intro',
+            }
           ],
         },
         {
@@ -166,7 +168,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Anvesh Muppeda, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Anvesh Muppeda.`,
     },
     prism: {
       theme: prismThemes.github,
