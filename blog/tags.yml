@@ -11,3 +11,35 @@ eks:
   permalink: /eks
   description: EKS tag description
 
+aws:
+  label: AWS
+  description: Articles related to Amazon Web Services.
+
+pem:
+  label: PEM
+  description: Articles related to PEM file management.
+
+security:
+  label: Security
+  description: Articles related to Kubernetes security.
+
+nginx:
+  label: NGINX
+  description: Articles related to NGINX deployments.
+
+deployment:
+  label: Deployment
+  description: Articles related to Kubernetes deployments.
+
+hello:
+  label: Hello
+  description: Welcome and introductory articles.
+
+azure:
+  label: Azure
+  description: Articles related to Microsoft Azure.
+
+devops:
+  label: DevOps
+  description: Articles related to DevOps practices.
+
