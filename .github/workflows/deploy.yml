@@ -2,8 +2,6 @@ name: Deploy to GitHub Pages
 
 on:
   workflow_dispatch:
-  # This workflow is triggered on push events to the main branch
-  # and only for specific paths. You can customize the paths as needed.
   push:
     branches:
       - main
@@ -13,31 +11,36 @@ on:
       - 'static/**'
       - 'blog/**'
       - 'commands/**'
-      - 'k8swebsite.config.js'
+      - 'k8swebsite.config.ts'
       - 'package.json'
       - 'sidebars.ts'
-      - '.github/workflows/deploy.yaml'
-    # Review gh actions docs if you want to further define triggers, paths, etc 
-    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+      - '.github/workflows/deploy.yml'
 
 jobs:
   build:
     name: Build Kubernetes Website
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Checkout the repository
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      # Step 2: Set up Node.js
       - uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: npm
 
+      # Step 3: Install dependencies
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
+
+      # Step 4: Build the website
       - name: Build website
         run: npm run build
 
+      # Step 5: Upload the build artifact
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -59,6 +62,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      # Step 6: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

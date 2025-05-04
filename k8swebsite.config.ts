@@ -82,6 +82,14 @@ const config: Config = {
         editUrl: 'https://github.com/anveshmuppeda/kubernetes/tree/dev/',
       },
     ],
+    [
+      require.resolve('docusaurus-lunr-search'),
+      {
+        languages: ['en', 'fr'], // English and French
+        highlightResult: true, // Highlight search results
+        maxHits: 10, // Show up to 10 results
+      },
+    ],
   ],
 
   themeConfig: {
@@ -109,6 +117,10 @@ const config: Config = {
         {
           href: 'https://github.com/anveshmuppeda/kubernetes',
           label: 'GitHub',
+          position: 'right',
+        },
+        {
+          type: 'search', // Add the search bar to the navbar
           position: 'right',
         },
       ],
@@ -139,10 +151,6 @@ const config: Config = {
             {
               label: 'LinkedIn',
               href: 'https://www.linkedin.com/in/anveshmuppeda/',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/anveshmuppeda',
             },
             {
               label: 'Stack Overflow',
