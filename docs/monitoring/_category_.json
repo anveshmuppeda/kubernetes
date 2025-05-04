@@ -1,0 +1,8 @@
+{
+  "label": "Monitoring Getting Started",
+  "position": 6,
+  "link": {
+    "type": "generated-index",
+    "description": "A comprehensive guide to getting started with monitoring in your applications. Learn how to set up and manage monitoring systems, including installation, configuration, and best practices. This guide covers topics such as performance monitoring, alerting, and logging. Whether you're a beginner or an experienced user, this guide provides step-by-step instructions and practical examples to help you monitor your applications effectively."
+  }
+}
