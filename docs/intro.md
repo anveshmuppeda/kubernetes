@@ -13,7 +13,7 @@ Welcome to the **Kubernetes Hands-On Guides**! This project is your one-stop res
 
 Start your Kubernetes journey by exploring our comprehensive guides and tutorials. These resources are designed to help you set up, manage, and optimize Kubernetes clusters effectively.
 
-## Why These Guides? 💡
+## Why These Guide? 💡
 ✅ **Battle-Tested Content** - Lessons from managing 1000+ pods in production  
 ✅ **Cloud-Agnostic** - Works on AWS EKS, GCP GKE, Azure AKS, and bare metal  
 ✅ **Version Current** - Updated for Kubernetes 1.32+ features  
