@@ -17,7 +17,7 @@ function FixedAnnouncement() {
           XYZ Blog is out now! Check it out 
         </span>{' '}
           <a
-            href="/blog/xyz"
+            href="/kubernetes/docs/intro"
             target="_blank"
             rel="noopener noreferrer"
             className={announcementStyles.link}
