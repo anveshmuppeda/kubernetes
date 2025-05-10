@@ -10,6 +10,8 @@ sidebar_position: 1
 
 Below is the trimmed-down, focused documentation covering only the sections you requested, with detailed step-by-step instructions.
 
+![kubectl-ai](img/kubectl-ai.gif)  
+
 ---
 
 ## kubectl-ai Introduction
