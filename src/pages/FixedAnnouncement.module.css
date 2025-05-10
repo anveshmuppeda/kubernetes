@@ -1,0 +1,39 @@
+.announcement {
+  background-color: #ffffff; /* White background */
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 2px solid #f6f4f0; /* Light border */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px; /* Space between emojis and text */
+}
+
+.highlight {
+  color: #ff5722; /* Bright orange for highlighted text */
+  font-weight: bold;
+}
+
+.title {
+  background: linear-gradient(
+    90deg,
+    rgb(131, 58, 180) 0%,
+    rgb(253, 29, 29) 50%,
+    rgb(252, 176, 69) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.link {
+  color: #0078d4; /* Blue link color */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
