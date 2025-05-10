@@ -1,0 +1,8 @@
+{
+  "label": "AI in Kubernetes",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "description": "This section provides a comprehensive guide on how to leverage AI and machine learning in your Kubernetes environment. It covers best practices, tools, and techniques for deploying and managing AI workloads on Kubernetes. Topics include model serving, data pipelines, and integration with popular AI frameworks.",
+  }
+}
