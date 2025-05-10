@@ -103,11 +103,11 @@ const config: Config = {
     },
     announcementBar: {
       id: 'announcement', // Unique ID for the announcement
-      content: 
-        '🎉️ <b><a target="_blank" href="https://github.com/anveshmuppeda/kubernetes/releases/tag/${version}">Docusaurus v${version}</a> is out!</b> 🥳️',
-      backgroundColor: '#fafbfc',
-      textColor: '#091E42',
-      isCloseable: false,
+      content:
+        '⭐️ If you like this project, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/anveshmuppeda/kubernetes">GitHub</a> and follow me on <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/anveshmuppeda/">LinkedIn</a> ⭐️',
+      backgroundColor: '#fafbfc', // Background color
+      textColor: '#091E42', // Text color
+      isCloseable: true, // Allow users to close the bar
     },
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
