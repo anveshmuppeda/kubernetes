@@ -8,9 +8,6 @@ sidebar_position: 1
 
 # Kubectl-AI: Enhance Kubernetes Management with AI
 
-Below is the trimmed-down, focused documentation covering only the sections you requested, with detailed step-by-step instructions.
-
-![kubectl-ai](img/kubectl-ai.gif)  
 
 ---
 
@@ -23,6 +20,8 @@ Key benefits:
 - **Context awareness:** In interactive mode, follow-on questions (“What about in the staging cluster?”) carry context.
 - **Extensible backends:** Works with commercial LLMs (Gemini, OpenAI, Azure OpenAI, Grok) or fully offline local models (Ollama, llama.cpp).
 - **Scriptable & pipable:** Use it in CI, scripts, or combine with shell pipes (`echo … | kubectl-ai`).
+
+![kubectl-ai](img/kubectl-ai.gif)  
 
 ---
 
