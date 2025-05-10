@@ -87,16 +87,27 @@ const config: Config = {
         maxHits: 10, // Show up to 10 results
       },
     ],
+    [
+      '@docusaurus/theme-live-codeblock', // Wrap this plugin in an array
+      {},
+    ],
   ],
 
   themeConfig: {
+    liveCodeBlock: {
+      /**
+       * The position of the live playground, above or under the editor
+       * Possible values: "top" | "bottom"
+       */
+      playgroundPosition: 'bottom',
+    },
     announcementBar: {
       id: 'announcement', // Unique ID for the announcement
-      content:
-        '⭐️ If you like this project, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/anveshmuppeda/kubernetes">GitHub</a> and follow me on <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/anveshmuppeda/">LinkedIn</a> ⭐️',
-      backgroundColor: '#fafbfc', // Background color
-      textColor: '#091E42', // Text color
-      isCloseable: true, // Allow users to close the bar
+      content: 
+        '🎉️ <b><a target="_blank" href="https://github.com/anveshmuppeda/kubernetes/releases/tag/${version}">Docusaurus v${version}</a> is out!</b> 🥳️',
+      backgroundColor: '#fafbfc',
+      textColor: '#091E42',
+      isCloseable: false,
     },
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
@@ -193,6 +204,12 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+};
+
+module.exports = {
+  scripts: [
+    'https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js',
+  ],
 };
 
 export default config;
