@@ -206,10 +206,4 @@ const config: Config = {
   } satisfies Preset.ThemeConfig,
 };
 
-module.exports = {
-  scripts: [
-    'https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js',
-  ],
-};
-
 export default config;
