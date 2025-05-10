@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/github/repo-size/anveshmuppeda/kubernetes" alt="Repo Size"/>
   <img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Star Badge"/>
 
-  <img src="https://awesome.re/badge.svg" alt="Awesome"/>
+  <!-- <img src="https://awesome.re/badge.svg" alt="Awesome"/> -->
   <a href="https://github.com/anveshmuppeda/kubernetes/blob/main/LICENSE"> <img src="https://img.shields.io/github/license/anveshmuppeda/kubernetes" alt="GitHub License"/> </a>
   <a href="https://github.com/anveshmuppeda/kubernetes/graphs/contributors"> <img src="https://img.shields.io/github/contributors/anveshmuppeda/kubernetes" alt="GitHub contributors"/> </a>
   <a href="https://github.com/anveshmuppeda/kubernetes/issues">  <img src="https://img.shields.io/github/issues/anveshmuppeda/kubernetes" alt="Open Issues"/> </a>
