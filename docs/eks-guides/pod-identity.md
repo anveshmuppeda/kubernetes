@@ -1,3 +1,9 @@
+---
+// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/pod-identity.md
+sidebar_label: "EKS Pod Identity"
+sidebar_position: 4
+---  
+
 # Simplifying AWS EKS Pod Identity: A Step-by-Step Guide to Secure Cloud Access
 
 ---
@@ -10,7 +16,7 @@ Enter **EKS Pod Identity**—a game-changer announced in late 2023. This feature
 
 ---
 
-![EKS Pod Identity Architecture](./eks.pod.identity.architecture.png)
+![EKS Pod Identity Architecture](./img/eks.pod.identity.architecture.png)
 
 ## Why EKS Pod Identity?
 
@@ -65,7 +71,7 @@ eksctl create cluster -f cluster.yaml
 ```
 
 ### Option 2: Using CloudFormation
-Use the template [eks-pod-identity.yaml](./../cloudformation/eks-pod-identity.yaml).  
+Use the template [eks-pod-identity.yaml](./cloudformation/eks-pod-identity.yaml).  
 This CloudFormation Template (CFT):
 1. Creates the EKS cluster with the `eks-pod-identity-agent` addon.
 2. Provisions an IAM role with the correct trust relationship for Pod Identity.
