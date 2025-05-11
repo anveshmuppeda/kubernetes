@@ -44,37 +44,6 @@ function HomepageHeader() {
             Start Kubernetes Hands-On - 5min ⏱️
           </Link>
         </div>
-        {/* Centered Website Views Counter */}
-        <div
-          className={styles.hitCounter}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: '20px',
-          }}
-        >
-          <p style={{ margin: 0, marginRight: '8px' }}>Website Views:</p>
-          <div id="sfcyskq12yb9xjpkmf7tqcssx1m7d1glsjj"></div>
-          <script
-            type="text/javascript"
-            src="https://counter4.optistats.ovh/private/counter.js?c=yskq12yb9xjpkmf7tqcssx1m7d1glsjj&down=async"
-            async
-          ></script>
-          <noscript>
-            <a
-              href="https://github.com/anveshmuppeda/kubernetes"
-              title="Kubernetes HandsOn Guides"
-            >
-              <img
-                src="https://counter4.optistats.ovh/private/freecounterstat.php?c=yskq12yb9xjpkmf7tqcssx1m7d1glsjj"
-                border="0"
-                title="Kubernetes HandsOn Guides"
-                alt="Kubernetes HandsOn Guides"
-              />
-            </a>
-          </noscript>
-        </div>
       </div>
     </header>
   );
