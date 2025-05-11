@@ -39,3 +39,9 @@
 .navbar-version:hover {
   text-decoration: underline;
 }
+
+/* Optional: Change hover effect for sidebar links */
+.menu__link:hover {
+  color: #0f3074; /* Slightly darker blue on hover */
+}
+
