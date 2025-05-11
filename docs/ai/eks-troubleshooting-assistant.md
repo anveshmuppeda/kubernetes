@@ -176,7 +176,7 @@ Chatbot Logs:
 Root Cause: The container is running stress-ng, which exceeds its memory limit (128Mi). 
 Fix: Increase the memory limit or adjust the stress-ng memory usage.
 ```  
-![OOMSimulation](./images/oom-kill-pod.png)
+![OOMSimulation](./img/oom-kill-pod.png)
 
 ---
 
@@ -210,7 +210,7 @@ Chatbot Logs:
 Root Cause: ConfigMap non-existent-cache-config not found.
 Fix: Create the missing ConfigMap and verify the pod references it correctly.
 ```
-![Cache-Service-Pod](./images/cache-service-pod.png)
+![Cache-Service-Pod](./img/cache-service-pod.png)
 ---
 
 ## **Why This Beats Traditional Tools**  
