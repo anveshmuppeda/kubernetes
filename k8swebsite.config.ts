@@ -86,21 +86,10 @@ const config: Config = {
         highlightResult: true, // Highlight search results
         maxHits: 10, // Show up to 10 results
       },
-    ],
-    [
-      '@docusaurus/theme-live-codeblock', // Wrap this plugin in an array
-      {},
-    ],
+    ]
   ],
 
   themeConfig: {
-    liveCodeBlock: {
-      /**
-       * The position of the live playground, above or under the editor
-       * Possible values: "top" | "bottom"
-       */
-      playgroundPosition: 'bottom',
-    },
     announcementBar: {
       id: 'announcement', // Unique ID for the announcement
       content:
@@ -109,7 +98,6 @@ const config: Config = {
       textColor: '#091E42', // Text color
       isCloseable: true, // Allow users to close the bar
     },
-    image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'Kubernetes Guides', // Keep the title as is
       logo: {
