@@ -39,3 +39,24 @@
 .navbar-version:hover {
   text-decoration: underline;
 }
+
+/* Optional: Change hover effect for sidebar links */
+.menu__link:hover {
+  color: #0f3074; /* Slightly darker blue on hover */
+}
+
+
+/* Change the sidebar background color */
+/* .menu__list {
+  background-color: #e0f7fa;
+} */
+
+/* Optional: Change the text color for better contrast */
+/* .menu__link {
+  color: #005b96; 
+} */
+
+/* Optional: Add padding or spacing adjustments */
+/* .menu__list-item {
+  padding: 8px 16px;
+} */
