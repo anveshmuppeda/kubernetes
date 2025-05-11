@@ -2,10 +2,6 @@
 // filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/alb-controller.md
 sidebar_label: "AWS Load Balancer Controller"
 sidebar_position: 5
-customProps:
-  badge:
-    label: "new"
-    color: "#ff5722"
 ---  
 
 
