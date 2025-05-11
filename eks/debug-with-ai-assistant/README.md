@@ -30,7 +30,7 @@ By integrating AI-driven automation, we can **drastically reduce Mean Time to Re
 ---
 
 ## **Architectural Deep Dive**  
-![EKS Assistant](./images/eks.assistant.png)
+![EKS Assistant](./eks.assistant.png)
 
 ### **1. Log Collection: FluentBit for Efficient Data Streaming**  
 
