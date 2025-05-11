@@ -5,9 +5,11 @@ sidebar_id: "eks-troubleshooting-assistant"
 sidebar_position: 1
 ---
 
-# **Building an Intelligent EKS Troubleshooting Assistant: AI-Driven Kubernetes Operations**  
+# Building an Intelligent EKS Troubleshooting Assistant: AI-Driven Kubernetes Operations  
 
 ## **Introduction: Simplifying Kubernetes Troubleshooting with AI**  
+
+### [GitHub Repository | Source Code ](https://github.com/anveshmuppeda/EKS-Troubleshooting-AI-Assistant)   
 
 It's 2 AM. Your phone buzzes - production is down. You SSH into the cluster, only to find:  
 - 12 pods in `CrashLoopBackOff`  
