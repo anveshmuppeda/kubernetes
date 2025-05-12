@@ -200,3 +200,9 @@ spec:
 ## Conclusion
 
 With EKS Auto Mode, the cluster’s data plane becomes a fully managed appliance: nodes, networking, and storage spring to life only when needed, then retire when idle—all underpinned by AWS best practices. By following the steps above, you’ll have a production-ready EKS experience in minutes, complete with automated scaling, patching, and security.
+
+---
+
+## Additional Resources
+* [EKS Auto Mode Documentation](https://docs.aws.amazon.com/eks/latest/userguide/automode.html)
+* [Getting started with Amazon EKS Auto Mode](https://aws.amazon.com/blogs/containers/getting-started-with-amazon-eks-auto-mode/)
