@@ -151,6 +151,9 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 | 47 | 2025-04-27 | [⎈ K8s Tools Docker Images — kubectl ️](https://medium.com/@muppedaanvesh/k8s-tools-docker-images-kubectl-%EF%B8%8F-acd446b5c079?source=rss-15b2de10f77d------2) |
 | 48 | 2025-04-29 | [⎈ Containerized FluxCD: Zero-Install Cluster Management ️](https://medium.com/@muppedaanvesh/containerized-fluxcd-zero-install-cluster-management-%EF%B8%8F-4f2ace623eb4?source=rss-15b2de10f77d------2) |
 | 49 | 2025-05-11 | [⎈ kubectl-ai: Speak, Don’t Script ️](https://medium.com/@muppedaanvesh/kubectl-ai-speak-dont-script-%EF%B8%8F-f16e79b0fdaa?source=rss-15b2de10f77d------2) |
+| 50 | 2025-05-12 | [⎈ Introducing the Official Kubernetes Hands-On Guides ️](https://medium.com/@muppedaanvesh/introducing-the-official-kubernetes-hands-on-guides-%EF%B8%8F-8e4da946b92d?source=rss-15b2de10f77d------2) |
+| 51 | 2025-05-12 | [⎈ Amazon EKS Auto Mode: A Hands-On Guide ️](https://medium.com/@muppedaanvesh/amazon-eks-auto-mode-a-hands-on-guide-%EF%B8%8F-466880dc9f07?source=rss-15b2de10f77d------2) |
+
 
 
 
