@@ -1,5 +1,5 @@
 # --- Builder Stage: Download Helm ---
-FROM alpine:3.19 AS builder
+FROM alpine:3.21 AS builder
 
 # Versions (update these as needed)
 ARG HELM_VERSION=v3.12.3
@@ -11,7 +11,7 @@ RUN curl -Lo helm.tar.gz \
     && chmod +x /usr/local/bin/helm
 
 # --- Final Stage: Runtime Image ---
-FROM alpine:3.19
+FROM alpine:3.21
 
 # 1. Create non-root user
 RUN addgroup -S helm && adduser -S helm -G helm
