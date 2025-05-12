@@ -59,7 +59,12 @@ eksctl create cluster \
 
 1. Open the [EKS console](https://console.aws.amazon.com/eks/home#/clusters)
 2. Choose **Quick configuration (with EKS Auto Mode – new)**
-3. Create or select the recommended IAM roles for cluster & nodes
+   ![EKS Console](./img/eks-auto-mode-create.png)
+3. Create or select the recommended IAM roles for cluster & nodes  
+    *Cluster IAM roles are created automatically, but you can customize them if needed.*
+    ![Cluster IAM Roles](./img/eks-auto-cluster-role.png)
+    *Node IAM roles are created automatically, but you can customize them if needed.*
+    ![Node IAM Role](./img/eks-auto-node-role.png)
 4. Fill in VPC, subnets, and other settings
 5. Review & **Create**
 
