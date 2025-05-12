@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-writer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alpine-writer
+  template:
+    metadata:
+      labels:
+        app: alpine-writer
+    spec:
+      containers:
+      - name: alpine-writer
+        image: alpine
+        command: ["/bin/sh", "-c", "while true; do echo $(date) >> /mnt/data/date.txt; sleep 1; done"]
+        volumeMounts:
+        - name: data-volume
+          mountPath: /mnt/data
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: alpine-writer-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: alpine-writer-pvc
+spec:
+  storageClassName: gp2
+  accessModes:
+    - ReadWriteOnce # the volume can be mounted as read-write by a single node.
+  resources:
+    requests:
+      storage: 1Gi
+  volumeMode: Filesystem
+  # Filesystem is the default mode used when volumeMode parameter is omitted. 
+  # A volume with volumeMode: Filesystem is mounted into Pods into a directory. If the volume is backed by a block device and the device is empty, Kubernetes creates a filesystem on the device before mounting it for the first time.
+  # You can set the value of volumeMode to Block to use a volume as a raw block device. Such volume is presented into a Pod as a block device, without any filesystem on it. This mode is useful to provide a Pod the fastest possible way to access a volume, without any filesystem layer between the Pod and the volume. 
