@@ -193,6 +193,46 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 #### [2. A Hands-On Guide to AWS EKS Cluster with Managed Node Groups](./docs/eks-guides/002-eks-managed-node-group.md)
 #### [3. A Hands-On Guide to AWS EKS Cluster with Self-Managed Worker Nodes](./docs/eks-guides/003-eks-self-managed-node-group.md)
 #### [4. A Hands-On Guide to AWS EKS Cluster with Managed Node Groups](./docs/eks-guides/004-eks-managed-node-group.md)
+#### [5. AWS Load Balancer Controller on EKS: A Comprehensive Guide](./docs/eks-guides/005-alb-controller.md)
+#### [6. Amazon EKS Auto Mode: A Hands-On Guide](./docs/eks-guides/006-eks-auto-mode.md)
+
+
+### [Cluster Setup and Configuration](./docs/cluster-setup)
+#### [1. Spin Up a Local Kubernetes Cluster with kind in Minutes](./docs/cluster-setup/kind.md)
+#### [2. Step-by-Step Guide: Setting Up a Kubernetes Cluster on AWS EC2 Using kubeadm](./docs/cluster-setup/kubeadm.md)
+#### [3. 🐳 Getting Started with Minikube](./docs/cluster-setup/minikube.md)
+
+### [Deployment Strategies](./docs/deployment-strategies)
+#### [1. Blue-Green Deployment Strategy](./docs/deployment-strategies/blue-green.md)
+#### [2. Canary Deployment Strategy](./docs/deployment-strategies/canary.md)
+#### [3. Rolling Update Deployment Strategy](./docs/deployment-strategies/rolling-update.md)
+#### [4. Recreate Deployment Strategy](./docs/deployment-strategies/recreate.md)
+
+### [FluxCD Getting Started](./docs/fluxcd)
+#### [1. Hands-On FluxCD: GitOps for Kubernetes at Scale](./docs/fluxcd/fluxcd.md)
+
+### [Monitoring Getting Started](./docs/monitoring)
+#### [1. Grafana Loki: Log Aggregation for Kubernetes](./docs/monitoring/grafana-loki.md)
+#### [2. Prometheus and Grafana: Monitoring Kubernetes Clusters](./docs/monitoring/promrtheus-grafana.md)
+#### [3. Alertmanager: Managing Alerts in Kubernetes](./docs/monitoring/alertmanager.md)
+#### [4. ELK Stack: Centralized Logging for Kubernetes](./docs/monitoring/elk-stack.md)
+
+### [Scaling Getting Started](./docs/scaling)
+#### [1. Horizontal Pod Autoscaler (HPA)](./docs/scaling/hpa.md)
+#### [2. Vertical Pod Autoscaler (VPA)](./docs/scaling/vpa.md)
+#### [3. Karpenter + EKS: The Smart Way to Scale](./docs/scaling/karpenter.md)
+#### [4. KEDA (Kubernetes Event-Driven Autoscaling)](./docs/scaling/keda.md)
+
+### [Backup and Restore Guides](./docs/backup-restore)
+#### [1. Velero: Backup and Restore for Kubernetes](./docs/backup-restore/velero.md)
+ 
+### [Security in Kubernetes](./docs/security)
+#### [1. HashiCorp Vault: Secrets Management for Kubernetes](./docs/security/vault.md)
+#### [2. CoreDNS: DNS and Service Discovery in Kubernetes](./docs/security/coredns.md)
+
+### [AI in Kubernetes](./docs/ai)
+#### [1. Building an Intelligent EKS Troubleshooting Assistant: AI-Driven Kubernetes Operations](./docs/ai/eks-troubleshooting-assistant.md)
+#### [2. Kubectl-AI: Enhance Kubernetes Management with AI](./docs/ai/kubectl-ai.md)
 
 
 ## Architecture
@@ -316,6 +356,7 @@ This repository is a one-stop resource for learning Kubernetes with hands-on exa
     <td align="center"><a href="https://github.com/saimanasak"><img src="https://avatars.githubusercontent.com/u/47205414?v=4" width="100px;" alt=""/><br /><sub><b>Sai Manasa Kota</b></sub></a></td>  
     <td align="center"><a href="https://github.com/Rohinigundala2019"><img src="https://avatars.githubusercontent.com/u/181216819?v=4" width="100px;" alt=""/><br /><sub><b>Rohini Gundala</b></sub></a></td>  
     <td align="center"><a href="https://github.com/terrtt"><img src="https://avatars.githubusercontent.com/u/159054162?v=4" width="100px;" alt=""/><br /><sub><b>Devansh Bharadwaj</b></sub></a></td>  
+    <td align="center"><a href="https://github.com/ajaymuppeda"><img src="https://avatars.githubusercontent.com/u/170258834?v=4" width="100px;" alt=""/><br /><sub><b>Ajay Muppeda</b></sub></a></td>
   </tr>
 </table>  
 
@@ -324,3 +365,5 @@ This project is licensed under the GNU License - see the [LICENSE](https://githu
 
 ## Stargazers over time
 [![Stargazers over time](https://starchart.cc/anveshmuppeda/kubernetes.svg?variant=adaptive)](https://starchart.cc/anveshmuppeda/kubernetes)  
+
+[def]: ./docs/scaling/keda.md
