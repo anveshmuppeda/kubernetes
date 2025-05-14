@@ -186,11 +186,13 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 
 <!-- BLOG-POST-LIST:END -->
 
-## [EKS Getting Started](./docs/eks-guides)  
-### [A Hands-On Guide to AWS EKS Fargate Cluster](./docs/eks-guides/001-eks-fargate.md)
-### [A Hands-On Guide to AWS EKS Cluster with Managed Node Groups](./docs/eks-guides/002-eks-managed-node-group.md)
-### [A Hands-On Guide to AWS EKS Cluster with Self-Managed Worker Nodes](./docs/eks-guides/003-eks-self-managed-node-group.md)
-### [A Hands-On Guide to AWS EKS Cluster with Managed Node Groups](./docs/eks-guides/004-eks-managed-node-group.md)
+## Concepts Covered in This Repository
+
+### [EKS Getting Started](./docs/eks-guides)  
+#### [1. A Hands-On Guide to AWS EKS Fargate Cluster](./docs/eks-guides/001-eks-fargate.md)
+#### [2. A Hands-On Guide to AWS EKS Cluster with Managed Node Groups](./docs/eks-guides/002-eks-managed-node-group.md)
+#### [3. A Hands-On Guide to AWS EKS Cluster with Self-Managed Worker Nodes](./docs/eks-guides/003-eks-self-managed-node-group.md)
+#### [4. A Hands-On Guide to AWS EKS Cluster with Managed Node Groups](./docs/eks-guides/004-eks-managed-node-group.md)
 
 
 ## Architecture
