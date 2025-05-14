@@ -203,14 +203,20 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 #### [2. Step-by-Step Guide: Setting Up a Kubernetes Cluster on AWS EC2 Using kubeadm](./docs/cluster-setup/kubeadm.md)
 #### [3. 🐳 Getting Started with Minikube](./docs/cluster-setup/minikube.md)
 
+---
+
 ### [Deployment Strategies](./docs/deployment-strategies)
 #### [1. Blue-Green Deployment Strategy](./docs/deployment-strategies/blue-green.md)
 #### [2. Canary Deployment Strategy](./docs/deployment-strategies/canary.md)
 #### [3. Rolling Update Deployment Strategy](./docs/deployment-strategies/rolling-update.md)
 #### [4. Recreate Deployment Strategy](./docs/deployment-strategies/recreate.md)
 
+---
+
 ### [FluxCD Getting Started](./docs/fluxcd)
 #### [1. Hands-On FluxCD: GitOps for Kubernetes at Scale](./docs/fluxcd/fluxcd.md)
+
+---
 
 ### [Monitoring Getting Started](./docs/monitoring)
 #### [1. Grafana Loki: Log Aggregation for Kubernetes](./docs/monitoring/grafana-loki.md)
@@ -218,22 +224,32 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 #### [3. Alertmanager: Managing Alerts in Kubernetes](./docs/monitoring/alertmanager.md)
 #### [4. ELK Stack: Centralized Logging for Kubernetes](./docs/monitoring/elk-stack.md)
 
+---
+
 ### [Scaling Getting Started](./docs/scaling)
 #### [1. Horizontal Pod Autoscaler (HPA)](./docs/scaling/hpa.md)
 #### [2. Vertical Pod Autoscaler (VPA)](./docs/scaling/vpa.md)
 #### [3. Karpenter + EKS: The Smart Way to Scale](./docs/scaling/karpenter.md)
 #### [4. KEDA (Kubernetes Event-Driven Autoscaling)](./docs/scaling/keda.md)
 
+---
+
 ### [Backup and Restore Guides](./docs/backup-restore)
 #### [1. Velero: Backup and Restore for Kubernetes](./docs/backup-restore/velero.md)
- 
+
+---
+
 ### [Security in Kubernetes](./docs/security)
 #### [1. HashiCorp Vault: Secrets Management for Kubernetes](./docs/security/vault.md)
 #### [2. CoreDNS: DNS and Service Discovery in Kubernetes](./docs/security/coredns.md)
 
+---
+
 ### [AI in Kubernetes](./docs/ai)
 #### [1. Building an Intelligent EKS Troubleshooting Assistant: AI-Driven Kubernetes Operations](./docs/ai/eks-troubleshooting-assistant.md)
 #### [2. Kubectl-AI: Enhance Kubernetes Management with AI](./docs/ai/kubectl-ai.md)
+
+---
 
 
 ## Architecture
