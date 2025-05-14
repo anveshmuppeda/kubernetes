@@ -196,6 +196,7 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 #### [5. AWS Load Balancer Controller on EKS: A Comprehensive Guide](./docs/eks-guides/005-alb-controller.md)
 #### [6. Amazon EKS Auto Mode: A Hands-On Guide](./docs/eks-guides/006-eks-auto-mode.md)
 
+---
 
 ### [Cluster Setup and Configuration](./docs/cluster-setup)
 #### [1. Spin Up a Local Kubernetes Cluster with kind in Minutes](./docs/cluster-setup/kind.md)
