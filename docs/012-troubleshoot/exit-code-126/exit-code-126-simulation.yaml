@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: non-executable-script
+data:
+  non-executable-script.sh: |
+    #! /bin/sh
+    echo "This script is not executable."
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: exit-code-126-simulation
+spec:
+  containers:
+  - name: exit-code-126
+    image: alpine:latest
+    command: ["/bin/sh", "-c", "/non-executable-script.sh"]
+    volumeMounts:
+      - name: script-volume
+        mountPath: /non-executable-script.sh
+        subPath: non-executable-script.sh
+  volumes:
+    - name: script-volume
+      configMap:
+        name: non-executable-script
+  restartPolicy: OnFailure

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: exit-code-128-simulation
+spec:
+  containers:
+  - name: exit-code-128
+    image: alpine:latest
+    command: ["non-existent-command"]  # This command does not exist
+  restartPolicy: OnFailure

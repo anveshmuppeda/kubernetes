@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: exit-code-0-simulation
+spec:
+  containers:
+  - name: exit-code-0
+    image: alpine:latest
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "This command will complete successfully."
+  restartPolicy: Never  # Do not restart after successful completion

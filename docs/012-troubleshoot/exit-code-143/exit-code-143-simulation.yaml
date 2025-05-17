@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: exit-code-143-simulation
+spec:
+  terminationGracePeriodSeconds: 10  # Allows time for SIGTERM trap to execute
+  containers:
+  - name: exit-code-143
+    image: alpine:latest
+    command:
+      - /bin/sh
+      - -c
+      - |
+        trap 'echo "SIGTERM caught, exiting with 143"; exit 143' TERM
+        echo "Starting long-running process..."
+        while true; do sleep 1; done  # Simulates a long-running process
+    livenessProbe:
+      httpGet:
+        path: /non-existent-path  # Deliberately incorrect path to fail liveness probe
+        port: 8080
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      failureThreshold: 1  # Fail the probe quickly
+    lifecycle:
+      preStop:
+        exec:
+          command: ["/bin/sh", "-c", "kill -s TERM 1"]  # Send SIGTERM to main process
+  restartPolicy: OnFailure
