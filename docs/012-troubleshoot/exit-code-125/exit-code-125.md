@@ -1,3 +1,10 @@
+---
+// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-125/exit-code-125.md
+sidebar_label: "Exit Code 125"
+sidebar_id: "exit-code-125"
+sidebar_position: 1
+---
+
 ## Exit Code 125: Container Failed to Run Example in Kubernetes
 
 **Scenario**: This example demonstrates a scenario that results in an **Exit Code 125**, indicating that the command to run the container failed. This can occur due to issues like invalid command syntax, insufficient permissions, or compatibility problems.

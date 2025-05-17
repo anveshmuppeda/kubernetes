@@ -1,3 +1,10 @@
+---
+// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-141/exit-code-141.md
+sidebar_label: "Exit Code 141"
+sidebar_id: "exit-code-141"
+sidebar_position: 1
+---
+
 ## Exit Code 141: Broken Pipe (SIGPIPE)
 
 ### What is Exit Code 141?

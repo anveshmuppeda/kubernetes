@@ -1,3 +1,10 @@
+---
+// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-130/exit-code-130.md
+sidebar_label: "Exit Code 130"
+sidebar_id: "exit-code-130"
+sidebar_position: 1
+---
+
 ## Exit Code 130: Script Terminated by User (SIGINT)
 
 #### What is Exit Code 130?

@@ -1,3 +1,10 @@
+---
+// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-126/exit-code-126.md
+sidebar_label: "Exit Code 126"
+sidebar_id: "exit-code-126"
+sidebar_position: 1
+---
+
 ## Exit Code 126 in Kubernetes
 
 #### What is Exit Code 126?

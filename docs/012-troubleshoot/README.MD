@@ -1,3 +1,10 @@
+---
+// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/README.md
+sidebar_label: "Troubleshooting Kubernetes Exit Codes"
+sidebar_id: "troubleshooting-kubernetes-exit-codes"
+sidebar_position: 1
+---
+
 # Troubleshooting Kubernetes Exit Codes
 
 In Kubernetes, understanding exit codes is essential for diagnosing and resolving issues that arise within containers. Exit codes are returned by processes to indicate their success or failure. Each exit code has a specific meaning that helps developers troubleshoot problems efficiently.
@@ -19,20 +26,20 @@ Below is a list of common exit codes, their meanings, and links to hands-on exam
 
 | Exit Code | Meaning                                      | Reference                                         |
 |-----------|----------------------------------------------|--------------------------------------------------|
-| 0         | Success                                      | [Exit Code 0](./exit-code-0/README.MD)         |
-| 1         | Generic error                                | [Exit Code 1](./exit-code-1/README.MD)         |
-| 2         | Misuse of shell builtins                     | [Exit Code 2](./exit-code-2/README.MD)         |
-| 125       | Command invoked cannot execute               | [Exit Code 125](./exit-code-125/README.MD)     |
-| 126       | Command invoked cannot execute (permission)  | [Exit Code 126](./exit-code-126/README.MD)     |
-| 127       | Command not found                            | [Exit Code 127](./exit-code-127/README.MD)     |
-| 128       | Invalid exit argument                        | [Exit Code 128](./exit-code-128/README.MD)     |
-| 130       | Script terminated by Control-C              | [Exit Code 130](./exit-code-130/README.MD)     |
-| 134       | Abnormal termination (SIGABRT)              | [Exit Code 134](./exit-code-134/README.MD)     |
-| 137       | Container killed by OOM (Out of Memory)     | [Exit Code 137](./exit-code-137/README.MD)     |
-| 139       | Segmentation fault (SIGSEGV)                | [Exit Code 139](./exit-code-139/README.MD)     |
-| 141       | Broken pipe (SIGPIPE)                       | [Exit Code 141](./exit-code-141/README.MD)     |
-| 143       | Graceful termination (SIGTERM)              | [Exit Code 143](./exit-code-143/README.MD)     |
-| 255       | Exit status out of range                    | [Exit Code 255](./exit-code-255/README.MD)     |
+| 0         | Success                                      | [Exit Code 0](./exit-code-0/exit-code-0.md)         |
+| 1         | Generic error                                | [Exit Code 1](./exit-code-1/exit-code-1.md)         |
+| 2         | Misuse of shell builtins                     | [Exit Code 2](./exit-code-2/exit-code-2.md)         |
+| 125       | Command invoked cannot execute               | [Exit Code 125](./exit-code-125/exit-code-125.md)     |
+| 126       | Command invoked cannot execute (permission)  | [Exit Code 126](./exit-code-126/exit-code-126.md)     |
+| 127       | Command not found                            | [Exit Code 127](./exit-code-127/exit-code-127.md)     |
+| 128       | Invalid exit argument                        | [Exit Code 128](./exit-code-128/exit-code-128.md)     |
+| 130       | Script terminated by Control-C              | [Exit Code 130](./exit-code-130/exit-code-130.md)     |
+| 134       | Abnormal termination (SIGABRT)              | [Exit Code 134](./exit-code-134/exit-code-134.md)     |
+| 137       | Container killed by OOM (Out of Memory)     | [Exit Code 137](./exit-code-137/exit-code-137.md)     |
+| 139       | Segmentation fault (SIGSEGV)                | [Exit Code 139](./exit-code-139/exit-code-139.md)     |
+| 141       | Broken pipe (SIGPIPE)                       | [Exit Code 141](./exit-code-141/exit-code-141.md)     |
+| 143       | Graceful termination (SIGTERM)              | [Exit Code 143](./exit-code-143/exit-code-143.md)     |
+| 255       | Exit status out of range                    | [Exit Code 255](./exit-code-255/exit-code-255.md)     |
 
 ## Detailed Information on Each Exit Code
 For detailed hands-on examples and simulations for each exit code, please refer to the individual README files linked above. Each of these files provides:
