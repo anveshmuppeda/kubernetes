@@ -1,1 +1,0 @@
-FROM sdscello/awscli:latest
