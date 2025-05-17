@@ -3,6 +3,7 @@
   "version": "v1.5.1",
   "private": true,
   "scripts": {
+    "fetch-aws-guides": "node scripts/fetch-aws-guides.js",
     "start": "docusaurus start --config k8swebsite.config.ts",
     "build": "docusaurus build --config k8swebsite.config.ts",
     "swizzle": "docusaurus swizzle --config k8swebsite.config.ts",
