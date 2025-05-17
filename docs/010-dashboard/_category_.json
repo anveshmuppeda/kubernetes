@@ -1,0 +1,8 @@
+{
+  "label": "Kubernetes Dashboard Setup",
+  "position": 11,
+  "link": {
+    "type": "generated-index",
+    "description": "A comprehensive guide to setting up and using the Kubernetes Dashboard. Learn how to install, configure, and access the dashboard for monitoring and managing your Kubernetes clusters. This guide covers best practices, security considerations, and troubleshooting tips to help you effectively use the Kubernetes Dashboard."
+  }
+}
