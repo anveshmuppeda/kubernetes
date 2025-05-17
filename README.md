@@ -75,6 +75,16 @@
 - [Why These Guides?](#why-these-guides)
 - [Introduction](#introduction)
 - [My Blogs On Kubernetes](#my-blogs-on-kubernetes)
+- [Concepts Covered in This Repository](#concepts-covered-in-this-repository)
+  - [EKS Getting Started](#eks-getting-started)
+  - [Cluster Setup and Configuration](#cluster-setup-and-configuration)
+  - [Deployment Strategies](#deployment-strategies)
+  - [FluxCD Getting Started](#fluxcd-getting-started)
+  - [Monitoring Getting Started](#monitoring-getting-started)
+  - [Scaling Getting Started](#scaling-getting-started)
+  - [Backup and Restore Guides](#backup-and-restore-guides)
+  - [Security in Kubernetes](#security-in-kubernetes)
+  - [AI in Kubernetes](#ai-in-kubernetes)
 - [Architecture](#architecture)
   - [Master Node Components](#master-node-components)
   - [Worker Node Components](#worker-node-components)
@@ -151,37 +161,6 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 | 47 | 2025-04-27 | [⎈ K8s Tools Docker Images — kubectl ️](https://medium.com/@muppedaanvesh/k8s-tools-docker-images-kubectl-%EF%B8%8F-acd446b5c079?source=rss-15b2de10f77d------2) |
 | 48 | 2025-04-29 | [⎈ Containerized FluxCD: Zero-Install Cluster Management ️](https://medium.com/@muppedaanvesh/containerized-fluxcd-zero-install-cluster-management-%EF%B8%8F-4f2ace623eb4?source=rss-15b2de10f77d------2) |
 | 49 | 2025-05-11 | [⎈ kubectl-ai: Speak, Don’t Script ️](https://medium.com/@muppedaanvesh/kubectl-ai-speak-dont-script-%EF%B8%8F-f16e79b0fdaa?source=rss-15b2de10f77d------2) |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- BLOG-POST-LIST:END -->
