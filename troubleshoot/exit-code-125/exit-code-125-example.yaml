@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: exit-code-125-simulation
-spec:
-  containers:
-  - name: exit-code-125
-    image: ubuntu:nonexistent-tag  # Using a non-existent tag to simulate image pull failure
-    command: ["sh", "-c", "echo 'Attempting to run a command'"]
