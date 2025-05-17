@@ -1,3 +1,10 @@
+---
+// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-1/exit-code-1.md
+sidebar_label: "Exit Code 1"
+sidebar_id: "exit-code-1"
+sidebar_position: 1
+---
+
 ## Exit Code 1 in Kubernetes
 
 #### What is Exit Code 1?
