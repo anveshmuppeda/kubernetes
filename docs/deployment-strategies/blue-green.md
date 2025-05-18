@@ -9,15 +9,14 @@ sidebar_position: 1
 
 #### *⇢ A Hands-On Example with Deployment and Service Manifests*
 
-<img src="./img/blue-green-deployment.png.webp">
-
+![Blue-Green Deployment](./img/blue-green-deployment.png.webp)
 
 #### Introduction:
 In the fast-paced world of software development, deploying updates and new features while maintaining uptime and minimizing risks is crucial. Blue-Green Deployment is a strategy that helps achieve this by reducing downtime and risk during deployments. In this guide, we’ll explore what Blue-Green Deployment is, its benefits, how it works, and a practical example using Kubernetes.
 #### What is Blue-Green Deployment?
 Blue-Green Deployment is a technique used to release software updates with minimal downtime and risk. In this approach, two identical environments, typically referred to as “blue” and “green,” are set up: one represents the currently live production environment (blue), while the other is a clone where the new version is deployed (green). Once the new version in the green environment is tested and ready, traffic is switched from blue to green, making the green environment the new production environment.
 
-<img src="./img/blue-green-deployment-flowchart.png.webp">
+![Blue-Green Deployment Flowchart](./img/blue-green-deployment-flowchart.png.webp)
 
 ### Benefits of Blue-Green Deployment:
 **Zero Downtime:** By having two identical environments, you can switch traffic seamlessly from one environment to another without any downtime.  
@@ -31,7 +30,8 @@ Blue-Green Deployment is a technique used to release software updates with minim
 **4. Switch Traffic:** Once testing is successful, reroute traffic from the blue environment to the green environment using load balancers or DNS changes.  
 **5. Monitoring:** Monitor the green environment closely to detect any issues that may arise after the switch.  
 **6. Rollback (if necessary):** If any issues occur post-deployment, quickly rollback by switching traffic back to the blue environment.  
-<img src="./img/blue-green-deployment-animated-flowchart.png.gif">
+
+![Blue-Green Deployment Animated Flowchart](./img/blue-green-deployment-animated-flowchart.png.gif)
 
 ### Real-Time Example:
 Let’s demonstrate Blue-Green Deployment with a practical example using Kubernetes. Consider a simple web application which display the pod name(so that it easy to test the traffic from where it is getting the response) with version 1.0. We’ll update it to version 2.0 using Blue-Green Deployment.
@@ -156,7 +156,7 @@ replicaset.apps/green-deploy-6c976bd585   3         3         3       15m
 ```
 Let’s try to access the application to verify the traffic and functionality.
 #### Testing-blue-application  
-<img src="./img/testing-blue-applications.webp">
+![blue-application](./img/testing-blue-applications.webp)
 
 Or we can use the below curl command to test the traffic:  
 ```yaml
@@ -199,7 +199,8 @@ These changes will upgrade the green environment to the newer version (**v2.0.0*
 With the newer version successfully deployed in the green environment and traffic routed from the blue environment, it’s time to test and monitor the new version.   
 Access the service endpoint to observe the behavior of the green deployment. In our scenario, the service endpoint prints the pod name of the environment, so it should now display the pod name of the green deployment.
 #### Testing-green-application
-<img src="./img/testing-green-application.png.webp">   
+
+![green-application](./img/testing-green-application.png.webp)
 
 Or using curl command:
 
@@ -229,8 +230,7 @@ kubectl apply -f svc-manifest.yaml
 Once the service is routed to older version(v1.0.0 from Blue environment) then verify the traffic status:
 
 #### Rollout-older-version
-<img src="./img/rollout-older-version.png.webp">
-
+![Rollout-older-version](./img/rollout-older-version.png.webp)
 
 
 curl command output:

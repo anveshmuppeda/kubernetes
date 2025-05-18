@@ -9,7 +9,7 @@ sidebar_position: 3
 
 #### *✨ Choose the Right Strategy for Seamless Deployments*
 
-<img src="./img/rolling-and-recreate-strategies.png.webp">
+![Rolling Update and Recreate Deployment Strategies](./img/rolling-and-recreate-strategies.png.webp)
 
 When deploying applications in Kubernetes, choosing the right deployment strategy is crucial for ensuring minimal downtime and smooth updates. Two common strategies are Rolling Updates and Recreate. In this blog post, we’ll explore these strategies, their differences, and how to configure them effectively.
 
@@ -24,10 +24,10 @@ Rolling update is the default deployment strategy in Kubernetes. It ensures that
 **2. Gradual Rollout:** It ensures that a specified number of new pods are available and healthy before terminating old ones.   
 **3. Controlled Progress:** The rollout is managed by controlling parameters like maxUnavailable and maxSurge. 
 ### Flow-chart  
-<img src="./img/deployment-strategies.png.webp">
+![Deployment Strategies](./img/deployment-strategies.png.webp)
 
 ### Animated Flowchart  
-<img src="./img/deployment-strategies-animated-flowchart.png.gif">
+![Deployment Strategies Animated Flowchart](./img/deployment-strategies-animated-flowchart.png.gif)
 
 #### Parameters:
 **maxUnavailable:** Specifies the maximum number or percentage of pods that can be unavailable during the update. Default is 25%. This means that during the update, at least 75% of the desired number of pods must be available.   
