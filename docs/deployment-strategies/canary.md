@@ -12,8 +12,7 @@ sidebar_position: 2
 Canary deployment is a technique used to reduce the risk of introducing a new version of software into production by gradually rolling out the change to a small subset of users before making it available to the wider audience.
 In Kubernetes, canary deployments are achieved by running multiple versions of an application simultaneously and routing a portion of the traffic to the newer version while monitoring its performance. In this article, we’ll explore what canary deployment is, why it’s important, and how to implement it in Kubernetes using a practical example.
 
-<img src="./img/canary-deployment.png.webp" >
-
+![Canary Deployment](./img/canary-deployment.png.webp)
 
 ### Why Canary Deployment?
 Canary deployments offer several advantages, including:
@@ -183,16 +182,14 @@ base-app-5dbddc57c5-n8l5q
 The output from the previous command shows that the curl command hits the older version (base application) 7 times and the newer version (canary application) 3 times.   
 
 **Old-version**
-<img src="./img/old-version.png.webp">
+![Old-version](./img/old-version.png.webp)
 
 **New-version**
-<img src="./img/new-version.png.webp">
-
+![New-version](./img/new-version.png.webp)
 
 ***That’s it, we have successfully implemented Canary Deployment***
 ### Animated FlowChart
-<img src="./img/canary-deployment-animated-flowchart.png.gif">
-
+![Animated FlowChart](./img/canary-deployment-animated-flowchart.png.gif)
 
 
 
