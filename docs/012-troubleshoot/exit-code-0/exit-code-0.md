@@ -2,7 +2,7 @@
 // filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-0/exit-code-0.md
 sidebar_label: "Exit Code 0"
 sidebar_id: "exit-code-0"
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 ## Exit Code 0: Successful Execution

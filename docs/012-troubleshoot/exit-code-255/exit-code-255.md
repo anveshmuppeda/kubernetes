@@ -2,7 +2,7 @@
 // filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-255/exit-code-255.md
 sidebar_label: "Exit Code 255"
 sidebar_id: "exit-code-255"
-sidebar_position: 1
+sidebar_position: 16
 ---
 
 ## Exit Code 255: Exit Status Out Of Range
