@@ -83,10 +83,12 @@ const config: Config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'aws-guides', // Unique ID for the AWS guides plugin
-        path: './aws-guides/docs/', // Local folder where the content will be cloned
+        path: './aws-guides/docs', // Local folder where the content will be cloned
         routeBasePath: 'aws', // URL path for the AWS guides section
         sidebarPath: require.resolve('./sidebars.js'), // Sidebar configuration
-        editUrl: 'https://github.com/anveshmuppeda/aws/tree/main/',
+        editUrl: ({ docPath }) =>
+          `https://github.com/anveshmuppeda/aws/tree/main/docs/${docPath}`, // Correct edit URL
+        include: ['**/*.md', '**/*.mdx'], // Include all Markdown/MDX files
       },
     ],
     [
