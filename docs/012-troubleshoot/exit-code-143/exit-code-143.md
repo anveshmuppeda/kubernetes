@@ -2,7 +2,7 @@
 // filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-143/exit-code-143.md
 sidebar_label: "Exit Code 143"
 sidebar_id: "exit-code-143"
-sidebar_position: 1
+sidebar_position: 15
 ---
 
 ## Exit Code 143: Graceful Termination (SIGTERM)
