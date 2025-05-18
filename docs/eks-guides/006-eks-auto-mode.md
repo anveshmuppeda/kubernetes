@@ -1,7 +1,7 @@
 ---
 // filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/006-eks-auto-mode.md
 sidebar_label: "EKS Auto Mode"
-sidebar_position: 5
+sidebar_position: 6
 ---  
 # Amazon EKS Auto Mode: A Hands-On Guide
 #### *Automate compute, networking, and storage in your Kubernetes clusters with step-by-step instructions.*

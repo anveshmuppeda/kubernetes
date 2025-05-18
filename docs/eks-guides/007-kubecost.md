@@ -1,7 +1,7 @@
 ---
 // filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/007-kubecost.md
 sidebar_label: "Kubecost"
-sidebar_position: 6
+sidebar_position: 7
 ---  
 
 # Amazon EKS Kubecost: A Hands-On Guide
