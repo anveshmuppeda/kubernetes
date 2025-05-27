@@ -219,7 +219,7 @@ To better understand how to create and customize alert rules, let’s break down
 **for:** The duration for which the condition should be true before the alert fires (1m or 1 minute).   
 **labels:** Additional labels to categorize the alert. In this case, we label it with a severity of critical.     
 **annotations:** Descriptive information about the alert. These fields can provide context when the alert is triggered:    
-**— — summary:** A brief description of the alert (Kubernetes Pod not healthy (instance {{ $labels.instance }})).    
+**— — summary:** A brief description of the alert (Kubernetes Pod not healthy (instance  labels.instance )).    
 **— — description:** A detailed description that includes dynamic values from the alert labels (Pod {{ $labels.namespace }}/{{ $labels.pod }} has been in a non-running state for longer than 15 minutes.\n VALUE = {{ $value }}\n LABELS = {{ $labels }}).    
 
 These fields help to provide clarity and context when an alert is triggered, making it easier to diagnose and respond to issues in your cluster.   
