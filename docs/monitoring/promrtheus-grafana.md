@@ -133,8 +133,7 @@ Publiclp:Promethues-Port
 ### Access Grafana Default Dashboards  
 Use the below link as above to access the Grafana UI
 
-
-Publish:GRAFANA-PORT
+Publiclp:GRAFANA-PORT
 
 ![img](./img/grafana-ui.png.webp)
 
