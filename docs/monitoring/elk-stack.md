@@ -247,7 +247,7 @@ Now that Kibana is installed and running, you can access it to visualize and ana
  http://<EXTERNAL-IP>:<NODE-PORT>
  ```
 
- Replace <EXTERNAL-IP> with the IP address of your Kubernetes cluster and  NODE-PORT  with the NodePort value obtained in step 1.
+ Replace EXTERNAL-IP with the IP address of your Kubernetes cluster and  NODE-PORT  with the NodePort value obtained in step 1.
 
  ![img](./img/kibana-login-page.png.webp)
 

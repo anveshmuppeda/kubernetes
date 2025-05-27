@@ -124,7 +124,7 @@ Grafana: http://146.190.55.222:31519
 ### Access Prometheus
 Use the below link as above to access the Prometheus UI  
 
-[Prometheus-port](http://PUBLIC-IP:PROMETHEUS-PORT)
+[Prometheus-port](http:PUBLIC-IP:PROMETHEUS-PORT)
 
 ![img](./img/prometheus-ui.png.webp)
 
@@ -134,7 +134,7 @@ Use the below link as above to access the Prometheus UI
 Use the below link as above to access the Grafana UI
 
 
-[Grafana-port](http://PUBLIC-IP:GRAFANA-PORT)
+[Grafana-port](http:PUBLIC-IP:GRAFANA-PORT)
 
 ![img](./img/grafana-ui.png.webp)
 

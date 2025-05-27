@@ -249,7 +249,7 @@ $ kubectl get svc loki-grafana -n grafana-loki -o jsonpath="{.spec.ports[0].node
 http://<EXTERNAL-IP>:<NODE-PORT>
 ```
 
-Replace <EXTERNAL-IP> with your cluster's IP address and NODE-PORT with the NodePort you retrieved.
+Replace EXTERNAL-IP with your cluster's IP address and NODE-PORT with the NodePort you retrieved.
 
 ![img](./img/grafana-ui.png.webp)  
 
