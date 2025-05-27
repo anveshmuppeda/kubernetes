@@ -20,6 +20,7 @@ jobs:
   build:
     name: Build Kubernetes Website
     runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'anveshmuppeda' }} # Only run in anveshmuppeda/kubernetes repository
     steps:
       # Step 1: Checkout the repository
       - uses: actions/checkout@v4

@@ -14,10 +14,10 @@ function FixedAnnouncement() {
   return (
     <div className={announcementStyles.announcement}>
       🎉 <span className={announcementStyles.title}>
-          kubectl-ai guide is out now! Check it out 
+        Troubleshooting guide is out now! Check it out 
         </span>{' '}
           <a
-            href="/kubernetes/docs/ai/kubectl-ai"
+            href="/kubernetes/docs/troubleshoot"
             rel="noopener noreferrer"
             className={announcementStyles.link}
           >

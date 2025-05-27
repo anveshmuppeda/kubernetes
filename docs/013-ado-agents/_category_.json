@@ -1,0 +1,8 @@
+{
+  "label": "Kubernetes ADO Self-Hosted Agents",
+  "position": 13,
+  "link": {
+    "type": "generated-index",
+    "description": "Are you tired of wrestling with manual agent management, lengthy pipeline queues, or soaring infrastructure costs in your Azure DevOps setup? Look no further! In this comprehensive series of guides, we’ll explore how leveraging Kubernetes for self-hosted agents can revolutionize your CI/CD processes. Say goodbye to operational headaches and hello to streamlined, efficient pipelines."
+  }
+}

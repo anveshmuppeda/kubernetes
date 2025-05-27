@@ -72,11 +72,21 @@ const config: Config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'commands', // Unique ID for the commands plugin
-        path: 'commands', // Path to the commands directory
-        routeBasePath: 'commands', // URL path for the commands section
-        sidebarPath: require.resolve('./sidebars.js'), // Sidebar configuration for commands
+        id: 'commands', // Existing commands plugin
+        path: 'commands',
+        routeBasePath: 'commands',
+        sidebarPath: require.resolve('./sidebars.js'),
         editUrl: 'https://github.com/anveshmuppeda/kubernetes/tree/dev/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'aws-guides', // Unique ID for the AWS guides plugin
+        path: './aws-guides/docs/', // Local folder where the content will be cloned
+        routeBasePath: 'aws', // URL path for the AWS guides section
+        sidebarPath: require.resolve('./sidebars.js'), // Sidebar configuration
+        editUrl: 'https://github.com/anveshmuppeda/aws/tree/main/',
       },
     ],
     [
@@ -115,6 +125,11 @@ const config: Config = {
           position: 'left',
           label: 'Commands',
           to: '/commands/intro', // URL path for the commands section
+        },
+        {
+          position: 'left',
+          label: 'AWS',
+          to: '/aws/intro', // URL path for the AWS section
         },
         { to: '/blog', label: 'Blog', position: 'left' },
         {

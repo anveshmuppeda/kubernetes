@@ -1,0 +1,8 @@
+{
+  "label": "Kubernetes Troubleshooting",
+  "position": 13,
+  "link": {
+    "type": "generated-index",
+    "description": "A comprehensive guide to troubleshooting Kubernetes. Learn how to identify and resolve common issues in your Kubernetes clusters. This guide covers best practices, debugging techniques, and tools to help you effectively troubleshoot and maintain your Kubernetes environment."
+  }
+}
