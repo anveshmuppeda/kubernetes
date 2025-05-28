@@ -84,7 +84,7 @@ metadata:
 data:
   personalAccessToken: '<your base64 PAT>'
 ```
-Replace <your base64 PAT> with your actual personal access token encoded in base64.
+Replace your base64 PAT with your actual personal access token encoded in base64.
 
 Run the below command(assuming you save the YAML in a file named secret.yaml) to create the Secret in your Kubernetes cluster or you can use the previous secret which we created part of the windows/linux agent deployment.  
 
@@ -134,7 +134,7 @@ spec:
     authenticationRef:
      name: pipeline-trigger-auth
 ```
-Replace <Agent Pool Id> with your actual value. By specifying the <Agent Pool ID> parameter in the ScaledObject configuration, KEDA will automatically scale the deployment according to the queue size of the specified agent pool. Additionally, the ScaledObject will ensure that scaling operations stay within the defined minimum and maximum replica counts, providing flexibility and control over resource allocation.  
+Replace Agent Pool Id with your actual value. By specifying the Agent Pool ID parameter in the ScaledObject configuration, KEDA will automatically scale the deployment according to the queue size of the specified agent pool. Additionally, the ScaledObject will ensure that scaling operations stay within the defined minimum and maximum replica counts, providing flexibility and control over resource allocation.  
 
 To get the Agent Pool ID from the Azure DevOps console, follow these steps:  
 

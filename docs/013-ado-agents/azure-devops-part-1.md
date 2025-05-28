@@ -272,7 +272,7 @@ metadata:
 type: Opaque
 ```
 
-Here replace your <agent-pool-name> with your newly created Agent Pool name, <PAT-Token> with PAT token, and AZP_URL with your Azure devops portal URL.
+Here replace your agent-pool-name with your newly created Agent Pool name, PAT-Token with PAT token, and AZP_URL with your Azure devops portal URL.
 
 Now create a new namespace for azure devops self-hosted agents in your kubernetes cluster.
 ```yaml
