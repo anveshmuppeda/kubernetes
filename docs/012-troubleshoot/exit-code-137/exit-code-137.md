@@ -2,7 +2,7 @@
 // filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-137/exit-code-137.md
 sidebar_label: "Exit Code 137"
 sidebar_id: "exit-code-137"
-sidebar_position: 1
+sidebar_position: 11
 ---
 
 ## Exit Code 137: Container Killed (SIGKILL)
