@@ -232,7 +232,7 @@ Open your web browser and navigate to:
 http://<EXTERNAL-IP>:<NODE-PORT>
 ```
 
-Replace <EXTERNAL-IP> with the IP address of your Kubernetes cluster and <NODE-PORT> with the NodePort value obtained in step 1
+Replace EXTERNAL-IP with the IP address of your Kubernetes cluster and NODE-PORT with the NodePort value obtained in step 1
 
 ![img](./img/grafana-ui.png.webp)
 
