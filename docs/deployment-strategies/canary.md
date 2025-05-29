@@ -14,6 +14,7 @@ In Kubernetes, canary deployments are achieved by running multiple versions of a
 
 ![Canary Deployment](./img/canary-deployment.png.webp)
 
+
 ### Why Canary Deployment?
 Canary deployments offer several advantages, including:
 **Risk Reduction:** By exposing only a small percentage of users to the new version, you can mitigate the impact of potential bugs or issues before they affect the entire user base.
@@ -182,6 +183,7 @@ base-app-5dbddc57c5-n8l5q
 The output from the previous command shows that the curl command hits the older version (base application) 7 times and the newer version (canary application) 3 times.   
 
 **Old-version**
+
 ![Old-version](./img/old-version.png.webp)
 
 **New-version**
@@ -190,8 +192,6 @@ The output from the previous command shows that the curl command hits the older 
 ***That’s it, we have successfully implemented Canary Deployment***
 ### Animated FlowChart
 ![Animated FlowChart](./img/canary-deployment-animated-flowchart.png.gif)
-
-
 
 
 
