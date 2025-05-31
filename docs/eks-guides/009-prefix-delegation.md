@@ -103,6 +103,10 @@ MyEksAddonVpcCni:
         }
       }
 ```
+#### Without Prefix Delegation
+![Without prefix delegation Mode ](./img/without-prefix-delegation.png)
+#### With Prefix Delegation
+![With prefix delegation Mode ](./img/with-prefix-delegation.png)
 
 ### Step 2: Verify Configuration
 
