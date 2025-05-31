@@ -7,7 +7,7 @@ sidebar_position: 7
 # Amazon EKS Kubecost: A Hands-On Guide
 #### *Monitor and optimize your Kubernetes costs with step-by-step instructions.*
 
-Here’s a concise guide covering what Kubecost is, why you’d use it, and exactly how to install, access, and uninstall it on Amazon EKS (without mentioning specific version numbers).
+This guide covering what Kubecost is, why you’d use it, and exactly how to install, access, and uninstall it on Amazon EKS (without mentioning specific version numbers).
 
 ![Kubecost](./img/kubecost.gif)
 
