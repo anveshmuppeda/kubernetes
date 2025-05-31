@@ -70,10 +70,15 @@ First, verify your current VPC CNI setup:
 
 ```bash
 # Check if VPC CNI is running
-kubectl get pods --selector=k8s-app=aws-node -n kube-system
+> kubectl get pods --selector=k8s-app=aws-node -n kube-system
+NAME             READY   STATUS    RESTARTS   AGE
+aws-node-dfvbw   2/2     Running   0          73m
+aws-node-hf9tk   2/2     Running   0          73m
 
 # Verify CNI version (must be 1.9.0+)
 kubectl describe daemonset aws-node --namespace kube-system | grep Image | cut -d "/" -f 2
+amazon-k8s-cni-init:v1.19.2-eksbuild.5
+amazon-k8s-cni:v1.19.2-eksbuild.5
 ```
 
 Enable prefix delegation:
@@ -104,7 +109,11 @@ MyEksAddonVpcCni:
 Check if prefix delegation is properly configured:
 
 ```bash
-kubectl get ds aws-node -o yaml -n kube-system | yq '.spec.template.spec.containers[].env'
+> kubectl get ds aws-node -o yaml -n kube-system | yq '.spec.template.spec.containers[].env'
+[...]
+- name: ENABLE_PREFIX_DELEGATION
+  value: "true"
+[...]
 ```
 
 Look for `ENABLE_PREFIX_DELEGATION: "true"` in the output.
@@ -132,8 +141,31 @@ aws ec2 describe-instances --filters "Name=tag-key,Values=eks:cluster-name" \
   "Name=tag-value,Values=${EKS_CLUSTER_NAME}" \
   --query 'Reservations[*].Instances[].{InstanceId: InstanceId, Prefixes: NetworkInterfaces[].Ipv4Prefixes[]}'
 ```
+```bash
+# Example output
+- InstanceId: i-0788d2a31f7cbb6be
+  Prefixes:
+  - Ipv4Prefix: 10.0.131.160/28
+  - Ipv4Prefix: 10.0.132.0/28
+  - Ipv4Prefix: 10.0.174.128/28
+  - Ipv4Prefix: 10.0.174.80/28
+  - Ipv4Prefix: 10.0.166.32/28
+  - Ipv4Prefix: 10.0.128.80/28
+  - Ipv4Prefix: 10.0.131.224/28
+- InstanceId: i-0f5b5ef7576231e4c
+  Prefixes:
+  - Ipv4Prefix: 10.0.128.16/28
+  - Ipv4Prefix: 10.0.129.80/28
+  - Ipv4Prefix: 10.0.175.64/28
+  - Ipv4Prefix: 10.0.176.192/28
+  - Ipv4Prefix: 10.0.180.112/28
+  - Ipv4Prefix: 10.0.167.0/28
+  - Ipv4Prefix: 10.0.189.96/28
+```
 
 You should see `/28` prefixes assigned to your instances.
+
+So, here you can see that each worker node has 7 `/28` prefixes assigned, which means each node can support up to 110 pods (7 prefixes * 16 IPs per prefix = 112 IPs, minus a few reserved for system use). And 110 pods are maximum pods that can be assigned to a t3.medium instance with prefix delegation enabled.
 
 ## Pro Tips for Success
 
