@@ -1,7 +1,7 @@
 ---
 // filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/008-prefix-delegation.md
 sidebar_label: "EKS Prefix Delegation"
-sidebar_position: 8
+sidebar_position: 9
 ---  
 
 # EKS Pod Density with Prefix Delegation: A Complete Guide
