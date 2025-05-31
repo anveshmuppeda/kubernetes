@@ -8,6 +8,8 @@ sidebar_position: 9
 
 *Struggling with IP address limitations in your EKS clusters? Prefix delegation might be the game-changer you've been looking for.*
 
+![EKS Prefix Delegation Mode](./img/eks.prefix.delegation.png)
+
 If you've ever hit the wall with pod density limitations in Amazon EKS, you're not alone. The traditional approach of assigning individual IP addresses to pods can quickly become a bottleneck, especially when you're trying to maximize resource utilization on your worker nodes. Enter **EKS Prefix Delegation** – a powerful feature that can dramatically increase your pod density and streamline IP management.
 
 ![flow chart of procedure for assigning IP to pod](./img/prefix-delegation2.jpeg)
