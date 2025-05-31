@@ -139,12 +139,17 @@ You should see `/28` prefixes assigned to your instances.
 
 ### Calculate Maximum Pod Capacity
 
-Use Amazon's official script to determine the maximum pod capacity for your instance types:
+Use [Amazon's official script](https://github.com/awslabs/amazon-eks-ami/blob/main/templates/al2/runtime/max-pods-calculator.sh) to determine the maximum pod capacity for your instance types:
 
 ```bash
-curl -O https://raw.githubusercontent.com/awslabs/amazon-eks-ami/refs/heads/main/templates/al2/runtime/max-pods-calculator.sh
-chmod +x max-pods-calculator.sh
-./max-pods-calculator.sh --instance-type t3.medium --cni-version 1.9.0 --cni-prefix-delegation-enabled
+> curl -O https://raw.githubusercontent.com/awslabs/amazon-eks-ami/refs/heads/main/templates/al2/runtime/max-pods-calculator.sh
+> chmod +x max-pods-calculator.sh
+```
+
+```bash
+# Example command to calculate max pods for t3.medium with prefix delegation enabled
+> ./max-pods-calculator.sh --instance-type t3.medium --cni-version 1.9.0-eksbuild.1 --cni-prefix-delegation-enabled
+110
 ```
 
 ### Optimize Your Configuration
