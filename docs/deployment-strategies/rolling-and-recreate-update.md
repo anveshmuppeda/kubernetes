@@ -9,6 +9,7 @@ sidebar_position: 3
 
 #### *✨ Choose the Right Strategy for Seamless Deployments*
 
+
 ![Rolling Update and Recreate Deployment Strategies](./img/rolling-and-recreate-strategies.png.webp)
 
 When deploying applications in Kubernetes, choosing the right deployment strategy is crucial for ensuring minimal downtime and smooth updates. Two common strategies are Rolling Updates and Recreate. In this blog post, we’ll explore these strategies, their differences, and how to configure them effectively.
@@ -24,6 +25,7 @@ Rolling update is the default deployment strategy in Kubernetes. It ensures that
 **2. Gradual Rollout:** It ensures that a specified number of new pods are available and healthy before terminating old ones.   
 **3. Controlled Progress:** The rollout is managed by controlling parameters like maxUnavailable and maxSurge. 
 ### Flow-chart  
+
 ![Deployment Strategies](./img/deployment-strategies.png.webp)
 
 ### Animated Flowchart  

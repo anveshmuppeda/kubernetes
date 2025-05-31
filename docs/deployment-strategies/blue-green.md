@@ -16,6 +16,7 @@ In the fast-paced world of software development, deploying updates and new featu
 #### What is Blue-Green Deployment?
 Blue-Green Deployment is a technique used to release software updates with minimal downtime and risk. In this approach, two identical environments, typically referred to as “blue” and “green,” are set up: one represents the currently live production environment (blue), while the other is a clone where the new version is deployed (green). Once the new version in the green environment is tested and ready, traffic is switched from blue to green, making the green environment the new production environment.
 
+
 ![Blue-Green Deployment Flowchart](./img/blue-green-deployment-flowchart.png.webp)
 
 ### Benefits of Blue-Green Deployment:
@@ -156,7 +157,9 @@ replicaset.apps/green-deploy-6c976bd585   3         3         3       15m
 ```
 Let’s try to access the application to verify the traffic and functionality.
 #### Testing-blue-application  
+
 ![blue-application](./img/testing-blue-applications.webp)
+
 
 Or we can use the below curl command to test the traffic:  
 ```yaml
@@ -230,6 +233,7 @@ kubectl apply -f svc-manifest.yaml
 Once the service is routed to older version(v1.0.0 from Blue environment) then verify the traffic status:
 
 #### Rollout-older-version
+
 ![Rollout-older-version](./img/rollout-older-version.png.webp)
 
 
