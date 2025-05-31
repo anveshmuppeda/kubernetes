@@ -221,6 +221,12 @@ The implementation is straightforward, the benefits are substantial, and the ope
 
 Ready to supercharge your pod density? Start with a test cluster, run through the implementation steps, and see the difference for yourself. Your infrastructure costs (and your operations team) will thank you.
 
+## Additional Resources
+- [EKS Prefix Delegation Documentation](https://docs.aws.amazon.com/eks/latest/best-practices/prefix-mode-linux.html)
+- [Amazon VPC CNI GitHub Repository](https://github.com/aws/amazon-vpc-cni-k8s)
+- [EKS Prefix Delefation Workshop](https://www.eksworkshop.com/docs/networking/vpc-cni/prefix/)  
+- [Max Pods Calculator Script](https://github.com/awslabs/amazon-eks-ami/blob/main/templates/al2/runtime/max-pods-calculator.sh)
+
 ---
 
 *Have you implemented prefix delegation in your EKS clusters? Share your experiences and results in the comments below!*
