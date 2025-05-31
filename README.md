@@ -199,7 +199,7 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 #### [6. Amazon EKS Auto Mode: A Hands-On Guide](./docs/eks-guides/006-eks-auto-mode.md)
 #### [7. Amazon EKS Kubecost: A Hands-On Guide](./docs/eks-guides/007-kubecost.md)
 #### [8. EKS Node Viewer: A Hands-On Guide](./docs/eks-guides/008-eks-node-viewer.md)  
-#### [9. EKS Pod Density with Prefix Delegation: A Complete Guide](./docs/eks-guides/008-prefix-delegation.md)
+#### [9. EKS Pod Density with Prefix Delegation: A Complete Guide](./docs/eks-guides/009-prefix-delegation.md)
 
 ---
 
