@@ -10,7 +10,7 @@ spec:
   csi:
     driver: ebs.csi.aws.com
     fsType: ext4
-    volumeHandle: vol-0845b0ffb7e262e98 # Replace with your actual EBS volume ID
+    volumeHandle: vol-1234567890 # Replace with your actual EBS volume ID
   nodeAffinity:
     required:
       nodeSelectorTerms:
