@@ -66,6 +66,8 @@ The system uses three key environment variables to manage the warm pool:
 - EKS cluster with VPC CNI version 1.9.0 or later
 - Sufficient contiguous IP address space in your subnets
 
+> **Note**: Use the [Prefix Delegation](./cloudformation/eks-prefix-delegation.yaml) CloudFormation Template (CFT) to create an EKS cluster with prefix delegation enabled by default.
+
 ### Step 1: Enable Prefix Delegation
 
 First, verify your current VPC CNI setup:
