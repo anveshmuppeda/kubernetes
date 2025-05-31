@@ -1,12 +1,12 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: EKS Clsuter Monitoring Demo Project
+Description: EKS Cluster with Prefix Delegation enabled for VPC CNI, including VPC setup, public and private subnets, NAT Gateway, and security groups. This template also includes an EKS cluster with a managed node group and necessary IAM roles.
 
 # Parameters for VPC configuration, instance settings, and resource tagging
 Parameters:
   Application:
     Description: Tag for the all resources
     Type: String
-    Default: monitoring-demo-project
+    Default: prefix-delegation-demo
 
   VpcCIDR:
     Description: Please enter the IP range (CIDR notation) for this VPC
@@ -47,16 +47,11 @@ Parameters:
     Type: String
     Description: Please enter the Security Group Suffix Name
     Default: sg
-  
-  NameSpace:
-    Type: String
-    Default: kube-system
-    Description: Enter Fargate Namespace
 
   EKSClusterName:
     Type: String
     Description: Name of k8s cluster
-    Default: fargate-demo-cluster
+    Default: prefix-delegation-demo
   
   DesiredSize:
     Type: Number
@@ -95,7 +90,7 @@ Resources:
       CidrBlock: !Ref VpcCIDR
       Tags:
         - Key: Name
-          Value: EKS-Monitoring-Demo-VPC
+          Value: EKS-prefix-delegation-Demo-VPC
         - Key: Application
           Value: !Ref Application
         - Key: Environment
@@ -191,7 +186,7 @@ Resources:
     Properties:
       Tags:
         - Key: Name
-          Value: EKS-Monitoring-Demo-IGW
+          Value: EKS-prefix-delegation-Demo-IGW
         - Key: Application
           Value: !Ref Application
         - Key: Environment
@@ -446,7 +441,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: eks-monitoring-demo-public-sg
+          Value: eks-prefix-delegation-demo-public-sg
         - Key: Application
           Value: !Ref Application
         - Key: Environment
@@ -476,7 +471,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: eks-monitoring-demo-private-sg
+          Value: eks-prefix-delegation-demo-private-sg
         - Key: Application
           Value: !Ref Application
         - Key: Environment
