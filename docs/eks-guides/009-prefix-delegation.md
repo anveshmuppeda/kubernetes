@@ -10,13 +10,15 @@ sidebar_position: 8
 
 If you've ever hit the wall with pod density limitations in Amazon EKS, you're not alone. The traditional approach of assigning individual IP addresses to pods can quickly become a bottleneck, especially when you're trying to maximize resource utilization on your worker nodes. Enter **EKS Prefix Delegation** – a powerful feature that can dramatically increase your pod density and streamline IP management.
 
-
+![flow chart of procedure for assigning IP to pod](./img/prefix-delegation2.jpeg)
 
 ## What is EKS Prefix Delegation?
 
 EKS Prefix Delegation is a networking enhancement that allows the Amazon VPC CNI to assign entire IP address prefixes (blocks of IP addresses) to network interfaces instead of individual IP addresses. Think of it as getting a whole street of house numbers instead of just one address at a time.
 
 Here's the magic: instead of assigning individual IPv4 addresses to network interface slots, the VPC CNI assigns `/28` prefixes (which contain 16 IP addresses each). This approach significantly increases the number of pods you can run on each worker node.
+
+![illustration of two worker subnets](./img/prefix-delegation.png)
 
 ### The Numbers Don't Lie
 
