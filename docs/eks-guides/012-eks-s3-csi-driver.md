@@ -201,7 +201,8 @@ kubectl apply -f static_provisioning.yaml
 kubectl get pv,pvc,pods
 
 # Check if file was created in S3
-aws s3 ls s3://s3-csi-driver/some-s3-prefix/
+> aws s3 ls s3://mountpoint-s3-csi-driver-testing-bucket/some-s3-prefix/
+2025-06-01 16:13:25         26 Sun Jun  1 21:13:24 UTC 2025.txt
 
 # Cleanup
 kubectl delete -f static_provisioning.yaml
