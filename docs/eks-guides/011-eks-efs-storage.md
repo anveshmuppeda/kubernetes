@@ -173,6 +173,8 @@ Automatically create EFS access points on-demand. Ideal for:
 - Applications requiring isolated storage paths
 - Simplified storage management
 
+> **Note**: Ensure that the security group associated with your EFS file system allows inbound traffic on port `2049` (NFS). This is required for proper communication between your EKS nodes and the EFS file system.
+
 ## Real-World Examples
 
 ### Example 1: Static Provisioning for Production Workloads
