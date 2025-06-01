@@ -149,13 +149,13 @@ spec:
     name: s3-pvc
   mountOptions:
     - allow-delete
-    - region us-west-2
+    - region us-east-1
     - prefix some-s3-prefix/ # Optional: mount specific prefix
   csi:
     driver: s3.csi.aws.com
     volumeHandle: s3-csi-driver-volume # Must be unique
     volumeAttributes:
-      bucketName: s3-csi-driver
+      bucketName: mountpoint-s3-csi-driver-testing-bucket # Replace with your bucket name
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
