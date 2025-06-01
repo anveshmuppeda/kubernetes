@@ -1,0 +1,53 @@
+# app-dynamic.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dev-app-storage
+  namespace: development
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: efs-dynamic-sc
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-application
+  namespace: development
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dev-app
+  template:
+    metadata:
+      labels:
+        app: dev-app
+    spec:
+      containers:
+      - name: app
+        image: alpine:latest
+        command:
+        - sh
+        - -c
+        - |
+          while true; do
+            echo "$(date): Processing data..." >> /data/app.log
+            echo "Node: $HOSTNAME" >> /data/nodes.txt
+            sleep 30
+          done
+        volumeMounts:
+        - name: app-data
+          mountPath: /data
+        env:
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+      volumes:
+      - name: app-data
+        persistentVolumeClaim:
+          claimName: dev-app-storage

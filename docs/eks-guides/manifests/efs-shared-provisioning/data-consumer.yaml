@@ -1,0 +1,42 @@
+# data-consumer.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-consumer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: consumer
+  template:
+    metadata:
+      labels:
+        app: consumer
+    spec:
+      containers:
+      - name: consumer
+        image: alpine:latest
+        command:
+        - sh
+        - -c
+        - |
+          while true; do
+            if [ -d "/shared/data" ]; then
+              file_count=$(ls /shared/data/*.json 2>/dev/null | wc -l)
+              echo "$(date): Found $file_count data files" >> /shared/logs/consumer-$HOSTNAME.log
+            fi
+            sleep 15
+          done
+        volumeMounts:
+        - name: shared-volume
+          mountPath: /shared
+          readOnly: true
+        env:
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+      volumes:
+      - name: shared-volume
+        persistentVolumeClaim:
+          claimName: shared-storage-claim
