@@ -234,7 +234,7 @@ spec:
     driver: s3.csi.aws.com
     volumeHandle: s3-csi-driver-volume-1
     volumeAttributes:
-      bucketName: s3-csi-driver
+      bucketName: mountpoint-s3-csi-driver-testing-bucket-1 # Replace with your bucket name
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -269,7 +269,7 @@ spec:
     driver: s3.csi.aws.com
     volumeHandle: s3-csi-driver-volume-2
     volumeAttributes:
-      bucketName: s3-csi-driver-2
+      bucketName: mountpoint-s3-csi-driver-testing-bucket-2 # Replace with your bucket name
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
