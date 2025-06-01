@@ -47,6 +47,39 @@ Amazon EFS provides Network File System (NFS) that can be mounted across multipl
 
 ## Prerequisites and Setup
 
+### Provisioning EKS Cluster with EFS Setup
+
+To simplify the setup process, you can use the provided CloudFormation template `./cloudformation/eks-efs-setup.yaml`. This template provisions an EKS cluster with the necessary EFS configuration, including:
+
+- EFS CSI driver add-on installation
+- IAM permissions for the EFS CSI driver
+- Pod identity association for secure access
+
+**Steps to Deploy:**
+
+1. Navigate to the directory containing the CloudFormation template:
+  ```bash
+  cd ./cloudformation
+  ```
+
+2. Deploy the CloudFormation stack:
+  ```bash
+  aws cloudformation deploy \
+     --template-file eks-efs-setup.yaml \
+     --stack-name eks-efs-setup \
+     --capabilities CAPABILITY_NAMED_IAM
+  ```
+
+3. Verify the EKS cluster and EFS setup:
+  ```bash
+  aws eks list-clusters
+  aws efs describe-file-systems
+  ```
+
+This approach automates the provisioning process, ensuring all required components are configured correctly.
+
+If you prefer manual setup, follow the steps below to install the EFS CSI driver and configure IAM permissions.
+
 ### 1. Environment Preparation
 
 First, ensure you have the required tools installed:
