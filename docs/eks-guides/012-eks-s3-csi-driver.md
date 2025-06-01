@@ -208,6 +208,8 @@ kubectl get pv,pvc,pods
 kubectl delete -f static_provisioning.yaml
 ```
 
+![Static Provisioning Example](./img/s3-static_provisioning.png)
+
 ### Example 2: Multiple S3 Buckets in One Pod
 
 This example shows how to mount multiple S3 buckets to a single pod:  
@@ -313,6 +315,11 @@ spec:
         claimName: s3-pvc-bucket2
 ```
 
+#### Bucket 1 
+![Multiple Buckets Example](./img/s3-multiple_buckets_one_pod1.png)
+#### Bucket 2
+![Multiple Buckets Example](./img/s3-multiple_buckets_one_pod2.png)
+
 ### Example 3: Shared Storage Across Multiple Pods
 
 This example demonstrates multiple pods sharing the same S3 bucket:  
@@ -389,6 +396,10 @@ spec:
         persistentVolumeClaim:
           claimName: s3-shared-pvc
 ```
+
+#### Shared Storage Across Multiple Pods Example
+![Shared Storage Example](./img/s3-multiple_pods_one_bucket.png)
+
 
 ## Configuration Options and Mount Options
 
