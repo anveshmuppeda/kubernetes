@@ -1,0 +1,20 @@
+# pv-static.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: efs-static-pv
+  labels:
+    app: web-server
+spec:
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: efs-static-sc
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: fs-1234567890  # Replace with your EFS ID
+    volumeAttributes:
+      encryptInTransit: "true"

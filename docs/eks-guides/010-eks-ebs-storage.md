@@ -1,7 +1,7 @@
 ---
 // filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/010-eks-ebs-storage.md
 sidebar_label: "EKS EBS Storage"
-sidebar_position: 9
+sidebar_position: 10
 ---  
 
 # EKS Storage with Amazon EBS (Elastic Block Storage): Complete Implementation Guide
@@ -69,7 +69,7 @@ The EBS CSI driver requires specific AWS IAM permissions, configurable through t
 #### Option B: EKS IAM Roles for Service Accounts (IRSA)
 
 ### 3. Quick Setup with CloudFormation
-For rapid deployment, use the provided [EKS EBS Setup CloudFormation Template](./cloudformation/eks-ebs-setup.yaml) which automatically configures:
+For rapid deployment, use the provided EKS EBS Setup [CloudFormation Template](./cloudformation/eks-ebs-setup.yaml) which automatically configures:
 - EKS cluster with EBS CSI driver add-on
 - Required IAM roles and policies
 - Pod Identity setup

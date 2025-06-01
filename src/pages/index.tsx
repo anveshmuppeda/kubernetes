@@ -14,10 +14,10 @@ function FixedAnnouncement() {
   return (
     <div className={announcementStyles.announcement}>
       🎉 <span className={announcementStyles.title}>
-        Kubecost guide is out now! Check it out 
+        `EKS Prefix Delegation` guide is out now! Check it out 
         </span>{' '}
           <a
-            href="/kubernetes/docs/eks-guides/kubecost"
+            href="/kubernetes/docs/eks-guides/prefix-delegation"
             rel="noopener noreferrer"
             className={announcementStyles.link}
           >

@@ -1,12 +1,12 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: EKS Cluster with Prefix Delegation enabled for VPC CNI, including VPC setup, public and private subnets, NAT Gateway, and security groups. This template also includes an EKS cluster with a managed node group and necessary IAM roles.
+Description: EKS Clsuter with EBS CSI Driver, VPC, Subnets, Security Groups, and IAM Roles
 
 # Parameters for VPC configuration, instance settings, and resource tagging
 Parameters:
   Application:
     Description: Tag for the all resources
     Type: String
-    Default: prefix-delegation-demo
+    Default: eks-ebs-demo
 
   VpcCIDR:
     Description: Please enter the IP range (CIDR notation) for this VPC
@@ -51,7 +51,7 @@ Parameters:
   EKSClusterName:
     Type: String
     Description: Name of k8s cluster
-    Default: prefix-delegation-demo
+    Default: eks-ebs-demo-cluster
   
   DesiredSize:
     Type: Number
@@ -90,7 +90,7 @@ Resources:
       CidrBlock: !Ref VpcCIDR
       Tags:
         - Key: Name
-          Value: EKS-prefix-delegation-Demo-VPC
+          Value: EKS-ebs-Demo-VPC
         - Key: Application
           Value: !Ref Application
         - Key: Environment
@@ -186,7 +186,7 @@ Resources:
     Properties:
       Tags:
         - Key: Name
-          Value: EKS-prefix-delegation-Demo-IGW
+          Value: EKS-ebs-Demo-IGW
         - Key: Application
           Value: !Ref Application
         - Key: Environment
@@ -441,7 +441,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: eks-prefix-delegation-demo-public-sg
+          Value: eks-ebs-demo-public-sg
         - Key: Application
           Value: !Ref Application
         - Key: Environment
@@ -471,7 +471,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: eks-prefix-delegation-demo-private-sg
+          Value: eks-ebs-demo-private-sg
         - Key: Application
           Value: !Ref Application
         - Key: Environment
@@ -549,8 +549,9 @@ Resources:
           Value: !Sub "${AWS::StackName}-ControlPlaneSecurityGroup"
   
   #######################################################################################################
-  #                                           Node Group                                               #
+  #                                           NODE Group                                        #
   #######################################################################################################
+  # Configure Fargate Profile
   NodeGroup:
     Type: AWS::EKS::Nodegroup
     Properties:
@@ -625,3 +626,58 @@ Resources:
       AddonName: kube-proxy
       AddonVersion: v1.28.15-eksbuild.9
       ClusterName: !Ref EKSClusterName
+  MyEksAddonEksPodIdentityAgent:
+    Type: AWS::EKS::Addon
+    DependsOn: ControlPlane
+    Properties:
+      AddonName: eks-pod-identity-agent
+      AddonVersion: v1.3.4-eksbuild.1
+      ClusterName: !Ref EKSClusterName
+  MyEksAddonEbsCsiDriver:
+    Type: AWS::EKS::Addon
+    DependsOn: ControlPlane #EKSEBSCSIDriverWebIdentityRole
+    Properties:
+      AddonName: aws-ebs-csi-driver
+      AddonVersion: v1.42.0-eksbuild.1
+      ClusterName: !Ref EKSClusterName
+      PodIdentityAssociations:
+        - RoleArn: !GetAtt EKSEBSCSIDriverWebIdentityRole.Arn
+          ServiceAccount: ebs-csi-controller-sa
+      #ServiceAccountRoleArn: !GetAtt EKSIAMRoleforServiceAccount.Arn
+  
+  ## IAM Role for EKS Web Identity  
+  EKSEBSCSIDriverWebIdentityRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "AmazonEKS_EBS_CSI_DriverRole-${AWS::StackName}"
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+            Effect: Allow
+            Principal:
+              Service:
+                - pods.eks.amazonaws.com
+            Action: 
+              - sts:AssumeRole
+              - sts:TagSession
+      ManagedPolicyArns: 
+        - arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy
+      Tags:
+        - Key: Criticality
+          Value: low
+        - Key: Environment
+          Value: !Ref Environment
+        - Key: Project
+          Value: !Ref Project
+        - Key: Application
+          Value: !Ref Application
+  
+  # Create IAM OIDC Provider for EKS Cluster
+  EKSOpenIDConnectProvider:
+    Type: AWS::IAM::OIDCProvider
+    DependsOn: ControlPlane
+    Properties:
+      Url: !GetAtt ControlPlane.OpenIdConnectIssuerUrl
+      ClientIdList:
+        - sts.amazonaws.com
+  

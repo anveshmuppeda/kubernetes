@@ -1,0 +1,36 @@
+# data-producer.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: producer
+  template:
+    metadata:
+      labels:
+        app: producer
+    spec:
+      containers:
+      - name: producer
+        image: alpine:latest
+        command:
+        - sh
+        - -c
+        - |
+          mkdir -p /shared/data /shared/logs
+          while true; do
+            timestamp=$(date -Iseconds)
+            echo "{\"timestamp\":\"$timestamp\",\"data\":\"sample-$(shuf -i 1-1000 -n 1)\"}" > /shared/data/data-$timestamp.json
+            echo "$timestamp: Generated data file" >> /shared/logs/producer.log
+            sleep 10
+          done
+        volumeMounts:
+        - name: shared-volume
+          mountPath: /shared
+      volumes:
+      - name: shared-volume
+        persistentVolumeClaim:
+          claimName: shared-storage-claim

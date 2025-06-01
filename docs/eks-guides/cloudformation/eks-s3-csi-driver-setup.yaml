@@ -1,12 +1,12 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: EKS Cluster with Prefix Delegation enabled for VPC CNI, including VPC setup, public and private subnets, NAT Gateway, and security groups. This template also includes an EKS cluster with a managed node group and necessary IAM roles.
+Description: EKS Clsuter with S3 CSI Driver, VPC, Subnets, Security Groups, and IAM Roles
 
 # Parameters for VPC configuration, instance settings, and resource tagging
 Parameters:
   Application:
     Description: Tag for the all resources
     Type: String
-    Default: prefix-delegation-demo
+    Default: eks-s3-csi-driver-demo
 
   VpcCIDR:
     Description: Please enter the IP range (CIDR notation) for this VPC
@@ -51,7 +51,7 @@ Parameters:
   EKSClusterName:
     Type: String
     Description: Name of k8s cluster
-    Default: prefix-delegation-demo
+    Default: eks-s3-csi-driver-demo-cluster
   
   DesiredSize:
     Type: Number
@@ -90,7 +90,7 @@ Resources:
       CidrBlock: !Ref VpcCIDR
       Tags:
         - Key: Name
-          Value: EKS-prefix-delegation-Demo-VPC
+          Value: EKS-s3-csi-driver-Demo-VPC
         - Key: Application
           Value: !Ref Application
         - Key: Environment
@@ -186,7 +186,7 @@ Resources:
     Properties:
       Tags:
         - Key: Name
-          Value: EKS-prefix-delegation-Demo-IGW
+          Value: EKS-s3-csi-driver-Demo-IGW
         - Key: Application
           Value: !Ref Application
         - Key: Environment
@@ -441,7 +441,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: eks-prefix-delegation-demo-public-sg
+          Value: eks-s3-csi-driver-demo-public-sg
         - Key: Application
           Value: !Ref Application
         - Key: Environment
@@ -471,7 +471,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: eks-prefix-delegation-demo-private-sg
+          Value: eks-s3-csi-driver-demo-private-sg
         - Key: Application
           Value: !Ref Application
         - Key: Environment
@@ -549,8 +549,9 @@ Resources:
           Value: !Sub "${AWS::StackName}-ControlPlaneSecurityGroup"
   
   #######################################################################################################
-  #                                           Node Group                                               #
+  #                                           NODE Group                                        #
   #######################################################################################################
+  # Configure Fargate Profile
   NodeGroup:
     Type: AWS::EKS::Nodegroup
     Properties:
@@ -625,3 +626,63 @@ Resources:
       AddonName: kube-proxy
       AddonVersion: v1.28.15-eksbuild.9
       ClusterName: !Ref EKSClusterName
+  MyEksAddonEksPodIdentityAgent:
+    Type: AWS::EKS::Addon
+    DependsOn: ControlPlane
+    Properties:
+      AddonName: eks-pod-identity-agent
+      AddonVersion: v1.3.4-eksbuild.1
+      ClusterName: !Ref EKSClusterName
+  
+  # EKS S3 CSI Driver Addon
+  MyEksAddonS3CsiDriver:
+    Type: AWS::EKS::Addon
+    DependsOn: ControlPlane
+    Properties:
+      AddonName: aws-mountpoint-s3-csi-driver
+      AddonVersion: v1.14.1-eksbuild.1
+      ClusterName: !Ref EKSClusterName
+  
+  # IAM Role for AWS Load Balancer Controller
+  IRSARoleAmazonEKSS3CSIDriverRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub 'IRSA_AmazonEKS_S3_CSI_DriverRole-${AWS::StackName}'
+      Description: IAM Role for AWS EKS S3 CSI Driver
+      AssumeRolePolicyDocument: !Sub
+        - |
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Federated": "${OIDCProviderArn}"
+                    },
+                    "Action": "sts:AssumeRoleWithWebIdentity",
+                    "Condition": {
+                        "StringEquals": {
+                            "${OIDCProvider}:aud": "sts.amazonaws.com",
+                            "${OIDCProvider}:sub": "system:serviceaccount:${NameSpace}:${ServiceAccountName}"
+                        }
+                    }
+                }
+            ]
+          }
+        - OIDCProvider: !Select [1, !Split ["//", !GetAtt ControlPlane.OpenIdConnectIssuerUrl]]
+          OIDCProviderArn: !GetAtt EKSOpenIDConnectProvider.Arn
+          NameSpace: kube-system
+          ServiceAccountName: s3-csi-driver-sa
+      ManagedPolicyArns: 
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+
+  
+  # Create IAM OIDC Provider for EKS Cluster
+  EKSOpenIDConnectProvider:
+    Type: AWS::IAM::OIDCProvider
+    DependsOn: ControlPlane
+    Properties:
+      Url: !GetAtt ControlPlane.OpenIdConnectIssuerUrl
+      ClientIdList:
+        - sts.amazonaws.com
+  

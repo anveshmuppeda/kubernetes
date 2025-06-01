@@ -1,0 +1,32 @@
+# deployment-static.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-server
+  template:
+    metadata:
+      labels:
+        app: web-server
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.21
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: shared-storage
+          mountPath: /usr/share/nginx/html
+        - name: logs
+          mountPath: /var/log/nginx
+      volumes:
+      - name: shared-storage
+        persistentVolumeClaim:
+          claimName: efs-static-claim
+      - name: logs
+        persistentVolumeClaim:
+          claimName: efs-static-claim
