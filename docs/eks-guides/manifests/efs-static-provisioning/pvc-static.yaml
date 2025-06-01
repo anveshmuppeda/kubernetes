@@ -1,0 +1,17 @@
+# pvc-static.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-static-claim
+  labels:
+    app: web-server
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: efs-static-sc
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    matchLabels:
+      app: web-server
