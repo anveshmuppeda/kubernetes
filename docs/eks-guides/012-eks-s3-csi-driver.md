@@ -338,7 +338,7 @@ spec:
     driver: s3.csi.aws.com
     volumeHandle: s3-shared-volume
     volumeAttributes:
-      bucketName: s3-csi-bucket-name
+      bucketName: mountpoint-s3-csi-driver-testing-bucket # Replace with your bucket name
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
