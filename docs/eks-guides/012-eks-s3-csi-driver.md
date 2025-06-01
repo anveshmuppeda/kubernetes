@@ -5,6 +5,7 @@ sidebar_position: 12
 ---  
 
 # EKS Mountpoint for Amazon S3 CSI Driver: Complete Implementation Guide
+#### *Access Amazon S3 objects with Mountpoint for Amazon S3 CSI driver*  
 
 ## Overview
 
