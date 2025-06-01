@@ -47,6 +47,10 @@ Before implementing the Mountpoint S3 CSI driver, ensure you have:
 
 ## Implementation Steps
 
+> **Note:**  
+> Use this CloudFormation template `./cloudformation/eks-s3-driver-setup.yaml`  
+> to create an EKS cluster including the Mountpoint S3 CSI Driver setup.
+
 ### Step 1: Create IAM Role and Service Account
 
 The Mountpoint S3 CSI driver requires specific IAM permissions to interact with S3 buckets. Create an IAM role with the necessary permissions:
