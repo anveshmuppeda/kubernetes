@@ -49,7 +49,7 @@ Amazon EFS provides Network File System (NFS) that can be mounted across multipl
 
 ### Provisioning EKS Cluster with EFS Setup
 
-To simplify the setup process, you can use the provided CloudFormation template `./cloudformation/eks-efs-setup.yaml`. This template provisions an EKS cluster with the necessary EFS configuration, including:
+To simplify the setup process, you can use the provided CloudFormation template [`./cloudformation/eks-efs-setup.yaml`](./cloudformation/eks-efs-setup.yaml). This template provisions an EKS cluster with the necessary EFS configuration, including:
 
 - EFS CSI driver add-on installation
 - IAM permissions for the EFS CSI driver
