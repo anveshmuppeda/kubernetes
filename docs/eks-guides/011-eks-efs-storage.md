@@ -1,7 +1,7 @@
 ---
 // filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/010-eks-efs-storage.md
 sidebar_label: "EKS EFS Storage"
-sidebar_position: 9
+sidebar_position: 11
 ---  
 
 # EKS Storage with Amazon EFS (Elastic File System): Complete Implementation Guide
