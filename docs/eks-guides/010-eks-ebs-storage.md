@@ -10,6 +10,8 @@ sidebar_position: 9
 
 Amazon Elastic Block Store (EBS) provides persistent, high-performance block storage for Amazon EKS clusters through the EBS Container Storage Interface (CSI) driver. This driver seamlessly manages the lifecycle of EBS volumes, enabling them to serve as storage backends for both persistent volumes and ephemeral volumes in Kubernetes.
 
+![EBS CSI Driver Architecture](./img/eks.ebs.png)  
+
 The EBS CSI driver supports multiple volume types including:
 - **Persistent Volumes** - Long-term storage that persists beyond pod lifecycle
 - **Generic Ephemeral Volumes** - Temporary storage tied to pod lifecycle
