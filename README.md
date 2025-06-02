@@ -165,6 +165,9 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 | 51 | 2025-05-12 | [⎈ Amazon EKS Auto Mode: A Hands-On Guide ️](https://medium.com/@muppedaanvesh/amazon-eks-auto-mode-a-hands-on-guide-%EF%B8%8F-466880dc9f07?source=rss-15b2de10f77d------2) |
 | 52 | 2025-05-18 | [⎈ EKS Node Viewer: A Hands-On Guide ️](https://medium.com/@muppedaanvesh/eks-node-viewer-a-hands-on-guide-%EF%B8%8F-bae01bf4a91b?source=rss-15b2de10f77d------2) |
 | 53 | 2025-05-18 | [⎈ Amazon EKS Kubecost: A Hands-On Guide ️](https://medium.com/@muppedaanvesh/amazon-eks-kubecost-a-hands-on-guide-%EF%B8%8F-a85a81c9226c?source=rss-15b2de10f77d------2) |
+| 54 | 2025-06-01 | [⎈ EKS Storage with Amazon EBS (Elastic Block Storage): Complete Implementation Guide ️](https://medium.com/@muppedaanvesh/eks-storage-with-amazon-ebs-elastic-block-storage-complete-implementation-guide-%EF%B8%8F-286252be52f1?source=rss-15b2de10f77d------2) |
+| 55 | 2025-06-01 | [⎈ EKS Pod Density with Prefix Delegation: A Complete Guide ️](https://medium.com/@muppedaanvesh/eks-pod-density-with-prefix-delegation-a-complete-guide-%EF%B8%8F-2e20997ede10?source=rss-15b2de10f77d------2) |
+
 
 
 
