@@ -1,5 +1,5 @@
 # --- Builder Stage: Download eksctl CLI ---
-FROM alpine:3.19 AS builder
+FROM alpine:3.22 AS builder
 
 # Versions (update these as needed)
 ARG EKSCTL_VERSION=v0.150.0
@@ -11,7 +11,7 @@ RUN curl -Lo /usr/local/bin/eksctl \
     && chmod +x /usr/local/bin/eksctl
 
 # --- Final Stage: Runtime Image ---
-FROM alpine:3.19
+FROM alpine:3.22
 
 # 1. Create non-root user
 RUN addgroup -S eksctl && adduser -S eksctl -G eksctl
