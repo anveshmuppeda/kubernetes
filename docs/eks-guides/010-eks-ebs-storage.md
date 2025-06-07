@@ -5,6 +5,7 @@ sidebar_position: 10
 ---  
 
 # EKS Storage with Amazon EBS (Elastic Block Storage): Complete Implementation Guide
+#### *Store Kubernetes volumes with Amazon EBS*
 
 ## Overview
 
