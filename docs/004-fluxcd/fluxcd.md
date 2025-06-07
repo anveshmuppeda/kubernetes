@@ -42,7 +42,7 @@ This guide demonstrates how to implement **GitOps workflows** using FluxCD and G
 ---
 
 ## **Prerequisites**  
-- Kubernetes cluster (e.g., kind [Spin Up a Local Kubernetes Cluster with kind in Minutes](./../cluster-setup/kind.md))  
+- Kubernetes cluster (e.g., kind [Spin Up a Local Kubernetes Cluster with kind in Minutes](./../002-cluster-setup/kind.md))  
 - `kubectl` access to the cluster  
 - GitHub repository with [personal access token](https://github.com/settings/tokens) (repo scope)  
 - Docker Hub account (for image registry)  
