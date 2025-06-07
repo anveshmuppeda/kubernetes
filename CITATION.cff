@@ -8,8 +8,8 @@ authors:
 title: "Kubernetes Hands-on Guides"
 version: 1.0.0
 date-released: 2025-06-07
-url: "https://github.com/yourusername/kubernetes"
-repository-code: "https://github.com/yourusername/kubernetes"
+url: "https://github.com/anveshmuppeda/kubernetes"
+repository-code: "https://github.com/anveshmuppeda/kubernetes"
 abstract: "Comprehensive hands-on guides for learning Kubernetes with clear step-by-step instructions and practical examples."
 keywords:
   - "kubernetes"
@@ -21,5 +21,5 @@ keywords:
   - "educational"
   - "documentation"
   - "aws"
-license: GNU # Change this to your actual license
+license: GPL-3.0-or-later
 type: software # This categorizes it as educational software/documentation
