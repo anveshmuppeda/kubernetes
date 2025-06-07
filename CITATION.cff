@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use these Kubernetes guides, please cite them as below."
+authors:
+- family-names: "Muppeda"
+  given-names: "Anvesh"
+  # Optional: Add your ORCID if you have one
+  # orcid: "https://orcid.org/0000-0000-0000-0000"
+title: "Kubernetes Hands-on Guides"
+version: 1.0.0
+date-released: 2025-06-07
+url: "https://github.com/yourusername/kubernetes"
+repository-code: "https://github.com/yourusername/kubernetes"
+abstract: "Comprehensive hands-on guides for learning Kubernetes with clear step-by-step instructions and practical examples."
+keywords:
+  - "kubernetes"
+  - "container orchestration"
+  - "devops"
+  - "tutorial"
+  - "hands-on"
+  - "guide"
+  - "educational"
+  - "documentation"
+  - "aws"
+license: GNU # Change this to your actual license
+type: software # This categorizes it as educational software/documentation

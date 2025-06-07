@@ -5,7 +5,7 @@ sidebar_position: 11
 ---  
 
 # EKS Storage with Amazon EFS (Elastic File System): Complete Implementation Guide
-
+#### *Store Kubernetes volumes with Amazon EFS*
 ![EKS EFS Storage](./img/eks-efs.png)
 
 Amazon Elastic File System (EFS) transforms how we handle persistent storage in Kubernetes environments by providing serverless, fully elastic file storage that scales automatically. This comprehensive guide walks you through implementing EFS storage in your Amazon EKS clusters using the EFS Container Storage Interface (CSI) driver.
