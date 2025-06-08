@@ -9,6 +9,8 @@ sidebar_position: 13
 
 # A Guide to Amazon EKS Storage: EBS, EFS, and S3
 
+![Amazon EKS Storage Options](./img/eks-storage.png)
+
 Choosing the right storage solution is critical for running scalable, resilient, and cost-effective applications on Amazon EKS. AWS offers several powerful storage options that integrate with Kubernetes, each designed for different use cases. This guide provides a high-level overview of the three primary storage services—Amazon EBS, Amazon EFS, and Amazon S3 (via the Mountpoint CSI driver)—to help you understand their core features, differences, and ideal workloads.
 
 For detailed, step-by-step implementation instructions and advanced configurations, please refer to the comprehensive individual guides:
