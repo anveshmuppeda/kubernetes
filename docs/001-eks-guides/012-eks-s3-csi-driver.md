@@ -9,6 +9,14 @@ sidebar_position: 12
 
 ![EKS Mountpoint for Amazon S3 CSI Driver](./img/eks-s3-csi-driver.png)
 
+:::tip
+Use the [manifest templates](https://github.com/anveshmuppeda/kubernetes/tree/main/docs/001-eks-guides/cloudformation) to create your own Kubernetes resources which can be used in the examples below.
+:::
+
+:::tip
+Use the [Cloud Formation templates](https://github.com/anveshmuppeda/kubernetes/tree/main/docs/001-eks-guides/cloudformation) to create your own AWS resources which can be used in the examples below.
+:::
+
 ## Overview
 
 The Mountpoint for Amazon S3 Container Storage Interface (CSI) driver enables Kubernetes applications to access Amazon S3 objects through a standard file system interface. This integration allows containers running in Amazon EKS and self-managed Kubernetes clusters to interact with S3 buckets as mounted volumes, achieving high aggregate throughput without requiring application code modifications.
