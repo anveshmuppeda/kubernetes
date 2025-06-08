@@ -244,3 +244,7 @@ kubectl label node ip-10-0-236-77.ec2.internal csidriver-
 
 The CSI HostPath driver is a fantastic educational tool. By using it, we've demystified the entire lifecycle of Kubernetes storage—from installing a driver and provisioning ephemeral volumes to understanding bind mounts and managing persistent claims. While you'd never use it for your critical applications, the knowledge you gain from it is invaluable for mastering storage in any Kubernetes environment.
 
+## references
+1. [CSI HostPath Driver](https://github.com/kubernetes-csi/csi-driver-host-path/tree/master)
+2. [Kubernetes CSI Documentation](https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/#csi-ephemeral-volumes)
+3. [Kubernetes CSI Ephemeral Volumes](https://kubernetes-csi.github.io/docs/example.html)
