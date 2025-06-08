@@ -1,0 +1,17 @@
+# pod-cm-volume.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-volume-pod
+spec:
+  containers:
+  - name: main-app
+    image: busybox
+    command: ["/bin/sh", "-c", "sleep 3600"]
+    volumeMounts:
+    - name: config-volume
+      mountPath: /etc/config # Mount the volume at this path
+  volumes:
+  - name: config-volume
+    configMap:
+      name: app-config # Use the 'app-config' ConfigMap to create files in the volume

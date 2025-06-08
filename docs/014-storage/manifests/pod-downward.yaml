@@ -1,0 +1,29 @@
+# pod-downward.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: downward-api-pod
+  labels:
+    app: my-app
+    version: v1.0
+spec:
+  containers:
+  - name: main-app
+    image: busybox
+    command: ["/bin/sh", "-c", "sleep 3600"]
+    volumeMounts:
+    - name: pod-info
+      mountPath: /etc/podinfo
+  volumes:
+  - name: pod-info
+    downwardAPI:
+      items:
+        - path: "podName"         # Creates a file named 'podName'
+          fieldRef:
+            fieldPath: metadata.name
+        - path: "namespace"       # Creates a file named 'namespace'
+          fieldRef:
+            fieldPath: metadata.namespace
+        - path: "labels"          # Creates a file named 'labels'
+          fieldRef:
+            fieldPath: metadata.labels

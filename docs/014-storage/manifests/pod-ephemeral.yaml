@@ -1,0 +1,24 @@
+# pod-ephemeral.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-ephemeral
+spec:
+  containers:
+    - name: app
+      image: public.ecr.aws/amazonlinux/amazonlinux
+      command: ["/bin/sh"]
+      args: ["-c", "while true; do echo $(date -u) >> /data/out.txt; sleep 5; done"]
+      volumeMounts:
+        - name: ephemeral-storage
+          mountPath: /data
+  volumes:
+    - name: ephemeral-storage
+      ephemeral:
+        volumeClaimTemplate:
+          spec:
+            accessModes: ["ReadWriteOnce"]
+            storageClassName: ebs-ephemeral-storage
+            resources:
+              requests:
+                storage: 1Gi
