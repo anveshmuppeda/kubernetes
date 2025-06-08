@@ -33,8 +33,9 @@ Let's get our hands dirty and install the driver in our cluster.
 
 The recommended way to install the driver is by applying a manifest directly from the official Kubernetes CSI GitHub repository. This script deploys all the necessary components, including the `CSIDriver` object, a `Statefulset` for the driver pods, and the required RBAC permissions.
 
+[./manifests/csidriver-install/deploy.sh](./manifests/csidriver-install/deploy.sh)  
 ```bash
-./manifests/csidriver-install/deploy.sh
+./deploy.sh  
 ```
 
 This will create the necessary `CSIDriver` object, the `Statefulset` for the driver pods, and the required RBAC permissions.
@@ -223,7 +224,9 @@ Apply these files, and you'll have a pod with persistent storage, all managed by
 
 ### Cleanup
 
-To remove everything you've created, delete the resources in reverse order:
+To remove everything you've created, delete the resources in reverse order:  
+[./manifests/csidriver-install/destroy.sh](./manifests/csidriver-install/destroy.sh)  
+
 ```bash
 kubectl delete pod my-csi-app
 kubectl delete pod my-csi-app-persistent
