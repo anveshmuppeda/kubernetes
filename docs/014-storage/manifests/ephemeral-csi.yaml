@@ -15,5 +15,4 @@ spec:
   volumes:
     - name: my-csi-inline-vol
       csi:
-        # Use the real driver name we just installed
         driver: hostpath.csi.k8s.io
