@@ -1,10 +1,10 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/014-storage/002-generic-ephemeral-volumes.md
+// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/014-storage/004-generic-ephemeral-volumes.md
 title: "Generic Ephemeral Volumes"
 description: "Understanding Generic Ephemeral Volumes in Kubernetes"
 sidebar_label: "Generic Ephemeral Volumes"
 sidebar_id: "generic-ephemeral-volumes"
-sidebar_position: 1
+sidebar_position: 4
 ---  
 
 # A Guide to Generic Ephemeral Volumes in Kubernetes

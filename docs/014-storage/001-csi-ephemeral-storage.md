@@ -3,7 +3,7 @@
 title: "CSI Ephemeral Storage"
 description: "Understanding Ephemeral Storage in Kubernetes"
 sidebar_label: "CSI Ephemeral Storage"
-sidebar_id: "ephemeral-storage"
+sidebar_id: "csi-ephemeral-storage"
 sidebar_position: 1
 ---  
 
