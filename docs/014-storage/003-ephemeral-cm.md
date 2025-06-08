@@ -9,6 +9,10 @@ sidebar_position: 1
 
 # Injecting Data Into Pods: `ConfigMap`, `Secret`, & `DownwardAPI` Explained
 
+:::tip
+Use the [manifest templates](https://github.com/anveshmuppeda/kubernetes/tree/feature/docs_update/docs/014-storage/manifests) to create your own Kubernetes resources which can be used in the examples below.
+:::
+
 Building container images is great for packaging your application, but what about its configuration? Hardcoding configuration is inflexible, and rebuilding an image for every environment is inefficient. Kubernetes solves this by letting you **inject** configuration and metadata into your Pods at runtime.
 
 This guide covers the three primary ways to do this:

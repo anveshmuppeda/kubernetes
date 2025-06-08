@@ -9,6 +9,10 @@ sidebar_position: 1
 
 # Kubernetes Ephemeral Volumes: A Practical Guide to `emptyDir` Volumes
 
+:::tip
+Use the [manifest templates](https://github.com/anveshmuppeda/kubernetes/tree/feature/docs_update/docs/014-storage/manifests) to create your own Kubernetes resources which can be used in the examples below.
+:::
+
 In the world of Kubernetes storage, not every solution needs to be a complex, persistent, network-attached disk. Sometimes, all your application needs is a simple, temporary place to store files. This is where the fundamental `emptyDir` volume shines.
 
 This guide will walk you through what `emptyDir` is, its key characteristics, and practical, hands-on examples to get you started.
