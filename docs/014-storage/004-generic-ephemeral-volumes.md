@@ -10,7 +10,7 @@ sidebar_position: 1
 # A Guide to Generic Ephemeral Volumes in Kubernetes
 
 :::tip
-Use the [manifest templates](https://github.com/anveshmuppeda/kubernetes/tree/feature/docs_update/docs/014-storage/manifests) to create your own Kubernetes resources which can be used in the examples below.
+Use the [manifest templates](https://github.com/anveshmuppeda/kubernetes/tree/main/docs/014-storage/manifests) to create your own Kubernetes resources which can be used in the examples below.
 :::
 
 What if you need temporary storage for a Pod, but `emptyDir` isn't enough? Maybe you need more space than the local node provides, better performance, or a specific storage type. On the other hand, creating and managing `PersistentVolumeClaims` manually for temporary data feels like too much overhead.

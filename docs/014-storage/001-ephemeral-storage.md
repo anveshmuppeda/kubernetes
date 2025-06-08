@@ -10,7 +10,7 @@ sidebar_position: 1
 # CSI ephemeral volumes: A Deep Dive into Kubernetes CSI with the HostPath Driver
 
 :::tip
-Use the [manifest templates](https://github.com/anveshmuppeda/kubernetes/tree/feature/docs_update/docs/014-storage/manifests) to create your own Kubernetes resources which can be used in the examples below.
+Use the [manifest templates](https://github.com/anveshmuppeda/kubernetes/tree/main/docs/014-storage/manifests) to create your own Kubernetes resources which can be used in the examples below.
 :::
 
 The Container Storage Interface (CSI) is the standard for exposing block and file storage systems to containerized workloads on Kubernetes. But diving into CSI with cloud-specific drivers can be complex. What if you just want to understand the mechanics?

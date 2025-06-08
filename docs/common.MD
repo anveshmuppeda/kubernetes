@@ -4,3 +4,8 @@
 Use the [manifest templates](./manifests) to create your own Kubernetes resources which can be used in the examples below.
 :::
 
+
+:::tip
+Use the [Cloud Formation templates](https://github.com/anveshmuppeda/kubernetes/tree/main/docs/001-eks-guides/cloudformation) to create your own AWS resources which can be used in the examples below.
+:::
+
