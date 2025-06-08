@@ -7,6 +7,18 @@ sidebar_position: 10
 # EKS Storage with Amazon EBS (Elastic Block Storage): Complete Implementation Guide
 #### *Store Kubernetes volumes with Amazon EBS*
 
+:::warning
+Zone Awareness: Ensure pods are scheduled in the same AZ as their volumes
+:::
+
+:::tip
+Use the [manifest templates](https://github.com/anveshmuppeda/kubernetes/tree/main/docs/001-eks-guides/cloudformation) to create your own Kubernetes resources which can be used in the examples below.
+:::
+
+:::tip
+Use the [Cloud Formation templates](https://github.com/anveshmuppeda/kubernetes/tree/main/docs/001-eks-guides/cloudformation) to create your own AWS resources which can be used in the examples below.
+:::
+
 ## Overview
 
 Amazon Elastic Block Store (EBS) provides persistent, high-performance block storage for Amazon EKS clusters through the EBS Container Storage Interface (CSI) driver. This driver seamlessly manages the lifecycle of EBS volumes, enabling them to serve as storage backends for both persistent volumes and ephemeral volumes in Kubernetes.
