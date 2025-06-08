@@ -1,0 +1,13 @@
+# pod-cm-env.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-env-pod
+spec:
+  containers:
+  - name: main-app
+    image: busybox
+    command: ["/bin/sh", "-c", "echo 'Log level is $LOG_LEVEL' && echo 'API is at $API_ENDPOINT' && sleep 3600"]
+    envFrom:
+    - configMapRef:
+        name: app-config # This injects all keys from the ConfigMap as environment variables

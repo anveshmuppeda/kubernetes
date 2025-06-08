@@ -1,0 +1,26 @@
+# pod-shared.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: shared-data-pod
+spec:
+  # This container writes "Hello from the producer!" into index.html
+  containers:
+  - name: producer
+    image: busybox
+    command: ["/bin/sh", "-c", "echo 'Hello from the producer!' > /workdir/index.html && sleep 3600"]
+    volumeMounts:
+    - name: shared-workdir
+      mountPath: /workdir
+
+  # This container acts like a web server, serving the file written by the producer
+  - name: consumer
+    image: nginx:alpine
+    volumeMounts:
+    - name: shared-workdir
+      mountPath: /usr/share/nginx/html # Mount the shared volume into nginx's web root
+      readOnly: true                  # Good practice: the consumer only needs to read
+
+  volumes:
+  - name: shared-workdir
+    emptyDir: {}
