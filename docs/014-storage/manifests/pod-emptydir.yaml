@@ -1,0 +1,17 @@
+# pod-emptydir.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: scratch-space-pod
+spec:
+  containers:
+  - name: main-app
+    image: busybox
+    # This command writes the date to a log file in the cache directory every 5 seconds
+    command: ["/bin/sh", "-c", "while true; do date >> /cache/log.txt; sleep 5; done"]
+    volumeMounts:
+    - name: cache-volume  # This name must match the volume name below
+      mountPath: /cache    # The path where the volume will be mounted inside the container
+  volumes:
+  - name: cache-volume      # A unique name for the volume within this Pod
+    emptyDir: {}         # The type of volume is emptyDir

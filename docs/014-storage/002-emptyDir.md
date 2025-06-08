@@ -39,10 +39,10 @@ This is the most common use case: an application needs a temporary directory to 
 
 #### Step 1: Create the Pod Manifest
 
-Create a file named `pod-scratch.yaml`. This Pod has a single container that writes the current date to a file every 5 seconds.
+Create a file named `pod-emptydir.yaml`. This Pod has a single container that writes the current date to a file every 5 seconds.
 
 ```yaml
-# pod-scratch.yaml
+# pod-emptydir.yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -65,7 +65,7 @@ spec:
 
 1.  **Deploy the Pod:**
     ```bash
-    kubectl apply -f pod-scratch.yaml
+    kubectl apply -f pod-emptydir.yaml
     ```
 
 2.  **Check the data:** Wait a few moments, then `exec` into the Pod to see the contents of the file.
