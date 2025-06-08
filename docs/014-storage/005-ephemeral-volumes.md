@@ -82,17 +82,17 @@ Ready to see these volumes in action? These detailed, hands-on guides will walk 
 
   * **For CSI Ephemeral Volumes:**
 
-      * [A Deep Dive into Kubernetes CSI with the HostPath Driver](https://www.google.com/search?q=./001-ephemeral-storage.md)
+      * [A Deep Dive into Kubernetes CSI with the HostPath Driver](./001-csi-ephemeral-storage.md)
 
   * **For `emptyDir`:**
 
-      * [Kubernetes 101: A Practical Guide to `emptyDir` Volumes](https://www.google.com/search?q=./002-emptyDir.md)
+      * [Kubernetes 101: A Practical Guide to `emptyDir` Volumes](./002-emptyDir.md)
 
   * **For `ConfigMap`, `Secret`, and `DownwardAPI`:**
 
-      * [Injecting Data Into Pods: `ConfigMap`, `Secret`, & `DownwardAPI` Explained](https://www.google.com/search?q=./003-ephemeral-cm.md)
+      * [Injecting Data Into Pods: `ConfigMap`, `Secret`, & `DownwardAPI` Explained](./003-ephemeral-cm.md)
 
   * **For Generic Ephemeral Volumes:**
 
-      * [The Best of Both Worlds: A Guide to Generic Ephemeral Volumes](https://www.google.com/search?q=./004-generic-ephemeral-volumes.md)
+      * [The Best of Both Worlds: A Guide to Generic Ephemeral Volumes](./004-generic-ephemeral-volumes.md)
 
