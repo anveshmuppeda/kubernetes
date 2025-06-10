@@ -170,6 +170,8 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 | 56 | 2025-06-03 | [⎈ EKS Storage with Amazon EFS (Elastic File System): Complete Implementation Guide ️](https://medium.com/@muppedaanvesh/eks-storage-with-amazon-efs-elastic-file-system-complete-implementation-guide-%EF%B8%8F-bbb85dc8ab9d?source=rss-15b2de10f77d------2) |
 | 57 | 2025-06-09 | [⎈ EKS Mountpoint for Amazon S3 CSI Driver: Complete Implementation Guide ️](https://medium.com/@muppedaanvesh/eks-mountpoint-for-amazon-s3-csi-driver-complete-implementation-guide-%EF%B8%8F-05e5e17aa0c1?source=rss-15b2de10f77d------2) |
 | 58 | 2025-06-08 | [⎈ Choosing the Right Storage for EKS: EBS vs. EFS vs. S3 ️](https://medium.com/@muppedaanvesh/choosing-the-right-storage-for-eks-ebs-vs-efs-vs-s3-%EF%B8%8F-ce7c0598d0b6?source=rss-15b2de10f77d------2) |
+| 59 | 2025-06-10 | [⎈ CSI ephemeral volumes: A Deep Dive into Kubernetes CSI with the HostPath Driver ️](https://medium.com/@muppedaanvesh/csi-ephemeral-volumes-a-deep-dive-into-kubernetes-csi-with-the-hostpath-driver-%EF%B8%8F-f683874ea129?source=rss-15b2de10f77d------2) |
+
 
 
 
