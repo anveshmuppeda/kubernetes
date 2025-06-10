@@ -9,6 +9,8 @@ sidebar_position: 1
 
 # CSI Ephemeral Volumes: A Deep Dive into Kubernetes CSI with the HostPath Driver
 
+![CSI Ephemeral Storage](./img/csi-ephemeral-storage.png)
+
 :::tip
 Use the [manifest templates](https://github.com/anveshmuppeda/kubernetes/tree/main/docs/014-storage/manifests) to create your own Kubernetes resources which can be used in the examples below.
 :::
