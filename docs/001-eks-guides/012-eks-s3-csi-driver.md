@@ -10,7 +10,7 @@ sidebar_position: 12
 ![EKS Mountpoint for Amazon S3 CSI Driver](./img/eks-s3-csi-driver.png)
 
 :::tip
-Use the [manifest templates](https://github.com/anveshmuppeda/kubernetes/tree/main/docs/001-eks-guides/cloudformation) to create your own Kubernetes resources which can be used in the examples below.
+Use the [manifest templates](https://github.com/anveshmuppeda/kubernetes/tree/main/docs/001-eks-guides/manifests) to create your own Kubernetes resources which can be used in the examples below.
 :::
 
 :::tip

@@ -11,7 +11,7 @@ sidebar_position: 11
 Amazon Elastic File System (EFS) transforms how we handle persistent storage in Kubernetes environments by providing serverless, fully elastic file storage that scales automatically. This comprehensive guide walks you through implementing EFS storage in your Amazon EKS clusters using the EFS Container Storage Interface (CSI) driver.
 
 :::tip
-Use the [manifest templates](https://github.com/anveshmuppeda/kubernetes/tree/main/docs/001-eks-guides/cloudformation) to create your own Kubernetes resources which can be used in the examples below.
+Use the [manifest templates](https://github.com/anveshmuppeda/kubernetes/tree/main/docs/001-eks-guides/manifests) to create your own Kubernetes resources which can be used in the examples below.
 :::
 
 :::tip
