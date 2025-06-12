@@ -83,8 +83,8 @@ jobs:
           file: projects/microservices-project/src/adservice/Dockerfile
           push: true
           tags: |
-            ${{ env.IMAGE }}
-            ${{ env.LATESTIMAGE }}
+            anvesh35/microservices-demo-adservice:latest
+            anvesh35/microservices-demo-adservice:${{ needs.version-calculator.outputs.new-version }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}
