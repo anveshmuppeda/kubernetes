@@ -16,7 +16,6 @@ on:
   push:
     branches:
       - main
-      - feature/docs_update
       - feature/microservicesdemo
     paths:
       - 'projects/microservices-demo/src/adservice/Dockerfile'
@@ -63,7 +62,9 @@ jobs:
           context: projects/microservices-project/src/adservice/
           file: projects/microservices-project/src/adservice/Dockerfile
           push: true
-          tags: ${{ env.IMAGE }}
+          tags: 
+            ${{ env.IMAGE }}
+            ${{ env.LATESTIMAGE }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}
