@@ -1,5 +1,5 @@
 # .github/workflows/docker-build-push.yaml
-name: MicroServices Demo | Cart Service - Docker Build
+name: MicroServices Demo | Loadgenerator - Docker Build
 
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ on:
       - main
       - feature/microservicesdemo
     paths:
-      - 'projects/microservices-project/src/cartservice/src/Dockerfile'
+      - 'projects/microservices-project/src/loadgenerator/Dockerfile'
 
 jobs:
   version-calculator:
@@ -30,10 +30,10 @@ jobs:
         id: get-version
         run: |
           # Get auth token if needed (for private repos)
-          # TOKEN=$(curl -s "https://auth.docker.io/token?service=registry.docker.io&scope=repository:anvesh35/microservices-demo-cartservice:pull" | jq -r .token)
+          # TOKEN=$(curl -s "https://auth.docker.io/token?service=registry.docker.io&scope=repository:anvesh35/microservices-demo-loadgenerator:pull" | jq -r .token)
           
           # Get all tags
-          TAGS=$(curl -s "https://hub.docker.com/v2/repositories/anvesh35/microservices-demo-cartservice/tags/?page_size=100" | jq -r '.results[].name')
+          TAGS=$(curl -s "https://hub.docker.com/v2/repositories/anvesh35/microservices-demo-loadgenerator/tags/?page_size=100" | jq -r '.results[].name')
           
           # Filter and sort semantic versions
           LATEST=$(echo "$TAGS" | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -1)
@@ -76,15 +76,15 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push CartService Docker image
+      - name: Build and push loadgenerator Docker image
         uses: docker/build-push-action@v4
         with:
-          context: projects/microservices-project/src/cartservice/src/
-          file: projects/microservices-project/src/cartservice/src/Dockerfile
+          context: projects/microservices-project/src/loadgenerator/
+          file: projects/microservices-project/src/loadgenerator/Dockerfile
           push: true
           tags: |
-            anvesh35/microservices-demo-cartservice:${{ needs.version-calculator.outputs.new-version }}
-            anvesh35/microservices-demo-cartservice:latest
+            anvesh35/microservices-demo-loadgenerator:${{ needs.version-calculator.outputs.new-version }}
+            anvesh35/microservices-demo-loadgenerator:latest
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}
