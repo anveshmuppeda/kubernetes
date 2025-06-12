@@ -1,5 +1,5 @@
 # .github/workflows/docker-build-push.yaml
-name: MicroServices Demo | CartService - Docker Build
+name: MicroServices Demo | Cart Service - Docker Build
 
 on:
   workflow_dispatch:
@@ -76,7 +76,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push k8s-tools Docker image
+      - name: Build and push CartService Docker image
         uses: docker/build-push-action@v4
         with:
           context: projects/microservices-project/src/cartservice/src/
