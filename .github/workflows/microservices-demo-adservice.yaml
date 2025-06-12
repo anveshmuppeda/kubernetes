@@ -62,7 +62,7 @@ jobs:
           context: projects/microservices-project/src/adservice/
           file: projects/microservices-project/src/adservice/Dockerfile
           push: true
-          tags: 
+          tags: |
             ${{ env.IMAGE }}
             ${{ env.LATESTIMAGE }}
           platforms: linux/amd64,linux/arm64

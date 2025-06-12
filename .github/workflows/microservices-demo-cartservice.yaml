@@ -82,7 +82,7 @@ jobs:
           context: projects/microservices-project/src/cartservice/src/
           file: projects/microservices-project/src/cartservice/src/Dockerfile
           push: true
-          tags: 
+          tags: |
             anvesh35/microservices-demo-cartservice:${{ needs.version-calculator.outputs.new-version }}
             anvesh35/microservices-demo-cartservice:latest
           platforms: linux/amd64,linux/arm64
