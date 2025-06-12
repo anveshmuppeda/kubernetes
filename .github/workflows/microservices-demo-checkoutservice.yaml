@@ -1,0 +1,91 @@
+# .github/workflows/docker-build-push.yaml
+name: MicroServices Demo | Checkout Service - Docker Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump-type:
+        description: 'Version bump type'
+        required: true
+        default: 'minor'
+        type: choice
+        options:
+        - major
+        - minor
+        - patch
+  push:
+    branches:
+      - main
+      - feature/microservicesdemo
+    paths:
+      - 'projects/microservices-project/src/checkoutservice/Dockerfile'
+
+jobs:
+  version-calculator:
+    runs-on: ubuntu-latest
+    outputs:
+      new-version: ${{ steps.get-version.outputs.NEW_VERSION }}
+    steps:
+      - name: Get latest version from Docker Hub
+        id: get-version
+        run: |
+          # Get auth token if needed (for private repos)
+          # TOKEN=$(curl -s "https://auth.docker.io/token?service=registry.docker.io&scope=repository:anvesh35/microservices-demo-checkoutservice:pull" | jq -r .token)
+          
+          # Get all tags
+          TAGS=$(curl -s "https://hub.docker.com/v2/repositories/anvesh35/microservices-demo-checkoutservice/tags/?page_size=100" | jq -r '.results[].name')
+          
+          # Filter and sort semantic versions
+          LATEST=$(echo "$TAGS" | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -1)
+          
+          # Set default if no versions found
+          if [ -z "$LATEST" ]; then
+            LATEST="v0.0.0"
+          fi
+
+          # Remove 'v' prefix and split version
+          VERSION=${LATEST#v}
+          IFS=. read MAJOR MINOR PATCH <<<"$VERSION"
+
+          # Determine bump type
+          case "${{ inputs.bump-type || 'minor' }}" in
+            major) MAJOR=$((MAJOR+1)); MINOR=0; PATCH=0 ;;
+            minor) MINOR=$((MINOR+1)); PATCH=0 ;;
+            patch) PATCH=$((PATCH+1)) ;;
+          esac
+
+          NEW_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          echo "NEW_VERSION=${NEW_VERSION}" >> $GITHUB_OUTPUT
+
+  build-push-update:
+    needs: version-calculator
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code (with all branches)
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: feature/microservicesdemo
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Checkout Service Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: projects/microservices-project/src/checkoutservice/
+          file: projects/microservices-project/src/checkoutservice/Dockerfile
+          push: true
+          tags: |
+            anvesh35/microservices-demo-checkoutservice:${{ needs.version-calculator.outputs.new-version }}
+            anvesh35/microservices-demo-checkoutservice:latest
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            VERSION=${{ env.VERSION }}
+      
