@@ -4,15 +4,15 @@ name: MicroServices Demo | AdService - Docker Build
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: 'Version to use for the Docker image'
+      bump-type:
+        description: 'Version bump type'
         required: true
-        default: 'v1.0.0'
+        default: 'minor'
         type: choice
         options:
-        - v1.0.0
-        - v1.0.1
-        - v1.0.2
+        - major
+        - minor
+        - patch
   push:
     branches:
       - main
