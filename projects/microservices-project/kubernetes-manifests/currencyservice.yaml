@@ -43,7 +43,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: currencyservice
+        image: anvesh35/microservices-demo-currencyservice
         ports:
         - name: grpc
           containerPort: 7000

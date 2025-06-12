@@ -44,7 +44,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: frontend
+          image: anvesh35/microservices-demo-frontend
           ports:
           - containerPort: 8080
           readinessProbe:

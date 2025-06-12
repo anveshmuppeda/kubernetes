@@ -43,7 +43,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: paymentservice
+        image: anvesh35/microservices-demo-paymentservice
         ports:
         - containerPort: 50051
         env:
