@@ -42,7 +42,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: shippingservice
+        image: anvesh35/microservices-demo-shippingservice
         ports:
         - containerPort: 50051
         env:
