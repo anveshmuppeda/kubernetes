@@ -209,16 +209,16 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 
 ## Concepts Covered in This Repository
 
-### [EKS Getting Started](./docs/eks-guides)  
-#### [1. A Hands-On Guide to AWS EKS Fargate Cluster](./docs/eks-guides/001-eks-fargate-guide.md)
-#### [2. A Hands-On Guide to AWS EKS Cluster with Managed Node Groups](./docs/eks-guides/002-eks-managed-node-group.md)
-#### [3. A Hands-On Guide to AWS EKS Cluster with Self-Managed Worker Nodes](./docs/eks-guides/003-eks-self-managed-node-group.md)
-#### [4. A Hands-On Guide to AWS EKS Cluster with Managed Node Groups](./docs/eks-guides/004-eks-managed-node-group.md)
-#### [5. AWS Load Balancer Controller on EKS: A Comprehensive Guide](./docs/eks-guides/005-alb-controller.md)
-#### [6. Amazon EKS Auto Mode: A Hands-On Guide](./docs/eks-guides/006-eks-auto-mode.md)
-#### [7. Amazon EKS Kubecost: A Hands-On Guide](./docs/eks-guides/007-kubecost.md)
-#### [8. EKS Node Viewer: A Hands-On Guide](./docs/eks-guides/008-eks-node-viewer.md)  
-#### [9. EKS Pod Density with Prefix Delegation: A Complete Guide](./docs/eks-guides/009-prefix-delegation.md)
+### [EKS Getting Started](./docs/001-eks-guides)  
+#### [1. A Hands-On Guide to AWS EKS Fargate Cluster](./docs/001-eks-guides/001-eks-fargate-guide.md)
+#### [2. A Hands-On Guide to AWS EKS Cluster with Managed Node Groups](./docs/001-eks-guides/002-eks-managed-node-group.md)
+#### [3. A Hands-On Guide to AWS EKS Cluster with Self-Managed Worker Nodes](./docs/001-eks-guides/003-eks-self-managed-node-group.md)
+#### [4. A Hands-On Guide to AWS EKS Cluster with Managed Node Groups](./docs/001-eks-guides/004-eks-managed-node-group.md)
+#### [5. AWS Load Balancer Controller on EKS: A Comprehensive Guide](./docs/001-eks-guides/005-alb-controller.md)
+#### [6. Amazon EKS Auto Mode: A Hands-On Guide](./docs/001-eks-guides/006-eks-auto-mode.md)
+#### [7. Amazon EKS Kubecost: A Hands-On Guide](./docs/001-eks-guides/007-kubecost.md)
+#### [8. EKS Node Viewer: A Hands-On Guide](./docs/001-eks-guides/008-eks-node-viewer.md)  
+#### [9. EKS Pod Density with Prefix Delegation: A Complete Guide](./docs/001-eks-guides/009-prefix-delegation.md)
 
 ---
 
