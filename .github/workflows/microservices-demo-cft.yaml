@@ -1,0 +1,57 @@
+name: Deploy Microservices Demo EKS Cluster using CFT
+
+on:
+  workflow_dispatch:
+    inputs:
+      stack-name:
+        description: 'CloudFormation Stack Name'
+        required: false
+        default: 'microservices-demo-eks'
+      EksClusterName:
+        description: 'EKS Cluster Name'
+        required: true
+        default: 'microservices-demo-eks-cluster'
+      DesiredSize:
+        description: 'Desired Node Group Size'
+        required: true
+        default: '2'
+      region:
+        description: 'AWS Region'
+        required: true
+        default: 'us-east-1'
+        type: choice
+        options:
+        - us-east-1
+        - us-east-2
+        - us-west-2
+
+jobs:
+  deploy-cft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ github.event.inputs.region }}
+
+      - name: Install AWS CLI
+        run: |
+          pip install --upgrade pip
+          pip install awscli
+
+      - name: Deploy CloudFormation Stack
+        run: |
+          aws cloudformation deploy \
+            --region "${{ github.event.inputs.region }}" \
+            --stack-name "${{ github.event.inputs.stack-name }}" \
+            --template-file projects/microservices-project/cloudformation/microservice-demo-cft.yaml \
+            --capabilities CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND \
+            --no-fail-on-empty-changeset \
+            --parameter-overrides \
+              EksClusterName="${{ github.event.inputs.EksClusterName }}" \
+              DesiredSize="${{ github.event.inputs.DesiredSize }}"

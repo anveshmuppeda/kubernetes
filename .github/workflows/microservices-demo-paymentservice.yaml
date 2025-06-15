@@ -1,5 +1,5 @@
 # .github/workflows/docker-build-push.yaml
-name: MicroServices Demo | AdService - Docker Build
+name: MicroServices Demo | Payment Service - Docker Build
 
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ on:
       - main
       - feature/microservicesdemo
     paths:
-      - 'projects/microservices-demo/src/adservice/Dockerfile'
+      - 'projects/microservices-project/src/paymentservice/Dockerfile'
 
 jobs:
   version-calculator:
@@ -30,10 +30,10 @@ jobs:
         id: get-version
         run: |
           # Get auth token if needed (for private repos)
-          # TOKEN=$(curl -s "https://auth.docker.io/token?service=registry.docker.io&scope=repository:anvesh35/microservices-demo-adservice:pull" | jq -r .token)
+          # TOKEN=$(curl -s "https://auth.docker.io/token?service=registry.docker.io&scope=repository:anvesh35/microservices-demo-paymentservice:pull" | jq -r .token)
           
           # Get all tags
-          TAGS=$(curl -s "https://hub.docker.com/v2/repositories/anvesh35/microservices-demo-adservice/tags/?page_size=100" | jq -r '.results[].name')
+          TAGS=$(curl -s "https://hub.docker.com/v2/repositories/anvesh35/microservices-demo-paymentservice/tags/?page_size=100" | jq -r '.results[].name')
           
           # Filter and sort semantic versions
           LATEST=$(echo "$TAGS" | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -1)
@@ -76,15 +76,15 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push Docker image (AdService)
+      - name: Build and push paymentservice Docker image
         uses: docker/build-push-action@v4
         with:
-          context: projects/microservices-project/src/adservice/
-          file: projects/microservices-project/src/adservice/Dockerfile
+          context: projects/microservices-project/src/paymentservice/
+          file: projects/microservices-project/src/paymentservice/Dockerfile
           push: true
           tags: |
-            anvesh35/microservices-demo-adservice:latest
-            anvesh35/microservices-demo-adservice:${{ needs.version-calculator.outputs.new-version }}
+            anvesh35/microservices-demo-paymentservice:${{ needs.version-calculator.outputs.new-version }}
+            anvesh35/microservices-demo-paymentservice:latest
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}

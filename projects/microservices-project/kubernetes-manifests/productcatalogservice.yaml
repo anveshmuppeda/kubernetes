@@ -43,7 +43,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: productcatalogservice
+        image: anvesh35/microservices-demo-productcatalogservice
         ports:
         - containerPort: 3550
         env:

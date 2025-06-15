@@ -77,7 +77,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: loadgenerator
+        image: anvesh35/microservices-demo-loadgenerator
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
