@@ -41,8 +41,8 @@ jobs:
 
       - name: Install AWS CLI
         run: |
-          sudo apt-get update
-          sudo apt-get install -y awscli
+          pip install --upgrade pip
+          pip install awscli
 
       - name: Deploy CloudFormation Stack
         run: |
