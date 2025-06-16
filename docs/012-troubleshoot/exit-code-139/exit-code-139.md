@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-139/exit-code-139.md
+// filepath: kubernetes/docs/012-troubleshoot/exit-code-139/exit-code-139.md
 sidebar_label: "Exit Code 139"
 sidebar_id: "exit-code-139"
 sidebar_position: 12

@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/monitoring/grafana-loki.md
+// filepath: kubernetes/docs/monitoring/grafana-loki.md
 sidebar_label: "Grafana Loki"
 sidebar_id: "grafana-loki"
 sidebar_position: 1

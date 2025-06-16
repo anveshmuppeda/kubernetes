@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-134/exit-code-134.md
+// filepath: kubernetes/docs/012-troubleshoot/exit-code-134/exit-code-134.md
 sidebar_label: "Exit Code 134"
 sidebar_id: "exit-code-134"
 sidebar_position: 10

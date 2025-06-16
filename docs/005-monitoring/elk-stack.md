@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/monitoring/elk-stack.md
+// filepath: kubernetes/docs/monitoring/elk-stack.md
 sidebar_label: "ELK Stack"
 sidebar_id: "elk-stack"
 sidebar_position: 4

@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/README.md
+// filepath: kubernetes/docs/012-troubleshoot/README.md
 sidebar_label: "Troubleshooting Kubernetes Exit Codes"
 sidebar_id: "troubleshooting-kubernetes-exit-codes"
 sidebar_position: 1

@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/pod-identity.md
+// filepath: kubernetes/docs/eks/pod-identity.md
 sidebar_label: "EKS Pod Identity"
 sidebar_position: 4
 ---  

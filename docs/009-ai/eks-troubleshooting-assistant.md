@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/ai/eks-troubleshooting-assistant.md
+// filepath: kubernetes/docs/ai/eks-troubleshooting-assistant.md
 sidebar_label: "EKS Troubleshooting Assistant"
 sidebar_id: "eks-troubleshooting-assistant"
 sidebar_position: 1

@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-125/exit-code-125.md
+// filepath: kubernetes/docs/012-troubleshoot/exit-code-125/exit-code-125.md
 sidebar_label: "Exit Code 125"
 sidebar_id: "exit-code-125"
 sidebar_position: 5

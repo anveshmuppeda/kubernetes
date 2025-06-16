@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/scaling/hpa.md
+// filepath: kubernetes/docs/scaling/hpa.md
 sidebar_label: "Horizontal Pod Autoscaler (HPA)"
 sidebar_id: "hpa"
 sidebar_position: 1

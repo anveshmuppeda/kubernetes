@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/007-kubecost.md
+// filepath: kubernetes/docs/eks/007-kubecost.md
 sidebar_label: "Kubecost"
 sidebar_position: 7
 ---  

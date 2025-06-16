@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/eks-irsa.md
+// filepath: kubernetes/docs/eks/eks-irsa.md
 sidebar_label: "EKS IRSA"
 sidebar_position: 3
 ---  

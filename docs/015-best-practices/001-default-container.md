@@ -1,3 +1,12 @@
+---
+// filepath: docs/015-best-practices/001-default-container.md
+title: "CSI Ephemeral Storage"
+description: "Understanding Ephemeral Storage in Kubernetes"
+sidebar_label: "CSI Ephemeral Storage"
+sidebar_id: "csi-ephemeral-storage"
+sidebar_position: 1
+---  
+
 # Setting a Default Container in Kubernetes
 
 **A quick and easy fix to streamline your `kubectl` commands for multi-container pods.**

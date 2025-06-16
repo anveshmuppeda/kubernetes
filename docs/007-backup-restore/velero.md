@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/velero/velero.md
+// filepath: kubernetes/docs/velero/velero.md
 sidebar_label: "Velero"
 sidebar_id: "velero"
 sidebar_position: 1

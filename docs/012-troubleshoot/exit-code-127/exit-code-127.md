@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-127/exit-code-127.md
+// filepath: kubernetes/docs/012-troubleshoot/exit-code-127/exit-code-127.md
 sidebar_label: "Exit Code 127"
 sidebar_id: "exit-code-127"
 sidebar_position: 7

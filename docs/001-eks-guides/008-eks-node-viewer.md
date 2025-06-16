@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/008-eks-node-viewer.md
+// filepath: kubernetes/docs/eks/008-eks-node-viewer.md
 sidebar_label: "EKS Node Viewer"
 sidebar_position: 8
 ---  

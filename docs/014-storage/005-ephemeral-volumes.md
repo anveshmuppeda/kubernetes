@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/014-storage/005-ephemeral-volumes.md
+// filepath: kubernetes/docs/014-storage/005-ephemeral-volumes.md
 title: "Ephemeral Volumes"
 description: "Understanding Ephemeral Volumes in Kubernetes"
 sidebar_label: "Ephemeral Volumes"
