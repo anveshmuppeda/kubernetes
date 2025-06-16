@@ -2,6 +2,8 @@
 
 **A quick and easy fix to streamline your `kubectl` commands for multi-container pods.**
 
+![Default Container Annotation](./img/default-container.png)
+
 When working with Kubernetes, you've likely encountered pods running multiple containers. This is a common and powerful pattern, often used for sidecars that handle tasks like logging, monitoring, or service mesh proxying. However, this setup can introduce a small but persistent annoyance: `kubectl` commands like `logs` and `exec` require you to specify which container you want to target.
 
 If you forget the `-c` or `--container` flag, `kubectl` simply defaults to the first container defined in the pod's manifest. This might not be the container you're interested in, leading to repeated command corrections and a clunky workflow.
