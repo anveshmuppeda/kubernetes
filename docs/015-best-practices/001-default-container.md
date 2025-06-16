@@ -1,3 +1,12 @@
+---
+// filepath: docs/015-best-practices/001-default-container.md
+title: "Setting a Default Container in Kubernetes"
+description: "A quick and easy fix to streamline your kubectl commands for multi-container pods."
+sidebar_label: "Default Container"
+sidebar_id: "default-container"
+sidebar_position: 1
+---  
+
 # Setting a Default Container in Kubernetes
 
 **A quick and easy fix to streamline your `kubectl` commands for multi-container pods.**

@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/014-storage/002-emptyDir.md
+// filepath: kubernetes/docs/014-storage/002-emptyDir.md
 title: "Empty Directory (emptyDir)"
 description: "Understanding Ephemeral Storage in Kubernetes with emptyDir"
 sidebar_label: "Empty Directory (emptyDir)"

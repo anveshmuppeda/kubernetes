@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/alb-controller.md
+// filepath: kubernetes/docs/eks/alb-controller.md
 sidebar_label: "AWS Load Balancer Controller"
 sidebar_position: 5
 ---  

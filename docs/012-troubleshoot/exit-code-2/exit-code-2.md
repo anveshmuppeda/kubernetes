@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-2/exit-code-2.md
+// filepath: kubernetes/docs/012-troubleshoot/exit-code-2/exit-code-2.md
 sidebar_label: "Exit Code 2"
 sidebar_id: "exit-code-2"
 sidebar_position: 4

@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/cluster-setup/kind.md
+// filepath: kubernetes/docs/cluster-setup/kind.md
 sidebar_position: 1
 sidebar_label: "Kind Cluster Setup"
 ---  

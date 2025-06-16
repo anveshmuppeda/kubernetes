@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/security/coredns.md
+// filepath: kubernetes/docs/security/coredns.md
 sidebar_label: "CoreDNS"
 sidebar_id: "coredns"
 sidebar_position: 2

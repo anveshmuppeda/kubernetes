@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/eks-managed-nodes.md
+// filepath: kubernetes/docs/eks/eks-managed-nodes.md
 sidebar_label: "EKS Managed Nodes"
 sidebar_position: 2
 ---  

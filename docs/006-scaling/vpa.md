@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/scaling/vpa.md
+// filepath: kubernetes/docs/scaling/vpa.md
 sidebar_label: "Vertical Pod Autoscaler (VPA)"
 sidebar_id: "vpa"
 sidebar_position: 2

@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/scaling/keda.md
+// filepath: kubernetes/docs/scaling/keda.md
 sidebar_label: "KEDA (Kubernetes Event-Driven Autoscaling)"
 sidebar_id: "keda"
 sidebar_position: 3

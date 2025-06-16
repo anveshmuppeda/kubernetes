@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/monitoring/alertmanager.md
+// filepath: kubernetes/docs/monitoring/alertmanager.md
 sidebar_label: "Alertmanager"
 sidebar_id: "alertmanager"
 sidebar_position: 3

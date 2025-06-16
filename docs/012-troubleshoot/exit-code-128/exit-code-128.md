@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-128/exit-code-128.md
+// filepath: kubernetes/docs/012-troubleshoot/exit-code-128/exit-code-128.md
 sidebar_label: "Exit Code 128"
 sidebar_id: "exit-code-128"
 sidebar_position: 8

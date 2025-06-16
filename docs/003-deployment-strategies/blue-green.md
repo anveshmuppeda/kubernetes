@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/deployment-strategies/blue-green.md
+// filepath: kubernetes/docs/deployment-strategies/blue-green.md
 sidebar_label: "Blue-Green Deployment"
 sidebar_id: "blue-green"
 sidebar_position: 1
