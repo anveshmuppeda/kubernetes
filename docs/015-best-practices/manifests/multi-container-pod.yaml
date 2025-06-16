@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app
+  # annotations:
+  #   kubectl.kubernetes.io/default-container: "main-container"
+spec:
+  containers:
+  - name: sidecar-container
+    image: busybox
+    command: ["/bin/sh", "-c", "while true; do echo 'I am a sidecar'; sleep 10; done"]
+  - name: main-container
+    image: nginx
+    ports:
+    - containerPort: 80

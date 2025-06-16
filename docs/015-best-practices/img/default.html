@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kubernetes Default Container Poster</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .poster {
+            width: 980px;
+            height: 880px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .poster::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 60px;
+            color: white;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .kubernetes-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #326ce5, #4285f4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(50, 108, 229, 0.3);
+        }
+        
+        .brand {
+            flex: 1;
+        }
+        
+        .kubernetes-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .title {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .description {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+            margin-bottom: 18px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .code-snippet {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px auto;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 18px;
+            color: #7dd3fc;
+            max-width: 700px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .highlight {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+        
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin: 10px 0;
+        }
+        
+        .benefit {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .benefit-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .benefit-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .benefit-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1f2937;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .cta:hover {
+            transform: translateY(-2px);
+        }
+        
+        .author {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .circle-1 {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+        
+        .circle-2 {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+        
+        .circle-3 {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            right: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @media (max-width: 1200px) {
+            .poster {
+                width: 90vw;
+                height: 90vw;
+                max-width: 800px;
+                max-height: 800px;
+            }
+            
+            .content {
+                padding: 40px;
+            }
+            
+            .title {
+                font-size: 48px;
+            }
+            
+            .description {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <div class="floating-elements">
+            <div class="floating-circle circle-1"></div>
+            <div class="floating-circle circle-2"></div>
+            <div class="floating-circle circle-3"></div>
+        </div>
+        
+        <div class="content">
+            <!-- <div class="header">
+                <div class="kubernetes-logo">K8s</div>
+                <div class="brand">
+                    <div class="kubernetes-text">Kubernetes</div>
+                    <div class="subtitle">Container Orchestration</div>
+                </div>
+            </div> -->
+            
+            <div class="main-content">
+                <h1 class="title">Setting a Default Container</h1>
+                <p class="description">
+                    Streamline your kubectl commands for multi-container pods with one simple annotation
+                </p>
+                
+                <div class="code-snippet">
+                    <span class="highlight">kubectl.kubernetes.io/default-container:</span> "main-container"
+                </div>
+                
+                <div class="benefits">
+                    <div class="benefit">
+                        <span class="benefit-icon">⚡</span>
+                        <div class="benefit-title">No More -c Flags</div>
+                        <div class="benefit-text">Skip container specification in kubectl commands</div>
+                    </div>
+                    <div class="benefit">
+                        <span class="benefit-icon">🎯</span>
+                        <div class="benefit-title">Smart Defaults</div>
+                        <div class="benefit-text">Target the right container automatically</div>
+                    </div>
+                    <div class="benefit">
+                        <span class="benefit-icon">🚀</span>
+                        <div class="benefit-title">Better Workflow</div>
+                        <div class="benefit-text">Smoother multi-container pod interactions</div>
+                    </div>
+                    <div class="benefit">
+                        <span class="benefit-icon">💡</span>
+                        <div class="benefit-title">Simple Fix</div>
+                        <div class="benefit-text">One annotation solves the problem</div>
+                    </div>
+                </div>
+            </div>
+<!--             
+            <div class="footer">
+                <span class="author">📝 DevOps Pro Tip</span>
+                <a href="#" class="cta">Read Full Article</a>
+            </div> -->
+        </div>
+    </div>
+</body>
+</html>
