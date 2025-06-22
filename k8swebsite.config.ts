@@ -92,6 +92,16 @@ const config: Config = {
       },
     ],
     [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'iac', // Unique ID for the Terraform blog plugin
+        path: 'iac', // Local folder 
+        routeBasePath: 'iac', // URL path for the Terraform blog section
+        sidebarPath: require.resolve('./sidebars.js'), // Sidebar configuration
+        editUrl: 'https://github.com/anveshmuppeda/kubernetes/tree/dev/',
+      }
+    ],
+    [
       require.resolve('docusaurus-lunr-search'),
       {
         languages: ['en', 'fr'], // English and French
@@ -132,6 +142,11 @@ const config: Config = {
           position: 'left',
           label: 'AWS',
           to: '/aws/intro', // URL path for the AWS section
+        },
+        {
+          position: 'left',
+          label: 'IaC',
+          to: '/iac/intro', // URL path for the IaC section
         },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
