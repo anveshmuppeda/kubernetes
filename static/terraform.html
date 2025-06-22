@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Terraform from Scratch</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #4a90e2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .poster {
+            width: 800px;
+            height: 600px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .poster::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(116, 88, 255, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: rotate(0deg) translateY(0px); }
+            50% { transform: rotate(180deg) translateY(-20px); }
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+            color: #7458ff;
+        }
+        
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1a202c;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #7458ff, #4a90e2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: #4a5568;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        .tagline {
+            font-size: 16px;
+            color: #718096;
+            font-style: italic;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section h3 {
+            color: #2d3748;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(45deg, #7458ff, #4a90e2);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+        
+        .section ul {
+            list-style: none;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        .section li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .section li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #7458ff;
+            font-weight: bold;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta {
+            background: linear-gradient(45deg, #7458ff, #4a90e2);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(116, 88, 255, 0.3);
+        }
+        
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(116, 88, 255, 0.4);
+        }
+        
+        .tech-pattern {
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            opacity: 0.05;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23000" stroke-width="2"/><circle cx="50" cy="50" r="30" fill="none" stroke="%23000" stroke-width="1"/><circle cx="50" cy="50" r="15" fill="%23000"/></svg>');
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, rgba(116, 88, 255, 0.1) 50%, transparent 100%);
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <div class="tech-pattern"></div>
+        
+        <div class="header">
+            <span class="icon">
+                <img src="./img/terraform.png" alt="Terraform Logo" style="width:48px; height:48px; display:block; margin:0 auto;">
+            </span>
+            <h1 class="title">Learn Terraform from Scratch</h1>
+            <p class="subtitle">Infrastructure as Code (IaC)</p>
+            <p class="tagline">From a single file to managing secrets, modules, and multiple environments</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h3><span class="section-icon">🚀</span>What You'll Learn</h3>
+                <ul>
+                    <li>Basic Terraform syntax & workflow</li>
+                    <li>Variables & configuration management</li>
+                    <li>AWS provider integration</li>
+                    <li>EC2 deployment with user data</li>
+                    <li>Reusable modules creation</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h3><span class="section-icon">⚡</span>Advanced Topics</h3>
+                <ul>
+                    <li>S3 backend for remote state</li>
+                    <li>Remote execution & provisioners</li>
+                    <li>Multi-environment workspaces</li>
+                    <li>AWS Secrets Manager integration</li>
+                    <li>RDS with secure credentials</li>
+                    <li>EKS cluster creation</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h3><span class="section-icon">🎯</span>Production Ready</h3>
+                <ul>
+                    <li>Import existing infrastructure</li>
+                    <li>State management & refresh</li>
+                    <li>Security best practices</li>
+                    <li>Module architecture patterns</li>
+                    <li><span class="highlight">13 hands-on examples</span></li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h3><span class="section-icon">💡</span>Perfect For</h3>
+                <ul>
+                    <li>DevOps Engineers</li>
+                    <li>Cloud Architects</li>
+                    <li>Infrastructure Developers</li>
+                    <li>AWS Practitioners</li>
+                    <li>IaC Beginners to Advanced</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <a href="#" class="cta">Start Your Terraform Journey 🚀</a>
+        </div>
+    </div>
+</body>
+</html>
