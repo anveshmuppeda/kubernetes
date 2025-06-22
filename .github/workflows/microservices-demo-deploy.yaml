@@ -87,5 +87,5 @@ jobs:
       - name: Deploy Helm Chart
         run: |
           helm upgrade --install microservice-demo \
-            projects/microservices-project/helm-charts/microservice-demo \
+            projects/microservices-project/helm-charts/microservices-demo \
             --namespace microservices --create-namespace
