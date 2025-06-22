@@ -10,7 +10,7 @@ on:
       EksClusterName:
         description: 'EKS Cluster Name'
         required: true
-        default: 'microservices-demo-eks-cluster'
+        default: 'microservices-demo-cluster'
       DesiredSize:
         description: 'Desired Node Group Size'
         required: true
@@ -87,5 +87,5 @@ jobs:
       - name: Deploy Helm Chart
         run: |
           helm upgrade --install microservice-demo \
-            projects/microservices-project/helm-charts/microservice-demo \
-            --namespace microservices --create
+            projects/microservices-project/helm-charts/microservices-demo \
+            --namespace microservices --create-namespace
