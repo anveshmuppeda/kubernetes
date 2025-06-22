@@ -49,7 +49,7 @@ jobs:
           aws cloudformation deploy \
             --region "${{ github.event.inputs.region }}" \
             --stack-name "${{ github.event.inputs.stack-name }}" \
-            --template-file projects/microservices-project/cloudformation/microservice-demo-cft.yaml \
+            --template-file projects/microservices-project/infrastructure/microservice-demo-cft.yaml \
             --capabilities CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND \
             --no-fail-on-empty-changeset \
             --parameter-overrides \
