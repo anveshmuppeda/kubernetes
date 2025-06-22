@@ -10,7 +10,7 @@ on:
       EksClusterName:
         description: 'EKS Cluster Name'
         required: true
-        default: 'microservices-demo-eks-cluster'
+        default: 'microservices-demo-cluster'
       DesiredSize:
         description: 'Desired Node Group Size'
         required: true
