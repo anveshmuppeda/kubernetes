@@ -1,4 +1,4 @@
-name: Deploy Microservices Demo Helm Chart to EKS Cluster
+name: Deploy Microservices Demo Infra & Helm Chart to EKS Cluster
 
 on:
   workflow_dispatch:
