@@ -88,4 +88,4 @@ jobs:
         run: |
           helm upgrade --install microservice-demo \
             projects/microservices-project/helm-charts/microservice-demo \
-            --namespace microservices --create
+            --namespace microservices --create-namespace
