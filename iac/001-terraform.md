@@ -5,6 +5,8 @@ title: Getting Started with Terraform
 
 # Terraform Getting Started
 
+![Terraform Getting Started](./img/terraform-intro.png)
+
 This repository demonstrates a step-by-step approach to learning Terraform, from basic concepts to advanced features like modules, remote execution, workspaces, and AWS Secrets Manager integration.
 
 ---
