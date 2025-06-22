@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-{{- if .Values.shippingService.create }}
+{{- if .Values.checkoutService.create }}
 {{- if .Values.serviceAccounts.create }}
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: {{ .Values.shippingService.name }}
+  name: {{ .Values.checkoutService.name }}
   namespace: {{.Release.Namespace}}
   {{- if not .Values.serviceAccounts.annotationsOnlyForCartservice }}
   {{- with .Values.serviceAccounts.annotations }}
@@ -30,21 +30,21 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.shippingService.name }}
+  name: {{ .Values.checkoutService.name }}
   namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ .Values.shippingService.name }}
+    app: {{ .Values.checkoutService.name }}
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.shippingService.name }}
+      app: {{ .Values.checkoutService.name }}
   template:
     metadata:
       labels:
-        app: {{ .Values.shippingService.name }}
+        app: {{ .Values.checkoutService.name }}
     spec:
       {{- if .Values.serviceAccounts.create }}
-      serviceAccountName: {{ .Values.shippingService.name }}
+      serviceAccountName: {{ .Values.checkoutService.name }}
       {{- else }}
       serviceAccountName: default
       {{- end }}
@@ -68,52 +68,73 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: {{ .Values.images.repository }}/{{ .Values.shippingService.name }}:{{ .Values.images.tag | default .Chart.AppVersion }}
+        image: {{ .Values.images.repository }}-{{ .Values.checkoutService.name }}:{{ .Values.images.tag | default .Chart.AppVersion }}
         ports:
-        - containerPort: 50051
-        env:
-        - name: PORT
-          value: "50051"
-        {{- if not .Values.googleCloudOperations.profiler }}
-        - name: DISABLE_PROFILER
-          value: "1"
-        {{- end }}
+        - containerPort: 5050
         readinessProbe:
-          periodSeconds: 5
           grpc:
-            port: 50051
+            port: 5050
         livenessProbe:
           grpc:
-            port: 50051
+            port: 5050
+        env:
+        - name: PORT
+          value: "5050"
+        - name: PRODUCT_CATALOG_SERVICE_ADDR
+          value: "{{ .Values.productCatalogService.name }}:3550"
+        - name: SHIPPING_SERVICE_ADDR
+          value: "{{ .Values.shippingService.name }}:50051"
+        - name: PAYMENT_SERVICE_ADDR
+          value: "{{ .Values.paymentService.name }}:50051"
+        - name: EMAIL_SERVICE_ADDR
+          value: "{{ .Values.emailService.name }}:5000"
+        - name: CURRENCY_SERVICE_ADDR
+          value: "{{ .Values.currencyService.name }}:7000"
+        - name: CART_SERVICE_ADDR
+          value: "{{ .Values.cartService.name }}:7070"
+        {{- if .Values.opentelemetryCollector.create }}
+        - name: COLLECTOR_SERVICE_ADDR
+          value: "{{ .Values.opentelemetryCollector.name }}:4317"
+        - name: OTEL_SERVICE_NAME
+          value: "{{ .Values.checkoutService.name }}"
+        {{- end }}
+        {{- if .Values.googleCloudOperations.tracing }}
+        - name: ENABLE_TRACING
+          value: "1"
+        {{- end }}
+        {{- if .Values.googleCloudOperations.profiler }}
+        - name: ENABLE_PROFILER
+          value: "1"
+        {{- end }}
         resources:
-          {{- toYaml .Values.shippingService.resources | nindent 10 }}
+          {{- toYaml .Values.checkoutService.resources | nindent 10 }}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.shippingService.name }}
+  name: {{ .Values.checkoutService.name }}
   namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ .Values.shippingService.name }}
+    app: {{ .Values.checkoutService.name }}
 spec:
   type: ClusterIP
   selector:
-    app: {{ .Values.shippingService.name }}
+    app: {{ .Values.checkoutService.name }}
   ports:
   - name: grpc
-    port: 50051
-    targetPort: 50051
+    port: 5050
+    targetPort: 5050
 {{- if .Values.networkPolicies.create }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: {{ .Values.shippingService.name }}
+  name: {{ .Values.checkoutService.name }}
   namespace: {{ .Release.Namespace }}
 spec:
   podSelector:
     matchLabels:
-      app: {{ .Values.shippingService.name }}
+      app: {{ .Values.checkoutService.name }}
   policyTypes:
   - Ingress
   - Egress
@@ -122,11 +143,8 @@ spec:
     - podSelector:
         matchLabels:
           app: {{ .Values.frontend.name }}
-    - podSelector:
-        matchLabels:
-          app: {{ .Values.checkoutService.name }}
     ports:
-     - port: 50051
+     - port: 5050
        protocol: TCP
   egress:
   - {}
@@ -136,15 +154,21 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: Sidecar
 metadata:
-  name: {{ .Values.shippingService.name }}
+  name: {{ .Values.checkoutService.name }}
   namespace: {{ .Release.Namespace }}
 spec:
   workloadSelector:
     labels:
-      app: {{ .Values.shippingService.name }}
+      app: {{ .Values.checkoutService.name }}
   egress:
   - hosts:
     - istio-system/*
+    - ./{{ .Values.cartService.name }}.{{ .Release.Namespace }}.svc.cluster.local
+    - ./{{ .Values.currencyService.name }}.{{ .Release.Namespace }}.svc.cluster.local
+    - ./{{ .Values.emailService.name }}.{{ .Release.Namespace }}.svc.cluster.local
+    - ./{{ .Values.paymentService.name }}.{{ .Release.Namespace }}.svc.cluster.local
+    - ./{{ .Values.productCatalogService.name }}.{{ .Release.Namespace }}.svc.cluster.local
+    - ./{{ .Values.shippingService.name }}.{{ .Release.Namespace }}.svc.cluster.local
     {{- if .Values.opentelemetryCollector.create }}
     - ./{{ .Values.opentelemetryCollector.name }}.{{ .Release.Namespace }}.svc.cluster.local
     {{- end }}
@@ -154,30 +178,28 @@ spec:
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: {{ .Values.shippingService.name }}
+  name: {{ .Values.checkoutService.name }}
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.shippingService.name }}
+      app: {{ .Values.checkoutService.name }}
   rules:
   - from:
     - source:
         principals:
         {{- if .Values.serviceAccounts.create }}
         - cluster.local/ns/{{ .Release.Namespace }}/sa/{{ .Values.frontend.name }}
-        - cluster.local/ns/{{ .Release.Namespace }}/sa/{{ .Values.checkoutService.name }}
         {{- else }}
         - cluster.local/ns/{{ .Release.Namespace }}/sa/default
         {{- end }}
     to:
     - operation:
         paths:
-        - /hipstershop.ShippingService/GetQuote
-        - /hipstershop.ShippingService/ShipOrder
+        - /hipstershop.CheckoutService/PlaceOrder
         methods:
         - POST
         ports:
-        - "50051"
+        - "5050"
 {{- end }}
 {{- end }}

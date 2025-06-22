@@ -1,4 +1,4 @@
-name: Deploy Microservices Demo EKS Cluster using CFT
+name: Deploy Microservices Demo Infra & Helm Chart to EKS Cluster
 
 on:
   workflow_dispatch:
@@ -49,9 +49,43 @@ jobs:
           aws cloudformation deploy \
             --region "${{ github.event.inputs.region }}" \
             --stack-name "${{ github.event.inputs.stack-name }}" \
-            --template-file projects/microservices-project/cloudformation/microservice-demo-cft.yaml \
+            --template-file projects/microservices-project/infrastructure/microservice-demo-cft.yaml \
             --capabilities CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND \
             --no-fail-on-empty-changeset \
             --parameter-overrides \
               EksClusterName="${{ github.event.inputs.EksClusterName }}" \
               DesiredSize="${{ github.event.inputs.DesiredSize }}"
+
+  deploy-helm:
+    needs: deploy-cft
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ github.event.inputs.region }}
+
+      - name: Install kubectl
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/
+
+      - name: Install Helm
+        run: |
+          curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+      - name: Update kubeconfig for EKS
+        run: |
+          aws eks update-kubeconfig --region "${{ github.event.inputs.region }}" --name "${{ github.event.inputs.EksClusterName }}"
+
+      - name: Deploy Helm Chart
+        run: |
+          helm upgrade --install microservice-demo \
+            projects/microservices-project/helm-charts/microservice-demo \
+            --namespace microservices --create
