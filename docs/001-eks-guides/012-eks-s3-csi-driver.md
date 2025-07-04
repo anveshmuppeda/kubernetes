@@ -1,5 +1,5 @@
 ---
-// filepath: kubernetes/docs/eks/010-eks-s3-csi-driver.md
+// filepath: kubernetes/docs/eks/012-eks-s3-csi-driver.md
 sidebar_label: "EKS Mountpoint with S3 CSI Driver"
 sidebar_position: 12
 ---  
