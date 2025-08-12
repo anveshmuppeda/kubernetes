@@ -1,5 +1,5 @@
 # --- Builder Stage: Download FluxCD CLI ---
-FROM alpine:3.19 AS builder
+FROM alpine:3.22 AS builder
 
 # Versions (update these as needed)
 ARG FLUX_VERSION=2.1.0
@@ -8,7 +8,7 @@ RUN apk add --no-cache curl bash
 RUN curl -s https://raw.githubusercontent.com/fluxcd/flux2/main/install/flux.sh | FLUX_VERSION=${FLUX_VERSION} bash
 
 # --- Final Stage: Runtime Image ---
-FROM alpine:3.19
+FROM alpine:3.22
 
 # 1. Create non-root user
 RUN addgroup -S flux && adduser -S flux -G flux
