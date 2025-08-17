@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/commands/eksctl/eksctl.md
+// filepath: kubernetes/commands/eksctl/eksctl.md
 sidebar_label: "eksctl Commands"
 sidebar_id: "eksctl"
 sidebar_position: 5

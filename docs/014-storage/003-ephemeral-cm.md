@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/014-storage/003-ephemeral-cm.md
+// filepath: kubernetes/docs/014-storage/003-ephemeral-cm.md
 title: "Ephemeral Storage with ConfigMap, Secret, & Downward API"
 description: "Understanding Ephemeral Storage in Kubernetes with ConfigMap, Secret, and Downward API"
 sidebar_label: "Ephemeral Storage with ConfigMap, Secret, & Downward API"

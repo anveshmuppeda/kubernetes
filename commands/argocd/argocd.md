@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/commands/argocd/argocd.md
+// filepath: kubernetes/commands/argocd/argocd.md
 sidebar_label: "ArgoCD Commands"
 sidebar_id: "argocd"
 sidebar_position: 3

@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/fluxcd/fluxcd.md
+// filepath: kubernetes/docs/fluxcd/fluxcd.md
 sidebar_label: "FluxCD"
 sidebar_id: "fluxcd"
 sidebar_position: 1

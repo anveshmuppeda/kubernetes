@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/intro.md
+// filepath: kubernetes/docs/intro.md
 sidebar_position: 1
 ---
 

@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/cluster-setup/minikube.md
+// filepath: kubernetes/docs/cluster-setup/minikube.md
 sidebar_position: 3
 sidebar_label: "Minikube Cluster Setup"
 ---  

@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/010-eks-complete-storage.md
+// filepath: kubernetes/docs/eks/010-eks-complete-storage.md
 title: "A Guide to Amazon EKS Storage: EBS, EFS, and S3"
 description: "Understanding the Key Storage Options for Amazon EKS"
 sidebar_id: "eks-complete-storage"

@@ -1,3 +1,12 @@
+---
+// filepath:kubernetes/docs/eks/010-eks-complete-storage.md
+title: "A Guide to Amazon EKS Storage: EBS, EFS, and S3"
+description: "Understanding the Key Storage Options for Amazon EKS"
+sidebar_id: "eks-complete-storage"
+sidebar_label: "Choosing Your EKS Storage"
+sidebar_position: 13
+---  
+
 # Microservices on Kubernetes EKS - Complete Deployment Guide
 
 ![Microservices Architecture](https://img.shields.io/badge/Architecture-Microservices-blue) ![Platform](https://img.shields.io/badge/Platform-AWS%20EKS-orange) ![CI/CD](https://img.shields.io/badge/CI/CD-GitHub%20Actions-green) ![Container](https://img.shields.io/badge/Container-Docker-lightblue)

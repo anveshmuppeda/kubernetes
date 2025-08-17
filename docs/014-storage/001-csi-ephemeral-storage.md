@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/014-storage/001-ephemeral-storage.md
+// filepath: kubernetes/docs/014-storage/001-ephemeral-storage.md
 title: "CSI Ephemeral Storage"
 description: "Understanding Ephemeral Storage in Kubernetes"
 sidebar_label: "CSI Ephemeral Storage"

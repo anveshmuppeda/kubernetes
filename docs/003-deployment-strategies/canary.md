@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/deployment-strategies/canary.md
+// filepath: kubernetes/docs/deployment-strategies/canary.md
 sidebar_label: "Canary Deployment"
 sidebar_id: "canary"
 sidebar_position: 2

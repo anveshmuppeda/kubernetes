@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/ai/dashboard-setup.md
+// filepath: kubernetes/docs/ai/dashboard-setup.md
 sidebar_label: "Kubernetes Dashboard"
 sidebar_id: "dashboard-setup"
 sidebar_position: 1

@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/monitoring/promrtheus-grafana.md
+// filepath: kubernetes/docs/monitoring/promrtheus-grafana.md
 sidebar_label: "Prometheus and Grafana"
 sidebar_id: "prometheus-grafana"
 sidebar_position: 2

@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/eks-fargate-guide.MD
+// filepath: kubernetes/docs/eks/eks-fargate-guide.MD
 sidebar_position: 1
 sidebar_label: "EKS Fargate Cluster"
 ---  

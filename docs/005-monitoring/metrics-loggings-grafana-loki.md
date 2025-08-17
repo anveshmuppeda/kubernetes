@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/monitoring/metrics-loggings grafana-loki.md
+// filepath: kubernetes/docs/monitoring/metrics-loggings grafana-loki.md
 sidebar_label: "Metrics Loggings"
 sidebar_id: "metrics-loggings"
 sidebar_position: 5

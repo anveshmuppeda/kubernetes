@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/012-troubleshoot/exit-code-130/exit-code-130.md
+// filepath: kubernetes/docs/012-troubleshoot/exit-code-130/exit-code-130.md
 sidebar_label: "Exit Code 130"
 sidebar_id: "exit-code-130"
 sidebar_position: 9

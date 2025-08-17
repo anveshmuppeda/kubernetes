@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/ai/kubectl-ai.md
+// filepath: kubernetes/docs/ai/kubectl-ai.md
 sidebar_label: "Kubectl-AI"
 sidebar_id: "kubectl-ai"
 sidebar_position: 1

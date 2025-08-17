@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/deployment-strategies/rolling-update.md
+// filepath: kubernetes/docs/deployment-strategies/rolling-update.md
 sidebar_label: "Rolling Update Deployment"
 sidebar_id: "rolling-update"
 sidebar_position: 3

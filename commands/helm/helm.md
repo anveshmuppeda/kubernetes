@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/commands/helm/helm.md
+// filepath: kubernetes/commands/helm/helm.md
 sidebar_label: "Helm Commands"
 sidebar_id: "helm"
 sidebar_position: 2

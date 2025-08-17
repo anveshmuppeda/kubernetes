@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/eks/010-eks-efs-storage.md
+// filepath: kubernetes/docs/eks/010-eks-efs-storage.md
 sidebar_label: "EKS EFS Storage"
 sidebar_position: 11
 ---  

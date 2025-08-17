@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/cluster-setup/kubeadm.md
+// filepath: kubernetes/docs/cluster-setup/kubeadm.md
 sidebar_position: 2
 sidebar_label: "Kubeadm Cluster Setup"
 ---  

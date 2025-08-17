@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/scaling/karpenter.md
+// filepath: kubernetes/docs/scaling/karpenter.md
 sidebar_label: "Karpenter"
 sidebar_id: "karpenter"
 sidebar_position: 3

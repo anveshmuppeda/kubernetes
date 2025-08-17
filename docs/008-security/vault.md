@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/docs/security/vault.md
+// filepath: kubernetes/docs/security/vault.md
 sidebar_label: "HashiCorp Vault"
 sidebar_id: "vault"
 sidebar_position: 1

@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/anveshmuppeda/Desktop/anvesh/tech/git/kubernetes/commands/kubectl/commands.md
+// filepath: kubernetes/commands/kubectl/commands.md
 sidebar_label: "Kubectl Commands"
 sidebar_id: "kubectl"
 sidebar_position: 2
