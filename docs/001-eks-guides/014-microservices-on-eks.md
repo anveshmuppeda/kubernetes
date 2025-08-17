@@ -1,10 +1,10 @@
 ---
-// filepath:kubernetes/docs/eks/010-eks-complete-storage.md
-title: "A Guide to Amazon EKS Storage: EBS, EFS, and S3"
-description: "Understanding the Key Storage Options for Amazon EKS"
-sidebar_id: "eks-complete-storage"
-sidebar_label: "Choosing Your EKS Storage"
-sidebar_position: 13
+//filepath: kubernetes/docs/eks/014-microservices-on-eks.md
+sidebar_label: "Microservices on EKS"
+sidebar_position: 14
+title: "Microservices on Kubernetes EKS - Complete Deployment Guide"
+description: "A comprehensive hands-on guide for deploying a production-ready microservices application on AWS EKS using modern DevOps practices."
+sidebar_id: "microservices-on-eks"
 ---  
 
 # Microservices on Kubernetes EKS - Complete Deployment Guide
