@@ -16,7 +16,7 @@ on:
   push:
     branches:
       - main
-      - feature/microservicesdemo
+      - feature/eksFluxCDProject
     paths:
       - 'projects/eks-flux/app'
 
@@ -30,10 +30,10 @@ jobs:
         id: get-version
         run: |
           # Get auth token if needed (for private repos)
-          # TOKEN=$(curl -s "https://auth.docker.io/token?service=registry.docker.io&scope=repository:anvesh35/microservices-demo-adservice:pull" | jq -r .token)
+          # TOKEN=$(curl -s "https://auth.docker.io/token?service=registry.docker.io&scope=repository:anvesh35/eks-flux-project-app:pull" | jq -r .token)
           
           # Get all tags
-          TAGS=$(curl -s "https://hub.docker.com/v2/repositories/anvesh35/microservices-demo-adservice/tags/?page_size=100" | jq -r '.results[].name')
+          TAGS=$(curl -s "https://hub.docker.com/v2/repositories/anvesh35/eks-flux-project-app/tags/?page_size=100" | jq -r '.results[].name')
           
           # Filter and sort semantic versions
           LATEST=$(echo "$TAGS" | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -1)
@@ -83,8 +83,8 @@ jobs:
           file: projects/microservices-project/src/adservice/Dockerfile
           push: true
           tags: |
-            anvesh35/microservices-demo-adservice:latest
-            anvesh35/microservices-demo-adservice:${{ needs.version-calculator.outputs.new-version }}
+            anvesh35/eks-flux-project-app:latest
+            anvesh35/eks-flux-project-app:${{ needs.version-calculator.outputs.new-version }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}
