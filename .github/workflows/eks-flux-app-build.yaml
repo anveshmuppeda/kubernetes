@@ -89,3 +89,22 @@ jobs:
           build-args: |
             VERSION=${{ env.VERSION }}
       
+      - name: Update Kubernetes manifests
+        run: |
+          sed -i "s|image: anvesh35/eks-flux-project-app:.*|image: ${{ env.VERSION }}|" projects/eks-flux/manifests/app1-deployment.yaml
+          git config user.name "FluxCDBot CI"
+          git config user.email "fluxcdbot@users.noreply.github.com"
+
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: |
+            - projects/eks-flux/manifests/app1-deployment.yaml
+          message: "Update image to ${{ env.VERSION }}"
+          signoff: true
+          push: true
+          branch: feature/eksFluxCDProject
+          author_name: "Fluxcdbot CI"
+          author_email: "fluxcdbot@users.noreply.github.com"
+          #token: ${{ secrets.PR_PAT_TOKEN }}
+      
