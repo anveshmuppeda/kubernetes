@@ -6,5 +6,5 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: fluxcd
+    branch: feature/eksFluxCDProject
   url: https://github.com/anveshmuppeda/kubernetes
