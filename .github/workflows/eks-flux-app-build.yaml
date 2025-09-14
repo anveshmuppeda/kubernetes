@@ -1,5 +1,5 @@
 # .github/workflows/docker-build-push.yaml
-name: MicroServices Demo | AdService - Docker Build
+name: EKS FluxCD Project | App - Docker Build
 
 on:
   workflow_dispatch:
