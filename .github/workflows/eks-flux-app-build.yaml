@@ -21,44 +21,7 @@ on:
       - 'projects/eks-flux/app'
 
 jobs:
-  version-calculator:
-    runs-on: ubuntu-latest
-    outputs:
-      new-version: ${{ steps.get-version.outputs.NEW_VERSION }}
-    steps:
-      - name: Get latest version from Docker Hub
-        id: get-version
-        run: |
-          # Get auth token if needed (for private repos)
-          # TOKEN=$(curl -s "https://auth.docker.io/token?service=registry.docker.io&scope=repository:anvesh35/eks-flux-project-app:pull" | jq -r .token)
-          
-          # Get all tags
-          TAGS=$(curl -s "https://hub.docker.com/v2/repositories/anvesh35/eks-flux-project-app/tags/?page_size=100" | jq -r '.results[].name')
-          
-          # Filter and sort semantic versions
-          LATEST=$(echo "$TAGS" | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -1)
-          
-          # Set default if no versions found
-          if [ -z "$LATEST" ]; then
-            LATEST="v0.0.0"
-          fi
-
-          # Remove 'v' prefix and split version
-          VERSION=${LATEST#v}
-          IFS=. read MAJOR MINOR PATCH <<<"$VERSION"
-
-          # Determine bump type
-          case "${{ inputs.bump-type || 'minor' }}" in
-            major) MAJOR=$((MAJOR+1)); MINOR=0; PATCH=0 ;;
-            minor) MINOR=$((MINOR+1)); PATCH=0 ;;
-            patch) PATCH=$((PATCH+1)) ;;
-          esac
-
-          NEW_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
-          echo "NEW_VERSION=${NEW_VERSION}" >> $GITHUB_OUTPUT
-
   build-push-update:
-    needs: version-calculator
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code (with all branches)
@@ -66,6 +29,21 @@ jobs:
         with:
           fetch-depth: 0
           ref: feature/eksFluxCDProject
+      
+      - name: Prepare version
+        id: prep
+        run: |
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/}
+            BUILD_IMAGE=true
+          else
+            VERSION=${GITHUB_SHA::8}
+            BUILD_IMAGE=true
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "IMAGE=anvesh35/eks-flux-project-app:$VERSION" >> $GITHUB_ENV
+          echo "BUILD_IMAGE=$BUILD_IMAGE" >> $GITHUB_ENV
+
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -84,14 +62,14 @@ jobs:
           push: true
           tags: |
             anvesh35/eks-flux-project-app:latest
-            anvesh35/eks-flux-project-app:${{ needs.version-calculator.outputs.new-version }}
+            anvesh35/eks-flux-project-app:${{ env.VERSION }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.VERSION }}
       
       - name: Update Kubernetes manifests
         run: |
-          sed -i "s|image: anvesh35/eks-flux-project-app:.*|image: ${{ env.VERSION }}|" projects/eks-flux/manifests/app1-deployment.yaml
+          sed -i "s|image: anvesh35/eks-flux-project-app:.*|image: ${{ env.IMAGE }}|" projects/eks-flux/manifests/app1-deployment.yaml
           git config user.name "FluxCDBot CI"
           git config user.email "fluxcdbot@users.noreply.github.com"
 
