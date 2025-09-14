@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: app1
-        image: 
+        image: anvesh35/eks-flux-project-app:latest
         ports:
         - containerPort: 80

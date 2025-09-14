@@ -69,7 +69,8 @@ jobs:
       
       - name: Update Kubernetes manifests
         run: |
-          sed -i "s|image: anvesh35/eks-flux-project-app:.*|image: ${{ env.IMAGE }}|" projects/eks-flux/manifests/app1-deployment.yaml
+          # sed -i "s|image: anvesh35/eks-flux-project-app:.*|image: ${{ env.IMAGE }}|" projects/eks-flux/manifests/app1-deployment.yaml
+          sed -i "s|image:.*|image: anvesh35/eks-flux-project-app:${{ env.VERSION }}|" projects/eks-flux/manifests/app1-deployment.yaml
           git config user.name "FluxCDBot CI"
           git config user.email "fluxcdbot@users.noreply.github.com"
 
