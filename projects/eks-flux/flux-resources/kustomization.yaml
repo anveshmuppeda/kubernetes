@@ -5,7 +5,7 @@ metadata:
   namespace: fluxcd-demo
 spec:
   interval: 15m
-  path: "./project/eks-flux/manifests/"
+  path: "./projects/eks-flux/manifests/"
   prune: true
   sourceRef:
     kind: GitRepository
