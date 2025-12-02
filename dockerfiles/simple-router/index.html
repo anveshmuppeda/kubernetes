@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Router</title>
+</head>
+<body>
+    <div id="content"></div>
+
+    <script>
+        function router() {
+            const path = window.location.pathname;
+            const content = document.getElementById('content');
+
+            switch(path) {
+                case '/':
+                    content.textContent = 'Welcome Home page';
+                    break;
+                case '/cart':
+                    content.textContent = 'Welcome Cart page';
+                    break;
+                case '/billing':
+                    content.textContent = 'Welcome Billing page';
+                    break;
+                case '/status':
+                    content.textContent = 'Status: OK';
+                    break;
+                default:
+                    content.textContent = '404 - Page not found';
+            }
+        }
+
+        window.addEventListener('popstate', router);
+        router();
+    </script>
+</body>
+</html>
