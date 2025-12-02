@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-router-app
+  labels:
+    app: simple-router
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-router
+  template:
+    metadata:
+      labels:
+        app: simple-router
+    spec:
+      containers:
+      - name: simple-router-container
+        image: anvesh35/simple-router:latest
+        ports:
+        - containerPort: 80
