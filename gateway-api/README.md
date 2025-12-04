@@ -17,17 +17,17 @@ In this hands-on guide, we'll explore the Gateway API by building a complete tra
 ## What You'll Learn
 
 By the end of this tutorial, you'll understand:
-- ✅ Gateway API architecture and core concepts
-- ✅ Setting up Traefik as a Gateway Controller
-- ✅ Creating GatewayClass and Gateway resources
-- ✅ Implementing HTTPRoute for different routing scenarios
-- ✅ Hostname-based and path-based traffic routing
-- ✅ URL rewriting and traffic filtering
+- Gateway API architecture and core concepts
+- Setting up Traefik as a Gateway Controller
+- Creating GatewayClass and Gateway resources
+- Implementing HTTPRoute for different routing scenarios
+- Hostname-based and path-based traffic routing
+- URL rewriting and traffic filtering
 
 ## Prerequisites
 
 Before we begin, ensure you have:
-- A running Kubernetes cluster (we'll use kind for this tutorial - follow our [kind setup guide](../cluster-setup/kind.md))
+- A running Kubernetes cluster (we'll use kind for this tutorial - follow our [kind setup guide](./../cluster-setup/kind/README.md))
 - `kubectl` configured to access your cluster
 - `helm` package manager installed
 - Basic understanding of Kubernetes concepts (Pods, Services, Deployments)
@@ -45,7 +45,7 @@ Our setup will include:
 ## Step 1: Install Gateway API CRDs
 
 First, we need to install the Gateway API Custom Resource Definitions (CRDs):
-
+[Install Standard Channel](https://gateway-api.sigs.k8s.io/guides/#install-standard-channel)
 ```bash
 # Install Gateway API Standard Channel (GA and Beta resources)
 kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/standard-install.yaml
@@ -590,7 +590,6 @@ kubectl delete namespace traefik
 
 - [Kubernetes Gateway API Documentation](https://gateway-api.sigs.k8s.io/)
 - [Traefik Gateway API Guide](https://doc.traefik.io/traefik/routing/providers/kubernetes-gateway/)
-- [Gateway API Conformance](https://gateway-api.sigs.k8s.io/conformance/)
 
 ---
 
