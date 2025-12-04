@@ -1,0 +1,8 @@
+{
+  "label": "Gateway API",
+  "position": 16,
+  "link": {
+    "type": "generated-index",
+    "description": "Explore the Kubernetes Gateway API with this comprehensive guide. Learn how to set up and configure Gateway resources, implement advanced routing strategies, and manage traffic effectively in your Kubernetes clusters. Whether you're new to Gateway API or looking to deepen your understanding, these resources will help you harness the full potential of Kubernetes networking."
+  }
+}

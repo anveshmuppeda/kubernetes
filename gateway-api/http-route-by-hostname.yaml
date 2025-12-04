@@ -1,0 +1,20 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: simple-router
+  namespace: default
+
+spec:
+  parentRefs:
+  - name: gateway-api
+    sectionName: http #allows us to bind to a specific listener in the Gateway
+    kind: Gateway
+
+  hostnames:
+  - demo.apigateway.com
+
+  rules:
+  - backendRefs:
+    - name: simple-router-svc
+      port: 80
+      weight: 1
