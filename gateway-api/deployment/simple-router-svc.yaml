@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: simple-router-svc
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: simple-router
   ports:

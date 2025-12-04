@@ -11,7 +11,7 @@ spec:
     kind: Gateway
 
   hostnames:
-  - anvesh.muppeda.com
+  - demo.apigateway.com
 
   rules:
   - matches:

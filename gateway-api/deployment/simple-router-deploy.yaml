@@ -16,6 +16,13 @@ spec:
     spec:
       containers:
       - name: simple-router-container
-        image: anvesh35/simple-router:latest
+        image: anvesh35/simple-router:v1.0.0
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
         ports:
         - containerPort: 80
