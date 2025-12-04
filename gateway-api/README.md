@@ -33,14 +33,7 @@ Before we begin, ensure you have:
 - Basic understanding of Kubernetes concepts (Pods, Services, Deployments)
 
 ## Architecture Overview
-
-Our setup will include:
-```
-┌─────────────────┐    ┌──────────────┐    ┌─────────────────┐
-│   Gateway API   │───▶│   Traefik    │───▶│ Simple Router   │
-│   (HTTPRoute)   │    │ (Controller) │    │   Application   │
-└─────────────────┘    └──────────────┘    └─────────────────┘
-```
+![Gateway API Architecture](./img/k8s-gateway-api-01.png)
 
 ## Step 1: Install Gateway API CRDs
 
