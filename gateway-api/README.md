@@ -468,10 +468,10 @@ Now you can test in your browser:
 
 ### Browser Testing Screenshots
 
-[Home Page](./img/home.png)
-[Cart Page](./img/cart.png)
-[Billing Page](./img/billing.png)
-[Status Page](./img/status.png)
+![Home Page](./img/home.png)
+![Cart Page](./img/cart.png)
+![Billing Page](./img/billing.png)
+![Status Page](./img/status.png)
 
 ## Step 9: Testing and Verification
 
