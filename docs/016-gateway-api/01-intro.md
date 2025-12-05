@@ -35,20 +35,14 @@ By the end of this tutorial, you'll understand:
 ## Prerequisites
 
 Before we begin, ensure you have:
-- A running Kubernetes cluster (we'll use kind for this tutorial - follow our [kind setup guide](./../cluster-setup/kind/README.md))
+- A running Kubernetes cluster (we'll use kind for this tutorial - follow our [kind setup guide](./../002-cluster-setup/kind.md))
 - `kubectl` configured to access your cluster
 - `helm` package manager installed
 - Basic understanding of Kubernetes concepts (Pods, Services, Deployments)
 
 ## Architecture Overview
 
-Our setup will include:
-```
-┌─────────────────┐    ┌──────────────┐    ┌─────────────────┐
-│   Gateway API   │───▶│   Traefik    │───▶│ Simple Router   │
-│   (HTTPRoute)   │    │ (Controller) │    │   Application   │
-└─────────────────┘    └──────────────┘    └─────────────────┘
-```
+![Gateway API Architecture](./img/k8s-gateway-api-01.png)
 
 ## Step 1: Install Gateway API CRDs
 
@@ -483,10 +477,10 @@ Now you can test in your browser:
 
 ### Browser Testing Screenshots
 
-[Home Page](./img/home.png)
-[Cart Page](./img/cart.png)
-[Billing Page](./img/billing.png)
-[Status Page](./img/status.png)
+![Home Page](./img/home.png)
+![Cart Page](./img/cart.png)
+![Billing Page](./img/billing.png)
+![Status Page](./img/status.png)
 
 ## Step 9: Testing and Verification
 
