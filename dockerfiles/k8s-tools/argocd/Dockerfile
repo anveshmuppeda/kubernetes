@@ -1,5 +1,5 @@
 # --- Builder Stage: Download ArgoCD CLI ---
-FROM alpine:3.19 AS builder
+FROM alpine:3.23 AS builder
 
 # Versions (update these as needed)
 ARG ARGOCD_VERSION=v2.8.3
@@ -10,7 +10,7 @@ RUN curl -Lo /usr/local/bin/argocd \
     && chmod +x /usr/local/bin/argocd
 
 # --- Final Stage: Runtime Image ---
-FROM alpine:3.19
+FROM alpine:3.23
 
 # 1. Create non-root user
 RUN addgroup -S argocd && adduser -S argocd -G argocd
