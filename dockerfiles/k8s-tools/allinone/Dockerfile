@@ -1,5 +1,5 @@
 # Stage 1: Build environment
-FROM alpine:3.19 as downloader
+FROM alpine:3.23 as downloader
 
 # Versions (update these as needed)
 ARG KUBECTL_VERSION=1.29.3
