@@ -174,6 +174,8 @@ Kubernetes, also known as K8s, is an open-source container orchestration platfor
 | 60 | 2025-06-16 | [⎈ Setting a Default Container in Kubernetes ️](https://medium.com/@muppedaanvesh/setting-a-default-container-in-kubernetes-%EF%B8%8F-d9dfbf39ac95?source=rss-15b2de10f77d------2) |
 | 61 | 2025-08-18 | [⎈ Deploy Microservices to Kubernetes — EKS Demo️](https://medium.com/@muppedaanvesh/deploy-microservices-to-kubernetes-eks-demo-%EF%B8%8F-8533739843a3?source=rss-15b2de10f77d------2) |
 | 62 | 2025-12-04 | [⎈ Kubernetes Gateway API: A Hands-On Guide to Modern Traffic Management ️](https://medium.com/@muppedaanvesh/kubernetes-gateway-api-a-hands-on-guide-to-modern-traffic-management-%EF%B8%8F-7d7dcb547db3?source=rss-15b2de10f77d------2) |
+| 63 | 2025-12-22 | [⚙️ MLOps on Kubernetes: EKS Data Preprocessing with Pod Identity ️](https://medium.com/@muppedaanvesh/%EF%B8%8F-mlops-on-kubernetes-eks-data-preprocessing-with-pod-identity-%EF%B8%8F-3023bd0e85d0?source=rss-15b2de10f77d------2) |
+
 
 
 
