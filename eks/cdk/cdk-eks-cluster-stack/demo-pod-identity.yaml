@@ -1,0 +1,84 @@
+# Demo Service Account for Pod Identity Association
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: demo-service-account
+  namespace: default
+  labels:
+    app.kubernetes.io/name: demo-service-account
+    app.kubernetes.io/component: pod-identity
+---
+# Test Pod to verify Pod Identity Association
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-identity-test
+  namespace: default
+  labels:
+    app: pod-identity-test
+spec:
+  serviceAccountName: demo-service-account
+  containers:
+  - name: aws-cli
+    image: amazon/aws-cli:latest
+    command: ["sleep", "3600"]
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+  restartPolicy: Never
+---
+# Sample Application using Pod Identity
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app
+  namespace: default
+  labels:
+    app: demo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      serviceAccountName: demo-service-account
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+        env:
+        - name: AWS_REGION
+          value: "us-east-1"
+---
+# Service for the demo application
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-app-service
+  namespace: default
+  labels:
+    app: demo-app
+spec:
+  selector:
+    app: demo-app
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  type: LoadBalancer
