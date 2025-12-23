@@ -12,19 +12,7 @@ This CDK stack creates a production-ready EKS cluster with:
 - ✅ CloudWatch logging enabled
 
 ## Architecture
-
-```
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   VPC Stack     │───▶│   EKS Cluster    │───▶│  Node Groups    │
-│  (Network)      │    │     Stack        │    │   (Workers)     │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-                              │
-                              ▼
-                       ┌──────────────────┐
-                       │ Pod Identity     │
-                       │ Association      │
-                       └──────────────────┘
-```
+![Architecture Diagram](./img/aws-eks-cdk.png)
 
 ## Prerequisites
 
