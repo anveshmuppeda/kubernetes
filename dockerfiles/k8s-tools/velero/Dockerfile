@@ -1,5 +1,5 @@
 # --- Builder Stage: Download Velero ---
-FROM alpine:3.19 AS builder
+FROM alpine:3.23 AS builder
 
 # Versions (update these as needed)
 ARG VELERO_VERSION=v1.11.0
@@ -11,7 +11,7 @@ RUN curl -Lo velero.tar.gz \
     && chmod +x /usr/local/bin/velero
 
 # --- Final Stage: Runtime Image ---
-FROM alpine:3.19
+FROM alpine:3.23
 
 # 1. Create non-root user
 RUN addgroup -S velero && adduser -S velero -G velero
